@@ -1,4 +1,4 @@
-package PlaylistCreate;
+package PlaylistScreen;
 
 public class RecordUI {
 }

@@ -1,4 +1,4 @@
-package PlaylistCreate;
+package PlaylistEntities;
 
 public class PlaylistFactory {
 }
