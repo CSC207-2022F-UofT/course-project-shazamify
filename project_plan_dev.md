@@ -1,4 +1,4 @@
-# Project Planning and Development with Github 
+
 
 In this course project, you are expected to use Github to manage your code. This document describes the workflow for using Github when you are developing the course project. Please read it carefully and follow the instructions. **Try to work through the steps with the help of your team first, but please ask for help if your team gets stuck on any of the steps or needs something clarified.**
 
