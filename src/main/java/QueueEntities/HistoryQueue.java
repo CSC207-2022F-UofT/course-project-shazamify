@@ -5,9 +5,10 @@ import Entities.Song;
 import java.util.*;
 
 public class HistoryQueue {
-    HashMap<Song, Float> songHashMap;
+    //TODO: Add javadocs
+    private HashMap<Song, Float> songHashMap;
 
-    HistoryQueue(HashMap<Song, Float> songHashMap) {
+    public HistoryQueue(HashMap<Song, Float> songHashMap) {
         this.songHashMap = songHashMap;
     }
 

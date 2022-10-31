@@ -5,9 +5,10 @@ import Entities.Song;
 import java.util.*;
 
 public class SongQueue {
+    //TODO: Add javadocs
     private List<Song> queue;
 
-    SongQueue(List<Song> queue) {
+    public SongQueue(List<Song> queue) {
         this.queue = queue;
     }
 
