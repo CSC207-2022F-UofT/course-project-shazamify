@@ -1,6 +1,6 @@
-package QueueEntities;
+package queue_entities;
 
-import Entities.Song;
+import entities.Song;
 
 import java.util.*;
 
