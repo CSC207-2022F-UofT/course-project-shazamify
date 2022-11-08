@@ -1,0 +1,7 @@
+package UserInteractABR.FriendPlaylistInteractABR;
+
+import UserInteractABR.UserInteractRequestModel;
+
+public interface CheckFriendPlaylistInputBoundary {
+    public CheckFriendPlaylistResponseModel reactTo(UserInteractRequestModel checkFriendPlaylistRequestModelRequestModel);
+}
