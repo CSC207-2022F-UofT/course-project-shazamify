@@ -1,6 +1,4 @@
-package UserInteractABR.FriendManagerABR;
-
-import java.util.HashMap;
+package user_interact_abr.friend_manager_abr;
 
 public class FriendManagerResponseModel {
     private final String userID;

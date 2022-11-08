@@ -1,4 +1,4 @@
-package UserInteractABR.FriendPlaylistInteractABR;
+package user_interact_abr.friend_playlist_interact_abr;
 
 
 public interface FriendPlaylistInteractPresenter {

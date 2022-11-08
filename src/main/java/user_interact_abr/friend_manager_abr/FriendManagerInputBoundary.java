@@ -1,6 +1,6 @@
-package UserInteractABR.FriendManagerABR;
+package user_interact_abr.friend_manager_abr;
 
-import UserInteractABR.UserInteractRequestModel;
+import user_interact_abr.UserInteractRequestModel;
 
 public interface FriendManagerInputBoundary {
     FriendManagerResponseModel reactTo(UserInteractRequestModel friendManagerRequestModel);

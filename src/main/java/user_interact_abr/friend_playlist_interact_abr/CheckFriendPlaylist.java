@@ -1,6 +1,6 @@
-package UserInteractABR.FriendPlaylistInteractABR;
+package user_interact_abr.friend_playlist_interact_abr;
 
-import UserInteractABR.UserInteractRequestModel;
+import user_interact_abr.UserInteractRequestModel;
 
 public class CheckFriendPlaylist implements CheckFriendPlaylistInputBoundary {
 
