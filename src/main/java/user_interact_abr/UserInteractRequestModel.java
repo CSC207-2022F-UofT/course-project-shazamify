@@ -7,8 +7,6 @@ public class UserInteractRequestModel {
     private String userID;
     private String friendID;
 
-    private HashMap<String, String> friendList;
-
     public UserInteractRequestModel(String userID, String friendID) {
         this.userID = userID;
         this.friendID = friendID;

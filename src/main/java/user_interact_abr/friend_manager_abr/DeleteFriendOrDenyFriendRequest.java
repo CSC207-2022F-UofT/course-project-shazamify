@@ -29,7 +29,7 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
         FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         userDsGateway.save(userDsModel); // store friend request in both user & friend's friendLists
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID);
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID);
         return friendManagerPresenter.prepareSuccessView(responseModel);
     }
 }

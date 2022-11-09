@@ -3,13 +3,14 @@ package user_interact_abr.friend_manager_abr;
 import user_interact_abr.UserInteractRequestModel;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class SendFriendRequest implements FriendManagerInputBoundary {
 
     final FriendManagerDsGateway userDsGateway;
     final FriendManagerPresenter friendManagerPresenter;
 
-    SendFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
+    public SendFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
         this.userDsGateway = userDsGateway;
         this.friendManagerPresenter = friendManagerPresenter;
     }
@@ -26,9 +27,9 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
             String friendshipStatus = tempUserFriendList.get(friendID);
 
             //either userID is already friends with friendID, or there exists pending friend request between them
-            if (friendshipStatus == "friend"){
+            if (Objects.equals(friendshipStatus, "friend")){
                 return friendManagerPresenter.prepareFailView("You are already friends with " + friendID);
-            } else if (friendshipStatus == "pending_" + userID) { // userID have sent friend request to friendID before
+            } else if (Objects.equals(friendshipStatus, "pending_" + userID)) { // userID have sent friend request to friendID before
                 return friendManagerPresenter.prepareFailView("Please do not send repeated friend request");
             } else { //case 1: friendshipStatus == "pending_" + friendID, friendID have sent friend request to userID before
                 tempUserFriendList.put(friendID, "friend");
@@ -46,7 +47,7 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
         FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         userDsGateway.save(userDsModel); // store friend request in both user & friend's friendLists
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID);
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID);
         return friendManagerPresenter.prepareSuccessView(responseModel);
     }
 
