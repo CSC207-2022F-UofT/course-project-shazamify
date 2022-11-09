@@ -1,4 +1,6 @@
 package user.reg.screen;
 
-public class UserRegPresenter {
+import user.reg.abr.UserRegOutputBoundary;
+
+public class UserRegPresenter implements UserRegOutputBoundary {
 }

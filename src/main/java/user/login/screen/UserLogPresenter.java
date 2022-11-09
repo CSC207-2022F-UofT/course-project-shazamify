@@ -1,4 +1,4 @@
 package user.login.screen;
 
-public class UserLogPresenter {
+public class UserLogPresenter{
 }

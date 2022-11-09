@@ -1,4 +1,8 @@
 package user.entities;
 
-public interface User {
+import java.io.Serializable;
+
+public interface User extends Serializable {
+    public String getUserName();
+    public String getPassword();
 }
