@@ -141,11 +141,11 @@ class SendFriendRequestTest {
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Angela
+                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Jae
 
                 assertEquals("friend", userFriendListRepo.getFriendList("Star").get(users.getUserID()));
 
-                //check if Angela's friendList in friendList Repo contains proper friendship status (befriended) with Star
+                //check if Jae's friendList in friendList Repo contains proper friendship status (befriended) with Star
                 assertEquals("friend", userFriendListRepo.getFriendList("Jae").get(users.getFriendID()));
                 return null;
             }

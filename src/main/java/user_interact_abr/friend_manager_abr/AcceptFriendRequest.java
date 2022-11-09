@@ -10,7 +10,7 @@ public class AcceptFriendRequest implements FriendManagerInputBoundary {
     final FriendManagerPresenter friendManagerPresenter;
 
 
-    AcceptFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
+    public AcceptFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
         this.userDsGateway = userDsGateway;
         this.friendManagerPresenter = friendManagerPresenter;
     }

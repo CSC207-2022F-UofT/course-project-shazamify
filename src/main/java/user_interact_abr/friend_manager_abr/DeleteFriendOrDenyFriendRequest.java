@@ -9,7 +9,7 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
     final FriendManagerDsGateway userDsGateway;
     final FriendManagerPresenter friendManagerPresenter;
 
-    DeleteFriendOrDenyFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
+    public DeleteFriendOrDenyFriendRequest(FriendManagerDsGateway userDsGateway, FriendManagerPresenter friendManagerPresenter){
         this.userDsGateway = userDsGateway;
         this.friendManagerPresenter = friendManagerPresenter;
     }
