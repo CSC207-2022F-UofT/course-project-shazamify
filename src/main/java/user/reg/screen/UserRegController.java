@@ -3,6 +3,8 @@ package user.reg.screen;
 import user.reg.abr.UserRegInputBoundary;
 import user.reg.abr.UserRegRequestModel;
 
+import java.io.IOException;
+
 public class UserRegController {
     UserRegInputBoundary inputBoundary;
 
@@ -18,7 +20,7 @@ public class UserRegController {
      * @return A ViewModel contain whether registration is successful
      */
     public UserRegViewModel register(String userName, String password, String rePassword){
-        UserRegRequestModel requestModel = new UserRegRequestModel(userName= userName, password= password, rePassword= rePassword);
+        UserRegRequestModel requestModel = new UserRegRequestModel(password, userName, rePassword);
 
         return inputBoundary.register(requestModel);
     }

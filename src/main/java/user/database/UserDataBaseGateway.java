@@ -1,6 +1,8 @@
 package user.database;
 
+import java.io.IOException;
+
 public interface UserDataBaseGateway {
-    public boolean checkAndRegisterUser(String userName, String passWord);
-    public boolean checkValidLogin(String userName);
+    boolean checkAndRegisterUser(String userName, String passWord);
+    boolean checkValidLogin(String userName, String passWord);
 }

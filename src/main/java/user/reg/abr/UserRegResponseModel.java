@@ -1,12 +1,18 @@
 package user.reg.abr;
 
 public class UserRegResponseModel {
-    private final boolean usernameValidity;
-    private final boolean passwordValidity;
+    private boolean usernameValidity;
+    private boolean passwordValidity;
 
-    public UserRegResponseModel(boolean usernameValidity, boolean passwordValidity){
-        this.passwordValidity = passwordValidity;
+    public UserRegResponseModel(){
+    }
+
+    public void setUsernameValidity(boolean usernameValidity){
         this.usernameValidity = usernameValidity;
+    }
+
+    public void setPasswordValidity(boolean passwordValidity){
+        this.passwordValidity = passwordValidity;
     }
 
     public boolean isPasswordValid() {
