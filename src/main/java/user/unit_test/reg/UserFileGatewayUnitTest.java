@@ -6,7 +6,6 @@ import user.database.UserFileWriter;
 import user.entities.CommonUser;
 import user.entities.User;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class UserFileGatewayUnitTest {
@@ -20,5 +19,9 @@ public class UserFileGatewayUnitTest {
         UserFileWriter.writeUserMap(userMap,"UserDatabase.ser");
         Map<String, User> alteredUserMap = UserFileReader.getUserMap("UserDatabase.ser");
         assert alteredUserMap.size() == 2;
+    }
+
+    public static void main(String[] args) {
+        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
     }
 }

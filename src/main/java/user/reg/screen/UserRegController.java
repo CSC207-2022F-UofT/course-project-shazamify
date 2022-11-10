@@ -25,7 +25,7 @@ public class UserRegController {
         return inputBoundary.register(requestModel);
     }
 
-    public void giveRecommendPassword(){
-        //TODO: give recommend password
+    public UserRegViewModel giveRecommendPassword(){
+        return inputBoundary.giveRecommendPassword();
     }
 }
