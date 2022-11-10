@@ -17,10 +17,12 @@ public class AcceptFriendRequest implements FriendManagerInputBoundary {
 
     @Override
     public FriendManagerResponseModel reactTo(UserInteractRequestModel requestModel) {
-        String userID = requestModel.getUserID();
-        String friendID = requestModel.getFriendID();
-        HashMap<String, String> tempUserFriendList = userDsGateway.getFriendList(userID);
-        HashMap<String, String> tempFriendFriendList = userDsGateway.getFriendList(friendID);
+
+        int userID = requestModel.getUserID();
+        int friendID = requestModel.getFriendID();
+        HashMap<Integer, String> tempUserFriendList = userDsGateway.getFriendList(userID);
+        HashMap<Integer, String> tempFriendFriendList = userDsGateway.getFriendList(friendID);
+
 
         tempUserFriendList.put(friendID, "friend");
         tempFriendFriendList.put(userID, "friend"); // let them be friends, update friendship status

@@ -1,21 +1,25 @@
 package user_interact_abr.friend_manager_abr;
 
 public class FriendManagerResponseModel {
-    private final String userID;
 
-    private final String friendID;
+    private final int userID;
 
-    public FriendManagerResponseModel(String userID, String friendID) {
+    private final int friendID;
+
+    public FriendManagerResponseModel(int userID, int friendID) {
+
 
         this.userID = userID;
         this.friendID = friendID;
     }
 
-    public String getUserID() {
+
+    public int getUserID() {
         return userID;
     }
 
-    public String getFriendID() {
+    public int getFriendID() {
+
         return friendID;
     }
 }
