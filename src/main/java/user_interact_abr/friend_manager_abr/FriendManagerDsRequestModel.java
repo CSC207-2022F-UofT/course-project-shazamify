@@ -4,41 +4,41 @@ import java.util.HashMap;
 
 public class FriendManagerDsRequestModel{
 
-    private final String userID;
+    private final int userID;
 
-    private final String friendID;
+    private final int friendID;
 
-    private HashMap<String, String> userFriendList;
+    private HashMap<Integer, String> userFriendList;
 
-    private HashMap<String, String> friendFriendList;
+    private HashMap<Integer, String> friendFriendList;
 
 
-    public FriendManagerDsRequestModel(String userID, String friendID, HashMap<String, String> userFriendList, HashMap<String, String> friendFriendList) {
+    public FriendManagerDsRequestModel(int userID, int friendID, HashMap<Integer, String> userFriendList, HashMap<Integer, String> friendFriendList) {
         this.userID = userID;
         this.friendID = friendID;
         this.userFriendList = userFriendList;
         this.friendFriendList = friendFriendList;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public String getFriendID(){ return friendID; }
+    public int getFriendID(){ return friendID; }
 
-    public HashMap<String, String> getUserFriendList() {
+    public HashMap<Integer, String> getUserFriendList() {
         return userFriendList;
     }
 
-    public void setUserFriendList(HashMap<String, String> userFriendList) {
+    public void setUserFriendList(HashMap<Integer, String> userFriendList) {
         this.userFriendList = userFriendList;
     }
 
-    public HashMap<String, String> getFriendFriendList() {
+    public HashMap<Integer, String> getFriendFriendList() {
         return friendFriendList;
     }
 
-    public void setFriendFriendList(HashMap<String, String> friendFriendList) {
+    public void setFriendFriendList(HashMap<Integer, String> friendFriendList) {
         this.friendFriendList = friendFriendList;
     }
 }

@@ -1,30 +1,28 @@
 package user_interact_abr;
 
-import java.util.HashMap;
-
 public class UserInteractRequestModel {
 
-    private String userID;
-    private String friendID;
+    private int userID;
+    private int friendID;
 
-    public UserInteractRequestModel(String userID, String friendID) {
+    public UserInteractRequestModel(int userID, int friendID) {
         this.userID = userID;
         this.friendID = friendID;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
-    public String getFriendID() {
+    public int getFriendID() {
         return friendID;
     }
 
-    public void setFriendID(String friendID) {
+    public void setFriendID(int friendID) {
         this.friendID = friendID;
     }
 

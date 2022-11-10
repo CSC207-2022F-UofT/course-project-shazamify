@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteFriendOrDenyFriendRequestTest {
 
-    private static FriendManagerDsGateway userFriendListRepo = new InMemoryUserFriendList();
+    private static final FriendManagerDsGateway userFriendListRepo = new InMemoryUserFriendList();
 
-    private void setUserFriendListRepoHelper(FriendManagerDsGateway userFriendListRepo, String userID, String friendID){
+    private void setUserFriendListRepoHelper(FriendManagerDsGateway userFriendListRepo, int userID, int friendID){
         //set up existing friend request for testing
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
@@ -37,20 +37,20 @@ class DeleteFriendOrDenyFriendRequestTest {
     }
 
     @Test
-    void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
+    void reactToDenyFriendRequest() {// 4 receives fr from 1, 4 denies the fr
 
-        //set up: Star sent fr to Jae;
-        setUserFriendListRepoHelper(userFriendListRepo, "Star", "Jae");
+        //set up: 1 sent fr to 4;
+        setUserFriendListRepoHelper(userFriendListRepo, 1, 4);
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //Star's friendList in friendList Repo should not contain Jae
-                assertNull(userFriendListRepo.getFriendList("Star").get(users.getUserID()));
+                //1's friendList in friendList Repo should not contain 4
+                assertNull(userFriendListRepo.getFriendList(1).get(users.getUserID()));
 
 
-                //Jae's friendList in friendList Repo should not contain Star
-                assertNull(userFriendListRepo.getFriendList("Jae").get(users.getFriendID()));
+                //4's friendList in friendList Repo should not contain 1
+                assertNull(userFriendListRepo.getFriendList(4).get(users.getFriendID()));
                 return null;
             }
 
@@ -64,7 +64,7 @@ class DeleteFriendOrDenyFriendRequestTest {
         FriendManagerInputBoundary denyFriendRequest = new DeleteFriendOrDenyFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-        UserInteractRequestModel inputData = new UserInteractRequestModel("Jae", "Star");
+        UserInteractRequestModel inputData = new UserInteractRequestModel(4, 1);
 
         // Run the use case
         denyFriendRequest.reactTo(inputData);
@@ -76,18 +76,18 @@ class DeleteFriendOrDenyFriendRequestTest {
     void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
 
         //set up: Jae and Star are friends;
-        setUserFriendListRepoHelper(userFriendListRepo, "Star", "Jae");
-        setUserFriendListRepoHelper(userFriendListRepo, "Jae", "Star");
+        setUserFriendListRepoHelper(userFriendListRepo, 1, 4);
+        setUserFriendListRepoHelper(userFriendListRepo, 4, 1);
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //Star's friendList in friendList Repo should not contain Jae
-                assertNull(userFriendListRepo.getFriendList("Star").get(users.getUserID()));
+                //1's friendList in friendList Repo should not contain 4
+                assertNull(userFriendListRepo.getFriendList(1).get(users.getUserID()));
 
 
-                //Jae's friendList in friendList Repo should not contain Star
-                assertNull(userFriendListRepo.getFriendList("Jae").get(users.getFriendID()));
+                //4's friendList in friendList Repo should not contain 1
+                assertNull(userFriendListRepo.getFriendList(4).get(users.getFriendID()));
                 return null;
             }
 
@@ -101,7 +101,7 @@ class DeleteFriendOrDenyFriendRequestTest {
         FriendManagerInputBoundary deleteFriend = new DeleteFriendOrDenyFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-        UserInteractRequestModel inputData = new UserInteractRequestModel("Jae", "Star");
+        UserInteractRequestModel inputData = new UserInteractRequestModel(4, 1);
 
         // Run the use case
         deleteFriend.reactTo(inputData);
