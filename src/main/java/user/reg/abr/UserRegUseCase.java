@@ -1,34 +1,38 @@
 package user.reg.abr;
 
+import user.database.UserDataBaseGateway;
 import user.reg.screen.UserRegViewModel;
-
-import java.io.IOException;
 
 public class UserRegUseCase implements UserRegInputBoundary{
 
     private final UserRegHelper userRegHelper = new UserRegHelper();
     private final UserRecommendPasswordHelper userRecommendPasswordHelper = new UserRecommendPasswordHelper();
     private final UserRegOutputBoundary outputBoundary;
+    private final UserDataBaseGateway dataBaseGateway;
 
     /**
      * This is a thin layer Facade class, with 2 helper class doing the job of registration and recommend password.
      *
-     * @param outputBoundary              Output Boundary for usecase
+     * @param outputBoundary  Output Boundary for usecase
+     * @param dataBaseGateway Database Gateway used by User database.
      */
-    public UserRegUseCase(UserRegOutputBoundary outputBoundary){
+    public UserRegUseCase(UserRegOutputBoundary outputBoundary, UserDataBaseGateway dataBaseGateway){
         this.outputBoundary = outputBoundary;
+        this.dataBaseGateway = dataBaseGateway;
     }
 
     @Override
     public UserRegViewModel register(UserRegRequestModel requestModel){
         UserRegResponseModel emptyResponseModel = new UserRegResponseModel();
-        UserRegResponseModel processedResponseModel = userRegHelper.register(requestModel, emptyResponseModel);
+        UserRegResponseModel processedResponseModel = userRegHelper.register(requestModel,
+                emptyResponseModel, dataBaseGateway);
         return outputBoundary.packageAndPresent(processedResponseModel);
     }
 
     @Override
     public UserRegViewModel giveRecommendPassword() {
-        // TODO
-        return null;
+        UserRegResponseModel emptyResponseModel = new UserRegResponseModel();
+        UserRegResponseModel responseModel = userRecommendPasswordHelper.giveRandomPassword(emptyResponseModel);
+        return outputBoundary.packageAndPresent(responseModel);
     }
 }
