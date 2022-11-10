@@ -1,5 +1,6 @@
 package user.reg.abr;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class UserRecommendPasswordHelper {
@@ -11,7 +12,7 @@ public class UserRecommendPasswordHelper {
         final int[] LEFT_LIMIT_SET = {48, 65, 97};
         final int[] RIGHT_LIMIT_SET = {57, 90, 122};
         final int PASSWORD_LENGTH = 10;
-        Random random = new Random();
+        Random random = new SecureRandom();
 
         StringBuilder targetPassword = new StringBuilder();
         for (int i = 0; i < PASSWORD_LENGTH; i++){

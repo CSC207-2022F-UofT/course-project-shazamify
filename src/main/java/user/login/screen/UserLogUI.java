@@ -58,9 +58,9 @@ public class UserLogUI extends JPanel {
         boolean validPassword = viewModel.isUserPasswordValid();
 
         if (validUserName & validPassword){
-            JOptionPane.showMessageDialog(this, "%s valid.".formatted(userNameField.getText()));
+            JOptionPane.showMessageDialog(this, "valid.");
         } else if (!validUserName) {
-            JOptionPane.showMessageDialog(this, "%s userName not valid.".formatted(userNameField.getText()));
+            JOptionPane.showMessageDialog(this, "userName not valid.");
         } else {
             JOptionPane.showMessageDialog(this, "password not valid.");
         }

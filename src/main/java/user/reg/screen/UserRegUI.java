@@ -58,11 +58,11 @@ public class UserRegUI extends JPanel {
         String rePassword = String.valueOf(userRePassWordField.getPassword());
         UserRegViewModel viewModel = controller.register(name, password, rePassword);
         if (viewModel.isPasswordValid() & viewModel.isUsernameValid()) {
-            JOptionPane.showMessageDialog(this, "%s created.".formatted(userNameField.getText()));
+            JOptionPane.showMessageDialog(this, "created.");
         } else if (!viewModel.isPasswordValid()) {
-            JOptionPane.showMessageDialog(this, "%s password Invalid.".formatted(userNameField.getText()));
+            JOptionPane.showMessageDialog(this, "password Invalid.");
         } else {
-            JOptionPane.showMessageDialog(this, "%s Username Invalid.".formatted(userNameField.getText()));
+            JOptionPane.showMessageDialog(this, "Username Invalid.");
         }
     }
     private void setBoundForComponents() {
