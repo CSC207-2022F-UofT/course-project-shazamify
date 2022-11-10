@@ -24,6 +24,11 @@ public class UserFileGateway implements UserDataBaseGateway{
         }
     }
 
+    public int getNumberOfUsers(){
+        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
+        return userMap.size();
+    }
+
     @Override
     public boolean checkValidLogin(String userName, String passWord){
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");

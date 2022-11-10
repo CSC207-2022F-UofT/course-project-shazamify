@@ -14,9 +14,9 @@ public class UserRegUseCaseUnitTest {
     public void passWordAndRepassWordNotMatch(){
         UserRegOutputBoundary boundary = new UserRegPresenter();
         UserRegUseCase userRegUseCase = new UserRegUseCase(boundary);
-        UserRegRequestModel requestModel = new UserRegRequestModel("123123","140452838","qazwsx741");
+        UserRegRequestModel requestModel = new UserRegRequestModel("qazwsx741","1404528381","qazwsx741");
         UserRegViewModel viewModel = userRegUseCase.register(requestModel);
-        assert !viewModel.isPasswordValid();
+        assert viewModel.isPasswordValid();
     }
 
     @Test

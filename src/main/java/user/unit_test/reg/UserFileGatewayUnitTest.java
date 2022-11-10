@@ -21,4 +21,8 @@ public class UserFileGatewayUnitTest {
         Map<String, User> alteredUserMap = UserFileReader.getUserMap("UserDatabase.ser");
         assert alteredUserMap.size() == 2;
     }
+
+    public static void main(String[] args) {
+        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
+    }
 }

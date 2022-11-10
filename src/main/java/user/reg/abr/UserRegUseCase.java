@@ -28,7 +28,8 @@ public class UserRegUseCase implements UserRegInputBoundary{
 
     @Override
     public UserRegViewModel giveRecommendPassword() {
-        // TODO
-        return null;
+        UserRegResponseModel emptyResponseModel = new UserRegResponseModel();
+        UserRegResponseModel responseModel = userRecommendPasswordHelper.giveRandomPassword(emptyResponseModel);
+        return outputBoundary.packageAndPresent(responseModel);
     }
 }

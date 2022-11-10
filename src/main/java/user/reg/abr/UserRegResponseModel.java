@@ -4,6 +4,8 @@ public class UserRegResponseModel {
     private boolean usernameValidity;
     private boolean passwordValidity;
 
+    private String recommendPassword;
+
     public UserRegResponseModel(){
     }
 
@@ -15,11 +17,19 @@ public class UserRegResponseModel {
         this.passwordValidity = passwordValidity;
     }
 
+    public void setRecommendPassword(String recommendPassword) {
+        this.recommendPassword = recommendPassword;
+    }
+
     public boolean isPasswordValid() {
         return passwordValidity;
     }
 
     public boolean isUsernameValid() {
         return usernameValidity;
+    }
+
+    public String getRecommendPassword() {
+        return recommendPassword;
     }
 }
