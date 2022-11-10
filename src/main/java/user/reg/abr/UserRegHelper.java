@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class UserRegHelper {
 
-    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel){
-        UserDataBaseGateway gateway = new UserFileGateway();
+
+    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel, UserDataBaseGateway dataBaseGateway){
         String password = requestModel.getPassword();
         String userName = requestModel.getUserName();
         String rePassword = requestModel.getRePassword();
@@ -19,7 +19,7 @@ public class UserRegHelper {
 
         // If all password and userName's characters are legal.
         if (userNameValidity & passwordValidity) {
-            responseModel.setUsernameValidity(gateway.checkAndRegisterUser(userName, password));
+            responseModel.setUsernameValidity(dataBaseGateway.checkAndRegisterUser(userName, password));
             responseModel.setPasswordValidity(true);
         } else { // If the password or userName's characters are illegal
             responseModel.setUsernameValidity(userNameValidity);
