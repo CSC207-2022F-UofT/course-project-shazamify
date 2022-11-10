@@ -9,7 +9,7 @@ public class UserRegRandomPasswordUnitTest {
     public void testRandomPassword() {
         UserRecommendPasswordHelper passwordHelper = new UserRecommendPasswordHelper();
         UserRegResponseModel responseModel = new UserRegResponseModel();
-        System.out.println(passwordHelper.giveRandomPassword(responseModel));
+        System.out.println(passwordHelper.giveRandomPassword(responseModel).getRecommendPassword());
     }
 
 }
