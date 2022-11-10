@@ -5,7 +5,6 @@ import user.database.UserDataBaseGateway;
 import user.database.UserFileGateway;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogRequestModel;
-import user.login.abr.UserLogResponseModel;
 import user.login.abr.UserLogUseCase;
 import user.login.screen.UserLogPresenter;
 import user.login.screen.UserLogViewModel;

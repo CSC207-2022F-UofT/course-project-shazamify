@@ -6,7 +6,6 @@ import user.database.UserFileWriter;
 import user.entities.CommonUser;
 import user.entities.User;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class UserFileGatewayUnitTest {

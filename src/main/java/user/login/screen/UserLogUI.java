@@ -6,12 +6,6 @@ import user.database.UserFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
-import user.reg.abr.UserRegInputBoundary;
-import user.reg.abr.UserRegOutputBoundary;
-import user.reg.abr.UserRegUseCase;
-import user.reg.screen.UserRegController;
-import user.reg.screen.UserRegPresenter;
-import user.reg.screen.UserRegUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
