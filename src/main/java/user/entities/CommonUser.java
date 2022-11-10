@@ -1,7 +1,7 @@
 package user.entities;
 
-import user.database.UserDataBaseGateway;
-import user.database.UserFileGateway;
+import user.database.UserRegisterDataBaseGateway;
+import user.database.UserRegisterFileGateway;
 
 import java.io.Serializable;
 
@@ -17,7 +17,7 @@ public class CommonUser implements User, Serializable {
     }
 
     private int generateUserID() {
-        UserDataBaseGateway dataBaseGateway = new UserFileGateway();
+        UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
         return dataBaseGateway.getNumberOfUsers() + 1;
     }
 

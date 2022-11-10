@@ -1,7 +1,7 @@
 package user.reg.screen;
 
-import user.database.UserDataBaseGateway;
-import user.database.UserFileGateway;
+import user.database.UserRegisterDataBaseGateway;
+import user.database.UserRegisterFileGateway;
 import user.reg.abr.*;
 
 import javax.swing.*;
@@ -107,7 +107,7 @@ public class UserRegUI extends JPanel {
      * Temporary test method
      */
     public static void main(String[] args) {
-        UserDataBaseGateway dataBaseGateway = new UserFileGateway();
+        UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
         UserRegOutputBoundary presenter = new UserRegPresenter();
         UserRegInputBoundary useCase = new UserRegUseCase(presenter, dataBaseGateway);
         UserRegController controller = new UserRegController(useCase);

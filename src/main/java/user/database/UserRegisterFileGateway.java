@@ -6,7 +6,7 @@ import user.entities.UserFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserFileGateway implements UserDataBaseGateway{
+public class UserRegisterFileGateway implements UserRegisterDataBaseGateway {
     /**
      * Check if the userName is valid.
      * If valid, register the user, and return True.
@@ -32,18 +32,6 @@ public class UserFileGateway implements UserDataBaseGateway{
     @Override
     public void clearDatabase() {
         UserFileWriter.writeUserMap(new HashMap<>(), "UserDatabase.ser");
-    }
-
-    @Override
-    public boolean checkValidPassword(String userName, String passWord){
-        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return userMap.get(userName).getPassword().equals(passWord);
-    }
-
-    @Override
-    public boolean checkValidUserName(String userName) {
-        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return userMap.containsKey(userName);
     }
 
 
