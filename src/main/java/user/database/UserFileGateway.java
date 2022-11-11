@@ -3,7 +3,7 @@ package user.database;
 import user.entities.User;
 import user.entities.UserFactory;
 
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Map;
 
 public class UserFileGateway implements UserDataBaseGateway{
@@ -23,27 +23,11 @@ public class UserFileGateway implements UserDataBaseGateway{
             return false;
         }
     }
-    @Override
-    public int getNumberOfUsers(){
-        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return userMap.size();
-    }
 
     @Override
-    public void clearDatabase() {
-        UserFileWriter.writeUserMap(new HashMap<>(), "UserDatabase.ser");
-    }
-
-    @Override
-    public boolean checkValidPassword(String userName, String passWord){
+    public boolean checkValidLogin(String userName, String passWord){
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return userMap.get(userName).getPassword().equals(passWord);
-    }
-
-    @Override
-    public boolean checkValidUserName(String userName) {
-        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return userMap.containsKey(userName);
+        return userMap.containsKey(userName) & userMap.get(userName).getPassword().equals(passWord);
     }
 
 
