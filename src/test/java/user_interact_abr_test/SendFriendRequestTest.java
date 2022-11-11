@@ -1,6 +1,5 @@
 package user_interact_abr_test;
 
-
 import org.junit.jupiter.api.Test;
 import user_interact_abr.UserInteractRequestModel;
 import user_interact_abr.friend_manager_abr.*;
@@ -10,11 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SendFriendRequestTest {
 
-
     private static final FriendManagerDsGateway userFriendListRepo = new InMemoryUserFriendList();
 
-    private void setUserFriendListRepoHelper(FriendManagerDsGateway userFriendListRepo, int userID, int friendID){
-
+    private void setUserFriendListRepoHelper(FriendManagerDsGateway userFriendListRepo, String userID, String friendID){
         //set up existing friend request for testing
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
@@ -41,20 +38,16 @@ class SendFriendRequestTest {
 
     @Test
     void reactToEmptyFriendListAndNoRequestExistsBefore() {
-
-        //1 has no friend or pending friend request; 01 tries to send fr to 2
-
+        //Star has no friend or pending friend request; Star tries to send fr to Angela
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
+                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Angela
+                assertEquals(userFriendListRepo.getFriendList("Star").get(users.getFriendID()), "pending_" + users.getUserID());
 
-                //check if 1's friendList in friendList Repo contains proper friendship status (befriended) with 2
-                assertEquals(userFriendListRepo.getFriendList(1).get(users.getFriendID()), "pending_" + users.getUserID());
-
-                //check if 2's friendList in friendList Repo contains proper friendship status (befriended) with 1
-                assertEquals(userFriendListRepo.getFriendList(2).get(users.getUserID()), "pending_" + users.getUserID());
-
+                //check if Angela's friendList in friendList Repo contains proper friendship status (befriended) with Star
+                assertEquals(userFriendListRepo.getFriendList("Angela").get(users.getUserID()), "pending_" + users.getUserID());
 
                 return null;
             }
@@ -69,8 +62,7 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-
-        UserInteractRequestModel inputData = new UserInteractRequestModel(1, 2);
+        UserInteractRequestModel inputData = new UserInteractRequestModel("Star", "Angela");
 
         // Run the use case
         sendFriendRequest.reactTo(inputData);
@@ -79,20 +71,16 @@ class SendFriendRequestTest {
 
     @Test
     void reactToNonEmptyFriendListAndNoRequestExistsBefore() {
-
-        //1 has some friends or pending friend requests; no pending friend request between 1 and 3; 1 tries to send fr to 3
-
+        //Star has some friends or pending friend requests; no pending friend request between Star and Millie; Star tries to send fr to Millie
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
+                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Angela
+                assertEquals(userFriendListRepo.getFriendList("Star").get(users.getFriendID()), "pending_" + users.getUserID());
 
-                //check if 1's friendList in friendList Repo contains proper friendship status (befriended) with 3
-                assertEquals(userFriendListRepo.getFriendList(1).get(users.getFriendID()), "pending_" + users.getUserID());
-
-                //check if 3's friendList in friendList Repo contains proper friendship status (befriended) with 1
-                assertEquals(userFriendListRepo.getFriendList(3).get(users.getUserID()), "pending_" + users.getUserID());
-
+                //check if Angela's friendList in friendList Repo contains proper friendship status (befriended) with Star
+                assertEquals(userFriendListRepo.getFriendList("Millie").get(users.getUserID()), "pending_" + users.getUserID());
 
                 return null;
             }
@@ -107,9 +95,7 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-
-        UserInteractRequestModel inputData = new UserInteractRequestModel(1, 3);
-
+        UserInteractRequestModel inputData = new UserInteractRequestModel("Star", "Millie");
 
         // Run the use case
         sendFriendRequest.reactTo(inputData);
@@ -117,9 +103,7 @@ class SendFriendRequestTest {
     }
 
     @Test
-
-    void reactToExistedRequestFromSender() { //1 sent fr to 2 before; fr is still pending; 1 now tries to send again
-
+    void reactToExistedRequestFromSender() { //Star sent fr to Angela before; fr is still pending; Star now tries to send again
 
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
@@ -139,8 +123,7 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-
-        UserInteractRequestModel inputData = new UserInteractRequestModel(1, 2);
+        UserInteractRequestModel inputData = new UserInteractRequestModel("Star", "Angela");
 
         // Run the use case
         sendFriendRequest.reactTo(inputData);
@@ -148,25 +131,21 @@ class SendFriendRequestTest {
     }
 
     @Test
+    void reactToExistedRequestFromReceiver() { //Star sent fr to Jae before; fr is still pending; Jae now tries to send fr to Star
 
-    void reactToExistedRequestFromReceiver() { //1 sent fr to 4 before; fr is still pending; 4 now tries to send fr to 1
-
-        //set up: 1 sent fr to 4 before; fr is still pending;
-        setUserFriendListRepoHelper(userFriendListRepo, 1, 4);
-
+        //set up: Star sent fr to Jae before; fr is still pending;
+        setUserFriendListRepoHelper(userFriendListRepo, "Star", "Jae");
 
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
             @Override
             public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
+                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Jae
 
-                //check if 1's friendList in friendList Repo contains proper friendship status (befriended) with 4
+                assertEquals("friend", userFriendListRepo.getFriendList("Star").get(users.getUserID()));
 
-                assertEquals("friend", userFriendListRepo.getFriendList(1).get(users.getUserID()));
-
-                //check if 4's friendList in friendList Repo contains proper friendship status (befriended) with 1
-                assertEquals("friend", userFriendListRepo.getFriendList(4).get(users.getFriendID()));
-
+                //check if Jae's friendList in friendList Repo contains proper friendship status (befriended) with Star
+                assertEquals("friend", userFriendListRepo.getFriendList("Jae").get(users.getFriendID()));
                 return null;
             }
 
@@ -180,9 +159,7 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-
-        UserInteractRequestModel inputData = new UserInteractRequestModel(4, 1);
-
+        UserInteractRequestModel inputData = new UserInteractRequestModel("Jae", "Star");
 
         // Run the use case
         sendFriendRequest.reactTo(inputData);
@@ -190,9 +167,7 @@ class SendFriendRequestTest {
     }
 
     @Test
-
-    void reactToAlreadyFriends() { //1 and 4 are already friends; 1 now tries to send fr to 4
-
+    void reactToAlreadyFriends() { //Star and Jae are already friends; Star now tries to send fr to Jae
 
 
         FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
@@ -203,9 +178,7 @@ class SendFriendRequestTest {
 
             @Override
             public FriendManagerResponseModel prepareFailView(String error) {
-
-                assertEquals("You are already friends with " + 4, error);
-
+                assertEquals("You are already friends with Jae", error);
 
                 return null;
             }
@@ -214,8 +187,7 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(userFriendListRepo, friendManagerPresenter);
 
         // input data
-
-        UserInteractRequestModel inputData = new UserInteractRequestModel(1, 4);
+        UserInteractRequestModel inputData = new UserInteractRequestModel("Star", "Jae");
 
         // Run the use case
         sendFriendRequest.reactTo(inputData);

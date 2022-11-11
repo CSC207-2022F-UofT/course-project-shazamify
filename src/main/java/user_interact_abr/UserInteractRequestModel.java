@@ -1,32 +1,28 @@
 package user_interact_abr;
 
-
 public class UserInteractRequestModel {
 
-    private int userID;
-    private int friendID;
+    private String userID;
+    private String friendID;
 
-    public UserInteractRequestModel(int userID, int friendID) {
-
+    public UserInteractRequestModel(String userID, String friendID) {
         this.userID = userID;
         this.friendID = friendID;
     }
 
-
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
-    public int getFriendID() {
+    public String getFriendID() {
         return friendID;
     }
 
-    public void setFriendID(int friendID) {
-
+    public void setFriendID(String friendID) {
         this.friendID = friendID;
     }
 
