@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class FriendManagerDsRequestModel{
 
-
     private final int userID;
 
     private final int friendID;
@@ -15,13 +14,11 @@ public class FriendManagerDsRequestModel{
 
 
     public FriendManagerDsRequestModel(int userID, int friendID, HashMap<Integer, String> userFriendList, HashMap<Integer, String> friendFriendList) {
-
         this.userID = userID;
         this.friendID = friendID;
         this.userFriendList = userFriendList;
         this.friendFriendList = friendFriendList;
     }
-
 
     public int getUserID() {
         return userID;
@@ -42,7 +39,6 @@ public class FriendManagerDsRequestModel{
     }
 
     public void setFriendFriendList(HashMap<Integer, String> friendFriendList) {
-
         this.friendFriendList = friendFriendList;
     }
 }

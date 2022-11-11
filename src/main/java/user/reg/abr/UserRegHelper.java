@@ -1,11 +1,15 @@
 package user.reg.abr;
 
-import user.database.UserRegisterDataBaseGateway;
+import user.database.UserDataBaseGateway;
+import user.database.UserFileGateway;
+import user.reg.screen.UserRegViewModel;
+
+import java.io.IOException;
 
 public class UserRegHelper {
 
 
-    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel, UserRegisterDataBaseGateway dataBaseGateway){
+    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel, UserDataBaseGateway dataBaseGateway){
         String password = requestModel.getPassword();
         String userName = requestModel.getUserName();
         String rePassword = requestModel.getRePassword();

@@ -45,12 +45,10 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
 
     //refactoring long method reactTo() by creating method object
     class FriendRequestManager{
-
         int userID;
         int friendID;
         HashMap<Integer, String> tempUserFriendList;
         HashMap<Integer, String> tempFriendFriendList;
-
         String friendshipStatus;
         private int actionNum; // 0: friendshipStatus in friendList needs update (to add pending fr from userID)
                     // 1: friendID and userID are already friends
@@ -104,7 +102,6 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
             changeFriendList();
         }
 
-
         HashMap<Integer, String> getTempFriendFriendList(){
             return tempFriendFriendList;
         }
@@ -118,7 +115,6 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
         }
 
         int getUserID(){
-
             return userID;
         }
 
