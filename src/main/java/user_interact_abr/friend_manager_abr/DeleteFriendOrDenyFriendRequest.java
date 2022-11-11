@@ -1,7 +1,5 @@
 package user_interact_abr.friend_manager_abr;
 
-import user_interact_abr.UserInteractRequestModel;
-
 import java.util.HashMap;
 
 public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBoundary {
@@ -15,11 +13,11 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
     }
 
     @Override
-    public FriendManagerResponseModel reactTo(UserInteractRequestModel requestModel) {
+    public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
         String userID = requestModel.getUserID();
         String friendID = requestModel.getFriendID();
-        HashMap<String, String> tempUserFriendList = userDsGateway.getFriendList(userID);
-        HashMap<String, String> tempFriendFriendList = userDsGateway.getFriendList(friendID);
+        HashMap<String, String> tempUserFriendList = requestModel.getUserFriendList();
+        HashMap<String, String> tempFriendFriendList = requestModel.getFriendFriendList();
 
         tempUserFriendList.remove(friendID);
         tempFriendFriendList.remove(userID); //update friendship status to not a friend, no key-value pair in hashmap
@@ -29,7 +27,7 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
         FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         userDsGateway.save(userDsModel); // store friend request in both user & friend's friendLists
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID);
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         return friendManagerPresenter.prepareSuccessView(responseModel);
     }
 }

@@ -1,7 +1,5 @@
 package user_interact_abr.friend_manager_abr;
 
-import user_interact_abr.UserInteractRequestModel;
-
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -20,7 +18,7 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
 
 
     @Override
-    public FriendManagerResponseModel reactTo(UserInteractRequestModel requestModel) {
+    public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
         friendRequestManager = new FriendRequestManager(requestModel);
 
         if (friendRequestManager.handleFriendRequest() == 1){
@@ -31,14 +29,18 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
 
         // no early returns means actionNum == 0 / 3, in either case friendLists are updated
         // create DsRequestModel and save updated friendLists
-        FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(
-                friendRequestManager.getUserID(),
+        FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(friendRequestManager.getUserID(),
                 friendRequestManager.getFriendID(),
                 friendRequestManager.getTempUserFriendList(),
                 friendRequestManager.getTempFriendFriendList());
+
         userDsGateway.save(userDsModel);
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(friendRequestManager.getUserID(), friendRequestManager.getFriendID());
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(friendRequestManager.getUserID(),
+                friendRequestManager.getFriendID(),
+                friendRequestManager.getTempUserFriendList(),
+                friendRequestManager.getTempFriendFriendList());
+
         return friendManagerPresenter.prepareSuccessView(responseModel);
 
     }
@@ -55,11 +57,11 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
                     // 2: userID have sent fr to friendID before, still pending
                     // 3: friendshipStatus in friendList needs update (to become friends)
 
-        FriendRequestManager(UserInteractRequestModel requestModel){
+        FriendRequestManager(FriendManagerRequestModel requestModel){
             this.userID = requestModel.getUserID();
             this.friendID = requestModel.getFriendID();
-            this.tempUserFriendList = userDsGateway.getFriendList(userID);
-            this.tempFriendFriendList = userDsGateway.getFriendList(friendID);
+            this.tempUserFriendList = requestModel.getUserFriendList();
+            this.tempFriendFriendList = requestModel.getFriendFriendList();
             this.friendshipStatus = tempUserFriendList.get(friendID);
         }
 

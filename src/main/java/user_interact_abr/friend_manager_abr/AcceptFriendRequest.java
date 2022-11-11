@@ -1,7 +1,5 @@
 package user_interact_abr.friend_manager_abr;
 
-import user_interact_abr.UserInteractRequestModel;
-
 import java.util.HashMap;
 
 public class AcceptFriendRequest implements FriendManagerInputBoundary {
@@ -16,11 +14,12 @@ public class AcceptFriendRequest implements FriendManagerInputBoundary {
     }
 
     @Override
-    public FriendManagerResponseModel reactTo(UserInteractRequestModel requestModel) {
+    public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
+
         String userID = requestModel.getUserID();
         String friendID = requestModel.getFriendID();
-        HashMap<String, String> tempUserFriendList = userDsGateway.getFriendList(userID);
-        HashMap<String, String> tempFriendFriendList = userDsGateway.getFriendList(friendID);
+        HashMap<String, String> tempUserFriendList = requestModel.getUserFriendList();
+        HashMap<String, String> tempFriendFriendList = requestModel.getFriendFriendList();
 
         tempUserFriendList.put(friendID, "friend");
         tempFriendFriendList.put(userID, "friend"); // let them be friends, update friendship status
@@ -30,7 +29,7 @@ public class AcceptFriendRequest implements FriendManagerInputBoundary {
         FriendManagerDsRequestModel userDsModel = new FriendManagerDsRequestModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         userDsGateway.save(userDsModel); // store friend request in both user & friend's friendLists
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID);
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel(userID, friendID, tempUserFriendList, tempFriendFriendList);
         return friendManagerPresenter.prepareSuccessView(responseModel);
     }
 }
