@@ -8,41 +8,15 @@ import java.io.IOException;
 
 public class UserRegHelper {
 
-
-    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel, UserDataBaseGateway dataBaseGateway){
+    public UserRegResponseModel register(UserRegRequestModel requestModel, UserRegResponseModel responseModel){
+        UserDataBaseGateway gateway = new UserFileGateway();
         String password = requestModel.getPassword();
         String userName = requestModel.getUserName();
         String rePassword = requestModel.getRePassword();
-
-        boolean passwordValidity = (checkCharacterValidity(password) & password.equals(rePassword));
-        boolean userNameValidity = checkCharacterValidity(userName);
-
-        // If all password and userName's characters are legal.
-        if (userNameValidity & passwordValidity) {
-            responseModel.setUsernameValidity(dataBaseGateway.checkAndRegisterUser(userName, password));
-            responseModel.setPasswordValidity(true);
-        } else { // If the password or userName's characters are illegal
-            responseModel.setUsernameValidity(userNameValidity);
-            responseModel.setPasswordValidity(passwordValidity);
-        }
+        // Check if the password is equals rePassword, and package into responseModel
+        responseModel.setPasswordValidity(password.equals(rePassword));
+        //Check if the userName is valid for database
+        responseModel.setUsernameValidity(gateway.checkAndRegisterUser(userName, password));
         return responseModel;
-    }
-
-    private boolean checkCharacterValidity(String string) {
-        //Generate a String with all valid Characters
-        StringBuilder valid = new StringBuilder();
-        for (int i = 48; i < 123; i++){
-            valid.append((char) i);
-        }
-        String validCharacter = valid.toString();
-
-        for (char c: string.toCharArray()){
-            // Find if there exist invalid character in Password String
-            if (validCharacter.indexOf(c) == -1){
-                return false;
-            }
-        }
-        return true;
-
     }
 }
