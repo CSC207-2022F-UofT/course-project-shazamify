@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class InMemoryUserFriendList implements FriendManagerDsGateway {
 
-
     final private Map<Integer, HashMap<Integer, String>> userFriendLists = new HashMap<>(); // <userID, friendList<>>
 
     @Override
@@ -18,17 +17,14 @@ public class InMemoryUserFriendList implements FriendManagerDsGateway {
             return userFriendLists.get(userID);
         } else {
             return new HashMap<>();
-
         }
 
     }
 
     @Override
     public void save(FriendManagerDsRequestModel requestModel) {
-
         userFriendLists.put(requestModel.getUserID(), requestModel.getUserFriendList()); //save user's friendList
         userFriendLists.put(requestModel.getFriendID(), requestModel.getFriendFriendList()); //save friend's friendList
-
     }
 
 }

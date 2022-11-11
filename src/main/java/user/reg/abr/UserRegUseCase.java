@@ -1,6 +1,6 @@
 package user.reg.abr;
 
-import user.database.UserRegisterDataBaseGateway;
+import user.database.UserDataBaseGateway;
 import user.reg.screen.UserRegViewModel;
 
 public class UserRegUseCase implements UserRegInputBoundary{
@@ -8,7 +8,7 @@ public class UserRegUseCase implements UserRegInputBoundary{
     private final UserRegHelper userRegHelper = new UserRegHelper();
     private final UserRecommendPasswordHelper userRecommendPasswordHelper = new UserRecommendPasswordHelper();
     private final UserRegOutputBoundary outputBoundary;
-    private final UserRegisterDataBaseGateway dataBaseGateway;
+    private final UserDataBaseGateway dataBaseGateway;
 
     /**
      * This is a thin layer Facade class, with 2 helper class doing the job of registration and recommend password.
@@ -16,7 +16,7 @@ public class UserRegUseCase implements UserRegInputBoundary{
      * @param outputBoundary  Output Boundary for usecase
      * @param dataBaseGateway Database Gateway used by User database.
      */
-    public UserRegUseCase(UserRegOutputBoundary outputBoundary, UserRegisterDataBaseGateway dataBaseGateway){
+    public UserRegUseCase(UserRegOutputBoundary outputBoundary, UserDataBaseGateway dataBaseGateway){
         this.outputBoundary = outputBoundary;
         this.dataBaseGateway = dataBaseGateway;
     }

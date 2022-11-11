@@ -16,12 +16,10 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
 
     @Override
     public FriendManagerResponseModel reactTo(UserInteractRequestModel requestModel) {
-
         int userID = requestModel.getUserID();
         int friendID = requestModel.getFriendID();
         HashMap<Integer, String> tempUserFriendList = userDsGateway.getFriendList(userID);
         HashMap<Integer, String> tempFriendFriendList = userDsGateway.getFriendList(friendID);
-
 
         tempUserFriendList.remove(friendID);
         tempFriendFriendList.remove(userID); //update friendship status to not a friend, no key-value pair in hashmap

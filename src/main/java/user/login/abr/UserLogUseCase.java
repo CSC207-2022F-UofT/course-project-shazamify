@@ -1,13 +1,13 @@
 package user.login.abr;
 
-import user.database.UserLoginDataBaseGateway;
+import user.database.UserDataBaseGateway;
 import user.login.screen.UserLogViewModel;
 
 public class UserLogUseCase implements UserLogInputBoundary{
     UserLogOutputBoundary outputBoundary;
-    UserLoginDataBaseGateway dataBaseGateway;
+    UserDataBaseGateway dataBaseGateway;
 
-    public UserLogUseCase(UserLogOutputBoundary outputBoundary, UserLoginDataBaseGateway dataBaseGateway){
+    public UserLogUseCase(UserLogOutputBoundary outputBoundary, UserDataBaseGateway dataBaseGateway){
         this.outputBoundary = outputBoundary;
         this.dataBaseGateway = dataBaseGateway;
     }

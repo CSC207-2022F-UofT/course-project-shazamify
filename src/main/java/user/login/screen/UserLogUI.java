@@ -1,10 +1,8 @@
 package user.login.screen;
 
 
-import user.database.UserLoginDataBaseGateway;
-import user.database.UserLoginFileGateway;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.database.UserDataBaseGateway;
+import user.database.UserFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
@@ -97,7 +95,7 @@ public class UserLogUI extends JPanel {
     }
     // Temporary test file
     public static void main(String[] args) {
-        UserLoginDataBaseGateway dataBaseGateway = new UserLoginFileGateway();
+        UserDataBaseGateway dataBaseGateway = new UserFileGateway();
         UserLogOutputBoundary presenter = new UserLogPresenter();
         UserLogInputBoundary useCase = new UserLogUseCase(presenter, dataBaseGateway);
         UserLogController controller = new UserLogController(useCase);
