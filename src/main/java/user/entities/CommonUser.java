@@ -43,5 +43,4 @@ public class CommonUser implements User, Serializable {
     public int getUserID(){
         return this.userID;
     }
-
 }
