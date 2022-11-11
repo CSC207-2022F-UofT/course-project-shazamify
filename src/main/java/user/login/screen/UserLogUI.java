@@ -3,8 +3,6 @@ package user.login.screen;
 
 import user.database.UserLoginDataBaseGateway;
 import user.database.UserLoginFileGateway;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
@@ -39,7 +37,7 @@ public class UserLogUI extends JPanel {
             }
         });
 
-        LoginButton.addActionListener(new ActionListener() {
+        RegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyListenerOnRegisterPerformed();

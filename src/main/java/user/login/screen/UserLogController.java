@@ -12,6 +12,7 @@ public class UserLogController {
 
     public UserLogViewModel login(String userName, String passWord){
         UserLogRequestModel requestModel = new UserLogRequestModel(userName,passWord);
+
         return inputBoundary.loginUser(requestModel);
     }
 }

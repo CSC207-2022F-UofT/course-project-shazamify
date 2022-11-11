@@ -1,0 +1,7 @@
+package user_interaction.user_interact_abr.friend_playlist_interact_abr;
+
+import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
+
+public interface CheckFriendPlaylistInputBoundary {
+    CheckFriendPlaylistResponseModel reactTo(FriendManagerRequestModel checkFriendPlaylistRequestModelRequestModel);
+}

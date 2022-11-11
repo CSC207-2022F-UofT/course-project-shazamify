@@ -1,7 +1,7 @@
-package user_interact_abr.friend_playlist_interact_abr;
+package user_interaction.user_interact_abr.friend_playlist_interact_abr;
 
 
-import user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
+import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
 
 public interface FriendPlaylistInteractPresenter {
     CheckFriendPlaylistResponseModel prepareSuccessView(FriendManagerRequestModel user);

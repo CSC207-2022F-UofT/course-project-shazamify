@@ -1,21 +1,17 @@
 package user.unit_test.interaction;
 
 import org.junit.Test;
-import user.database.UserInteractionDatabaseGateway;
-import user.database.UserInteractionFileGateway;
+import user.database.SearchEngineDatabaseGateway;
+import user.database.SearchEngineFileGateway;
 import user.database.UserRegisterDataBaseGateway;
 import user.database.UserRegisterFileGateway;
 import user.entities.User;
-import user.entities.UserFactory;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
-public class InteractionDatabaseTest {
+public class SearchEngineDatabaseTest {
     @Test
     public void Test3Users(){
         UserRegisterDataBaseGateway registerFileGateway = new UserRegisterFileGateway();
-        UserInteractionDatabaseGateway interactionDatabaseGateway = new UserInteractionFileGateway();
+        SearchEngineDatabaseGateway interactionDatabaseGateway = new SearchEngineFileGateway();
         registerFileGateway.clearDatabase();
         registerFileGateway.checkAndRegisterUser("1","2");
         registerFileGateway.checkAndRegisterUser("2","3");

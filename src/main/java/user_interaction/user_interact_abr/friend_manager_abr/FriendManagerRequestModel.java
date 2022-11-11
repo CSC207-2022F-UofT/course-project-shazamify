@@ -1,4 +1,4 @@
-package user_interact_abr.friend_manager_abr;
+package user_interaction.user_interact_abr.friend_manager_abr;
 
 import java.util.HashMap;
 

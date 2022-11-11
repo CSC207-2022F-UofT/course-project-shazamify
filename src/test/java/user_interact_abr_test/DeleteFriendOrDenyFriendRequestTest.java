@@ -1,9 +1,8 @@
 package user_interact_abr_test;
 
 import org.junit.jupiter.api.Test;
-import user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
-import user_interact_abr.friend_manager_abr.*;
-import user_interact_screen.InMemoryUserInteraction;
+import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
+import user_interaction.user_interact_abr.friend_manager_abr.*;
 
 import java.util.HashMap;
 
@@ -11,30 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteFriendOrDenyFriendRequestTest {
 
-    private static final FriendManagerDsGateway users = new InMemoryUserInteraction(); //using fake user DB
+    private static final FriendManagerDsGateway users = new FriendManagerInMemoryDsGateway(); //using fake user DB
 
 
     @Test
     void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
 
 
-        FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
-            @Override
-            public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //Star's friendList in friendList Repo should not contain Jae
-                assertNull(users.getFriendFriendList().get(users.getUserID()));
-
-
-                //Jae's friendList in friendList Repo should not contain Star
-                assertNull(users.getUserFriendList().get(users.getFriendID()));
-                return null;
-            }
-
-            @Override
-            public FriendManagerResponseModel prepareFailView(String error) {
-                return null;
-            }
-        };
+        FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
 
 
         FriendManagerInputBoundary denyFriendRequest = new DeleteFriendOrDenyFriendRequest(users, friendManagerPresenter);
@@ -51,29 +34,16 @@ class DeleteFriendOrDenyFriendRequestTest {
         // Run the use case
         denyFriendRequest.reactTo(inputData);
 
+        //Jae's friendList in friendList Repo should not contain Star
+        assertNull(users.getFriendList("Jae").get("Star"));
+
 
     }
 
     @Test
     void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
 
-        FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
-            @Override
-            public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //Star's friendList in friendList Repo should not contain Jae
-                assertNull(users.getFriendFriendList().get(users.getUserID()));
-
-
-                //Jae's friendList in friendList Repo should not contain Star
-                assertNull(users.getUserFriendList().get(users.getFriendID()));
-                return null;
-            }
-
-            @Override
-            public FriendManagerResponseModel prepareFailView(String error) {
-                return null;
-            }
-        };
+        FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
 
 
         FriendManagerInputBoundary deleteFriend = new DeleteFriendOrDenyFriendRequest(users, friendManagerPresenter);

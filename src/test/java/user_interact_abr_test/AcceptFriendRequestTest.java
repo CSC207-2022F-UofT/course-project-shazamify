@@ -1,40 +1,22 @@
 package user_interact_abr_test;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
-import user_interact_abr.friend_manager_abr.*;
-import user_interact_screen.InMemoryUserInteraction;
+import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
+import user_interaction.user_interact_abr.friend_manager_abr.*;
 
 import java.util.HashMap;
 
 class AcceptFriendRequestTest {
 
-    private static final FriendManagerDsGateway users = new InMemoryUserInteraction(); //using fake user DB
+    private static final FriendManagerDsGateway users = new FriendManagerInMemoryDsGateway(); //using fake user DB
 
 
     @Test
     void AcceptRequest() { // Jae receives fr from Star, Jae accepts the fr
 
 
-        FriendManagerPresenter friendManagerPresenter = new FriendManagerPresenter() {
-            @Override
-            public FriendManagerResponseModel prepareSuccessView(FriendManagerResponseModel users) {
-                //check if Star's friendList in friendList Repo contains proper friendship status (befriended) with Jae
-
-                Assertions.assertEquals("friend", users.getFriendFriendList().get(users.getUserID())); //
-
-                //check if Jae's friendList in friendList Repo contains proper friendship status (befriended) with Star
-                Assertions.assertEquals("friend", users.getUserFriendList().get(users.getFriendID()));
-                return null;
-            }
-
-            @Override
-            public FriendManagerResponseModel prepareFailView(String error) {
-                return null;
-            }
-        };
-
+        FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
 
         FriendManagerInputBoundary acceptFriendRequest = new AcceptFriendRequest(users, friendManagerPresenter);
 
@@ -47,8 +29,9 @@ class AcceptFriendRequestTest {
         }};
         FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList, starFriendList);
 
-        // Run the use case
-        acceptFriendRequest.reactTo(inputData);
+        // Run the use case & check
+        assertEquals("friend", acceptFriendRequest.reactTo(inputData).getFriendList().get("Star"));
+        assertEquals("You are now friends with Star", acceptFriendRequest.reactTo(inputData).getMsgToDisplay());
 
     }
 

@@ -5,7 +5,7 @@ import user.entities.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInteractionFileGateway implements UserInteractionDatabaseGateway {
+public class SearchEngineFileGateway implements SearchEngineDatabaseGateway {
     @Override
     public User[] getUserArray() {
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
