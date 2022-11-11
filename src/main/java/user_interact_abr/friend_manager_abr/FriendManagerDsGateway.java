@@ -4,9 +4,7 @@ import java.util.HashMap;
 
 public interface FriendManagerDsGateway {
 
-
-    HashMap<Integer, String> getFriendList(int userID);
-
+    HashMap<String, String> getFriendList(String userID);
 
     void save(FriendManagerDsRequestModel requestModel);
 }
