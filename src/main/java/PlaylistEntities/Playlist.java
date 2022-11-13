@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Playlist extends Record {
     private String name;
-    private int id;
+    private final int id;
     private int duration;
     private ArrayList<Song> contents;
 
@@ -15,8 +15,8 @@ public class Playlist extends Record {
      *
      *
      */
-    public Playlist(String name, int id) {
-        this.name = name;
+    public Playlist(int id) {
+        this.name = "";
         this.id = id;
         this.duration = 0;
         this.contents = new ArrayList<Song>();
