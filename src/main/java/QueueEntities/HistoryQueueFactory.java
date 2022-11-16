@@ -1,6 +1,6 @@
 package QueueEntities;
 
-import Entities.Song;
+import Playlist.Entities.Song;
 
 import java.util.*;
 

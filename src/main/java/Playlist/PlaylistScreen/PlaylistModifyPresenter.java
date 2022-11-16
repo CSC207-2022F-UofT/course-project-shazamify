@@ -1,4 +1,4 @@
-package PlaylistScreen;
+package Playlist.PlaylistScreen;
 
 public class PlaylistModifyPresenter {
 }
