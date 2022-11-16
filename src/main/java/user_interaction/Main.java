@@ -5,7 +5,11 @@ import user.database.UserFileWriter;
 import user.entities.CommonUser;
 import user.entities.User;
 import user_interaction.user_interact_DS.FriendManagerFileDsGateway;
-import user_interaction.user_interact_abr.friend_manager_abr.*;
+import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
+import user_interaction.user_interact_abr.manage_friend_request_abr.*;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import user_interaction.user_interact_screen.friend_manager_screen.SendFriendRequestView;
 import user_interaction.user_interact_screen.friend_manager_screen.SendFriendRequestController;
 
@@ -36,12 +40,12 @@ public class Main {
         application.add(screens);
 
         // Create the parts to plug into the Use Case
-        FriendManagerFileDsGateway dsGateway = new FriendManagerFileDsGateway();
+        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
 
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
 
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(dsGateway, presenter);
-        SendFriendRequestController controller = new SendFriendRequestController(sendFriendRequest, dsGateway);
+        SendFriendRequestController controller = new SendFriendRequestController(sendFriendRequest);
 
         // Build the GUI, plugging in the parts
         SendFriendRequestView screen = new SendFriendRequestView(controller);

@@ -6,6 +6,7 @@ import user.database.UserLoginFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
+import user_interaction.user_interact_screen.friend_manager_screen.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -59,6 +60,7 @@ public class UserLogUI extends JPanel {
 
         if (validUserName & validPassword){
             JOptionPane.showMessageDialog(this, "valid.");
+            TempFriendListObservable.setCurrentUser(userName); // everytime the user login, keep track of their username
         } else if (!validUserName) {
             JOptionPane.showMessageDialog(this, "userName not valid.");
         } else {

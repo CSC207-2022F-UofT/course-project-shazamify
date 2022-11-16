@@ -2,7 +2,11 @@ package user_interact_abr_test;
 
 import org.junit.jupiter.api.Test;
 import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
-import user_interaction.user_interact_abr.friend_manager_abr.*;
+import user_interaction.user_interact_abr.manage_friend_request_abr.*;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
+import user_interaction.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 
 import java.util.HashMap;
 
@@ -26,10 +30,8 @@ class DeleteFriendOrDenyFriendRequestTest {
         HashMap<String, String> jaeFriendList = new HashMap<>() {{
             put("Star", "pending_Star");
         }};
-        HashMap<String, String> starFriendList = new HashMap<>() {{
-            put("Jae", "pending_Star");
-        }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList, starFriendList);
+
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList);
 
         // Run the use case
         denyFriendRequest.reactTo(inputData);
@@ -55,7 +57,7 @@ class DeleteFriendOrDenyFriendRequestTest {
         HashMap<String, String> starFriendList = new HashMap<>() {{
             put("Jae", "friend");
         }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList, starFriendList);
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList);
 
         // Run the use case
         deleteFriend.reactTo(inputData);

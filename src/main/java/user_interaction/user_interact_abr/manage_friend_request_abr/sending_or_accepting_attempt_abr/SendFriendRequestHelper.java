@@ -1,4 +1,6 @@
-package user_interaction.user_interact_abr.friend_manager_abr;
+package user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr;
+
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -13,13 +15,19 @@ class SendFriendRequestHelper {
 
     String msg = "Friend request sent";
     Boolean updated = false;
+    final static int FRIEND_LIMIT = 10;
 
-    SendFriendRequestHelper(FriendManagerRequestModel requestModel) {
+    SendFriendRequestHelper(FriendManagerRequestModel requestModel, HashMap<String, String> tempFriendFriendList) {
         this.userID = requestModel.getUserID();
         this.friendID = requestModel.getFriendID();
         this.tempUserFriendList = requestModel.getUserFriendList();
-        this.tempFriendFriendList = requestModel.getFriendFriendList();
-        this.friendshipStatus = tempUserFriendList.get(friendID);
+        this.tempFriendFriendList = tempFriendFriendList;
+
+        if (tempUserFriendList != null) {
+            this.friendshipStatus = tempUserFriendList.get(friendID);
+        } else {
+            tempUserFriendList = new HashMap<>();
+        }
     }
 
     void handleFriendRequest() {
@@ -45,8 +53,11 @@ class SendFriendRequestHelper {
     }
 
     void handleExistedFriendshipStatus() {
+        // check if the user has reached the friend limit
+        if (tempUserFriendList.size() == FRIEND_LIMIT) {
+            msg = "you've reached the friend limit of 10"; }
         // decide msg given the friendshipStatus of pending friend request exists / already friends
-        if (Objects.equals(friendshipStatus, "friend")) {
+        else if (Objects.equals(friendshipStatus, "friend")) {
             msg = "You are already friends with " + friendID;
         } else if (Objects.equals(friendshipStatus, "pending_" + userID)) {
             msg = "Please do not send repeated friend request";

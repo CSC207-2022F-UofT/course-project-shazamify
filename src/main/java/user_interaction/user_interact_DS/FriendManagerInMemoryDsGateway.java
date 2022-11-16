@@ -1,7 +1,6 @@
 package user_interaction.user_interact_DS;
 
-import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerDsGateway;
-import user.database.UserFileWriter;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import user.entities.CommonUser;
 import user.entities.User;
 
@@ -21,16 +20,34 @@ public class FriendManagerInMemoryDsGateway implements FriendManagerDsGateway { 
         } else {
             return new HashMap<>();
         }
+    }
 
+    public FriendManagerInMemoryDsGateway(){
+        userMapSetup();
+    }
+
+    public void userMapSetup(){
+        // put in some users
+        User newUser1 = new CommonUser("Star", "ababab");
+        User newUser2 = new CommonUser("Jae", "ababab");
+        User newUser3 = new CommonUser("Angela", "abababa");
+
+        userMap.put("Star", newUser1);
+        userMap.put("Jae", newUser2);
+        userMap.put("Angela", newUser3);
     }
 
     @Override
     public void save(String userID, String friendID, HashMap<String, String> userFriendList, HashMap<String, String> friendFriendList) {
         // modify user and friend's friendList in userMap
-        userMap.put(userID, new CommonUser(userID, "abababab"));
-        userMap.put(friendID, new CommonUser(friendID, "abababab"));
-        //save to database
-        UserFileWriter.writeUserMap(userMap, "UserDatabase.ser");
+        userMap.put(userID, getUserWithNewFriendList(userID, userFriendList));
+        userMap.put(friendID, getUserWithNewFriendList(friendID, friendFriendList));
+    }
+
+    private User getUserWithNewFriendList(String userID, HashMap<String, String> userFriendList){
+        User user = userMap.get(userID);
+        user.setFriendList(userFriendList);
+        return user;
     }
 
 }

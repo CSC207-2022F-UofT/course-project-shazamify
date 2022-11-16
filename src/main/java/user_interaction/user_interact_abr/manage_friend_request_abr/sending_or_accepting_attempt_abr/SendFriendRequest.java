@@ -1,4 +1,6 @@
-package user_interaction.user_interact_abr.friend_manager_abr;
+package user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr;
+
+import user_interaction.user_interact_abr.manage_friend_request_abr.*;
 
 public class SendFriendRequest implements FriendManagerInputBoundary {
 
@@ -16,7 +18,7 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
 
     @Override
     public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
-        sendFriendRequestHelper = new SendFriendRequestHelper(requestModel);
+        sendFriendRequestHelper = new SendFriendRequestHelper(requestModel, userDsGateway.getFriendList(requestModel.getFriendID()));
         sendFriendRequestHelper.handleFriendRequest();
 
         // save friendLists if updated

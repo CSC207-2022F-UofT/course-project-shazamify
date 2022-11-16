@@ -1,4 +1,10 @@
-package user_interaction.user_interact_abr.friend_manager_abr;
+package user_interaction.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr;
+
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
 
 import java.util.HashMap;
 
@@ -16,7 +22,7 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
     public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
 
         HashMap<String, String> tempUserFriendList = requestModel.getUserFriendList();
-        HashMap<String, String> tempFriendFriendList = requestModel.getFriendFriendList();
+        HashMap<String, String> tempFriendFriendList = userDsGateway.getFriendList(requestModel.getFriendID());
 
         tempUserFriendList.remove(requestModel.getFriendID());
         tempFriendFriendList.remove(requestModel.getUserID()); //update friendship status to not a friend, no key-value pair in hashmap

@@ -1,6 +1,6 @@
 package user_interaction.user_interact_DS;
 
-import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerDsGateway;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import user.database.UserFileReader;
 import user.database.UserFileWriter;
 import user.entities.User;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FriendManagerFileDsGateway implements FriendManagerDsGateway {
-    private Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");; // <userID (userName), User>
+    private Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser"); // <userID (userName), User>
 
     @Override
     public HashMap<String, String> getFriendList(String userID) {

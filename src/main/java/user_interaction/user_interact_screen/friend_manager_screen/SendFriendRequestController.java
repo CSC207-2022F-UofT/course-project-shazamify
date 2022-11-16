@@ -1,22 +1,28 @@
 package user_interaction.user_interact_screen.friend_manager_screen;
 
-import user_interaction.user_interact_DS.FriendManagerFileDsGateway;
-import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerInputBoundary;
-import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerRequestModel;
-import user_interaction.user_interact_abr.friend_manager_abr.FriendManagerResponseModel;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
+import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
 
-public class SendFriendRequestController {
+import java.util.HashMap;
+
+public class SendFriendRequestController implements FriendListObserver{
     FriendManagerInputBoundary inputBoundary;
+    HashMap<String, String> tempFriendList;
 
-    FriendManagerFileDsGateway dsGateway;
-
-    public SendFriendRequestController(FriendManagerInputBoundary inputBoundary, FriendManagerFileDsGateway dsGateway) {
+    public SendFriendRequestController(FriendManagerInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
-        this.dsGateway = dsGateway;
+        TempFriendListObservable.addObserver(this);
     }
 
-    FriendManagerResponseModel reactTo(String userID, String friendID){
-        FriendManagerRequestModel requestModel = new FriendManagerRequestModel(userID, friendID, dsGateway.getFriendList(userID), dsGateway.getFriendList(friendID));
+    FriendManagerResponseModel reactTo(String friendID){
+        FriendManagerRequestModel requestModel = new FriendManagerRequestModel(TempFriendListObservable.currentUser,
+                friendID, tempFriendList);
         return inputBoundary.reactTo(requestModel);
+    }
+
+    @Override
+    public void updateTempFriendList(HashMap<String, String> tempFriendList) {
+        this.tempFriendList = tempFriendList;
     }
 }

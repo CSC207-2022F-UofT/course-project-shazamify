@@ -2,7 +2,8 @@ package user_interact_abr_test;
 
 import org.junit.jupiter.api.Test;
 import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
-import user_interaction.user_interact_abr.friend_manager_abr.*;
+import user_interaction.user_interact_abr.manage_friend_request_abr.*;
+import user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.*;
 
 import java.util.HashMap;
 
@@ -14,7 +15,7 @@ class SendFriendRequestTest {
 
 
     @Test
-    void reactToEmptyFriendListAndNoRequestExistsBefore() {
+    void reactToNoRequestExistsBefore() {
         //Star has no friend or pending friend request; Star tries to send fr to Jae
 
         FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
@@ -22,34 +23,12 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(users, friendManagerPresenter);
 
         // input data
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", new HashMap<>(), new HashMap<>());
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", new HashMap<>());
 
         // Run the use case
         FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
         assertEquals("pending_Star", responseModel.getFriendList().get("Jae"));
         assertEquals("Friend request sent", responseModel.getMsgToDisplay());
-    }
-
-    @Test
-    void reactToNonEmptyFriendListAndNoRequestExistsBefore() {
-        //Star has some friends or pending friend requests; no pending friend request between Star and Jae; Star tries to send fr to Jae
-
-        FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
-
-        FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(users, friendManagerPresenter);
-
-        // input data
-        HashMap<String, String> starFriendList = new HashMap<>() {{
-            put("Angela", "friend");
-        }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", new HashMap<>(), starFriendList);
-
-
-        // Run the use case & check result
-        FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
-        assertEquals("pending_Star", responseModel.getFriendList().get("Jae"));
-        assertEquals("Friend request sent", responseModel.getMsgToDisplay());
-
     }
 
     @Test
@@ -60,13 +39,10 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(users, friendManagerPresenter);
 
         // input data
-        HashMap<String, String> jaeFriendList = new HashMap<>() {{
-            put("Star", "pending_Star");
-        }};
         HashMap<String, String> starFriendList = new HashMap<>() {{
             put("Jae", "pending_Star");
         }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList, jaeFriendList);
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList);
 
 
         // Run the use case
@@ -87,10 +63,7 @@ class SendFriendRequestTest {
         HashMap<String, String> jaeFriendList = new HashMap<>() {{
             put("Star", "pending_Star");
         }};
-        HashMap<String, String> starFriendList = new HashMap<>() {{
-            put("Jae", "pending_Star");
-        }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList, starFriendList);
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList);
 
 
         // Run the use case
@@ -108,13 +81,11 @@ class SendFriendRequestTest {
         FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(users, friendManagerPresenter);
 
         // input data
-        HashMap<String, String> jaeFriendList = new HashMap<>() {{
-            put("Star", "friend");
-        }};
         HashMap<String, String> starFriendList = new HashMap<>() {{
             put("Jae", "friend");
         }};
-        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList, jaeFriendList);
+        FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList);
+
 
 
         // Run the use case
