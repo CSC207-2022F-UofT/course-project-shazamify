@@ -1,6 +1,6 @@
-package queue_abr;
+package abr.queue_abr;
 
-import queue_screen.QueueViewModel;
+import screen.queue_screen.QueueViewModel;
 
 /***
  * Queue input boundary is implemented by the use case and contains the method to update the song queue (or history
