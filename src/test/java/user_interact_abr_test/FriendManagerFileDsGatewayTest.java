@@ -7,7 +7,7 @@ import user.database.UserFileWriter;
 
 import user.entities.CommonUser;
 import user.entities.User;
-import user_interaction.user_interact_DS.FriendManagerFileDsGateway;
+import ds.user_interact_DS.FriendManagerFileDsGateway;
 
 import java.util.HashMap;
 import java.util.Map;
