@@ -1,4 +1,4 @@
-package Playlist.PlaylistScreen;
+package PlaylistScreen;
 
 public class PlaylistCreateControl {
 }

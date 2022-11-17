@@ -1,4 +1,4 @@
-package Playlist.Entities;
+package Entities;
 
 /***
  * The Song entity class responsible for holding a name, id, and duration.

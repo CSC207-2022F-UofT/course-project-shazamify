@@ -1,7 +1,7 @@
-package Playlist.PlaylistEntities;
+package PlaylistEntities;
 
-import Playlist.Entities.Record;
-import Playlist.Entities.Song;
+import Entities.Record;
+import Entities.Song;
 import java.util.ArrayList;
 
 public class Playlist extends Record {

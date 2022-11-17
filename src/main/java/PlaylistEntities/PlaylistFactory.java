@@ -1,4 +1,4 @@
-package Playlist.PlaylistEntities;
+package PlaylistEntities;
 
 public class PlaylistFactory {
     //TODO: java docs

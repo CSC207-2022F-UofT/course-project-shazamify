@@ -1,4 +1,4 @@
-package Playlist.PlaylistEntities;
+package PlaylistEntities;
 
 public class FavoritePlaylist extends Playlist {
     /***

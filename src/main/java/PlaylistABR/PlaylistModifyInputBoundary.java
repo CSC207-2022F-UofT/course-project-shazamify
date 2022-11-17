@@ -1,4 +1,4 @@
-package Playlist.PlaylistABR;
+package PlaylistABR;
 
 public interface PlaylistModifyInputBoundary {
 }

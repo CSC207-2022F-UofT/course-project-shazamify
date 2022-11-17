@@ -1,6 +1,6 @@
-package Playlist.PlaylistABR;
+package PlaylistABR;
 
-import Playlist.PlaylistEntities.Playlist;
+import PlaylistEntities.Playlist;
 
 public interface PlaylistDatabaseGateway {
     public int getNewID();
