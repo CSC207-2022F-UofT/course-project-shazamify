@@ -1,4 +1,4 @@
-package screen.queue_screen;
+package queue_screen;
 
 import entities.Song;
 

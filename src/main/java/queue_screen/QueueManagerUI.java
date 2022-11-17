@@ -1,4 +1,4 @@
-package screen.queue_screen;
+package queue_screen;
 
 //TODO: lmao
 public class QueueManagerUI {
