@@ -1,11 +1,12 @@
-package playlist_entities;
+package entities.playlist_entities;
 
-import Entities.Record;
-import Entities.Song;
+import entities.Record;
+import entities.Song;
 import java.util.ArrayList;
 
 public class Playlist extends Record {
     private String name;
+
     private final int id;
     private int duration;
     private ArrayList<Song> contents;

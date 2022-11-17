@@ -1,4 +1,4 @@
-package playlist_screen;
+package screen.playlist_screen;
 
 public class PlaylistModifyUI {
 }

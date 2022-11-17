@@ -1,6 +1,6 @@
-package playlist_abr;
+package abr.playlist_abr;
 
-import playlist_entities.PlaylistFactory;
+import entities.playlist_entities.PlaylistFactory;
 
 public class PlaylistCreateUseCase {
     private final PlaylistDatabaseGateway databaseGateway;
