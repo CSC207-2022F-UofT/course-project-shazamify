@@ -1,7 +1,7 @@
-package screen.queue_screen;
+package queue_screen;
 
-import abr.queue_abr.QueueOutputBoundary;
-import abr.queue_abr.QueueResponseModel;
+import queue_abr.QueueOutputBoundary;
+import queue_abr.QueueResponseModel;
 
 // Add javadocs
 public class QueuePresenter implements QueueOutputBoundary {

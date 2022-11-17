@@ -1,4 +1,4 @@
-package abr.queue_abr;
+package queue_abr;
 
 import entities.Song;
 
