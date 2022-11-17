@@ -1,4 +1,4 @@
-package PlaylistEntities;
+package playlist_entities;
 
 import Entities.Record;
 import Entities.Song;

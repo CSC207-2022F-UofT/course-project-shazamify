@@ -1,7 +1,7 @@
-package PlaylistDS;
+package playlist_ds;
 
-import PlaylistABR.PlaylistDatabaseGateway;
-import PlaylistEntities.Playlist;
+import playlist_abr.PlaylistDatabaseGateway;
+import playlist_entities.Playlist;
 
 
 public class PlaylistNotepadGateway implements PlaylistDatabaseGateway {

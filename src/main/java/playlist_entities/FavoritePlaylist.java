@@ -1,4 +1,4 @@
-package PlaylistEntities;
+package playlist_entities;
 
 public class FavoritePlaylist extends Playlist {
     /***

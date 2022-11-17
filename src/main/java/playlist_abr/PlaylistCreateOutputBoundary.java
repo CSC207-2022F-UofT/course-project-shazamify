@@ -1,6 +1,6 @@
-package PlaylistABR;
+package playlist_abr;
 
-import PlaylistEntities.Playlist;
+import playlist_entities.Playlist;
 
 public interface PlaylistCreateOutputBoundary {
     public PlaylistCreateResponseModel createRMConverter(Playlist playlist);
