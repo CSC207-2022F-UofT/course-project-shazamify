@@ -5,17 +5,22 @@ import Playlist.PlaylistEntities.PlaylistFactory;
 public class PlaylistCreateUseCase {
     private final PlaylistDatabaseGateway databaseGateway;
     private final PlaylistCreateOutputBoundary outputBoundary;
+    private final PlaylistFactory playlistFactory;
+    private final PlaylistCreateResponseModel playlistCreateResponseModel;
 
-    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDatabaseGateway databaseGateway, PlaylistFactory playlistFactory){
+    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDatabaseGateway databaseGateway, PlaylistFactory playlistFactory, PlaylistCreateResponseModel playlistCreateResponseModel){
         this.outputBoundary = outputBoundary;
         this.databaseGateway = databaseGateway;
+        this.playlistFactory = playlistFactory;
+        this.playlistCreateResponseModel = playlistCreateResponseModel;
     }
-    public boolean playlistCreate(){
-        // TODO: update RecordViewModel
+
+    public PlaylistCreateResponseModel playlistCreate(){
+        // TODO: update RecordPresenter by convert playlist to PLResponseModel
+        //  thru outputBoundary's fn
         // TODO: send playlist to PlaylistNotepadGateway
-        PlaylistFactory playlistFactory = null;
-        playlistFactory.create(this.databaseGateway.getNewID());
-        return true;
+        databaseGateway.storePlaylist(playlistFactory.create(this.databaseGateway.getNewID()));
+        return null;
 
 
     }
