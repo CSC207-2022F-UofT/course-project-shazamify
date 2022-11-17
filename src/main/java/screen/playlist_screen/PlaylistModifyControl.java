@@ -1,4 +1,4 @@
-package PlaylistScreen;
+package screen.playlist_screen;
 
 public class PlaylistModifyControl {
 }
