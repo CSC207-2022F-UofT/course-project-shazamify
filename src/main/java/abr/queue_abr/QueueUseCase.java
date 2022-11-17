@@ -1,4 +1,4 @@
-package queue_abr;
+package abr.queue_abr;
 
 import queue_screen.QueueViewModel;
 
