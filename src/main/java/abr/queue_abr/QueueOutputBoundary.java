@@ -1,6 +1,6 @@
 package abr.queue_abr;
 
-import queue_screen.QueueViewModel;
+import screen.queue_screen.QueueViewModel;
 
 /***
  * Queue output boundary is implemented by the presenter and contains the method to present the new queue list.

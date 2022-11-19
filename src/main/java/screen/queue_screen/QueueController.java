@@ -1,4 +1,4 @@
-package queue_screen;
+package screen.queue_screen;
 
 import entities.Song;
 import abr.queue_abr.QueueInputBoundary;
