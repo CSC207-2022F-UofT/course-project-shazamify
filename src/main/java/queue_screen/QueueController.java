@@ -1,8 +1,8 @@
 package queue_screen;
 
 import entities.Song;
-import queue_abr.QueueInputBoundary;
-import queue_abr.QueueRequestModel;
+import abr.queue_abr.QueueInputBoundary;
+import abr.queue_abr.QueueRequestModel;
 
 import java.util.*;
 

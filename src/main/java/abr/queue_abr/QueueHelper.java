@@ -1,8 +1,8 @@
-package queue_abr;
+package abr.queue_abr;
 
 import entities.Song;
-import queue_entities.HistoryQueue;
-import queue_entities.SongQueue;
+import entities.queue_entities.HistoryQueue;
+import entities.queue_entities.SongQueue;
 
 import java.util.*;
 

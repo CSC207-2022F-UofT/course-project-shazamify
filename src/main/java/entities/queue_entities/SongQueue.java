@@ -1,4 +1,4 @@
-package queue_entities;
+package entities.queue_entities;
 
 import entities.Song;
 
