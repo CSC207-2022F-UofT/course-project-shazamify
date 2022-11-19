@@ -1,4 +1,4 @@
-package queue_screen;
+package screen.queue_screen;
 
 import abr.queue_abr.QueueOutputBoundary;
 import abr.queue_abr.QueueResponseModel;
