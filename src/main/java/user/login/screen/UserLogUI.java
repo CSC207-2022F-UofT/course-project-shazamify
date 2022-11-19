@@ -3,11 +3,10 @@ package user.login.screen;
 
 import user.database.UserLoginDataBaseGateway;
 import user.database.UserLoginFileGateway;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
+import user_interaction.user_interact_screen.friend_manager_screen.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,7 +38,7 @@ public class UserLogUI extends JPanel {
             }
         });
 
-        LoginButton.addActionListener(new ActionListener() {
+        RegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyListenerOnRegisterPerformed();
@@ -61,6 +60,7 @@ public class UserLogUI extends JPanel {
 
         if (validUserName & validPassword){
             JOptionPane.showMessageDialog(this, "valid.");
+            TempFriendListObservable.setCurrentUser(userName); // everytime the user login, keep track of their username
         } else if (!validUserName) {
             JOptionPane.showMessageDialog(this, "userName not valid.");
         } else {
