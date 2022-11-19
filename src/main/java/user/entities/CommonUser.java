@@ -10,6 +10,7 @@ public class CommonUser implements User, Serializable {
     private String userName;
     private String passWord;
     private final int userID;
+    private UserSecurityQuestionPackage securityQuestionPackage;
 
     private HashMap<String, String> friendList = new HashMap<>();
 
@@ -40,6 +41,16 @@ public class CommonUser implements User, Serializable {
     @Override
     public String getPassword() {
         return passWord;
+    }
+
+    @Override
+    public void setSecurityQuestions(UserSecurityQuestionPackage securityQuestions) {
+        this.securityQuestionPackage = securityQuestions;
+    }
+
+    @Override
+    public UserSecurityQuestionPackage getSecurityQuestions() {
+        return securityQuestionPackage;
     }
 
     @Override
