@@ -3,10 +3,15 @@ package entities;
 /***
  * The Song entity class responsible for holding a name, id, and duration.
  */
-public class Song extends Record {
-    private final String name;
-    private final int id;
-    private final int duration;
+public class Song implements Record {
+    private String name;
+    private String id;
+    private int duration;
+//    TODO add audiofilePath attribute
+
+    public Song() {
+
+    }
 
     /***
      * Default constructor
@@ -14,7 +19,7 @@ public class Song extends Record {
      * @param id - The identifier key for the song
      * @param duration - The duration of the song in seconds.
      */
-    public Song(String name, int id, int duration) {
+    public Song(String name, String id, int duration) {
         this.name = name;
         this.id = id;
         this.duration = duration;
@@ -24,11 +29,32 @@ public class Song extends Record {
         return this.name;
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
     public int getDuration() {
         return this.duration;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", duration=" + duration +
+                '}';
     }
 }
