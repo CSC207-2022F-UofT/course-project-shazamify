@@ -2,7 +2,7 @@ package abr.playlist_abr;
 
 import entities.playlist_entities.Playlist;
 import entities.playlist_entities.PlaylistFactory;
-import screen.playlist_screen.RecordViewModel;
+import screen.RecordViewModel;
 
 public class PlaylistCreateUseCase {
     private final PlaylistDatabaseGateway databaseGateway;
