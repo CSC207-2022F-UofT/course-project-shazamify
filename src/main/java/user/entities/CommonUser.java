@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class CommonUser implements User, Serializable {
@@ -16,6 +17,7 @@ public class CommonUser implements User, Serializable {
     private final int userID;
     private UserSecurityQuestionPackage securityQuestionPackage;
     private UserAvatar userAvatar;
+    private final LocalDateTime accountCreateTime;
 
     private HashMap<String, String> friendList = new HashMap<>();
 
@@ -23,7 +25,7 @@ public class CommonUser implements User, Serializable {
         this.userName = userName;
         this.passWord = passWord;
         this.userID = generateUserID();
-
+        this.accountCreateTime = LocalDateTime.now();
         this.userAvatar = getDefaultAvatar();
     }
 
@@ -88,7 +90,17 @@ public class CommonUser implements User, Serializable {
     }
 
     @Override
+    public LocalDateTime getAccountCreationTime() {
+        return accountCreateTime;
+    }
+
+    @Override
     public void setUserAvatar(UserAvatar avatar) {
         this.userAvatar = avatar;
+    }
+
+    @Override
+    public void setPassword(String passWord) {
+        this.passWord = passWord;
     }
 }

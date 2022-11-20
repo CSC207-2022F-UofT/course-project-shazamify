@@ -2,6 +2,8 @@ package user.entities;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public interface User extends Serializable {
@@ -13,6 +15,7 @@ public interface User extends Serializable {
     HashMap<String, String> getFriendList();
     void setFriendList(HashMap <String, String> newFriendList);
     BufferedImage getUserAvatar();
-
+    LocalDateTime getAccountCreationTime();
     void setUserAvatar(UserAvatar avatar);
+    void setPassword(String passWord);
 }
