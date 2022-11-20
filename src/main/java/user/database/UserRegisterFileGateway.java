@@ -2,6 +2,7 @@ package user.database;
 
 import user.entities.User;
 import user.entities.UserFactory;
+import user.entities.UserSecurityQuestionPackage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +14,10 @@ public class UserRegisterFileGateway implements UserRegisterDataBaseGateway {
      * Else, return False
      */
     @Override
-    public boolean checkAndRegisterUser(String userName, String passWord){
+    public boolean checkAndRegisterUser(String userName, String passWord, UserSecurityQuestionPackage securityQuestionPackage){
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
         if (!userMap.containsKey(userName)){
-            userMap.put(userName, createUser(userName, passWord));
+            userMap.put(userName, createUser(userName, passWord, securityQuestionPackage));
             UserFileWriter.writeUserMap(userMap, "UserDatabase.ser");
             return true;
         } else {
@@ -35,8 +36,15 @@ public class UserRegisterFileGateway implements UserRegisterDataBaseGateway {
     }
 
 
-    private User createUser(String userName, String passWord) {
+    private User createUser(String userName, String passWord, UserSecurityQuestionPackage securityQuestionPackage) {
+        // Set up the factory to initalize user
         UserFactory userFactory = new UserFactory();
-        return userFactory.getUser(userName, passWord, "CommonUser");
+
+        // initialize user with userName and password
+        User user = userFactory.getUser(userName, passWord, "CommonUser");
+
+        // Set up security question for user
+        user.setSecurityQuestions(securityQuestionPackage);
+        return user;
     }
 }

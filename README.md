@@ -37,3 +37,22 @@ Moving forward, we expect you to maintain this project structure. You *should* u
 ![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
 
 You can create another simple class and try generating a test for this class.
+
+## Project Setup
+JDK >= 11
+
+## Setting up the Database
+Install Docker (if on Windows follow this link https://docs.docker.com/desktop/install/windows-install/). 
+
+You can verify it was installed correctly by opening a terminal and running
+
+```docker -v```
+
+This project uses MongoDB as the database implementation.
+
+Run the following command in a terminal
+
+```
+cd src/main/docker
+docker-compose up -d
+```
