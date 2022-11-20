@@ -15,7 +15,7 @@ public class UserFileWriter {
             output.writeObject(UserMap);
             output.close();
         } catch(IOException e){
-            throw new RuntimeException("Filename of writing file is not correct");
+            throw new RuntimeException("Filename of the UserDatabase is not correct or User Object is not serializable");
         }
     }
 }

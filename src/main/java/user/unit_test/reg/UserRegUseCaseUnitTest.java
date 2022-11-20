@@ -3,7 +3,6 @@ package user.unit_test.reg;
 import org.junit.Test;
 import user.database.UserRegisterDataBaseGateway;
 import user.database.UserRegisterFileGateway;
-import user.entities.UserSecurityQuestionPackage;
 import user.reg.abr.UserRegOutputBoundary;
 import user.reg.abr.UserRegRequestModel;
 import user.reg.abr.UserRegUseCase;

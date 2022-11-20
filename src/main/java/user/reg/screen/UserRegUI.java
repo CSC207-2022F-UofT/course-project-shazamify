@@ -56,6 +56,8 @@ public class UserRegUI extends JPanel {
     private void notifyListenerOnRecommendPassword() {
         UserRegViewModel viewModel = controller.giveRecommendPassword();
         String recommendPassword = viewModel.getRecommendPassword();
+        userPassWordField.setText(recommendPassword);
+        userRePassWordField.setText(recommendPassword);
         JOptionPane.showMessageDialog(this, recommendPassword);
     }
 
@@ -89,7 +91,6 @@ public class UserRegUI extends JPanel {
         userRePassWordField.setBounds(240,110,300,25);
         securityQuestions.setBounds(10,155,220,25);
         securityQuestionField.setBounds(240,155,300,25);
-
         // Set up Buttons
         RegisterButton.setBounds(30,250,100,50);
         RecommendPasswordButton.setBounds(180,250,200,50);

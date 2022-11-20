@@ -3,7 +3,6 @@ package user.reg.screen;
 import user.reg.abr.UserRegInputBoundary;
 import user.reg.abr.UserRegRequestModel;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class UserRegController {

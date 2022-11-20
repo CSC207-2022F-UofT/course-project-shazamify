@@ -5,7 +5,6 @@ import user.database.UserLoginDataBaseGateway;
 import user.database.UserLoginFileGateway;
 import user.database.UserRegisterDataBaseGateway;
 import user.database.UserRegisterFileGateway;
-import user.entities.UserSecurityQuestionPackage;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogRequestModel;
 import user.login.abr.UserLogUseCase;

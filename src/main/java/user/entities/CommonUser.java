@@ -3,6 +3,10 @@ package user.entities;
 import user.database.UserRegisterDataBaseGateway;
 import user.database.UserRegisterFileGateway;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -11,13 +15,26 @@ public class CommonUser implements User, Serializable {
     private String passWord;
     private final int userID;
     private UserSecurityQuestionPackage securityQuestionPackage;
+    private UserAvatar userAvatar;
 
     private HashMap<String, String> friendList = new HashMap<>();
 
-    public CommonUser(String userName, String passWord){
+    public CommonUser(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
         this.userID = generateUserID();
+
+        this.userAvatar = getDefaultAvatar();
+    }
+
+    private UserAvatar getDefaultAvatar() {
+        try {
+            BufferedImage tempAvatar = ImageIO.read(new File("default_avatar.jpg"));
+            userAvatar = new UserAvatar(tempAvatar);
+            return userAvatar;
+        } catch (IOException e){
+            throw new RuntimeException("Failed to create Default Avatar");
+        }
     }
 
     private int generateUserID() {
@@ -66,5 +83,12 @@ public class CommonUser implements User, Serializable {
         friendList = newFriendList;
     }
 
+    public BufferedImage getUserAvatar() {
+        return userAvatar.getBufferedImage();
+    }
 
+    @Override
+    public void setUserAvatar(UserAvatar avatar) {
+        this.userAvatar = avatar;
+    }
 }
