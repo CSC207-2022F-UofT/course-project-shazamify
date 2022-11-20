@@ -1,9 +1,9 @@
 package user_interact_abr_test;
 
+import abr.user_interact_abr.manage_friend_request_abr.*;
+import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
+import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
 import org.junit.Test;
-import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
-import user_interaction.user_interact_abr.manage_friend_request_abr.*;
-import user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.*;
 
 import java.util.HashMap;
 
@@ -97,6 +97,5 @@ public class SendFriendRequestTest {
         assertEquals("pending_Star", users.getFriendList("Jae").get("Star")); // Jar's friendList
         assertEquals("friend", responseModel.getFriendList().get("Jae")); //Star's friendList
         assertEquals("You are already friends with Jae", responseModel.getMsgToDisplay());
-
     }
 }
