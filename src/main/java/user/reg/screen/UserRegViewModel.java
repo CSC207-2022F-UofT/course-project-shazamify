@@ -3,7 +3,7 @@ package user.reg.screen;
 public class UserRegViewModel {
     private boolean usernameValidity;
     private boolean passwordValidity;
-
+    private boolean securityQuestionValidity;
     private String recommendPassword;
 
     public void setUsernameValidity(boolean usernameValidity){
@@ -18,12 +18,20 @@ public class UserRegViewModel {
         this.recommendPassword = recommendPassword;
     }
 
+    public void setSecurityQuestionValidity(boolean securityQuestionValidity) {
+        this.securityQuestionValidity = securityQuestionValidity;
+    }
+
     public boolean isPasswordValid() {
         return passwordValidity;
     }
 
     public boolean isUsernameValid() {
         return usernameValidity;
+    }
+
+    public boolean isSecurityQuestionValidity() {
+        return securityQuestionValidity;
     }
 
     public String getRecommendPassword() {
