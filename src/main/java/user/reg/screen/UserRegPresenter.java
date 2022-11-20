@@ -10,6 +10,7 @@ public class UserRegPresenter implements UserRegOutputBoundary {
         viewModel.setPasswordValidity(responseModel.isPasswordValid());
         viewModel.setUsernameValidity(responseModel.isUsernameValid());
         viewModel.setRecommendPassword(responseModel.getRecommendPassword());
+        viewModel.setSecurityQuestionValidity(responseModel.isSecurityQuestionValidity());
         return viewModel;
     }
 }
