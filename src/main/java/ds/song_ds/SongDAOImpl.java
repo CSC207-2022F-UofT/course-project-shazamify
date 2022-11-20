@@ -22,7 +22,15 @@ public class SongDAOImpl implements SongDAO{
         MongoCollection<Song> coll = database.getCollection("songs", Song.class);
         Song s = coll.find(Filters.eq("_id", id)).first();
 
-        return Optional.of(s);
+        return Optional.ofNullable(s);
+    }
+
+    @Override
+    public Optional<Song> findByName(String name) {
+        MongoCollection<Song> coll = database.getCollection("songs", Song.class);
+        Song s = coll.find(Filters.eq("name", name)).first();
+
+        return Optional.ofNullable(s);
     }
 
     @Override

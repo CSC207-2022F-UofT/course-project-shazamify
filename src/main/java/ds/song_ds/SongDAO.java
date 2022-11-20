@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface SongDAO {
     Optional<Song> findById(String id);
 
-//    TODO: findByName
+    Optional<Song> findByName(String name);
 
     void save(Song s);
 
