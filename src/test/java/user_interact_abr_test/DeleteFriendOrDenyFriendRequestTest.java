@@ -1,6 +1,7 @@
 package user_interact_abr_test;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
 import user_interaction.user_interact_abr.manage_friend_request_abr.*;
 import user_interaction.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
@@ -10,15 +11,16 @@ import user_interaction.user_interact_abr.manage_friend_request_abr.deleting_att
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertNull;
 
-class DeleteFriendOrDenyFriendRequestTest {
+
+public class DeleteFriendOrDenyFriendRequestTest {
 
     private static final FriendManagerDsGateway users = new FriendManagerInMemoryDsGateway(); //using fake user DB
 
 
     @Test
-    void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
+    public void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
 
 
         FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
@@ -43,7 +45,7 @@ class DeleteFriendOrDenyFriendRequestTest {
     }
 
     @Test
-    void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
+    public void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
 
         FriendManagerOutputBoundary friendManagerPresenter = new FriendManagerPresenter();
 

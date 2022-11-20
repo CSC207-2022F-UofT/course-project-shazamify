@@ -1,5 +1,6 @@
 package user.unit_test.interaction;
 
+
 import org.junit.Test;
 import user.database.SearchEngineDatabaseGateway;
 import user.database.SearchEngineFileGateway;
