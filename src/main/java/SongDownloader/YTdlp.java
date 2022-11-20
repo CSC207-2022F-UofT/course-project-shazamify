@@ -1,5 +1,7 @@
 package SongDownloader;
 
+import entities.Song;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,25 +10,19 @@ public class YTdlp {
 
     private final String ffmpegLoc;
     private final String outputLoc;
-    private final String link;
 
-    public YTdlp(String link) {
-        this.ffmpegLoc = "C:\\ffmpeg\\bin\\ffmpeg.exe";
-        this.outputLoc = "src\\main\\resources\\songs\\%(title)s_%(id)s.mp3";
-        this.link = link;
-        ProcessBuilder dl = new ProcessBuilder();
-        dl.redirectErrorStream(true);
+    public YTdlp() {
+        this.ffmpegLoc = "C:\\Users\\alvinuy\\Downloads\\ffmpeg-20190911-944d76a-win64-static\\ffmpeg-20190911-944d76a-win64-static\\bin";
+//        TODO change path for laptop
+        this.outputLoc = "F:\\Shazamify\\build\\songs\\%(title)s.mp3";
     }
 
-    public YTdlp(String ffmpegLoc, String outputLoc, String link) {
+    public YTdlp(String ffmpegLoc, String outputLoc) {
         this.ffmpegLoc = ffmpegLoc;
         this.outputLoc = outputLoc;
-        this.link = link;
-        ProcessBuilder dl = new ProcessBuilder();
-        dl.redirectErrorStream(true);
     }
 
-    public void download() {
+    public void download(String link) {
         ProcessBuilder dl = new ProcessBuilder();
         // to enable debug at java side
         dl.redirectErrorStream(true);
@@ -37,6 +33,7 @@ public class YTdlp {
                 "--audio-quality", "0",
                 "--no-part", "--no-mtime",
                 "--embed-thumbnail",
+                "--write-info-json",
                 "-o",
                 outputLoc,
                 link,

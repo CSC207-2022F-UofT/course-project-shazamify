@@ -3,8 +3,8 @@ package user.reg.abr;
 public class UserRegResponseModel {
     private boolean usernameValidity;
     private boolean passwordValidity;
-
     private String recommendPassword;
+    private boolean securityQuestionValidity;
 
     public UserRegResponseModel(){
     }
@@ -21,12 +21,20 @@ public class UserRegResponseModel {
         this.recommendPassword = recommendPassword;
     }
 
+    public void setSecurityQuestionValidity(boolean securityQuestionValidity){
+        this.securityQuestionValidity = securityQuestionValidity;
+    }
+
     public boolean isPasswordValid() {
         return passwordValidity;
     }
 
     public boolean isUsernameValid() {
         return usernameValidity;
+    }
+
+    public boolean isSecurityQuestionValidity() {
+        return securityQuestionValidity;
     }
 
     public String getRecommendPassword() {

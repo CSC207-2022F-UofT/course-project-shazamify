@@ -4,15 +4,15 @@ import entities.Record;
 import entities.Song;
 import java.util.ArrayList;
 
-public class Playlist extends Record {
+public class Playlist implements Record {
     private String name;
 
-    private final int id;
+    private String id;
     private int duration;
     private ArrayList<Song> contents;
     private final String owner;
     private String description;
-    private enum Privacy{PRIVATE, FRIENDS, PUBLIC};
+    private enum Privacy{PRIVATE, FRIENDS, PUBLIC}
     private Privacy privacy;
     private int pic;
 
@@ -21,11 +21,11 @@ public class Playlist extends Record {
      *
      *
      */
-    public Playlist(int id) {
+    public Playlist(String id) {
         this.name = "";
         this.id = id;
         this.duration = 0;
-        this.contents = new ArrayList<Song>();
+        this.contents = new ArrayList<>();
         this.owner = "";
         this.description = "";
         this.privacy = Privacy.PRIVATE;
@@ -43,7 +43,7 @@ public class Playlist extends Record {
     }
 
     @Override
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
