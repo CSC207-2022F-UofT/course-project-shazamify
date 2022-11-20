@@ -1,8 +1,8 @@
 package user_interact_abr_test;
 
 import org.junit.jupiter.api.Test;
-import user_interaction.user_interact_abr.show_friend_list_abr.OrderFriendList;
-import user_interaction.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
+import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
+import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
