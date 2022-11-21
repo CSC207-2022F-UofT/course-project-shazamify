@@ -1,4 +1,4 @@
-package user.database;
+package user.reg.DS;
 
 import user.entities.UserSecurityQuestionPackage;
 

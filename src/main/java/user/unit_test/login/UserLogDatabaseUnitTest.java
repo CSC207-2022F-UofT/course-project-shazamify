@@ -1,11 +1,5 @@
 package user.unit_test.login;
 
-import org.junit.Test;
-import user.database.UserLoginDataBaseGateway;
-import user.database.UserLoginFileGateway;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
-
 //public class UserLogDatabaseUnitTest {
 //    @Test
 //    public void UserLogDatabaseCorrect1(){

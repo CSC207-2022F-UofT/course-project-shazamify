@@ -1,8 +1,11 @@
-package user.database;
+package user.reg.DS;
 
+import user.database.UserFileReader;
+import user.database.UserFileWriter;
 import user.entities.User;
 import user.entities.UserFactory;
 import user.entities.UserSecurityQuestionPackage;
+import user.reg.DS.UserRegisterDataBaseGateway;
 
 import java.util.HashMap;
 import java.util.Map;
