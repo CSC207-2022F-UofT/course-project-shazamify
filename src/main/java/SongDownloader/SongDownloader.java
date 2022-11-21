@@ -6,6 +6,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import ds.DatabaseInitializer;
 import ds.song_ds.SongDAOInput;
+import ds.song_ds.SongDAOInputImpl;
 import entities.Song;
 
 import java.io.IOException;
@@ -34,12 +35,13 @@ public class SongDownloader {
 //        create Song object if json file does not belong to playlist
 //        store Song object and metadata in database
 
-        SongDAOInput songDAOin = null;
         String uri = "mongodb://root:rootpassword@localhost:27017";
         DatabaseInitializer.init();
 
 //        TODO: change path for laptop
         try (MongoClient mongoClient = MongoClients.create(uri)) {
+            SongDAOInput songDAOin = new SongDAOInputImpl(mongoClient);
+
             Files.walk(Paths.get("C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\build\\songs"), FileVisitOption.FOLLOW_LINKS).filter(t ->
             {
                 return t.toString().endsWith(".info.json");

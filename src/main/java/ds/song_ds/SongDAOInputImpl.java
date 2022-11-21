@@ -1,6 +1,7 @@
 package ds.song_ds;
 
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -8,7 +9,14 @@ import ds.DatabaseInitializer;
 import entities.Song;
 
 public class SongDAOInputImpl implements SongDAOInput{
-    private MongoDatabase database;
+    private final MongoDatabase database;
+
+    public SongDAOInputImpl() {
+        String uri = "mongodb://root:rootpassword@localhost:27017";
+        DatabaseInitializer.init();
+        MongoClient mongoClient = MongoClients.create(uri);
+        this.database = mongoClient.getDatabase("Shazamify").withCodecRegistry(DatabaseInitializer.getCodecRegistry());
+    }
 
     public SongDAOInputImpl(MongoClient mongoClient) {
         this.database = mongoClient.getDatabase("Shazamify").withCodecRegistry(DatabaseInitializer.getCodecRegistry());
