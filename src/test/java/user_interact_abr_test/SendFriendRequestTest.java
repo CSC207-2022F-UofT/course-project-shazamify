@@ -1,9 +1,9 @@
 package user_interact_abr_test;
 
+import abr.user_interact_abr.manage_friend_request_abr.*;
+import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import org.junit.jupiter.api.Test;
-import user_interaction.user_interact_DS.FriendManagerInMemoryDsGateway;
-import user_interaction.user_interact_abr.manage_friend_request_abr.*;
-import user_interaction.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.*;
+import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
 
 import java.util.HashMap;
 
@@ -27,7 +27,10 @@ class SendFriendRequestTest {
 
         // Run the use case
         FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
-        assertEquals("pending_Star", responseModel.getFriendList().get("Jae"));
+
+        // check the result
+        assertEquals("pending_Star", users.getFriendList("Jae").get("Star")); // Jae's friendList
+        assertEquals("pending_Star", responseModel.getFriendList().get("Jae")); // Star's friendList
         assertEquals("Friend request sent", responseModel.getMsgToDisplay());
     }
 
@@ -44,12 +47,13 @@ class SendFriendRequestTest {
         }};
         FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList);
 
-
         // Run the use case
         FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
-        assertEquals("pending_Star", responseModel.getFriendList().get("Jae"));
-        assertEquals("Please do not send repeated friend request", responseModel.getMsgToDisplay());
 
+        //check the result
+        assertEquals("pending_Star", responseModel.getFriendList().get("Jae")); // Star's friendList
+        assertEquals("pending_Star", users.getFriendList("Jae").get("Star")); // Jae's friendList
+        assertEquals("Please do not send repeated friend request", responseModel.getMsgToDisplay());
     }
 
     @Test
@@ -65,12 +69,13 @@ class SendFriendRequestTest {
         }};
         FriendManagerRequestModel inputData = new FriendManagerRequestModel("Jae", "Star", jaeFriendList);
 
-
         // Run the use case
         FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
-        assertEquals("friend", responseModel.getFriendList().get("Star"));
-        assertEquals("You are now friends with Star", responseModel.getMsgToDisplay());
 
+        // check the result
+        assertEquals("friend", users.getFriendList("Star").get("Jae")); // Star's friendList
+        assertEquals("friend", responseModel.getFriendList().get("Star")); // Jae's friendList
+        assertEquals("You are now friends with Star", responseModel.getMsgToDisplay());
     }
 
     @Test
@@ -86,11 +91,12 @@ class SendFriendRequestTest {
         }};
         FriendManagerRequestModel inputData = new FriendManagerRequestModel("Star", "Jae", starFriendList);
 
-
-
         // Run the use case
         FriendManagerResponseModel responseModel = sendFriendRequest.reactTo(inputData);
-        assertEquals("friend", responseModel.getFriendList().get("Jae"));
+
+        // check the result
+        assertEquals("pending_Star", users.getFriendList("Jae").get("Star")); // Jar's friendList
+        assertEquals("friend", responseModel.getFriendList().get("Jae")); //Star's friendList
         assertEquals("You are already friends with Jae", responseModel.getMsgToDisplay());
 
     }
