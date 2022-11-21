@@ -7,7 +7,7 @@ public class FavoritePlaylist extends Playlist {
      *
      * @param id
      */
-    public FavoritePlaylist(int id) {
+    public FavoritePlaylist(String id) {
         super(id);
     }
 }

@@ -9,7 +9,7 @@ public class TempFriendListObservable { //1. initialize this class in view
 
     static ArrayList<FriendListObserver> observers = new ArrayList<>();
 
-    static String currentUser = "Star"; // default user for testing
+    public static String currentUser = "Star"; // default user for testing
 
 
     public static void setCurrentUser(String currentUserName){

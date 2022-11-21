@@ -1,7 +1,7 @@
 package user_interact_abr_test;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import user.database.UserFileReader;
 import user.database.UserFileWriter;
 
@@ -14,11 +14,10 @@ import java.util.Map;
 import java.util.Objects;
 
 
-class FriendManagerFileDsGatewayTest {
-
+public class FriendManagerFileDsGatewayTest {
 
     @Test
-    void saveAndGetFriendListTest() {
+    public void saveAndGetFriendListTest() {
         FriendManagerFileDsGateway.clearDatabase();
 
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");

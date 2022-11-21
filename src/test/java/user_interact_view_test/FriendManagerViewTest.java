@@ -15,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-class FriendManagerViewTest { //tests FriendListView, AcceptOrDenyFriendRequestView & FriendProfileView
+public class FriendManagerViewTest { //tests FriendListView, AcceptOrDenyFriendRequestView & FriendProfileView
 
     public static void main(String[] args) {
         // Build the main program window

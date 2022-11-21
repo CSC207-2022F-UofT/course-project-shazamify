@@ -1,19 +1,19 @@
 package user_interact_abr_test;
 
-import org.junit.jupiter.api.Test;
+
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class OrderFriendListTest {
-
+public class OrderFriendListTest {
 
     @Test
-    void returnOrderedUserFriendList() {
+    public void returnOrderedUserFriendList() {
         HashMap<String, String> friendList = new HashMap<>();
         friendList.put("Jae", "pending_Jae");
         friendList.put("Angela", "pending_Star");
@@ -34,7 +34,7 @@ class OrderFriendListTest {
     }
 
     @Test
-    void returnEmptyOrderedUserFriendList() {
+    public void returnEmptyOrderedUserFriendList() {
         HashMap<String, String> friendList = new HashMap<>();
 
         OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
