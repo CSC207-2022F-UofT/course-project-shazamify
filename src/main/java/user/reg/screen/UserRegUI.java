@@ -23,7 +23,7 @@ public class UserRegUI extends JPanel {
     public UserRegUI(UserRegController controller){
         this.controller = controller;
 
-        // Set components for screen
+        // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
         setBoundForComponents();

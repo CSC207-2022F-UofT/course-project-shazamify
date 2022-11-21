@@ -44,7 +44,7 @@ public class UserHomePageUI extends JPanel {
         this.user = user;
         this.controller = controller;
 
-        // Set components for screen
+        // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
         setBoundForComponents();
