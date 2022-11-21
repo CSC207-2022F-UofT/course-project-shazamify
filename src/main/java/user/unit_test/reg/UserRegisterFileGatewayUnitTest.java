@@ -3,8 +3,8 @@ package user.unit_test.reg;
 import org.junit.Test;
 import user.database.UserFileReader;
 import user.database.UserFileWriter;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterFileGateway;
 import user.entities.CommonUser;
 import user.entities.User;
 

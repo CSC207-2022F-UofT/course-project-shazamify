@@ -1,8 +1,8 @@
 package user.unit_test.reg;
 
 import org.junit.Test;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterFileGateway;
 import user.reg.abr.UserRegOutputBoundary;
 import user.reg.abr.UserRegRequestModel;
 import user.reg.abr.UserRegUseCase;

@@ -1,12 +1,15 @@
-package user.database;
+package user.avatar_image_management.DS;
 
+import user.avatar_image_management.DS.UserAvatarDatabaseGateway;
+import user.database.UserFileReader;
+import user.database.UserFileWriter;
 import user.entities.User;
 import user.entities.UserAvatar;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserAvatarFileGateway implements UserAvatarDatabaseGateway{
+public class UserAvatarFileGateway implements UserAvatarDatabaseGateway {
 
 
     @Override

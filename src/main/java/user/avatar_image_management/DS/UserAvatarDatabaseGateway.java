@@ -1,4 +1,4 @@
-package user.database;
+package user.avatar_image_management.DS;
 
 import user.entities.User;
 import user.entities.UserAvatar;

@@ -1,4 +1,4 @@
-package user.database;
+package user.login.DS;
 
 public interface UserLoginDataBaseGateway {
     // This interface is responsible for UserLogin to handle UserData

@@ -1,8 +1,8 @@
 package user.login.screen;
 
 
-import user.database.UserLoginDataBaseGateway;
-import user.database.UserLoginFileGateway;
+import user.login.DS.UserLoginDataBaseGateway;
+import user.login.DS.UserLoginFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
