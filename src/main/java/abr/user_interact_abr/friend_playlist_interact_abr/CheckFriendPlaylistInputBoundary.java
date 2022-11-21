@@ -1,7 +1,7 @@
 package abr.user_interact_abr.friend_playlist_interact_abr;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
+import java.util.ArrayList;
 
 public interface CheckFriendPlaylistInputBoundary {
-    CheckFriendPlaylistResponseModel reactTo(FriendManagerRequestModel checkFriendPlaylistRequestModelRequestModel);
+    ArrayList<String> returnViewablePlaylist(String userName, String friendName);
 }

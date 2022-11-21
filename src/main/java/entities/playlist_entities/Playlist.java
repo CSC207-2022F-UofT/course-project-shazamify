@@ -4,6 +4,8 @@ import entities.Record;
 import entities.Song;
 import java.util.ArrayList;
 
+;
+
 public class Playlist implements Record {
     private String name;
 
@@ -12,7 +14,6 @@ public class Playlist implements Record {
     private ArrayList<Song> contents;
     private final String owner;
     private String description;
-    private enum Privacy{PRIVATE, FRIENDS, PUBLIC}
     private Privacy privacy;
     private int pic;
 
