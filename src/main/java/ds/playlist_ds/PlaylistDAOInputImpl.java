@@ -9,28 +9,11 @@ import entities.playlist_entities.Playlist;
 
 import java.util.Optional;
 
-public class PlaylistDAOImpl implements PlaylistDAO {
-
+public class PlaylistDAOInputImpl implements  PlaylistDAOInput{
     private MongoDatabase database;
 
-    public PlaylistDAOImpl(MongoClient mongoClient) {
+    public PlaylistDAOInputImpl(MongoClient mongoClient) {
         this.database = mongoClient.getDatabase("Shazamify").withCodecRegistry(DatabaseInitializer.getCodecRegistry());
-    }
-
-    @Override
-    public Optional<Playlist> findById(String id) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
-        Playlist p = coll.find(Filters.eq("_id", id)).first();
-
-        return Optional.ofNullable(p);
-    }
-
-    @Override
-    public Optional<Playlist> findByName(String name) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
-        Playlist p = coll.find(Filters.eq("name", name)).first();
-
-        return Optional.ofNullable(p);
     }
 
     @Override
