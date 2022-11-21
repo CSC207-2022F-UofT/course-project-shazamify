@@ -9,11 +9,10 @@ import entities.Song;
 
 import java.util.Optional;
 
-public class SongDAOImpl implements SongDAO{
-
+public class SongDAOOutputImpl implements SongDAOOutput{
     private MongoDatabase database;
 
-    public SongDAOImpl(MongoClient mongoClient) {
+    public SongDAOOutputImpl(MongoClient mongoClient) {
         this.database = mongoClient.getDatabase("Shazamify").withCodecRegistry(DatabaseInitializer.getCodecRegistry());
     }
 
@@ -31,23 +30,5 @@ public class SongDAOImpl implements SongDAO{
         Song s = coll.find(Filters.eq("name", name)).first();
 
         return Optional.ofNullable(s);
-    }
-
-    @Override
-    public void save(Song s) {
-        MongoCollection<Song> coll = database.getCollection("songs", Song.class);
-        coll.insertOne(s);
-    }
-
-    @Override
-    public void update(Song s) {
-        MongoCollection<Song> coll = database.getCollection("songs", Song.class);
-        coll.findOneAndReplace(Filters.eq(s.getId()), s);
-    }
-
-    @Override
-    public void delete(Song s) {
-        MongoCollection<Song> coll = database.getCollection("songs", Song.class);
-        coll.deleteOne(Filters.eq(s.getId()));
     }
 }

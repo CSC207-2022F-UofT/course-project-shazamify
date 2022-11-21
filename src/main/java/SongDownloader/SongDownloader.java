@@ -5,14 +5,12 @@ import com.jayway.jsonpath.JsonPath;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import ds.DatabaseInitializer;
-import ds.song_ds.SongDAO;
-import ds.song_ds.SongDAOImpl;
+import ds.song_ds.SongDAOInput;
 import entities.Song;
 
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -26,7 +24,7 @@ public class SongDownloader {
         String link = sc.nextLine();
 
         YTdlp p = new YTdlp();
-//        p.download(link);
+        p.download(link);
         moveToDatabase();
     }
 
@@ -36,13 +34,13 @@ public class SongDownloader {
 //        create Song object if json file does not belong to playlist
 //        store Song object and metadata in database
 
-        SongDAO songDAO = null;
+        SongDAOInput songDAOin = null;
         String uri = "mongodb://root:rootpassword@localhost:27017";
         DatabaseInitializer.init();
 
 //        TODO: change path for laptop
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            Files.walk(Paths.get("F:\\Shazamify\\build\\songs"), FileVisitOption.FOLLOW_LINKS).filter(t ->
+            Files.walk(Paths.get("C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\build\\songs"), FileVisitOption.FOLLOW_LINKS).filter(t ->
             {
                 return t.toString().endsWith(".info.json");
             }).forEach(path -> {
@@ -52,7 +50,7 @@ public class SongDownloader {
                     if (!((String) jsonContext.read("$['webpage_url']")).contains("playlist?list=")) {
                         Song s = readJSON(jsonContext);
                         System.out.println(s);
-                        songDAO.save(s);
+                        songDAOin.save(s);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
