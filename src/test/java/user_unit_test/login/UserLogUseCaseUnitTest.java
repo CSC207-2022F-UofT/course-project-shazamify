@@ -1,19 +1,19 @@
 package user_unit_test.login;
 
 import org.junit.Test;
-import ds.user_login_ds.UserLoginDataBaseGateway;
+import abr.user_login_abr.UserLoginDataBaseGateway;
 import ds.user_login_ds.UserLoginFileGateway;
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import abr.user_login_abr.UserLogOutputBoundary;
 import abr.user_login_abr.UserLogRequestModel;
 import abr.user_login_abr.UserLogUseCase;
-import interface_adaptors.user_login_screen.UserLogPresenter;
-import interface_adaptors.user_login_screen.UserLogViewModel;
+import interface_adaptors.user_login_ia.UserLogPresenter;
+import interface_adaptors.user_login_ia.UserLogViewModel;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
-import interface_adaptors.user_reg_screen.UserRegPresenter;
+import interface_adaptors.user_reg_ia.UserRegPresenter;
 
 import java.util.HashMap;
 import java.util.Map;

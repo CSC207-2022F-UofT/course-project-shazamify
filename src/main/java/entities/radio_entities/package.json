@@ -1,0 +1,11 @@
+{
+  "name": "RadioEntities",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "radio-browser-api": "^6.0.1",
+    "node-fetch": "^3.3.0",
+    "trireme": "^0.9.3"
+  }
+}
+
