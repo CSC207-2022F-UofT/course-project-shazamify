@@ -1,7 +1,7 @@
 package abr.user_login_abr;
 
 import ds.user_login_ds.UserLoginDataBaseGateway;
-import screen.user_login_screen.UserLogViewModel;
+import interface_adaptors.user_login_screen.UserLogViewModel;
 
 public class UserLogUseCase implements UserLogInputBoundary{
     UserLogOutputBoundary outputBoundary;

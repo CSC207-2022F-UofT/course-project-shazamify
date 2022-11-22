@@ -6,8 +6,8 @@ import ds.user_reg_ds.UserRegisterFileGateway;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
-import screen.user_reg_screen.UserRegPresenter;
-import screen.user_reg_screen.UserRegViewModel;
+import interface_adaptors.user_reg_screen.UserRegPresenter;
+import interface_adaptors.user_reg_screen.UserRegViewModel;
 
 import java.util.HashMap;
 import java.util.Map;

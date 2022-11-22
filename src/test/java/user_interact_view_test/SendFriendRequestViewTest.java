@@ -11,8 +11,8 @@ import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
-import screen.user_interact_screen.friend_manager_screen.SendFriendRequestView;
-import screen.user_interact_screen.friend_manager_screen.SendFriendRequestController;
+import interface_adaptors.user_interact_screen.friend_manager_screen.SendFriendRequestView;
+import interface_adaptors.user_interact_screen.friend_manager_screen.SendFriendRequestController;
 
 import javax.swing.*;
 import java.awt.*;

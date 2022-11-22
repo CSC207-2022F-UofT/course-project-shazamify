@@ -1,7 +1,7 @@
 package abr.user_reg_abr;
 
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
-import screen.user_reg_screen.UserRegViewModel;
+import interface_adaptors.user_reg_screen.UserRegViewModel;
 
 public class UserRegUseCase implements UserRegInputBoundary{
 

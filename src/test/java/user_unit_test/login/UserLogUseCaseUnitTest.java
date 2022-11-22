@@ -8,12 +8,12 @@ import ds.user_reg_ds.UserRegisterFileGateway;
 import abr.user_login_abr.UserLogOutputBoundary;
 import abr.user_login_abr.UserLogRequestModel;
 import abr.user_login_abr.UserLogUseCase;
-import screen.user_login_screen.UserLogPresenter;
-import screen.user_login_screen.UserLogViewModel;
+import interface_adaptors.user_login_screen.UserLogPresenter;
+import interface_adaptors.user_login_screen.UserLogViewModel;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
-import screen.user_reg_screen.UserRegPresenter;
+import interface_adaptors.user_reg_screen.UserRegPresenter;
 
 import java.util.HashMap;
 import java.util.Map;

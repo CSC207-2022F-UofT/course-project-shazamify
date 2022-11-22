@@ -1,6 +1,6 @@
 package abr.queue_abr;
 
-import screen.queue_screen.QueueViewModel;
+import interface_adaptors.queue_screen.QueueViewModel;
 
 /***
  * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
