@@ -15,7 +15,7 @@ public class SearchUserAbr {
     private int limitCount = 5;
 
     /**
-     * search user by name,First match equals, then match startswith, and finally matches contains
+     * Search user by name, first match equals, then match starts with, and finally matches contains.
      * @param searchName userName
      * @return List<User>
      */
