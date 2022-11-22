@@ -1,11 +1,16 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package framework.user_interact_screen.friend_manager_screen;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_interact_ia.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * subject to change, TBA to the main UI, main UI not finished
+ */
 public class SendFriendRequestView extends JPanel{
 
     SendFriendRequestController controller;

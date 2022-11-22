@@ -1,4 +1,4 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package interface_adaptors.user_interact_ia;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
@@ -15,7 +15,7 @@ public class DeleteFriendOrDenyFriendRequestController implements FriendListObse
         TempFriendListObservable.addObserver(this);
     }
 
-    FriendManagerResponseModel reactTo(String friendID){
+    public FriendManagerResponseModel reactTo(String friendID){
         FriendManagerRequestModel requestModel = new FriendManagerRequestModel(TempFriendListObservable.currentUser,
                 friendID, tempFriendList);
         return inputBoundary.reactTo(requestModel);

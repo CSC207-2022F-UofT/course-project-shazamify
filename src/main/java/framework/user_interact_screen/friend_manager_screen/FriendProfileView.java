@@ -1,10 +1,15 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package framework.user_interact_screen.friend_manager_screen;
+
+import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A screen that shows the friend's profile, TBA since playList feature is not finished
+ */
 public class FriendProfileView extends JPanel { //TODO: add other components such as view playlist ,.etc
     final JFrame frame = new JFrame("Friend Profile");
     final DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController;

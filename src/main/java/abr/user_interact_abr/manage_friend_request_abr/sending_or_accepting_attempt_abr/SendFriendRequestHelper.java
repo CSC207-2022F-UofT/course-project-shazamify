@@ -17,6 +17,11 @@ class SendFriendRequestHelper {
     Boolean updated = false;
     final static int FRIEND_LIMIT = 10;
 
+    /**
+     * a helper that take actions based on the friendship status between user and friend, see inline comments for details
+     * @param requestModel the input data containing user's ID (username), friend's ID and user's friendList
+     * @param tempFriendFriendList the friend's friendList
+     */
     SendFriendRequestHelper(FriendManagerRequestModel requestModel, HashMap<String, String> tempFriendFriendList) {
         this.userID = requestModel.getUserID();
         this.friendID = requestModel.getFriendID();

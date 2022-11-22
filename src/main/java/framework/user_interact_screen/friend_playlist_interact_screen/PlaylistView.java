@@ -1,8 +1,13 @@
-package interface_adaptors.user_interact_screen.friend_playlist_interact_screen;
+package framework.user_interact_screen.friend_playlist_interact_screen;
+
+import interface_adaptors.user_interact_ia.CheckFriendPlaylistController;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A screen that shows the friend's playlists, actionListener to view songs in a playlist TBA since playList feature is not finished
+ */
 public class PlaylistView extends JPanel {
 
     CheckFriendPlaylistController controller;

@@ -8,6 +8,9 @@ public class FriendManagerRequestModel {
     private final String friendID;
     private final HashMap<String, String> userFriendList;
 
+    /**
+     * obj containing input data for friend manager use cases to function
+     */
     public FriendManagerRequestModel(String userID, String friendID, HashMap<String, String> userFriendList) {
         this.userID = userID;
         this.friendID = friendID;

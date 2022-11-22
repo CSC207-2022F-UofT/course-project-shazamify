@@ -7,6 +7,10 @@ import java.util.Map;
 public class OrderFriendList implements OrderFriendListInputBoundary{
 
 
+    /**
+     * @param currentFriendList raw friendList of the current user
+     * @return a friendList of the current user that's more readable on screen
+     */
     @Override
     public ArrayList<String> returnOrderedUserFriendList(HashMap<String, String> currentFriendList) {
         ArrayList<String> orderedFriendNames = new ArrayList<>();
@@ -18,6 +22,9 @@ public class OrderFriendList implements OrderFriendListInputBoundary{
         return orderedFriendNames;
     }
 
+    /**
+     * a helper that filters and sorts current user's non-empty friendList in Alphabetical order
+     */
     private void filterAndSortByAlphabet(ArrayList<String> orderedFriendNames, HashMap<String, String> currentFriendList){
         for(Map.Entry<String, String> entry: currentFriendList.entrySet()) {
             if (entry.getValue().contains(entry.getKey())){ // if user received friend request from someone
