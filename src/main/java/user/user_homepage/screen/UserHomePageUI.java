@@ -6,10 +6,10 @@ import user.avatar_image_management.abr.UserAvatarMngUseCase;
 import user.avatar_image_management.screen.UserAvatarMngController;
 import user.avatar_image_management.screen.UserAvatarMngViewModel;
 import user.avatar_image_management.screen.UserChangeMngPresenter;
-import user.database.UserAvatarDatabaseGateway;
-import user.database.UserAvatarFileGateway;
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.avatar_image_management.DS.UserAvatarDatabaseGateway;
+import user.avatar_image_management.DS.UserAvatarFileGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterFileGateway;
 import user.entities.User;
 import user.reg.abr.UserRegOutputBoundary;
 import user.reg.abr.UserRegRequestModel;
@@ -44,7 +44,7 @@ public class UserHomePageUI extends JPanel {
         this.user = user;
         this.controller = controller;
 
-        // Set components for screen
+        // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
         setBoundForComponents();

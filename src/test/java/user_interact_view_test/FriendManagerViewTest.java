@@ -9,7 +9,7 @@ import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_atte
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
-import screen.user_interact_screen.friend_manager_screen.*;
+import interface_adaptors.user_interact_screen.friend_manager_screen.*;
 
 import javax.swing.*;
 import java.awt.*;

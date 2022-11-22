@@ -1,7 +1,7 @@
 package user.reg.screen;
 
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterFileGateway;
 import user.reg.abr.*;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class UserRegUI extends JPanel {
     public UserRegUI(UserRegController controller){
         this.controller = controller;
 
-        // Set components for screen
+        // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
         setBoundForComponents();

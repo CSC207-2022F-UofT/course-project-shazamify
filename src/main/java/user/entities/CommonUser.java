@@ -1,7 +1,7 @@
 package user.entities;
 
-import user.database.UserRegisterDataBaseGateway;
-import user.database.UserRegisterFileGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterFileGateway;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,12 +1,12 @@
 package user.login.screen;
 
 
-import user.database.UserLoginDataBaseGateway;
-import user.database.UserLoginFileGateway;
+import user.login.DS.UserLoginDataBaseGateway;
+import user.login.DS.UserLoginFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
-import screen.user_interact_screen.friend_manager_screen.TempFriendListObservable;
+import interface_adaptors.user_interact_screen.friend_manager_screen.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ public class UserLogUI extends JPanel {
     public UserLogUI(UserLogController controller) {
         this.controller = controller;
 
-        // Set components for screen
+        // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
         setBoundForComponents();

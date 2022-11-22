@@ -1,7 +1,7 @@
 package user.avatar_image_management.abr;
 
 import user.avatar_image_management.screen.UserAvatarMngViewModel;
-import user.database.UserAvatarDatabaseGateway;
+import user.avatar_image_management.DS.UserAvatarDatabaseGateway;
 import user.entities.User;
 import user.entities.UserAvatar;
 

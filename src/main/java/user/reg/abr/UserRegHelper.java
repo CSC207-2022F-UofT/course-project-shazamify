@@ -1,6 +1,6 @@
 package user.reg.abr;
 
-import user.database.UserRegisterDataBaseGateway;
+import user.reg.DS.UserRegisterDataBaseGateway;
 import user.entities.UserSecurityQuestionPackage;
 
 import java.util.Map;

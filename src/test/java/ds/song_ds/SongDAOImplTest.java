@@ -29,21 +29,22 @@ public class SongDAOImplTest {
 
         DatabaseInitializer.init();
 
-        SongDAO songDAO = null;
+        SongDAOInput songDAOin = null;
+        SongDAOOutput songDAOout = null;
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             try {
-                songDAO = new SongDAOImpl(mongoClient);
-                songDAO.delete(s);
-                songDAO.save(s);
+                songDAOin = new SongDAOInputImpl(mongoClient);
+                songDAOin.delete(s);
+                songDAOin.save(s);
                 LOGGER.info("Saved");
-                Optional<Song> songResult = songDAO.findById("1");
+                Optional<Song> songResult = songDAOout.findById("1");
                 assertTrue(songResult.isPresent());
                 assertEquals(songResult.get().getName(), s.getName());
                 assertEquals(songResult.get().getId(), s.getId());
                 assertEquals(songResult.get().getDuration(), s.getDuration());
             } finally {
-                songDAO.delete(s);
+                songDAOin.delete(s);
                 LOGGER.info("Deleted");
             }
         }
