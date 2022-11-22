@@ -1,6 +1,6 @@
-package abr.queue_abr;
+package abr.queue_abr.queue;
 
-import interface_adaptors.queue_screen.QueueViewModel;
+import interface_adaptors.queue_ia.QueueViewModel;
 
 /***
  * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
@@ -15,12 +15,16 @@ public class QueueUseCase implements QueueInputBoundary{
         this.outputBoundary = outputBoundary;
     }
 
+    /***
+     * Returns a view model with the updated queue determined by the requested queue list.
+     * @param requestModel - The list of songs that the new queue should be
+     * @return - The new queue with the desired songs.
+     */
     @Override
     public QueueViewModel update(QueueRequestModel requestModel) {
         QueueResponseModel responseModel = new QueueResponseModel();
         QueueResponseModel updatedResponseModel = queueHelper.update(requestModel, responseModel);
 
-        //TODO: Double check to make sure two use cases are not needed (one for adding and deleting)
         return outputBoundary.present(updatedResponseModel);
     }
 }

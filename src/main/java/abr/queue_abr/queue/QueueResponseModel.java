@@ -1,6 +1,4 @@
-package abr.queue_abr;
-
-import entities.Song;
+package abr.queue_abr.queue;
 
 import java.util.*;
 
@@ -8,16 +6,16 @@ import java.util.*;
  * The queue response model is a list of the songs that has been updated and currently inside the queue.
  */
 public class QueueResponseModel {
-    private List<Song> songList;
+    private List<String> songList;
 
     public QueueResponseModel(){
     }
 
-    public void setSongList(List<Song> songList) {
+    public void setSongList(List<String> songList) {
         this.songList = songList;
     }
 
-    public List<Song> getSongList() {
+    public List<String> getSongList() {
         return songList;
     }
 }

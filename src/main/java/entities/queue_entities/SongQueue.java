@@ -1,7 +1,5 @@
 package entities.queue_entities;
 
-import entities.Song;
-
 import java.util.*;
 
 public class SongQueue {
@@ -10,7 +8,7 @@ public class SongQueue {
      * and can store a list of songs to be played in the order. The song list can be changed and returned.
      */
     private static SongQueue queue;
-    private List<Song> songList;
+    private List<String> songList;
 
     // Creates the song queue with an empty list
     private SongQueue() {
@@ -27,11 +25,11 @@ public class SongQueue {
         return queue;
     }
 
-    public void setQueue(List<Song> queue) {
+    public void setQueue(List<String> queue) {
         this.songList = queue;
     }
 
-    public List<Song> getQueue() {
+    public List<String> getQueue() {
         return this.songList;
     }
 }

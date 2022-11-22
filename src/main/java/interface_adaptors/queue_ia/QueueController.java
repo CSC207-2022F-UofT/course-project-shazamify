@@ -1,8 +1,7 @@
-package interface_adaptors.queue_screen;
+package interface_adaptors.queue_ia;
 
-import entities.Song;
-import abr.queue_abr.QueueInputBoundary;
-import abr.queue_abr.QueueRequestModel;
+import abr.queue_abr.queue.QueueInputBoundary;
+import abr.queue_abr.queue.QueueRequestModel;
 
 import java.util.*;
 
@@ -14,7 +13,7 @@ public class QueueController {
         this.inputBoundary = inputBoundary;
     }
 
-    public QueueViewModel update(List<Song> songList) {
+    public QueueViewModel update(List<String> songList) {
         QueueRequestModel requestModel = new QueueRequestModel(songList);
 
         return inputBoundary.update(requestModel);
