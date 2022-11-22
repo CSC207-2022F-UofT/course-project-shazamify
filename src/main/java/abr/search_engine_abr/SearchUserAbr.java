@@ -36,7 +36,7 @@ public class SearchUserAbr {
         searchResult.addAll(startWithResult);
         searchResult.addAll(containsResult);
         //return limitCount users
-        if (searchResult.size()>5)
+        if (searchResult.size()>limitCount)
         {
             return searchResult.subList(0,limitCount);
         }
