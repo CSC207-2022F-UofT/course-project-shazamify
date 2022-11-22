@@ -3,7 +3,7 @@ package framework.user_screen;
 import abr.user_avatar_image_management_abr.UserAvatarMngInputBoundary;
 import abr.user_avatar_image_management_abr.UserAvatarMngOutputBoundary;
 import abr.user_avatar_image_management_abr.UserAvatarMngUseCase;
-import ds.user_avatar_image_management_ds.UserAvatarDatabaseGateway;
+import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import ds.user_avatar_image_management_ds.UserAvatarFileGateway;
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;

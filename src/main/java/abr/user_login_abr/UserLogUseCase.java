@@ -1,6 +1,5 @@
 package abr.user_login_abr;
 
-import ds.user_login_ds.UserLoginDataBaseGateway;
 import interface_adaptors.user_login_ia.UserLogViewModel;
 
 public class UserLogUseCase implements UserLogInputBoundary{

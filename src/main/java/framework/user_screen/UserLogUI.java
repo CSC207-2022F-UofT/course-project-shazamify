@@ -1,7 +1,7 @@
 package framework.user_screen;
 
 
-import ds.user_login_ds.UserLoginDataBaseGateway;
+import abr.user_login_abr.UserLoginDataBaseGateway;
 import ds.user_login_ds.UserLoginFileGateway;
 import abr.user_login_abr.UserLogInputBoundary;
 import abr.user_login_abr.UserLogOutputBoundary;

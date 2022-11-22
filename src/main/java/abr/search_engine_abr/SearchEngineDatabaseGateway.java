@@ -1,4 +1,4 @@
-package ds.user_database;
+package abr.search_engine_abr;
 
 import entities.user_entities.User;
 
