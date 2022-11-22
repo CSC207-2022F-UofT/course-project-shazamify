@@ -1,4 +1,4 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package interface_adaptors.user_interact_ia;
 
 import java.util.HashMap;
 

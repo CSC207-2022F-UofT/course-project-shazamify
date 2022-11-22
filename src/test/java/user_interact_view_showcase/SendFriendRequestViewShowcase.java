@@ -1,4 +1,4 @@
-package user_interact_view_test;
+package user_interact_view_showcase;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
@@ -6,19 +6,22 @@ import user.database.UserFileReader;
 import user.database.UserFileWriter;
 import user.entities.CommonUser;
 import user.entities.User;
-import ds.user_interact_DS.FriendManagerFileDsGateway;
-import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
+import ds.user_interact_ds.FriendManagerFileDsGateway;
+import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
-import interface_adaptors.user_interact_screen.friend_manager_screen.SendFriendRequestView;
-import interface_adaptors.user_interact_screen.friend_manager_screen.SendFriendRequestController;
+import framework.user_interact_screen.friend_manager_screen.SendFriendRequestView;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public class SendFriendRequestViewTest {
+/**
+ * TBC, not ready, don't run yet
+ */
+public class SendFriendRequestViewShowcase {
 
     public static void main(String[] args) {
 

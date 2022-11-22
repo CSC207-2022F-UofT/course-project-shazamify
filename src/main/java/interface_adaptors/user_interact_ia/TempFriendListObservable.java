@@ -1,8 +1,13 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package interface_adaptors.user_interact_ia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The observer pattern
+ * Observable: the current user's friendList
+ * Observer: all friend Manager controllers
+ */
 public class TempFriendListObservable { //1. initialize this class in view
                                         //2. add all the friend manager controllers to attribute observers
                                         //3. when any controller gets an updated friendList, instance of this class.setFriendList() is called

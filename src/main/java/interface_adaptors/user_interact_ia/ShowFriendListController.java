@@ -1,4 +1,4 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package interface_adaptors.user_interact_ia;
 
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
 
@@ -16,7 +16,7 @@ public class ShowFriendListController implements FriendListObserver{
         TempFriendListObservable.addObserver(this);
     }
 
-    ArrayList<String> returnOrderedUserFriendList(){
+    public ArrayList<String> returnOrderedUserFriendList(){
         return inputBoundary.returnOrderedUserFriendList(tempFriendList);
     }
 

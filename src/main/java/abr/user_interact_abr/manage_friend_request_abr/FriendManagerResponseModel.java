@@ -7,6 +7,9 @@ public class FriendManagerResponseModel {
 
     private final HashMap<String, String> friendList;
 
+    /**
+     * obj containing output data from friend manager use cases to send to presenter
+     */
     public FriendManagerResponseModel (String msg, HashMap<String, String> friendList){
         this.friendList = friendList;
         this.msg = msg;

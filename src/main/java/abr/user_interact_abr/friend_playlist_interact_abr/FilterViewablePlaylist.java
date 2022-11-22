@@ -17,6 +17,11 @@ public class FilterViewablePlaylist implements CheckFriendPlaylistInputBoundary 
         this.playlistDsGateway = playlistDsGateway;
     }
 
+    /**
+     * @param userName the current user's username
+     * @param friendName friend's username
+     * @return a friend's playlist containing playlists accessible to user userName
+     */
     @Override
     public ArrayList<String> returnViewablePlaylist(String userName, String friendName) {
         // check if user is friend with friendName
@@ -26,6 +31,10 @@ public class FilterViewablePlaylist implements CheckFriendPlaylistInputBoundary 
             return getPublicViewablePlaylist(playlistDsGateway.getUserPlaylist(friendName));
         }
     }
+    /**
+     * @param friendPlaylists friend's unfiltered playlists
+     * @return a friend's playlist containing playlists accessible to both friends and the public
+     */
     private ArrayList<String> getFriendViewablePlaylist(ArrayList<Playlist> friendPlaylists){
         ArrayList<String> friendViewablePlaylist = new ArrayList<>();
         for (Playlist playlist : friendPlaylists) {
@@ -36,6 +45,10 @@ public class FilterViewablePlaylist implements CheckFriendPlaylistInputBoundary 
         return friendViewablePlaylist;
     }
 
+    /**
+     * @param friendPlaylists friend's unfiltered playlists
+     * @return a friend's playlist containing playlists accessible to the public
+     */
     private ArrayList<String> getPublicViewablePlaylist(ArrayList<Playlist> friendPlaylists){
         ArrayList<String> publicViewablePlaylist = new ArrayList<>();
         for (Playlist playlist : friendPlaylists) {

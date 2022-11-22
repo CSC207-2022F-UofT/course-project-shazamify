@@ -6,7 +6,7 @@ import user.login.DS.UserLoginFileGateway;
 import user.login.abr.UserLogInputBoundary;
 import user.login.abr.UserLogOutputBoundary;
 import user.login.abr.UserLogUseCase;
-import interface_adaptors.user_interact_screen.friend_manager_screen.TempFriendListObservable;
+import interface_adaptors.user_interact_ia.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

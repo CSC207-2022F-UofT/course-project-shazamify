@@ -1,10 +1,16 @@
-package interface_adaptors.user_interact_screen.friend_manager_screen;
+package framework.user_interact_screen.friend_manager_screen;
+
+import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A screen that shows the "accept friend request" and "deny friend request" button
+ */
 public class AcceptOrDenyFriendRequestView extends JPanel{
     final JFrame frame = new JFrame("option to accept or deny friend request");
     SendFriendRequestController acceptFriendRequestController;
