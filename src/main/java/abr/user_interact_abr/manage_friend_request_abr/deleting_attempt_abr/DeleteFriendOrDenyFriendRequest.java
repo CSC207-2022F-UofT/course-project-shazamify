@@ -31,7 +31,7 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
         tempUserFriendList.remove(requestModel.getFriendID());
         tempFriendFriendList.remove(requestModel.getUserID()); //update friendship status to not a friend, no key-value pair in hashmap
 
-        //update the friendLists in user database & view
+        //update the friendLists in user user_database & view
 
         userDsGateway.save(requestModel.getUserID(), requestModel.getFriendID(), tempUserFriendList, tempFriendFriendList);
 
