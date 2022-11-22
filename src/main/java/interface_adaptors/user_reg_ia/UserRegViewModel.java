@@ -1,4 +1,4 @@
-package interface_adaptors.user_reg_screen;
+package interface_adaptors.user_reg_ia;
 
 public class UserRegViewModel {
     private boolean usernameValidity;
