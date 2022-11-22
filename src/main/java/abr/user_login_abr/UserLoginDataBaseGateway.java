@@ -1,4 +1,4 @@
-package ds.user_login_ds;
+package abr.user_login_abr;
 
 public interface UserLoginDataBaseGateway {
     // This interface is responsible for UserLogin to handle UserData

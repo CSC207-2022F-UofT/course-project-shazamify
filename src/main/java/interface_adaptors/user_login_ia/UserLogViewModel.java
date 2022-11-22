@@ -1,4 +1,4 @@
-package interface_adaptors.user_login_screen;
+package interface_adaptors.user_login_ia;
 
 public class UserLogViewModel {
     boolean userNameValid;

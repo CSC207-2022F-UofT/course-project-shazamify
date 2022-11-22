@@ -1,12 +1,15 @@
-package interface_adaptors.user_login_screen;
+package framework.user_screen;
 
 
-import ds.user_login_ds.UserLoginDataBaseGateway;
+import abr.user_login_abr.UserLoginDataBaseGateway;
 import ds.user_login_ds.UserLoginFileGateway;
 import abr.user_login_abr.UserLogInputBoundary;
 import abr.user_login_abr.UserLogOutputBoundary;
 import abr.user_login_abr.UserLogUseCase;
-import interface_adaptors.user_interact_screen.friend_manager_screen.TempFriendListObservable;
+import interface_adaptors.user_interact_ia.TempFriendListObservable;
+import interface_adaptors.user_login_ia.UserLogController;
+import interface_adaptors.user_login_ia.UserLogPresenter;
+import interface_adaptors.user_login_ia.UserLogViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,10 +1,13 @@
-package interface_adaptors.user_reg_screen;
+package framework.user_screen;
 
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import abr.user_reg_abr.UserRegInputBoundary;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegUseCase;
+import interface_adaptors.user_reg_ia.UserRegController;
+import interface_adaptors.user_reg_ia.UserRegPresenter;
+import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

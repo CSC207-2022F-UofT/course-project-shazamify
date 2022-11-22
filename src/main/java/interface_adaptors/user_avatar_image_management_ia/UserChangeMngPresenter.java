@@ -1,4 +1,4 @@
-package interface_adaptors.user_avatar_image_management_screen;
+package interface_adaptors.user_avatar_image_management_ia;
 
 import abr.user_avatar_image_management_abr.UserAvatarMngOutputBoundary;
 import abr.user_avatar_image_management_abr.UserAvatarMngResponseModel;

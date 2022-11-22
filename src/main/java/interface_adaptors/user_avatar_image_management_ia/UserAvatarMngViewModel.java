@@ -1,4 +1,4 @@
-package interface_adaptors.user_avatar_image_management_screen;
+package interface_adaptors.user_avatar_image_management_ia;
 
 import entities.user_entities.User;
 

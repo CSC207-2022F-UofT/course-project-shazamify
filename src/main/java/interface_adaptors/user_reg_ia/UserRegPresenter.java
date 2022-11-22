@@ -1,4 +1,4 @@
-package interface_adaptors.user_reg_screen;
+package interface_adaptors.user_reg_ia;
 
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegResponseModel;

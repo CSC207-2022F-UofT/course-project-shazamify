@@ -1,9 +1,9 @@
-package interface_adaptors.user_avatar_image_management_screen;
+package framework.user_screen;
 
 import abr.user_avatar_image_management_abr.UserAvatarMngInputBoundary;
 import abr.user_avatar_image_management_abr.UserAvatarMngOutputBoundary;
 import abr.user_avatar_image_management_abr.UserAvatarMngUseCase;
-import ds.user_avatar_image_management_ds.UserAvatarDatabaseGateway;
+import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import ds.user_avatar_image_management_ds.UserAvatarFileGateway;
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
@@ -11,8 +11,11 @@ import entities.user_entities.User;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
-import interface_adaptors.user_reg_screen.UserRegPresenter;
-import interface_adaptors.user_reg_screen.UserRegViewModel;
+import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
+import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
+import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter;
+import interface_adaptors.user_reg_ia.UserRegPresenter;
+import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
