@@ -60,7 +60,7 @@ public class FriendManagerViewTest { //tests FriendListView, AcceptOrDenyFriendR
     }
 
     private static void userDataBaseSetup(FriendManagerDsGateway dsGateway){
-        // add the friendLists of Star, Angela & Jae to the fake database
+        // add the friendLists of Star, Angela & Jae to the fake user_database
         HashMap<String, String> jaeFriendList = new HashMap<>();
         jaeFriendList.put("Star", "pending_Jae");
 

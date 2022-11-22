@@ -2,10 +2,10 @@ package user_interact_view_test;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
-import user.database.UserFileReader;
-import user.database.UserFileWriter;
-import user.entities.CommonUser;
-import user.entities.User;
+import ds.user_database.UserFileReader;
+import ds.user_database.UserFileWriter;
+import entities.user_entities.CommonUser;
+import entities.user_entities.User;
 import ds.user_interact_DS.FriendManagerFileDsGateway;
 import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;

@@ -1,8 +1,8 @@
 package ds.user_interact_DS;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
-import user.entities.CommonUser;
-import user.entities.User;
+import entities.user_entities.CommonUser;
+import entities.user_entities.User;
 
 import java.util.HashMap;
 import java.util.Map;

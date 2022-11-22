@@ -1,9 +1,9 @@
 package ds.user_interact_DS;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
-import user.database.UserFileReader;
-import user.database.UserFileWriter;
-import user.entities.User;
+import ds.user_database.UserFileReader;
+import ds.user_database.UserFileWriter;
+import entities.user_entities.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class FriendManagerFileDsGateway implements FriendManagerDsGateway {
         // modify user and friend's friendList in userMap
         userMap.put(userID, getUserWithNewFriendList(userID, userFriendList));
         userMap.put(friendID, getUserWithNewFriendList(friendID, friendFriendList));
-        //save to database
+        //save to user_database
         UserFileWriter.writeUserMap(userMap, "UserDatabase.ser");
     }
 
