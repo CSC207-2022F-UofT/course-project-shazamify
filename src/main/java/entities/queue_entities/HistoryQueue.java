@@ -11,7 +11,7 @@ public class HistoryQueue {
      * The hashmap can add key/values and be returned.
      */
     private static HistoryQueue historyQueue;
-    private HashMap<Song, Float> songHashMap;
+    private HashMap<String, Float> songHashMap;
 
     // Creates history queue with an empty hashmap
     private HistoryQueue() {
@@ -28,11 +28,11 @@ public class HistoryQueue {
         return historyQueue;
     }
 
-    public void addSong(Song song, float percentage) {
-        this.songHashMap.put(song, percentage);
+    public void addSong(String id, float percentage) {
+        this.songHashMap.put(id, percentage);
     }
 
-    public HashMap<Song, Float> getSongHashMap() {
+    public HashMap<String, Float> getSongHashMap() {
         return this.songHashMap;
     }
 }

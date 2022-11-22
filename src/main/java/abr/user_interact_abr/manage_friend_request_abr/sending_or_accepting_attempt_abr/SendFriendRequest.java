@@ -16,6 +16,10 @@ public class SendFriendRequest implements FriendManagerInputBoundary {
     }
 
 
+    /**
+     * @param requestModel the input data containing user's ID (username), friend's ID and user's friendList
+     * @return a FriendManagerResponseModel that contains a msg to display on screen and an updated user's friendList
+     */
     @Override
     public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
         sendFriendRequestHelper = new SendFriendRequestHelper(requestModel, userDsGateway.getFriendList(requestModel.getFriendID()));

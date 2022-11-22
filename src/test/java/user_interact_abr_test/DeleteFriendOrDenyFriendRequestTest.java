@@ -1,21 +1,22 @@
 package user_interact_abr_test;
 
 import abr.user_interact_abr.manage_friend_request_abr.*;
-import org.junit.jupiter.api.Test;
-import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
+import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
+import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertNull;
 
-class DeleteFriendOrDenyFriendRequestTest {
+
+public class DeleteFriendOrDenyFriendRequestTest {
 
     private static final FriendManagerDsGateway users = new FriendManagerInMemoryDsGateway(); //using fake user DB
 
 
     @Test
-    void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
+    public void reactToDenyFriendRequest() {// Jae receives fr from Star, Jae denies the fr
 
         // set up pending friend relationship in ds
         HashMap<String, String> jaeFriendList = new HashMap<>() {{
@@ -42,7 +43,7 @@ class DeleteFriendOrDenyFriendRequestTest {
     }
 
     @Test
-    void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
+    public void reactToDeleteFriend() {// Jae and Star are friends, Jae deletes Star from friendList
 
         // set up friend relationship in ds
         HashMap<String, String> jaeFriendList = new HashMap<>() {{
