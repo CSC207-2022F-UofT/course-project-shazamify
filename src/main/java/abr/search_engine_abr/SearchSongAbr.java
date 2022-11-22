@@ -1,6 +1,7 @@
 package abr.search_engine_abr;
 
 import entities.*;
+import entities.Record;
 
 import java.util.List;
 import java.util.stream.Collectors;
