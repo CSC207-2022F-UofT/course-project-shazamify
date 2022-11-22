@@ -1,4 +1,4 @@
-package ds.user_interact_DS;
+package ds.user_interact_ds;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import ds.user_database.UserFileReader;
@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FriendManagerFileDsGateway implements FriendManagerDsGateway {
+
+    /**
+     * A map of username -> User object.
+     */
     private Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser"); // <userID (userName), User>
 
     @Override
@@ -22,6 +26,10 @@ public class FriendManagerFileDsGateway implements FriendManagerDsGateway {
         }
 
     }
+
+    /**
+     * save the updated friendLists for user userID and friend friendID to user DB
+     */
     @Override
     public void save(String userID, String friendID, HashMap<String, String> userFriendList, HashMap<String, String> friendFriendList) {
         userMap = UserFileReader.getUserMap("UserDatabase.ser");
@@ -32,13 +40,20 @@ public class FriendManagerFileDsGateway implements FriendManagerDsGateway {
         UserFileWriter.writeUserMap(userMap, "UserDatabase.ser");
     }
 
-    public static void clearDatabase() {
-        UserFileWriter.writeUserMap(new HashMap<>(), "UserDatabase.ser");}
-
-    //extract long method by creating method obj
+    /**
+     * helper for save(), extract long method by creating method obj
+     * @param userID user's ID
+     * @param userFriendList the updated friendList for user
+     * @return User obj with the updated friendList, every other attributes (name, password, avatar) remain the same
+     */
     private User getUserWithNewFriendList(String userID, HashMap<String, String> userFriendList){
         User user = userMap.get(userID);
         user.setFriendList(userFriendList);
         return user;
+    }
+
+    // for testing only
+    public static void clearDatabase() {
+        UserFileWriter.writeUserMap(new HashMap<>(), "UserDatabase.ser");
     }
 }

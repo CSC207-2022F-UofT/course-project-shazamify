@@ -1,4 +1,4 @@
-package ds.user_interact_DS;
+package ds.user_interact_ds;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import entities.user_entities.CommonUser;
@@ -7,7 +7,10 @@ import entities.user_entities.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FriendManagerInMemoryDsGateway implements FriendManagerDsGateway { // fake user DB for unit tests
+/**
+ * fake DsGateway for testing, serves the same purpose other than not saving the data to the real user DB
+ */
+public class FriendManagerInMemoryDsGateway implements FriendManagerDsGateway {
 
     private final Map<String, User> userMap = new HashMap<>(); // <userID (userName), User>
 

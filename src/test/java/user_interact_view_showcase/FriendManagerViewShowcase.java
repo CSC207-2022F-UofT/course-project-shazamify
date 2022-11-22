@@ -1,21 +1,26 @@
-package user_interact_view_test;
+package user_interact_view_showcase;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
-import ds.user_interact_DS.FriendManagerInMemoryDsGateway;
+import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
-import interface_adaptors.user_interact_screen.friend_manager_screen.*;
+import framework.user_interact_screen.friend_manager_screen.FriendListView;
+import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_interact_ia.ShowFriendListController;
+import interface_adaptors.user_interact_ia.TempFriendListObservable;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-public class FriendManagerViewTest { //tests FriendListView, AcceptOrDenyFriendRequestView & FriendProfileView
+public class FriendManagerViewShowcase { //tests FriendListView, AcceptOrDenyFriendRequestView & FriendProfileView
 
     public static void main(String[] args) {
         // Build the main program window
