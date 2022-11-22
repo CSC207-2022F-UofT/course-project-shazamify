@@ -2,11 +2,11 @@ package user_interact_abr_test;
 
 
 import org.junit.Test;
-import user.database.UserFileReader;
-import user.database.UserFileWriter;
+import ds.user_database.UserFileReader;
+import ds.user_database.UserFileWriter;
 
-import user.entities.CommonUser;
-import user.entities.User;
+import entities.user_entities.CommonUser;
+import entities.user_entities.User;
 import ds.user_interact_DS.FriendManagerFileDsGateway;
 
 import java.util.HashMap;

@@ -33,7 +33,7 @@ public class SongDownloader {
 //        download json and mp3 to directory using yt-dlp
 //        iterate over json files in directory
 //        create Song object if json file does not belong to playlist
-//        store Song object and metadata in database
+//        store Song object and metadata in user_database
 
         String uri = "mongodb://root:rootpassword@localhost:27017";
         DatabaseInitializer.init();

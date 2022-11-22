@@ -1,7 +1,7 @@
 package abr.search_engine_abr;
 
-import user.database.SearchEngineFileGateway;
-import user.entities.User;
+import ds.user_database.SearchEngineFileGateway;
+import entities.user_entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
