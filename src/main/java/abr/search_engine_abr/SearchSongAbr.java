@@ -1,9 +1,10 @@
 package abr.search_engine_abr;
 
-import entities.*;
+import entities.Song;
+import entities.Record;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Zhaolang05
@@ -13,53 +14,36 @@ public class SearchSongAbr {
     private SongLibrary songLibrary = new SongLibrary();
     private int limitCount = 5;
 
+    /***
+     *  Search song by name, first match equals, then match starts with, and finally matches contains
+     *  @param searchContent songName
+     *  @return List<Song>
+     */
+
     public List<Song> searchSongs(String searchContent) {
         String textForSearch = searchContent.toUpperCase();
-        List<Song> songResults = songLibrary.getSongs().stream()
-                .filter(song -> song.getName().toUpperCase().contains(textForSearch))
-                .sorted((x, y) -> {
-                    return getSortedCompareResult(x, y, textForSearch);
-                })
-                .collect(Collectors.toList());
-        return songResults;
+        List<Song> searchResult = new ArrayList<>();
+        List<Song> startWithResult = new ArrayList<>();
+        List<Song> containsResult = new ArrayList<>();
+        List<Song> songList = songLibrary.getSongs();
+        for (int i = 0; i < songList.size(); i++) {
+            if (songList.get(i).getName().toUpperCase().equals(textForSearch)) {
+                searchResult.add(songList.get(i));
+            } else if (songList.get(i).getName().toUpperCase().startsWith(textForSearch)) {
+                startWithResult.add(songList.get(i));
+            } else if (songList.get(i).getName().toUpperCase().contains(textForSearch)) {
+                containsResult.add(songList.get(i));
+            }
+        }
+        searchResult.addAll(startWithResult);
+        searchResult.addAll(containsResult);
+        //return limitCount songs
+        if (searchResult.size() > limitCount) {
+            return searchResult.subList(0, limitCount);
+        } else {
+            return searchResult;
+        }
     }
 
-    private int getSortedCompareResult(Record x, Record y, String textForSearch) {
-        boolean xEquals = x.getName().toUpperCase().equals(textForSearch);
-        boolean yEquals = y.getName().toUpperCase().equals(textForSearch);
-        if (xEquals && yEquals) {
-            return 0;
-        }
-        if (xEquals) {
-            return -1;
-        }
-        if (yEquals) {
-            return 1;
-        }
-        boolean xStartWith = x.getName().toUpperCase().startsWith(textForSearch);
-        boolean yStartWith = y.getName().toUpperCase().startsWith(textForSearch);
-        if (xStartWith && yStartWith) {
-            return 0;
-        }
-        if (xStartWith) {
-            return -1;
-        }
-        if (yStartWith) {
-            return 1;
-        }
-
-        boolean xContains = x.getName().toUpperCase().contains(" " + textForSearch);
-        boolean yContains = y.getName().toUpperCase().contains(" " + textForSearch);
-        if (xContains && yContains) {
-            return 0;
-        }
-        if (xContains) {
-            return -1;
-        }
-        if (yContains) {
-            return 1;
-        }
-        return 0;
-    }
 
 }

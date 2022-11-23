@@ -1,7 +1,7 @@
 package abr.search_engine_abr;
 
-import user.database.SearchEngineFileGateway;
-import user.entities.User;
+import ds.user_search_engine.SearchEngineFileGateway;
+import entities.user_entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class SearchUserAbr {
     private int limitCount = 5;
 
     /**
-     * search user by name,First match equals, then match startswith, and finally matches contains
+     * Search user by name, first match equals, then match starts with, and finally matches contains.
      * @param searchName userName
      * @return List<User>
      */
@@ -36,7 +36,7 @@ public class SearchUserAbr {
         searchResult.addAll(startWithResult);
         searchResult.addAll(containsResult);
         //return limitCount users
-        if (searchResult.size()>5)
+        if (searchResult.size()>limitCount)
         {
             return searchResult.subList(0,limitCount);
         }

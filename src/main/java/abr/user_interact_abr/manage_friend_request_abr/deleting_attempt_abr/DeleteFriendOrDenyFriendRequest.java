@@ -18,6 +18,10 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
         this.friendManagerPresenter = friendManagerPresenter;
     }
 
+    /**
+     * @param requestModel the input data containing user's ID (username), friend's ID and user's friendList
+     * @return a FriendManagerResponseModel that contains a msg to display on screen and an updated user's friendList
+     */
     @Override
     public FriendManagerResponseModel reactTo(FriendManagerRequestModel requestModel) {
 
@@ -27,11 +31,11 @@ public class DeleteFriendOrDenyFriendRequest implements FriendManagerInputBounda
         tempUserFriendList.remove(requestModel.getFriendID());
         tempFriendFriendList.remove(requestModel.getUserID()); //update friendship status to not a friend, no key-value pair in hashmap
 
-        //update the friendLists in user database & view
+        //update the friendLists in user user_database & view
 
         userDsGateway.save(requestModel.getUserID(), requestModel.getFriendID(), tempUserFriendList, tempFriendFriendList);
 
-        FriendManagerResponseModel responseModel = new FriendManagerResponseModel("You are no longer friends with " + requestModel.getFriendID(), tempUserFriendList);
+        FriendManagerResponseModel responseModel = new FriendManagerResponseModel("Deleted/Denied successfully", tempUserFriendList);
         return friendManagerPresenter.showMsgAndUpdatedFriendList(responseModel);
     }
 }
