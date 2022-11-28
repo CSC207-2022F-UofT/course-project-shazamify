@@ -1,8 +1,8 @@
 package abr.playlist_abr;
 
 import entities.playlist_entities.Playlist;
-import screen.playlist_screen.RecordViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 
 public interface PlaylistCreateOutputBoundary {
-    public RecordViewModel playlistCreateViewModel(Playlist playlist);
+    public RecordViewModel present(Playlist playlist);
 }
