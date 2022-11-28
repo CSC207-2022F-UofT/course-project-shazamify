@@ -70,4 +70,6 @@ public class Playlist implements Record {
         this.privacy = privacy;
         return this.getId() + " privacy: " + this.getPrivacy();
     }
+    public int getPic() {return this.pic;}
+    public ArrayList<Song> getContents() {return this.contents;}
 }

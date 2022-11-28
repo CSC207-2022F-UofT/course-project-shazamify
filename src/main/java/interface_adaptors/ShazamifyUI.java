@@ -3,7 +3,10 @@ package interface_adaptors;
 import framework.ButtonFriendsCollection;
 import framework.ButtonPlaylistsCollection;
 import framework.ButtonViewAccount;
-import screen.RecordViewModel;
+import interface_adaptors.playlist_ia.PlaylistCollectionController;
+import interface_adaptors.playlist_ia.PlaylistCollectionViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
