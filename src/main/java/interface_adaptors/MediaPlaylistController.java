@@ -1,6 +1,7 @@
 package interface_adaptors;
 
-import shazamify.entity.Playlist;
+import entities.playlist_entities.Playlist;
+import interface_adaptors.display_ia.DisplayRecordUseCase;
 
 public class MediaPlaylistController {
 
