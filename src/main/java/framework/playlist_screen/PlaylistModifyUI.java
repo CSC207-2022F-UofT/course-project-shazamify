@@ -1,4 +1,4 @@
-package interface_adaptors;
+package framework.playlist_screen;
 
 public class PlaylistModifyUI {
 }
