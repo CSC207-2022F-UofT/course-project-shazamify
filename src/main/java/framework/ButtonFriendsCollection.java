@@ -1,8 +1,9 @@
 package framework;
 
-import interface_adaptors.FriendsCollectionController;
-import interface_adaptors.FriendsCollectionViewModel;
-import interface_adaptors.PlaylistCollectionViewModel;
+import framework.user_interact_screen.friend_manager_screen.FriendListView;
+import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_interact_ia.ShowFriendListController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,14 +13,25 @@ import java.awt.event.ActionListener;
 
 public class ButtonFriendsCollection extends JButton {
 
-    private Icon iconclicked ;
+    private Icon iconClicked ;
     private Icon icon;
     private ButtonPlaylistsCollection button;
 
-    public ButtonFriendsCollection(){
+    ShowFriendListController showFriendListController;
+    SendFriendRequestController acceptFriendRequestController;
+    DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController;
+
+    public ButtonFriendsCollection(ShowFriendListController showFriendListController,
+                                   SendFriendRequestController acceptFriendRequestController,
+                                   DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController){
+
+        this.showFriendListController = showFriendListController;
+        this.acceptFriendRequestController = acceptFriendRequestController;
+        this.deleteFriendOrDenyFriendRequestController = deleteFriendOrDenyFriendRequestController;
+
         try {
-            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/friendsicon.png")));
-            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/friendsiconclicked.png")));
+            icon = new ImageIcon(ImageIO.read(getClass().getResource( "src/main/resources/friendsicon.png")));
+            iconClicked = new ImageIcon(ImageIO.read(getClass().getResource( "src/main/resources/friendsiconclicked.png")));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -34,9 +46,7 @@ public class ButtonFriendsCollection extends JButton {
             public void actionPerformed(ActionEvent e) {
                 clicked(true);
                 button.clicked(false);
-                FriendsCollectionViewModel.getInstance().getView().setVisible(true);
-                PlaylistCollectionViewModel.getInstance().getView().setVisible(false);
-                FriendsCollectionController.displayFriends(null);
+                FriendListView screen = new FriendListView(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
             }
         });
     }
@@ -46,7 +56,7 @@ public class ButtonFriendsCollection extends JButton {
     }
 
     public void clicked(Boolean isClicked){
-        this.setIcon((isClicked) ? iconclicked : icon);
+        this.setIcon((isClicked) ? iconClicked : icon);
     }
 
 }
