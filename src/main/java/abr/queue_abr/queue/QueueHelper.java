@@ -17,8 +17,6 @@ public class QueueHelper {
 
         // songList is a full list of the song order that is to be desired.
         // songQueue is the queue object that contains the current queue list
-        // queueList is the current queue list.
-        // historyQueue is the hashmap object that stores removed songs from the queue and their playtime.
         List<String> songList = requestModel.getSongList();
         SongQueue songQueue = SongQueue.getInstance();
 

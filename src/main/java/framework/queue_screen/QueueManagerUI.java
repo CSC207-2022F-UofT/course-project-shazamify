@@ -8,7 +8,6 @@ import interface_adaptors.queue_ia.QueuePresenter;
 
 import javax.swing.*;
 
-//TODO: lmao
 public class QueueManagerUI {
 
     final JFrame queueFrame = new JFrame();
