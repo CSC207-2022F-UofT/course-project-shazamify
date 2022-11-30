@@ -1,4 +1,31 @@
-# Project Template
+# Project Hightlights and Summaries by Feature
+
+## User interaction
+### Observer pattern
+- implemented in the interface adaptor layer
+- Observable: the current (login) user's friendList
+- Observer: an interface implemented by all friend manager controllers
+
+When the user's friendList changes in response to actions of accept/ deny a friend request or delete a friend, the controller that's responsible for the action calls the observer interface's setFriendList() method, which calls each of the friend manager controllers to update their local friendList attribute.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 This is a template repository for CSC 207 projects. 
 This repository contains starter code for a gradle project.
