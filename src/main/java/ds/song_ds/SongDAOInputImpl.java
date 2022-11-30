@@ -1,5 +1,6 @@
 package ds.song_ds;
 
+import abr.song_abr.SongDAOInput;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -8,7 +9,7 @@ import com.mongodb.client.model.Filters;
 import ds.DatabaseInitializer;
 import entities.Song;
 
-public class SongDAOInputImpl implements SongDAOInput{
+public class SongDAOInputImpl implements SongDAOInput {
     private final MongoDatabase database;
 
     public SongDAOInputImpl() {

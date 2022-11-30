@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.File;
+
 /***
  * The Song entity class responsible for holding a name, id, and duration.
  */
@@ -8,6 +10,7 @@ public class Song implements Record {
     private String id;
     private int duration;
 //    TODO add audiofilePath attribute
+    private String filePath;
 
     public Song() {
 
@@ -56,5 +59,10 @@ public class Song implements Record {
                 ", id='" + id + '\'' +
                 ", duration=" + duration +
                 '}';
+    }
+
+    public File getFile() {
+//        TODO: implement method
+        return null;
     }
 }

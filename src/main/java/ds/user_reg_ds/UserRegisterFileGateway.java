@@ -1,5 +1,6 @@
 package ds.user_reg_ds;
 
+import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
 import entities.user_entities.User;

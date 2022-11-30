@@ -1,8 +1,6 @@
 package abr.playlist_abr;
 
-import ds.playlist_ds.PlaylistDAOInput;
 import ds.playlist_ds.PlaylistDAOInputImpl;
-import ds.playlist_ds.PlaylistDAOOutput;
 import ds.playlist_ds.PlaylistDAOOutputImpl;
 import entities.playlist_entities.Playlist;
 import entities.playlist_entities.PlaylistFactory;

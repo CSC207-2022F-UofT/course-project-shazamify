@@ -1,5 +1,6 @@
 package ds.song_ds;
 
+import abr.song_abr.SongDAOOutput;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -10,7 +11,7 @@ import entities.Song;
 
 import java.util.Optional;
 
-public class SongDAOOutputImpl implements SongDAOOutput{
+public class SongDAOOutputImpl implements SongDAOOutput {
     private final MongoDatabase database;
 
     public SongDAOOutputImpl() {

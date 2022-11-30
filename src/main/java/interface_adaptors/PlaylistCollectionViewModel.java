@@ -1,7 +1,7 @@
 package interface_adaptors;
 
 import entities.playlist_entities.Playlist;
-import framework.PlaylistCollectionItem;
+import framework.items.PlaylistCollectionItem;
 
 import javax.swing.*;
 import java.awt.*;
