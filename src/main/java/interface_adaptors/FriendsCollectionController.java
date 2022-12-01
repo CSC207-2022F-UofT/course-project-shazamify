@@ -1,6 +1,7 @@
 package interface_adaptors;
 
-import user.entities.User;
+import entities.user_entities.User;
+import interface_adaptors.display_ia.DisplayFriendsCollectionUseCase;
 
 public class FriendsCollectionController {
     // TODO: need to integrate controllers with others but refactor UseCase names and add these functions

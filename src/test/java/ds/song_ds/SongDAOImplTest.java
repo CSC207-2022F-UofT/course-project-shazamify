@@ -1,5 +1,7 @@
 package ds.song_ds;
 
+import abr.song_abr.SongDAOInput;
+import abr.song_abr.SongDAOOutput;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 

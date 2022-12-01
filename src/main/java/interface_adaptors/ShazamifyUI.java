@@ -1,11 +1,11 @@
 package interface_adaptors;
 
-import framework.ButtonFriendsCollection;
-import framework.ButtonPlaylistsCollection;
-import framework.ButtonViewAccount;
-import interface_adaptors.playlist_ia.PlaylistCollectionController;
-import interface_adaptors.playlist_ia.PlaylistCollectionViewModel;
+import framework.buttons.ButtonFriendsCollection;
+import framework.buttons.ButtonPlaylistsCollection;
+import framework.buttons.ButtonViewAccount;
 import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.song_player_ia.SongPlayerViewModel;
+import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
 
 import javax.imageio.ImageIO;

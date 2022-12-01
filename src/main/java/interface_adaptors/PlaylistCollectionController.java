@@ -1,6 +1,7 @@
 package interface_adaptors;
 
-import user.entities.User;
+import entities.user_entities.User;
+import interface_adaptors.display_ia.DisplayPlaylistCollectionUseCase;
 
 public class PlaylistCollectionController {
 
