@@ -72,4 +72,12 @@ public class Playlist implements Record {
     }
     public int getPic() {return this.pic;}
     public ArrayList<Song> getContents() {return this.contents;}
+
+    public ArrayList<String> getStringContents(){
+        ArrayList<String> listOfSongs = new ArrayList<>();
+        for (Song song : this.getContents()){
+            listOfSongs.add(song.getName());
+        }
+        return listOfSongs;
+    }
 }

@@ -30,6 +30,7 @@ public class AcceptOrDenyFriendRequestView extends JPanel{
         this.deleteFriendOrDenyFriendRequestController = deleteFriendOrDenyFriendRequestController;
         this.friendName = name;
         this.friendListView = friendListView;
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         AcceptButtonsSetUp();
         DenyButtonsSetUp();
@@ -48,8 +49,8 @@ public class AcceptOrDenyFriendRequestView extends JPanel{
     }
 
     private void frameSetUp(){
-        frame.setSize(600, 300);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(500, 150);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         frame.add(this);
         frame.setVisible(true);
