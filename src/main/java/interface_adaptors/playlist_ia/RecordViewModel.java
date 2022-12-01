@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import entities.Record;
 import entities.Song;
-import framework.RecordItem;
+import framework.items.RecordItem;
 import interface_adaptors.AbstractViewModel;
 
 public class RecordViewModel extends AbstractViewModel<Record> {

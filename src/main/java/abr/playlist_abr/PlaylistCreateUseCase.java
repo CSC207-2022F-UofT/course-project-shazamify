@@ -14,22 +14,22 @@ public class PlaylistCreateUseCase {
     private RecordViewModel recordViewModel;
     private final PlaylistDAOOutput playlistDAOOutput;
 
-    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary){
+    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDAOOutput playlistDAOOutput, PlaylistDAOInput playlistDAOInput){
         this.outputBoundary = outputBoundary;
-        this.playlistDAOInput = new PlaylistDAOInputImpl();
+        this.playlistDAOInput = playlistDAOInput;
         this.playlistFactory = new PlaylistFactory();
         this.recordViewModel = new RecordViewModel();
-        this.playlistDAOOutput = new PlaylistDAOOutputImpl();
+        this.playlistDAOOutput = playlistDAOOutput;
 
     }
 
-    public RecordViewModel playlistCreate(){
+    public PlaylistCreateOutputBoundary playlistCreate(){
         // TODO: update RecordPresenter by convert playlist to PLResponseModel
         //  thru outputBoundary's fn
         ObjectId id = new ObjectId();
-        Playlist newPlaylist = playlistFactory.create(id.toString());
+        Playlist newPlaylist = new Playlist(id.toString());
         playlistDAOInput.save(newPlaylist);
-        return null;
+        return this.outputBoundary;
 
 
     }
