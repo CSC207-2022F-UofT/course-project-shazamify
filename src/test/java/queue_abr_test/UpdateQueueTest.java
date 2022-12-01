@@ -22,7 +22,7 @@ public class UpdateQueueTest {
         QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
         QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("5", "4", "3", "2", "1"));
 
-        // Runns the use case
+        // Runs the use case
         newQueue.update(newSongList);
 
         assertEquals(songQueue.getQueue(), Arrays.asList("5", "4", "3", "2", "1"));

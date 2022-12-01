@@ -1,10 +1,9 @@
 package abr.queue_abr.queue;
 
-import interface_adaptors.queue_ia.QueueViewModel;
-
 /***
  * Queue input boundary is implemented by the use case and contains the method to update the song queue.
+ * Draws the connection between the queue controller and the use case
  */
 public interface QueueInputBoundary {
-    QueueViewModel update(QueueRequestModel requestModel);
+    void update(QueueRequestModel requestModel);
 }
