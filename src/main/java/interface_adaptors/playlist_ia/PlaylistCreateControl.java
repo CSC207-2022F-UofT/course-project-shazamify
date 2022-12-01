@@ -1,7 +1,6 @@
 package interface_adaptors.playlist_ia;
 
 import abr.playlist_abr.PlaylistCreateInputBoundary;
-import abr.playlist_abr.PlaylistCreateRequestModel;
 import abr.playlist_abr.PlaylistCreateResponseModel;
 
 
@@ -13,8 +12,8 @@ public class PlaylistCreateControl {
     }
 
 
-    public PlaylistCreateResponseModel create(PlaylistCreateRequestModel playlistCreateRequestModel){
-        return playlistCreateInputBoundary.playlistCreate(playlistCreateRequestModel);
+    public PlaylistCreateResponseModel create(){
+        return playlistCreateInputBoundary.playlistCreate();
 
     }
 }
