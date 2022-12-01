@@ -1,6 +1,6 @@
 package interface_adaptors;
 
-import framework.ButtonSearch;
+import framework.buttons.ButtonSearch;
 
 import javax.swing.*;
 import java.awt.*;

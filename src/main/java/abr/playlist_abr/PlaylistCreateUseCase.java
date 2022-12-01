@@ -1,25 +1,34 @@
 package abr.playlist_abr;
 
+import ds.playlist_ds.PlaylistDAOInputImpl;
+import ds.playlist_ds.PlaylistDAOOutputImpl;
+import entities.playlist_entities.Playlist;
 import entities.playlist_entities.PlaylistFactory;
+import interface_adaptors.playlist_ia.RecordViewModel;
+import org.bson.types.ObjectId;
 
 public class PlaylistCreateUseCase {
-    private final PlaylistDatabaseGateway databaseGateway;
+    private final PlaylistDAOInput playlistDAOInput;
     private final PlaylistCreateOutputBoundary outputBoundary;
     private final PlaylistFactory playlistFactory;
-    private final PlaylistCreateResponseModel playlistCreateResponseModel;
+    private RecordViewModel recordViewModel;
+    private final PlaylistDAOOutput playlistDAOOutput;
 
-    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDatabaseGateway databaseGateway, PlaylistFactory playlistFactory, PlaylistCreateResponseModel playlistCreateResponseModel){
+    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary){
         this.outputBoundary = outputBoundary;
-        this.databaseGateway = databaseGateway;
-        this.playlistFactory = playlistFactory;
-        this.playlistCreateResponseModel = playlistCreateResponseModel;
+        this.playlistDAOInput = new PlaylistDAOInputImpl();
+        this.playlistFactory = new PlaylistFactory();
+        this.recordViewModel = new RecordViewModel();
+        this.playlistDAOOutput = new PlaylistDAOOutputImpl();
+
     }
 
-    public PlaylistCreateResponseModel playlistCreate(){
+    public RecordViewModel playlistCreate(){
         // TODO: update RecordPresenter by convert playlist to PLResponseModel
         //  thru outputBoundary's fn
-        // TODO: send playlist to PlaylistNotepadGateway
-        databaseGateway.storePlaylist(playlistFactory.create(this.databaseGateway.getNewID()));
+        ObjectId id = new ObjectId();
+        Playlist newPlaylist = playlistFactory.create(id.toString());
+        playlistDAOInput.save(newPlaylist);
         return null;
 
 

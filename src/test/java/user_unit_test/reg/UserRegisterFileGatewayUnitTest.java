@@ -3,7 +3,7 @@ package user_unit_test.reg;
 import org.junit.Test;
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
-import ds.user_reg_ds.UserRegisterDataBaseGateway;
+import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import entities.user_entities.CommonUser;
 import entities.user_entities.User;

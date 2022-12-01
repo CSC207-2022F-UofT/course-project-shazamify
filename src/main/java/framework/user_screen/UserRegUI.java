@@ -1,6 +1,6 @@
 package framework.user_screen;
 
-import ds.user_reg_ds.UserRegisterDataBaseGateway;
+import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import abr.user_reg_abr.UserRegInputBoundary;
 import abr.user_reg_abr.UserRegOutputBoundary;

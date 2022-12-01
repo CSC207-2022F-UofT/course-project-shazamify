@@ -1,6 +1,6 @@
 package entities.user_entities;
 
-import ds.user_reg_ds.UserRegisterDataBaseGateway;
+import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 
 import javax.imageio.ImageIO;

@@ -1,7 +1,11 @@
 package interface_adaptors;
 
 import entities.Song;
-import framework.*;
+import framework.buttons.ButtonSearchAlbums;
+import framework.buttons.ButtonSearchSongs;
+import framework.buttons.ButtonSearchUsers;
+import framework.items.SearchSongItem;
+import framework.items.SearchUserItem;
 import user.entities.User;
 
 import javax.swing.*;
