@@ -1,35 +1,27 @@
 package abr.playlist_abr;
 
-import ds.playlist_ds.PlaylistDAOInputImpl;
-import ds.playlist_ds.PlaylistDAOOutputImpl;
 import entities.playlist_entities.Playlist;
-import entities.playlist_entities.PlaylistFactory;
-import interface_adaptors.playlist_ia.RecordViewModel;
 import org.bson.types.ObjectId;
 
-public class PlaylistCreateUseCase {
+public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
     private final PlaylistDAOInput playlistDAOInput;
     private final PlaylistCreateOutputBoundary outputBoundary;
-    private final PlaylistFactory playlistFactory;
-    private RecordViewModel recordViewModel;
-    private final PlaylistDAOOutput playlistDAOOutput;
+    private final PlaylistCreateResponseModel playlistCreateResponseModel;
 
-    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary){
+
+    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDAOInput playlistDAOInput, PlaylistCreateResponseModel playlistCreateResponseModel){
         this.outputBoundary = outputBoundary;
-        this.playlistDAOInput = new PlaylistDAOInputImpl();
-        this.playlistFactory = new PlaylistFactory();
-        this.recordViewModel = new RecordViewModel();
-        this.playlistDAOOutput = new PlaylistDAOOutputImpl();
-
+        this.playlistDAOInput = playlistDAOInput;
+        this.playlistCreateResponseModel = playlistCreateResponseModel;
     }
 
-    public RecordViewModel playlistCreate(){
-        // TODO: update RecordPresenter by convert playlist to PLResponseModel
-        //  thru outputBoundary's fn
+    public PlaylistCreateResponseModel playlistCreate(){
         ObjectId id = new ObjectId();
-        Playlist newPlaylist = playlistFactory.create(id.toString());
+        Playlist newPlaylist = new Playlist(id.toString());
         playlistDAOInput.save(newPlaylist);
-        return null;
+        this.playlistCreateResponseModel.setPlaylist(newPlaylist);
+        this.outputBoundary.present(this.playlistCreateResponseModel);
+        return this.playlistCreateResponseModel;
 
 
     }

@@ -2,7 +2,6 @@ package interface_adaptors.display_ia;
 
 import entities.playlist_entities.Playlist;
 import interface_adaptors.AbstractDisplayUseCase;
-import interface_adaptors.playlist_ia.RecordViewModel;
 
 public class DisplayRecordUseCase extends AbstractDisplayUseCase {
 
