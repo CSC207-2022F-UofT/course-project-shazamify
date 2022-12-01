@@ -15,9 +15,9 @@ public class QueueController {
         this.inputBoundary = inputBoundary;
     }
 
-    public QueueViewModel update(List<String> songList) {
+    public void send(List<String> songList) {
         QueueRequestModel requestModel = new QueueRequestModel(songList);
 
-        return inputBoundary.update(requestModel);
+        inputBoundary.update(requestModel);
     }
 }

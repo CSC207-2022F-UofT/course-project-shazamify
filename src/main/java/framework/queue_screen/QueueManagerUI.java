@@ -5,6 +5,7 @@ import abr.queue_abr.queue.QueueOutputBoundary;
 import abr.queue_abr.queue.QueueUseCase;
 import interface_adaptors.queue_ia.QueueController;
 import interface_adaptors.queue_ia.QueuePresenter;
+import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.swing.*;
 
@@ -17,8 +18,8 @@ public class QueueManagerUI {
 
     }
     public static void main(String [] args) {
-
-        QueueOutputBoundary presenter = new QueuePresenter();
+        QueueViewModel queueViewModel = new QueueViewModel();
+        QueueOutputBoundary presenter = new QueuePresenter(queueViewModel);
         QueueInputBoundary useCase = new QueueUseCase(presenter);
         QueueController controller = new QueueController(useCase);
 
