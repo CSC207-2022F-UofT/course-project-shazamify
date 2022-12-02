@@ -3,6 +3,7 @@ package ds.user_database;
 import entities.user_entities.User;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserFileWriter {
@@ -17,5 +18,13 @@ public class UserFileWriter {
         } catch(IOException e){
             throw new RuntimeException("Filename of the UserDatabase is not correct or User Object is not serializable");
         }
+    }
+
+    static public void setUserFriendList(String filename, String userName, HashMap<String, String> userFriendList){
+        Map<String, User> updatedUserMap = UserFileReader.getUserMap(filename);
+
+        updatedUserMap.get(userName).setFriendList(userFriendList);
+
+        UserFileWriter.writeUserMap(updatedUserMap, filename);
     }
 }

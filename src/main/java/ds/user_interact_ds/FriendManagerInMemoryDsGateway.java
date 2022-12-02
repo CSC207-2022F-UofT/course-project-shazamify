@@ -34,10 +34,12 @@ public class FriendManagerInMemoryDsGateway implements FriendManagerDsGateway {
         User newUser1 = new CommonUser("Star", "ababab");
         User newUser2 = new CommonUser("Jae", "ababab");
         User newUser3 = new CommonUser("Angela", "abababa");
+        User newUser4 = new CommonUser("Millie", "abababa");
 
         userMap.put("Star", newUser1);
         userMap.put("Jae", newUser2);
         userMap.put("Angela", newUser3);
+        userMap.put("Millie", newUser4);
     }
 
     @Override
