@@ -1,5 +1,6 @@
 package ds.playlist_ds;
 
+import abr.playlist_abr.PlaylistDAOInput;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -8,7 +9,7 @@ import com.mongodb.client.model.Filters;
 import ds.DatabaseInitializer;
 import entities.playlist_entities.Playlist;
 
-public class PlaylistDAOInputImpl implements PlaylistDAOInput{
+public class PlaylistDAOInputImpl implements PlaylistDAOInput {
     private MongoDatabase database;
 
     public PlaylistDAOInputImpl() {

@@ -1,6 +1,7 @@
-package screen.user_interact_screen.abr.user_interact_abr.friend_playlist_interact_abr;
+package abr.user_interact_abr.friend_playlist_interact_abr;
 
-import screen.user_interact_screen.abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
+
+import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import entities.playlist_entities.Playlist;
 import entities.playlist_entities.Privacy;
 
@@ -24,13 +25,17 @@ public class FilterViewablePlaylist implements CheckFriendPlaylistInputBoundary 
      */
     @Override
     public ArrayList<String> returnViewablePlaylist(String userName, String friendName) {
-        // check if user is friend with friendName
-        if (Objects.equals(userDsGateway.getFriendList(friendName).get(userName), "friend")){
-            return getFriendViewablePlaylist(playlistDsGateway.getUserPlaylist(friendName));
-        } else { // user is not a friend with friendName, return only publicly available playlists
-            return getPublicViewablePlaylist(playlistDsGateway.getUserPlaylist(friendName));
-        }
+
+            // check if user is friend with friendName
+            if (Objects.equals(userDsGateway.getFriendList(friendName).get(userName), "friend")){
+                return getFriendViewablePlaylist(playlistDsGateway.getUserPlaylist(friendName));
+            } else { // user is not a friend with friendName, return only publicly available playlists
+                return getPublicViewablePlaylist(playlistDsGateway.getUserPlaylist(friendName));
+            }
+
     }
+
+
     /**
      * @param friendPlaylists friend's unfiltered playlists
      * @return a friend's playlist containing playlists accessible to both friends and the public

@@ -1,5 +1,6 @@
 package abr.queue_abr.history;
 
+import abr.song_abr.SongDAOOutput;
 import entities.Song;
 import entities.queue_entities.HistoryQueue;
 import ds.song_ds.*;

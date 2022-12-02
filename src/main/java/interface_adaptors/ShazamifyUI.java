@@ -1,8 +1,13 @@
 package interface_adaptors;
 
-import framework.ButtonFriendsCollection;
-import framework.ButtonPlaylistsCollection;
-import framework.ButtonViewAccount;
+import abr.user_interact_abr.manage_friend_request_abr.*;
+import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
+import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
+import abr.user_interact_abr.show_friend_list_abr.*;
+import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
+import framework.*;
+import interface_adaptors.user_interact_ia.*;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -87,17 +92,32 @@ public class ShazamifyUI extends JFrame {
 
         // Instantiate buttons
         ButtonPlaylistsCollection btnPlaylists = new ButtonPlaylistsCollection();
-        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection();
-        btnPlaylists.setButtonFriendsCollection(btnFriends);
-        btnFriends.setButtonPlaylistsCollection(btnPlaylists);
+        initFriendListButton(overheadButtonsPanel);
 
         // Add buttons to the buttons panel
         overheadButtonsPanel.add(btnPlaylists);
-        overheadButtonsPanel.add(btnFriends);
 
         panel.add(overheadButtonsPanel, BorderLayout.NORTH);
 
         return panel;
+    }
+
+    private void initFriendListButton(JPanel overheadButtonsPanel){
+        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
+        FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
+
+        OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
+        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList);
+
+        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
+        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest);
+
+        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
+        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest);
+
+        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
+
+        overheadButtonsPanel.add(btnFriends);
     }
 
     private JPanel createCollectionsPanel(int width, int height){
@@ -106,7 +126,6 @@ public class ShazamifyUI extends JFrame {
         JPanel listsPanel = new JPanel();
         listsPanel.setBackground(new Color(36, 36, 36));
         listsPanel.add(PlaylistCollectionViewModel.getInstance().getView(width, height));
-        listsPanel.add(FriendsCollectionViewModel.getInstance().getView(width, height));
         panel.add(listsPanel, BorderLayout.CENTER);
         return panel;
     }

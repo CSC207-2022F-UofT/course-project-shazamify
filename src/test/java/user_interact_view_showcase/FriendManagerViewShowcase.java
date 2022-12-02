@@ -61,6 +61,7 @@ public class FriendManagerViewShowcase { //tests FriendListView, AcceptOrDenyFri
         HashMap<String, String> starFriendList = new HashMap<>();
         starFriendList.put("Jae", "pending_Jae");
         starFriendList.put("Angela", "friend");
+        starFriendList.put("Millie", "pending_Millie");
         return starFriendList;
     }
 
@@ -72,7 +73,11 @@ public class FriendManagerViewShowcase { //tests FriendListView, AcceptOrDenyFri
         HashMap<String, String> angelaFriendList = new HashMap<>();
         angelaFriendList.put("Star", "friend");
 
+        HashMap<String, String> millieFriendList = new HashMap<>();
+        millieFriendList.put("Star", "pending_Millie");
+
         dsGateway.save("Star", "Jae", userSetUp(), jaeFriendList);
         dsGateway.save("Star", "Angela", userSetUp(), angelaFriendList);
+        dsGateway.save("Star", "Millie", userSetUp(), millieFriendList);
     }
 }

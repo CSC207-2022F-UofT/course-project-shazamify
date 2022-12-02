@@ -1,6 +1,6 @@
 package interface_adaptors;
 
-import framework.ButtonViewAccount;
+import framework.buttons.ButtonViewAccount;
 
 import javax.swing.*;
 import java.awt.*;

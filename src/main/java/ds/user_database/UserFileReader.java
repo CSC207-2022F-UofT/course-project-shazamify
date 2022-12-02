@@ -23,4 +23,8 @@ public class UserFileReader {
             throw new RuntimeException("Class in UserDatabase is not a Map");
         }
     }
+
+    static public HashMap<String, String> getUserFriendList(String fileName, String userName) {
+        return UserFileReader.getUserMap(fileName).get(userName).getFriendList();
+    }
 }

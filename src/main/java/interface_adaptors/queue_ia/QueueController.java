@@ -5,7 +5,9 @@ import abr.queue_abr.queue.QueueRequestModel;
 
 import java.util.*;
 
-//TODO: Add javadocs
+/***
+ * The Queue controller is responsible for passing down the song list of IDs from the UI level to the use case.
+ */
 public class QueueController {
     QueueInputBoundary inputBoundary;
 
@@ -13,9 +15,9 @@ public class QueueController {
         this.inputBoundary = inputBoundary;
     }
 
-    public QueueViewModel update(List<String> songList) {
+    public void send(List<String> songList) {
         QueueRequestModel requestModel = new QueueRequestModel(songList);
 
-        return inputBoundary.update(requestModel);
+        inputBoundary.update(requestModel);
     }
 }

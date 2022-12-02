@@ -17,8 +17,8 @@ public class SendFriendRequestView extends JPanel{
 
     final JFrame frame = new JFrame();
 
-    JLabel userNameLabel = new JLabel("your username"), friendNameLabel = new JLabel("friend's username");
-    JTextField userNameField= new JTextField(), friendNameField = new JTextField();
+    JLabel friendNameLabel = new JLabel("friend's username");
+    JTextField friendNameField = new JTextField();
 
     final JButton sendFriendRequest = new JButton("Send friend request");
 
@@ -54,16 +54,12 @@ public class SendFriendRequestView extends JPanel{
     }
 
     private void screenCompSetup(){
-        userNameLabel.setBounds(10,20,165,25);
-        userNameField.setBounds(185,20,300,25);
         friendNameLabel.setBounds(10,65,165,25);
         friendNameField.setBounds(185,65,300,25);
-        sendFriendRequest.setBounds(30,150,300,50);
+        sendFriendRequest.setBounds(100,150,300,50);
 
         frame.add(sendFriendRequest);
-        frame.add(userNameLabel);
         frame.add(friendNameLabel);
-        frame.add(userNameField);
         frame.add(friendNameField);
     }
 

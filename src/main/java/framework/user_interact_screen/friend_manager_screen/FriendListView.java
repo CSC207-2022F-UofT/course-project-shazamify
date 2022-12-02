@@ -26,8 +26,9 @@ public class FriendListView extends JPanel{
         this.showFriendListController = showFriendListController;
         this.acceptFriendRequestController = acceptFriendRequestController;
         this.deleteFriendOrDenyFriendRequestController = deleteFriendOrDenyFriendRequestController;
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        frame.setSize(600, 1000);
+        frame.setSize(300, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         updateButtons();
@@ -62,7 +63,7 @@ public class FriendListView extends JPanel{
     }
 
     private void createPendingFriendProfileButtons(String name){
-        JButton checkFriendRequest = new JButton(name);
+        JButton checkFriendRequest = new JButton("Pending friend request from " + name.substring(0,name.length() - 1));
         checkFriendRequest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
