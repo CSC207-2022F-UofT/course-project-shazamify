@@ -21,14 +21,15 @@ public class FriendProfileView extends JPanel { //TODO: add other components suc
         this.deleteFriendOrDenyFriendRequestController = deleteFriendOrDenyFriendRequestController;
         this.friendName = name;
         this.friendListView = friendListView;
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         DeleteButtonSetUp();
         frameSetUp();
     }
 
     private void frameSetUp(){
-        frame.setSize(600, 300);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(300, 150);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         frame.add(this);
         frame.setVisible(true);
