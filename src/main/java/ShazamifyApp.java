@@ -1,4 +1,4 @@
-import shazamify.view.ShazamifyUI;
+import interface_adaptors.ShazamifyUI;
 
 public class ShazamifyApp {
 
