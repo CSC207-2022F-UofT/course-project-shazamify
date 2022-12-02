@@ -1,7 +1,6 @@
 package framework;
 
 import interface_adaptors.SongPlayerController;
-import shazamify.controller.SongPlayerController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -1,6 +1,6 @@
 package interface_adaptors;
 
-import user.entities.User;
+import entities.user_entities.User;
 
 import java.util.ArrayList;
 

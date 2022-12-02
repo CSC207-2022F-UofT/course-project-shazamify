@@ -2,7 +2,7 @@ package ds.user_search_engine;
 
 import abr.search_engine_abr.SearchEngineDatabaseGateway;
 import ds.user_database.UserFileReader;
-import entities.user_entities.User;
+import import entities.user_entities.User;;
 
 import java.util.Map;
 

@@ -19,12 +19,14 @@ import static javax.swing.BorderFactory.createMatteBorder;
 public class PlaylistCollectionItem extends JPanel{
 
     private int index;
-    private Playlist playlist;
+    //private Playlist playlist;
+    private String playlist_id;
 
-    public PlaylistCollectionItem(int index, Playlist playlist, int width, int height) {
+    public PlaylistCollectionItem(int index, /*Playlist playlist*/ String playlist_id, int width, int height) {
 
         this.index = index;
-        this.playlist = playlist;
+        //this.playlist = playlist;
+        this.playlist_id = playlist_id;
 
         this.setMaximumSize(new Dimension(width, height));
         //this.setPreferredSize(new Dimension(width, height));
@@ -83,7 +85,8 @@ public class PlaylistCollectionItem extends JPanel{
             if(source instanceof JPanel){
                 JPanel panelPressed = (JPanel) source;
                 panelPressed.setBackground(Color.blue);
-                MediaPlaylistController.displayPlaylist(playlist);
+                //MediaPlaylistController.displayPlaylist(playlist);
+                RecorController.displayRecord(playlist);
                 RecordViewModel.getInstance().getView().setVisible(true);
                 SearchResultsViewModel.getInstance().getView().setVisible(false);
             }

@@ -5,7 +5,7 @@ import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
 import user.database.UserFileReader;
 import user.database.UserFileWriter;
 import user.entities.CommonUser;
-import user.entities.User;
+import entities.user_entities.User;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;

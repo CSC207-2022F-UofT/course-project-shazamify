@@ -1,7 +1,7 @@
 package framework;
 
+import interface_adaptors.RecordViewModel;
 import interface_adaptors.SearchResultsViewModel;
-import screen.RecordViewModel;
 
 
 import javax.imageio.ImageIO;

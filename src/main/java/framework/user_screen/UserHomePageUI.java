@@ -7,7 +7,7 @@ import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import ds.user_avatar_image_management_ds.UserAvatarFileGateway;
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
-import entities.user_entities.User;
+import entities.user_entities.User;;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;

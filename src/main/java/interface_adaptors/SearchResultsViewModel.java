@@ -2,7 +2,7 @@ package interface_adaptors;
 
 import entities.Song;
 import framework.*;
-import user.entities.User;
+import entities.user_entities.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -99,10 +99,19 @@ public class SearchResultsViewModel {
      * Renders view
      */
     private JPanel renderButtonsView() {
-
+        /*
         JPanel panel = new JPanel(new GridLayout(1, 0));
         panel.setPreferredSize(new Dimension(width, BUTTONS_HEIGHT));
-        panel.setOpaque(false);
+        panel.setOpaque(false);*/
+
+        JPanel buttonpanel = new JPanel();
+        buttonpanel.setLayout(new BoxLayout(buttonpanel, BoxLayout.X_AXIS));
+        buttonpanel.setOpaque(false);
+        //JPanel panel = new JPanel(new GridLayout(1, 0));
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setPreferredSize(new Dimension(width, BUTTONS_HEIGHT));
+        //panel.setOpaque(false);
+        panel.setBackground(Color.DARK_GRAY);
 
         // Instantiate buttons
         btnSearchSongs = new ButtonSearchSongs();
@@ -147,10 +156,10 @@ public class SearchResultsViewModel {
             }});
 
         // Add buttons to the buttons panel
-        panel.add(btnSearchSongs);
+        buttonpanel.add(btnSearchSongs);
         //panel.add(btnSearchAlbums);
-        panel.add(btnSearchUsers);
-
+        buttonpanel.add(btnSearchUsers);
+        panel.add(buttonpanel, BorderLayout.WEST);
         return panel;
     }
 

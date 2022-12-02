@@ -1,6 +1,6 @@
 package framework;
 
-import user.entities.User;
+import entities.user_entities.User;
 
 import javax.swing.*;
 import javax.swing.border.Border;

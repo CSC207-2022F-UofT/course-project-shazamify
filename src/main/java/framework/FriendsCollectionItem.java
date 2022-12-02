@@ -1,8 +1,8 @@
 package framework;
 
+import interface_adaptors.RecordViewModel;
 import interface_adaptors.SearchResultsViewModel;
-import screen.RecordViewModel;
-import user.entities.User;
+import entities.user_entities.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

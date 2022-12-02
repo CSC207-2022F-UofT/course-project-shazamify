@@ -1,9 +1,9 @@
 package ds.user_interact_ds;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
+import screen.user_interact_screen.abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
-import entities.user_entities.User;
+import import entities.user_entities.User;;
 
 import java.util.HashMap;
 import java.util.Map;

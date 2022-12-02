@@ -1,7 +1,6 @@
 package interface_adaptors;
 
 import entities.playlist_entities.Playlist;
-import screen.RecordViewModel;
 
 import java.io.File;
 import java.util.ArrayList;

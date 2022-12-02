@@ -1,7 +1,7 @@
 package interface_adaptors;
 
 import framework.FriendsCollectionItem;
-import user.entities.User;
+import entities.user_entities.User;
 
 import javax.swing.*;
 import java.awt.*;

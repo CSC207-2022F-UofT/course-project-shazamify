@@ -1,6 +1,6 @@
 package abr.user_avatar_image_management_abr;
 
-import entities.user_entities.User;
+import import entities.user_entities.User;;
 
 public class UserAvatarMngResponseModel {
     private boolean isDirectoryValid;

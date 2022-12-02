@@ -3,6 +3,7 @@ package interface_adaptors;
 import entities.Song;
 
 public class SongPlayerController {
+    //TODO: Separate displayusecase from the controller usecases
 
     public static void displaySongPlayer(Song song){
         DisplaySongPlayerUseCase.getInstance().displaySongPlayer(song);

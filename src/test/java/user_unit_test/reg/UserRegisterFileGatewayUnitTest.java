@@ -6,7 +6,7 @@ import ds.user_database.UserFileWriter;
 import ds.user_reg_ds.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import entities.user_entities.CommonUser;
-import entities.user_entities.User;
+import import entities.user_entities.User;;
 
 import java.util.Map;
 

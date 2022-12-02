@@ -1,10 +1,7 @@
 package interface_adaptors;
 
 import entities.Song;
-import shazamify.entity.Album;
-import shazamify.entity.Song;
-import shazamify.entity.User;
-import user.entities.User;
+import entities.user_entities.User;
 
 import java.io.File;
 import java.util.ArrayList;

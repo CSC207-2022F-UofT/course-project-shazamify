@@ -3,7 +3,6 @@ package interface_adaptors;
 import framework.ButtonFriendsCollection;
 import framework.ButtonPlaylistsCollection;
 import framework.ButtonViewAccount;
-import screen.RecordViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

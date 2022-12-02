@@ -1,7 +1,7 @@
 package abr.user_avatar_image_management_abr;
 
-import entities.user_entities.User;
-import entities.user_entities.UserAvatar;
+import import entities.user_entities.User;;
+import import entities.user_entities.User;Avatar;
 
 public interface UserAvatarDatabaseGateway {
     User getUser(String userName);

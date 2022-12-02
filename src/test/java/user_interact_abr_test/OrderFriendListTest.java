@@ -1,8 +1,8 @@
 package user_interact_abr_test;
 
 
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
+import screen.user_interact_screen.abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
+import screen.user_interact_screen.abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
 import org.junit.Test;
 
 import java.util.ArrayList;

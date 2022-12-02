@@ -2,7 +2,7 @@ package interface_adaptors;
 
 import entities.Song;
 import entities.playlist_entities.Playlist;
-import user.entities.User;
+import entities.user_entities.User;
 
 import java.io.File;
 import java.util.ArrayList;

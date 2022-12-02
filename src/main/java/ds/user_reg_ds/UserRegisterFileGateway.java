@@ -2,9 +2,9 @@ package ds.user_reg_ds;
 
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
-import entities.user_entities.User;
-import entities.user_entities.UserFactory;
-import entities.user_entities.UserSecurityQuestionPackage;
+import import entities.user_entities.User;;
+import import entities.user_entities.User;Factory;
+import import entities.user_entities.User;SecurityQuestionPackage;
 
 import java.util.HashMap;
 import java.util.Map;

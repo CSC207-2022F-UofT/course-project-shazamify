@@ -11,8 +11,8 @@ public class ButtonSearchUsers extends JButton {
 
     public ButtonSearchUsers(){
         try {
-            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/userstabicon.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
-            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/userstabiconclicked.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
+            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/userstabicon.png")).getScaledInstance(117,50, Image.SCALE_DEFAULT));
+            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/userstabiconclicked.png")).getScaledInstance(117,50, Image.SCALE_DEFAULT));
         } catch (Exception e) {
             System.out.println(e);
         }

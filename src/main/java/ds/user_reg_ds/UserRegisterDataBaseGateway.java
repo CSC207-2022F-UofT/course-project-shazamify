@@ -1,6 +1,6 @@
 package ds.user_reg_ds;
 
-import entities.user_entities.UserSecurityQuestionPackage;
+import import entities.user_entities.User;SecurityQuestionPackage;
 
 public interface UserRegisterDataBaseGateway {
     // This interface is responsible for UserRegister to handle UserData
