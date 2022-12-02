@@ -1,4 +1,4 @@
-name: GitHub Classroom Workflow
+name: GitHub Classroom Workflow v2
 
 on: [push]
 
