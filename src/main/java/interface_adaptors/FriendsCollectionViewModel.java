@@ -12,19 +12,11 @@ public class FriendsCollectionViewModel extends AbstractViewModel<ArrayList<User
     private static FriendsCollectionViewModel instance;
     private ArrayList<User> friends;
 
-    /**
-     * Gets instance of singleton
-     * @return instance
-     */
     public static FriendsCollectionViewModel getInstance() {
         if (instance == null) {instance = new FriendsCollectionViewModel();}
         return instance;
     }
 
-    /**
-     * Updates view
-     * @param friends
-     */
     public void updateView(ArrayList<User> friends) {
         // Update data
         this.friends = friends;
