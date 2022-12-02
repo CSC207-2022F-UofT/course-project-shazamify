@@ -1,6 +1,4 @@
-package abr.song_downloader_abr;
-
-import entities.Song;
+package framework.external;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,13 +11,23 @@ public class YTdlp {
 
     public YTdlp() {
         this.ffmpegLoc = "C:\\Users\\alvinuy\\Downloads\\ffmpeg-20190911-944d76a-win64-static\\ffmpeg-20190911-944d76a-win64-static\\bin";
-//        TODO change path for laptop
         this.outputLoc = "C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\build\\songs\\%(title)s.mp3";
     }
 
     public YTdlp(String ffmpegLoc, String outputLoc) {
         this.ffmpegLoc = ffmpegLoc;
         this.outputLoc = outputLoc;
+    }
+
+    private static void flushInputStreamReader(Process process) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        StringBuilder s = new StringBuilder();
+
+        while ((line = input.readLine()) != null) {
+            s.append(line);
+            System.out.println(line);
+        }
     }
 
     public void download(String link) {
@@ -48,17 +56,6 @@ public class YTdlp {
             System.out.println("Exit " + exitCode);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    private static void flushInputStreamReader(Process process) throws IOException {
-        BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        StringBuilder s = new StringBuilder();
-
-        while((line=input.readLine()) != null) {
-            s.append(line);
-            System.out.println(line);
         }
     }
 
