@@ -55,7 +55,8 @@ public class DisplaySongPlayerUseCase extends AbstractDisplayUseCase {
         try {
             AudioFormat format;
             DataLine.Info info;
-            stream = AudioSystem.getAudioInputStream(song.getFile());
+//            TODO: resolve after MongoDB serialization
+//            stream = AudioSystem.getAudioInputStream(song.getFile());
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
@@ -72,7 +73,7 @@ public class DisplaySongPlayerUseCase extends AbstractDisplayUseCase {
      * @param song
      */
     private void initTimer(Song song) {
-        int timerDelay = (int) (song.getDurationInSeconds() * 1000) / DisplaySongPlayerUseCase.NUM_INTERVALS;
+        int timerDelay = (int) (song.getDuration() * 1000) / DisplaySongPlayerUseCase.NUM_INTERVALS;
         // Create timer
         timer = new Timer(timerDelay, new ActionListener() {
             @Override
