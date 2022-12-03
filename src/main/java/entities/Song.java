@@ -66,6 +66,11 @@ public class Song implements Record {
 
     public ArrayList<Song> getSongs(){return null;}
 
+    @Override
+    public Object setSongs(ArrayList<Song> songs) {
+        return null;
+    }
+
     public String toString() {
         return "Song{" +
                 "name='" + name + '\'' +
@@ -73,6 +78,8 @@ public class Song implements Record {
                 ", duration=" + duration +
                 '}';
     }
+    
+
 
     public File getFile() {
 //        TODO: implement method

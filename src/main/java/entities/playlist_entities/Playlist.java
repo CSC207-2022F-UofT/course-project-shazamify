@@ -74,4 +74,7 @@ public class Playlist implements Record {
     }
     public File getCover() {return null;}
     public ArrayList<Song> getSongs() {return this.contents;}
+    public Object setSongs(ArrayList<Song> contents){this.contents = contents;
+        return null;
+    }
 }
