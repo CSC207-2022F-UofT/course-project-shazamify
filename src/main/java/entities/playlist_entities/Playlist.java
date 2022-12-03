@@ -74,4 +74,45 @@ public class Playlist implements Record {
     }
     public File getCover() {return null;}
     public ArrayList<Song> getSongs() {return this.contents;}
+    public Object setSongs(ArrayList<Song> contents){this.contents = contents;
+        return null;
+    }
+    public boolean reOrderSongs(Song song, int ind){
+        if(this.contents.contains(song) && ind < this.contents.size()){
+            this.deleteSong(song);
+            this.addSong(song, ind);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void deleteSong(Song song){
+        if(this.contents.contains(song)){
+            this.contents.remove(song);
+        }
+    }
+
+    public boolean addSong(Song song){
+        if (this.contents.contains(song)){
+            return false;
+        }
+        else{
+            this.contents.add(song);
+            return true;
+        }
+    }
+
+    public boolean addSong(Song song, int ind){
+        if(!(this.contents.contains(song)) && ind < this.contents.size()){
+            this.contents.add(ind, song);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 }
