@@ -90,7 +90,7 @@ public class UserHomePageUI extends JPanel {
         int chooseIndicator = fileChooser.showOpenDialog(null);
 
         if (chooseIndicator == JFileChooser.APPROVE_OPTION) {
-            controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUser().getUserName());
+            controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUserName());
 
             boolean isValid = userAvatarMngViewModel.isDirectoryValid();
 
@@ -117,11 +117,11 @@ public class UserHomePageUI extends JPanel {
     }
 
     private void createScreenComponents() {
-        avatarImageButton = new JButton(new ImageIcon(userStatusViewModel.getUser().getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
-        userName = new JLabel(userStatusViewModel.getUser().getUserName());
+        avatarImageButton = new JButton(new ImageIcon(userStatusViewModel.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
+        userName = new JLabel(userStatusViewModel.getUserName());
         userName.setFont(new Font("Serif", Font.PLAIN, 30));
-        creationTimeLabel = new JLabel("Account creation time is: " + userStatusViewModel.getUser().getAccountCreationTime());
-        passwordLabel = new JLabel("Password is:" + userStatusViewModel.getUser().getPassword());
+        creationTimeLabel = new JLabel("Account creation time is: " + userStatusViewModel.getAccountCreateTime());
+        passwordLabel = new JLabel("Password is:" + userStatusViewModel.getPassWord());
         changeAccountPassword = new JButton("change password");
         changeAccountUserName = new JButton("change username");
     }

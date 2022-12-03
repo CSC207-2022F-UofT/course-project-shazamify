@@ -8,7 +8,11 @@ import framework.user_screen.UserRegUI;
 import interface_adaptors.user_reg_ia.UserRegController;
 import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
+/**
+@author David Li
 
+This file can initialize a RegisterScreen For Testing.
+ */
 public class UserRegUIInitializer {
     public static void initializeUI(UserRegViewModel regViewModel){
         // Initialize the User Presenter

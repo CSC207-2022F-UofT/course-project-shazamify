@@ -10,11 +10,15 @@ import interface_adaptors.user_interact_ia.TempFriendListObservable;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogPresenter;
 import interface_adaptors.user_login_ia.UserLogViewModel;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author David Li
+ */
 public class UserLogUI extends JPanel {
     final JFrame frame = new JFrame();
     JLabel userNameLabel, passWordLabel;
@@ -103,7 +107,8 @@ public class UserLogUI extends JPanel {
     public static void main(String[] args) {
         UserLoginDataBaseGateway dataBaseGateway = new UserLoginFileGateway();
         UserLogViewModel viewModel = new UserLogViewModel();
-        UserLogOutputBoundary presenter = new UserLogPresenter(viewModel);
+        UserStatusViewModel statusViewModel = new UserStatusViewModel();
+        UserLogOutputBoundary presenter = new UserLogPresenter(viewModel, statusViewModel);
         UserLogInputBoundary useCase = new UserLogUseCase(presenter, dataBaseGateway);
         UserLogController controller = new UserLogController(useCase);
         new UserLogUI(controller, viewModel);

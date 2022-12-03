@@ -1,16 +1,18 @@
 package user_unit_test.reg;
 
 import org.junit.Test;
-import abr.user_reg_abr.UserRegRequestModel;
-import abr.user_reg_abr.UserRegUseCase;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
 import user_unit_test.testing_tools.UserDataBaseEraser;
-import user_unit_test.testing_tools.UserRegTestUser;
+import user_unit_test.testing_tools.UserRegTestingTools;
+import user_unit_test.testing_tools.UserSecurityQuestionGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
-/*
-@author David Li
+
+/**
+ @author David Li
+
+ Cover all cases
  */
 public class UserRegUseCaseUnitTest {
 
@@ -22,7 +24,7 @@ public class UserRegUseCaseUnitTest {
         String userName = "001";
         String passWord = "002";
         String rePassword = "003";
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestingTools.registerUser(userName, passWord, rePassword, regViewModel);
         assert !regViewModel.isPasswordValid();
     }
 
@@ -33,8 +35,8 @@ public class UserRegUseCaseUnitTest {
         String userName = "001";
         String passWord = "002";
         String rePassword = "002";
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestingTools.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestingTools.registerUser(userName, passWord, rePassword, regViewModel);
         assert !regViewModel.isUsernameValid();
     }
 
@@ -42,10 +44,8 @@ public class UserRegUseCaseUnitTest {
     public void noSecurityQuestionFilled(){
         UserDataBaseEraser.eraseUserDataBase();
         UserRegViewModel regViewModel = new UserRegViewModel();
-        String userName = "001";
-        String passWord = "002";
-        String rePassword = "002";
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        Map<String, String> securityQuestion = UserSecurityQuestionGenerator.generateSecurityQuestionMap("Test","");
+        UserRegTestingTools.registerUser(securityQuestion, regViewModel);
         assert !regViewModel.isSecurityQuestionValidity();
     }
 
@@ -56,7 +56,7 @@ public class UserRegUseCaseUnitTest {
         String userName = "*&^%$%^&*(";
         String passWord = "002";
         String rePassword = "002";
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestingTools.registerUser(userName, passWord, rePassword, regViewModel);
         assert !regViewModel.isUsernameValid();
     }
 
@@ -67,7 +67,7 @@ public class UserRegUseCaseUnitTest {
         String userName = "001";
         String passWord = "$%^&*(";
         String rePassword = "$%^&*(";
-        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestingTools.registerUser(userName, passWord, rePassword, regViewModel);
         assert !regViewModel.isPasswordValid();
     }
 }

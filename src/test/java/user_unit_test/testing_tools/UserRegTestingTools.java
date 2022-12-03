@@ -8,24 +8,23 @@ import interface_adaptors.user_reg_ia.UserRegController;
 import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-/*
+/**
  * @author David Li
  *
  * This file is for Register and Creating test Users.
  */
+public class UserRegTestingTools {
 
-/**
- * By given userName, passWord, rePassword and viewModel, this function will register a user with empty securityQuestionMap
- */
-public class UserRegTestUser {
+    /**
+     * By Pass in userViewModel and required parameters, the function will register the user and permute userRegViewModel
+     */
     public static void registerUser(String userName, String passWord, String rePassword, UserRegViewModel userRegViewModel){
         UserRegController userRegController = initializeTestEnvironment(userRegViewModel);
-
-        Map<String, String> securityQuestionMap = new HashMap<>();
+        // Generate a UserSecurityQuestion with both question and answer be test.
+        Map<String, String> securityQuestionMap = UserSecurityQuestionGenerator.generateSecurityQuestionMap();
 
         // Register the User into the Database
         userRegController.register(userName, passWord, rePassword, securityQuestionMap);
@@ -56,8 +55,8 @@ public class UserRegTestUser {
 
         String userName = String.valueOf(random.nextInt(1000000000));
         String passWord = String.valueOf(random.nextInt(1000000000));
-
-        Map<String, String> securityQuestionMap = new HashMap<>();
+        // Generate a UserSecurityQuestion with both question and answer be test.
+        Map<String, String> securityQuestionMap = UserSecurityQuestionGenerator.generateSecurityQuestionMap();
 
         // Register the User into the Database
         userRegController.register(userName, passWord, passWord, securityQuestionMap);
