@@ -9,26 +9,26 @@ public class PlaylistModifyRequestModel {
     public Privacy privacy;
     public String plName;
 
-    public void addToPlaylistRM(String plID, String songID){
+    public void addToPlaylistRqM(String plID, String songID){
         this.plID = plID;
         this.songID = songID;
     }
 
-    public void delSongRM(String plID, String songID){
+    public void delSongRqM(String plID, String songID){
         this.plID = plID;
         this.songID = songID;
     }
 
-    public void setPrivacyRM(Privacy privacy, String plID){
+    public void setPrivacyRqM(Privacy privacy, String plID){
         this.privacy = privacy;
         this.plID = plID;
     }
 
-    public void setNameRM(String name, String plID){
+    public void setNameRqM(String name, String plID){
         this.plName = name;
         this.plID = plID;
     }
-    public void reOrderPlRM(String plID, String songID, int songIndex){
+    public void reOrderPlRqM(String plID, String songID, int songIndex){
         this.plID = plID;
         this.songID = songID;
         this.songIndex = songIndex;

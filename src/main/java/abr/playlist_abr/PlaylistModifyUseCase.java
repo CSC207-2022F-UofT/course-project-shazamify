@@ -20,7 +20,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         Optional<Song> song = this.songDAOOutput.findById(requestModel.songID);
         if (playlist.isPresent() && song.isPresent()) {
-            playlist.get().addSong(song.get());
+            playlist.get().addSong(requestModel.songID);
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
+            playlistResM.setPlaylist(playlist.get());
+            //TODO: updateView(ResM)
         }
     }
 
@@ -29,7 +32,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         Optional<Song> song = this.songDAOOutput.findById(requestModel.songID);
         if (playlist.isPresent() && song.isPresent()) {
-            playlist.get().deleteSong(song.get());
+            playlist.get().deleteSong(requestModel.songID);
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
+            playlistResM.setPlaylist(playlist.get());
+            //TODO: updateView(ResM)
         }
 
     }
@@ -39,6 +45,9 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         if (playlist.isPresent()){
             playlist.get().setPrivacy(requestModel.privacy);
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
+            playlistResM.setPlaylist(playlist.get());
+            //TODO: updateView(ResM)
         }
 
     }
@@ -48,6 +57,9 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         if (playlist.isPresent()) {
             playlist.get().setName(requestModel.plName);
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
+            playlistResM.setPlaylist(playlist.get());
+            //TODO: updateView(ResM)
         }
 
     }
@@ -55,10 +67,13 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
     @Override
     public void reOrderPL(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
-        Optional<Song> song = this.songDAOOutput.findById(requestModel.songID);
+
         int index = requestModel.songIndex;
-        if (playlist.isPresent() && song.isPresent() && (index < playlist.get().getSongs().size())) {
-            playlist.get().reOrderSongs(song.get(), index);
+        if (playlist.isPresent() && (index < playlist.get().getSongs().size())) {
+            playlist.get().reOrderSongs(requestModel.songID, index);
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
+            playlistResM.setPlaylist(playlist.get());
+            //TODO: updateView(ResM)
         }
 
     }
