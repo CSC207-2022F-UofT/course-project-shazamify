@@ -23,7 +23,7 @@ public class UserLogPresenter implements UserLogOutputBoundary {
         // If the account was created successfully, update status viewModel
         if (responseModel.isValidUserName() && responseModel.isUserPasswordValid() && responseModel.getUserName() != null){
             statusViewModel.setUserName(responseModel.getUserName());
-            statusViewModel.setPassWord(responseModel.getPassWord());
+            statusViewModel.setPassWord(responseModel.getPassword());
             statusViewModel.setUserAvatar(responseModel.getUserAvatar());
             statusViewModel.setAccountCreateTime(responseModel.getAccountCreateTime());
             statusViewModel.setPlayListIds(responseModel.getPlayListIDs());

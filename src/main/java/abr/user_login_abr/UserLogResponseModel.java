@@ -1,21 +1,19 @@
 package abr.user_login_abr;
 
-import entities.user_entities.User;
-
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
 public class UserLogResponseModel {
-    boolean userNameValid;
-    boolean userPasswordValid;
-    String userName;
-    String passWord;
-    BufferedImage userAvatar;
-    LocalDateTime accountCreateTime;
-    HashMap<String, String> friendList;
-    List<String> playListIDs;
+    private boolean userNameValid;
+    private boolean userPasswordValid;
+    private String userName;
+    private String password;
+    private BufferedImage userAvatar;
+    private LocalDateTime accountCreateTime;
+    private HashMap<String, String> friendList;
+    private List<String> playListIDs;
 
 
 
@@ -33,8 +31,8 @@ public class UserLogResponseModel {
         this.userName = userName;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setAccountCreateTime(LocalDateTime accountCreateTime) {
@@ -49,8 +47,8 @@ public class UserLogResponseModel {
         return userName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
     public BufferedImage getUserAvatar() {
