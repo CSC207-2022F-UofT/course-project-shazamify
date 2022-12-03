@@ -12,6 +12,9 @@ public class UserStatusViewModel {
     BufferedImage userAvatar;
     LocalDateTime accountCreateTime;
     HashMap<String, String> friendList = new HashMap<>();
+
+    // This is A list of PlaylistIds(Strings) !! Not the Playlist entities itself !!
+    List<String> playListIds = new ArrayList<>();
     List<UserStatusObserver> userStatusObservers = new ArrayList<>();
 
     public void setUserName(String userName) {
@@ -52,6 +55,15 @@ public class UserStatusViewModel {
     public HashMap<String, String> getFriendList() {
         return friendList;
     }
+
+    public void setPlayListIds(List<String> playListIds) {
+        this.playListIds = playListIds;
+    }
+
+    public List<String> getPlayListIds() {
+        return playListIds;
+    }
+
     public void addUserStatusObserver(UserStatusObserver userStatusObserver){
         userStatusObservers.add(userStatusObserver);
     }

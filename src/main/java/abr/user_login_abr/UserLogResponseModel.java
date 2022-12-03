@@ -5,6 +5,7 @@ import entities.user_entities.User;
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserLogResponseModel {
     boolean userNameValid;
@@ -13,7 +14,8 @@ public class UserLogResponseModel {
     String passWord;
     BufferedImage userAvatar;
     LocalDateTime accountCreateTime;
-    HashMap<String, String> friendList = new HashMap<>();
+    HashMap<String, String> friendList;
+    List<String> playListIDs;
 
 
 
@@ -73,5 +75,13 @@ public class UserLogResponseModel {
 
     public HashMap<String, String> getFriendList() {
         return friendList;
+    }
+
+    public List<String> getPlayListIDs() {
+        return playListIDs;
+    }
+
+    public void setPlayListIDs(List<String> playListIDs) {
+        this.playListIDs = playListIDs;
     }
 }

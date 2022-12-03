@@ -29,6 +29,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author David Li
+ *
+ * Initialize a HomePage JPanel of the User
+ */
 public class UserHomePageUI extends JPanel implements UserStatusObserver {
     UserStatusViewModel userStatusViewModel;
     UserAvatarMngController controller;
@@ -161,7 +166,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     }
 
     /**
-     * If the User is get updated
+     * If the User is get updated, then update the User Homepage components
      */
     @Override
     public void userUpdated() {
