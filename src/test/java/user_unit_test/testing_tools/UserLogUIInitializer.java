@@ -16,7 +16,6 @@ import interface_adaptors.user_login_ia.UserStatusViewModel;
  */
 public class UserLogUIInitializer {
 
-
     public static void initializeUI(UserLogViewModel logViewModel, UserStatusViewModel statusViewModel){
         // Initialize the User Presenter
         UserLogPresenter userLogPresenter = new UserLogPresenter(logViewModel, statusViewModel);

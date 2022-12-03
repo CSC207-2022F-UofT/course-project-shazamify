@@ -2,15 +2,32 @@ package abr.user_login_abr;
 
 import entities.user_entities.User;
 
+/**
+ * @author David Li
+ *
+ * The UseCase of Login Activity, will check for userName and Password Validity
+ * If both UserName and Password is valid, will renew UserStatusViewModel
+ */
 public class UserLogUseCase implements UserLogInputBoundary{
     UserLogOutputBoundary outputBoundary;
     UserLoginDataBaseGateway dataBaseGateway;
 
+    /**
+     * Initialize the UserLogUseCase
+     * @param outputBoundary The Presenter of the User Log
+     * @param dataBaseGateway The Database Gateway to the User Database
+     */
     public UserLogUseCase(UserLogOutputBoundary outputBoundary, UserLoginDataBaseGateway dataBaseGateway){
         this.outputBoundary = outputBoundary;
         this.dataBaseGateway = dataBaseGateway;
     }
 
+    /**
+     * Login given user with user identification entities(Username, Password) contain inside request model
+     * If both Username and Password are Valid, will renew Valid message to UserLogViewModel, and Renew UserStatusViewModel
+     * If either UserName or Password is not Valid, will renew invalid message to UserLogViewModel, will not Renew UserStatusModel
+     * @param requestModel user identification entities package
+     */
     @Override
     public void loginUser(UserLogRequestModel requestModel) {
         String userName = requestModel.getUsername();
@@ -28,6 +45,7 @@ public class UserLogUseCase implements UserLogInputBoundary{
         }
         outputBoundary.packageAndPresent(responseModel);
     }
+
 
     private void checkIfUserAndPasswordValid(String userName, String passWord, UserLogResponseModel responseModel) {
         boolean userNameValid = dataBaseGateway.checkValidUserName(userName);

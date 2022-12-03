@@ -13,6 +13,7 @@ import abr.user_reg_abr.UserRegUseCase;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
 import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter;
+import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
@@ -28,7 +29,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserHomePageUI extends JPanel {
+public class UserHomePageUI extends JPanel implements UserStatusObserver {
     UserStatusViewModel userStatusViewModel;
     UserAvatarMngController controller;
     UserAvatarMngViewModel userAvatarMngViewModel;
@@ -126,6 +127,11 @@ public class UserHomePageUI extends JPanel {
         changeAccountUserName = new JButton("change username");
     }
 
+    private void updateScreenComponents(){
+        userName.setText(userStatusViewModel.getUserName());
+        passwordLabel.setText("Password is:" + userStatusViewModel.getPassWord());
+    }
+
     public static void main(String[] args) {
         // Initialize components for avatar
         UserAvatarMngViewModel avatarMngViewModel= new UserAvatarMngViewModel();
@@ -148,9 +154,17 @@ public class UserHomePageUI extends JPanel {
         UserRegRequestModel requestModel = new UserRegRequestModel("111","222","111",securityQuestionMap);
         userRegUseCase.register(requestModel);
 
-        // Set ip UI
-//        User user = userAvatarDatabaseGateway.getUser("222");
-//
-//        UserHomePageUI ui = new UserHomePageUI(user, userAvatarMngController);
+        //Set ip UI
+        UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
+        UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
+        UserHomePageUI ui = new UserHomePageUI(userAvatarMngController, userStatusViewModel, userAvatarMngViewModel);
+    }
+
+    /**
+     * If the User is get updated
+     */
+    @Override
+    public void userUpdated() {
+        updateScreenComponents();
     }
 }

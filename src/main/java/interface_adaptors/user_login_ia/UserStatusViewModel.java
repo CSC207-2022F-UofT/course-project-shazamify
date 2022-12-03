@@ -2,15 +2,17 @@ package interface_adaptors.user_login_ia;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserStatusViewModel {
     String userName;
     String passWord;
     BufferedImage userAvatar;
     LocalDateTime accountCreateTime;
-
     HashMap<String, String> friendList = new HashMap<>();
+    List<UserStatusObserver> userStatusObservers = new ArrayList<>();
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -49,5 +51,17 @@ public class UserStatusViewModel {
     }
     public HashMap<String, String> getFriendList() {
         return friendList;
+    }
+    public void addUserStatusObserver(UserStatusObserver userStatusObserver){
+        userStatusObservers.add(userStatusObserver);
+    }
+
+    public void deleteUserStatusObserver(UserStatusObserver userStatusObserver){
+        userStatusObservers.remove(userStatusObserver);
+    }
+    public void userUpdated(){
+        for (UserStatusObserver observer : userStatusObservers){
+            observer.userUpdated();
+        }
     }
 }
