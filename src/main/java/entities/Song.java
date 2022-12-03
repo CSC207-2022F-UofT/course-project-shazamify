@@ -46,12 +46,12 @@ public class Song{
         return this.duration;
     }
 
-    @Override
+
     public File getCover() {
         return null;
     }
 
-    @Override
+
     public String getArtist() {
         return null;
     }
@@ -70,7 +70,7 @@ public class Song{
 
     public ArrayList<Song> getSongs(){return null;}
 
-    @Override
+
     public Object setSongs(ArrayList<Song> songs) {
         return null;
     }
