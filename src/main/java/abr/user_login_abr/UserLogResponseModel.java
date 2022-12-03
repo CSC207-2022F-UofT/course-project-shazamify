@@ -4,6 +4,7 @@ import entities.user_entities.User;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class UserLogResponseModel {
     boolean userNameValid;
@@ -12,6 +13,7 @@ public class UserLogResponseModel {
     String passWord;
     BufferedImage userAvatar;
     LocalDateTime accountCreateTime;
+    HashMap<String, String> friendList = new HashMap<>();
 
 
 
@@ -65,4 +67,11 @@ public class UserLogResponseModel {
         return userPasswordValid;
     }
 
+    public void setFriendList(HashMap<String, String> friendList) {
+        this.friendList = friendList;
+    }
+
+    public HashMap<String, String> getFriendList() {
+        return friendList;
+    }
 }

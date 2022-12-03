@@ -45,5 +45,6 @@ public class UserLogUseCase implements UserLogInputBoundary{
         responseModel.setUserAvatar(loggedInUser.getUserAvatar());
         responseModel.setUserName(loggedInUser.getUserName());
         responseModel.setPassWord(loggedInUser.getPassword());
+        responseModel.setFriendList(loggedInUser.getFriendList());
     }
 }
