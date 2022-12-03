@@ -1,6 +1,7 @@
 package framework.buttons;
 
 import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 
 
 import javax.imageio.ImageIO;
@@ -19,7 +20,8 @@ public class ButtonSearch extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchController.search(textField.getText());
+                //TODO this does not exist
+                //SearchController.search(textField.getText());
                 RecordViewModel.getInstance().getView().setVisible(false);
                 SearchResultsViewModel.getInstance().getView().setVisible(true);
             }

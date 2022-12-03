@@ -2,7 +2,9 @@ package interface_adaptors.user_login_ia;
 
 import abr.user_login_abr.UserLogInputBoundary;
 import abr.user_login_abr.UserLogRequestModel;
-
+/**
+ * @author David Li
+ */
 public class UserLogController {
     UserLogInputBoundary inputBoundary;
 
@@ -10,9 +12,9 @@ public class UserLogController {
         this.inputBoundary = inputBoundary;
     }
 
-    public UserLogViewModel login(String userName, String passWord){
+    public void login(String userName, String passWord){
         UserLogRequestModel requestModel = new UserLogRequestModel(userName,passWord);
 
-        return inputBoundary.loginUser(requestModel);
+        inputBoundary.loginUser(requestModel);
     }
 }

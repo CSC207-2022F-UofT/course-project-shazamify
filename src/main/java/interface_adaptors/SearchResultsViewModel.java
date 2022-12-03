@@ -7,7 +7,6 @@ import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
-import entities.user_entities.User;
 
 import javax.swing.*;
 import java.awt.*;

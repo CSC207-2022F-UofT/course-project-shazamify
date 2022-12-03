@@ -2,11 +2,21 @@ package abr.user_reg_abr;
 
 import java.util.Random;
 
+/**
+ * @author David Li
+ *
+ * A helper class to UserRegUseCase
+ */
 public class UserRecommendPasswordHelper {
     public UserRegResponseModel giveRandomPassword(UserRegResponseModel responseModel){
         responseModel.setRecommendPassword(generateRandomPassword());
         return responseModel;
     }
+
+    /**
+     * Given a recommendation password to the User.
+     * @return  10 digits password(String), and contain AlphaNumeric combination
+     */
     private String generateRandomPassword(){
         final int[] LEFT_LIMIT_SET = {48, 65, 97};
         final int[] RANGE = {10, 26, 26};

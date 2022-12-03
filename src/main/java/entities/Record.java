@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /***
- * Abstract class for the Record containing the abstract methods for getting the attributes.
+ * Interface for the Record containing the abstract methods for getting the attributes.
  */
 public interface Record {
     String getName();
