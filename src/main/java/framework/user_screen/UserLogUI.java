@@ -10,11 +10,15 @@ import interface_adaptors.user_interact_ia.TempFriendListObservable;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogPresenter;
 import interface_adaptors.user_login_ia.UserLogViewModel;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author David Li
+ */
 public class UserLogUI extends JPanel {
     final JFrame frame = new JFrame();
     JLabel userNameLabel, passWordLabel;
@@ -22,10 +26,11 @@ public class UserLogUI extends JPanel {
     JPasswordField userPassWordField;
     JButton LoginButton, RegisterButton;
     UserLogController controller;
+    UserLogViewModel viewModel;
 
-    public UserLogUI(UserLogController controller) {
+    public UserLogUI(UserLogController controller, UserLogViewModel viewModel) {
         this.controller = controller;
-
+        this.viewModel = viewModel;
         // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
@@ -57,7 +62,7 @@ public class UserLogUI extends JPanel {
         String userName = userNameField.getText();
         String password = String.valueOf(userPassWordField.getPassword());
 
-        UserLogViewModel viewModel = controller.login(userName,password);
+        controller.login(userName,password);
         boolean validUserName = viewModel.isValidUserName();
         boolean validPassword = viewModel.isUserPasswordValid();
 
@@ -101,12 +106,12 @@ public class UserLogUI extends JPanel {
     // Temporary test file
     public static void main(String[] args) {
         UserLoginDataBaseGateway dataBaseGateway = new UserLoginFileGateway();
-        UserLogOutputBoundary presenter = new UserLogPresenter();
+        UserLogViewModel viewModel = new UserLogViewModel();
+        UserStatusViewModel statusViewModel = new UserStatusViewModel();
+        UserLogOutputBoundary presenter = new UserLogPresenter(viewModel, statusViewModel);
         UserLogInputBoundary useCase = new UserLogUseCase(presenter, dataBaseGateway);
         UserLogController controller = new UserLogController(useCase);
-
-
-        UserLogUI LogScreen = new UserLogUI(controller);
+        new UserLogUI(controller, viewModel);
     }
 
 }
