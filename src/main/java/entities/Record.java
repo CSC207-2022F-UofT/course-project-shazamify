@@ -18,4 +18,6 @@ public interface Record {
     String getArtist();
 
     ArrayList<Song> getSongs();
+
+    Object setSongs(ArrayList<Song> songs);
 }

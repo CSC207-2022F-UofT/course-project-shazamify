@@ -8,4 +8,6 @@ public class PlaylistCreateResponseModel {
     public void setPlaylist(Playlist playlist) {
         this.playlist = playlist;
     }
+
+    public Playlist getPlaylist() {return this.playlist;}
 }

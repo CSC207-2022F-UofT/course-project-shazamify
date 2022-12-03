@@ -1,6 +1,7 @@
 package abr.playlist_abr;
 
 import entities.playlist_entities.Playlist;
+import interface_adaptors.playlist_ia.RecordViewModel;
 import org.bson.types.ObjectId;
 
 public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
@@ -19,8 +20,9 @@ public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
         ObjectId id = new ObjectId();
         Playlist newPlaylist = new Playlist(id.toString());
         playlistDAOInput.save(newPlaylist);
-        this.playlistCreateResponseModel.setPlaylist(newPlaylist);
-        this.outputBoundary.present(this.playlistCreateResponseModel);
+        //this.playlistCreateResponseModel.setPlaylist(newPlaylist);
+        RecordViewModel.getInstance().updateView(newPlaylist);
+        //this.outputBoundary.present(this.playlistCreateResponseModel);
         return this.playlistCreateResponseModel;
 
 
