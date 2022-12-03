@@ -11,7 +11,6 @@ public class Song{
     private String name;
     private String id;
     private int duration;
-//    TODO add audiofilePath attribute
     private String filePath;
 
     /***
@@ -31,6 +30,7 @@ public class Song{
         this.name = name;
         this.id = id;
         this.duration = duration;
+        this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
     }
 
 
@@ -46,15 +46,15 @@ public class Song{
         return this.duration;
     }
 
-
-    public File getCover() {
-        return null;
-    }
-
-
-    public String getArtist() {
-        return null;
-    }
+//    @Override
+//    public File getCover() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getArtist() {
+//        return null;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -70,10 +70,10 @@ public class Song{
 
     public ArrayList<Song> getSongs(){return null;}
 
-
-    public Object setSongs(ArrayList<Song> songs) {
-        return null;
-    }
+//    @Override
+//    public Object setSongs(ArrayList<Song> songs) {
+//        return null;
+//    }
 
     public String toString() {
         return "Song{" +
