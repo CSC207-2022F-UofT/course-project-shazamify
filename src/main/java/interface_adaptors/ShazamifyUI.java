@@ -5,9 +5,13 @@ import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.Dele
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.*;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
-import framework.*;
+import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
-
+import framework.buttons.*;
+import framework.items.*;
+import interface_adaptors.*;
+import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -36,7 +40,8 @@ public class ShazamifyUI extends JFrame {
 
         //MediaPlaylistController.listSongs();
         PlaylistCollectionController.displayPlaylists(null);
-        SearchController.displaySearchBar();
+        //TODO: this does not exist
+        //SearchController.displaySearchBar();
     }
 
     private JPanel createContentPanel(int width, int height) {
