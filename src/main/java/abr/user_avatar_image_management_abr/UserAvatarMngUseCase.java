@@ -9,18 +9,36 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author David Li
+ *
+ * Verify if the directory of the UserAvatar is Valid. And Change the User Avatar
+ */
 public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
     UserAvatarDatabaseGateway databaseGateway;
     UserAvatarMngResponseModel responseModel = new UserAvatarMngResponseModel();
     UserAvatarMngOutputBoundary outputBoundary;
 
+    /**
+     * Initialize the User Avatar Management UseCase
+     * @param databaseGateway The Database Gateway of the User Management System
+     * @param outputBoundary The Presenter of the User Management System
+     */
     public UserAvatarMngUseCase(UserAvatarDatabaseGateway databaseGateway, UserAvatarMngOutputBoundary outputBoundary){
         this.databaseGateway = databaseGateway;
         this.outputBoundary = outputBoundary;
     }
+
+    /**
+     * Verify if the Avatar directory is Valid, if Valid, change the User Avatar inside the database. And set response
+     * inside the ViewModel though Presenter. The Response will contain:
+     * 1) The Validity of Avatar
+     * 2) The entities about User After changing Avatar.
+     * @param requestModel The
+     */
     @Override
-    public UserAvatarMngViewModel verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel) {
-        // Initialize the data from pacakage
+    public void verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel) {
+        // Initialize the data from package
         String userName = requestModel.userName;
         String directory = requestModel.directory;
 
@@ -42,7 +60,7 @@ public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
         }
 
         // call output Boundary
-        return outputBoundary.packageAndPresent(responseModel);
+        outputBoundary.packageAndPresent(responseModel);
     }
 
     private UserAvatar createUserAvatar(String directory) throws IOException {

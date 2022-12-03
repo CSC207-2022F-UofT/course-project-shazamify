@@ -18,16 +18,14 @@ public class UserRegController {
      * @param password the password of the registered user
      * @param rePassword the confirmation password of registered user
      * @param securityQuestions the questions for reset password
-     * @return A ViewModel contain whether registration is successful
      */
-    public UserRegViewModel register(String userName, String password, String rePassword,
+    public void register(String userName, String password, String rePassword,
                                      Map<String, String> securityQuestions){
         UserRegRequestModel requestModel = new UserRegRequestModel(password, userName, rePassword, securityQuestions);
-
-        return inputBoundary.register(requestModel);
+        inputBoundary.register(requestModel);
     }
 
-    public UserRegViewModel giveRecommendPassword(){
-        return inputBoundary.giveRecommendPassword();
+    public void giveRecommendPassword(){
+        inputBoundary.giveRecommendPassword();
     }
 }

@@ -10,6 +10,10 @@ import entities.user_entities.User;
 
 import java.util.Map;
 
+/**
+ * @author David Li
+ */
+
 public class UserRegisterFileGatewayUnitTest {
     @Test
     public void userFileReadAndWrite(){
