@@ -8,6 +8,7 @@ import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 public class UserUIInitializer {
     public static void main(String[] args) {
+        UserDataBaseEraser.eraseUserDataBase();
         UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
         UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
         UserLogViewModel userLogViewModel = new UserLogViewModel();

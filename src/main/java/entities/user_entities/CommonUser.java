@@ -91,6 +91,7 @@ public class CommonUser implements User, Serializable {
 
     public BufferedImage getUserAvatar() {
         return userAvatar.getBufferedImage();
+
     }
 
     @Override
@@ -99,8 +100,8 @@ public class CommonUser implements User, Serializable {
     }
 
     @Override
-    public void setUserAvatar(UserAvatar avatar) {
-        this.userAvatar = avatar;
+    public void setUserAvatar(BufferedImage tempUserAvatar) {
+        this.userAvatar = new UserAvatar(tempUserAvatar);
     }
 
     @Override

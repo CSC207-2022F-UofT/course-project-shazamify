@@ -2,6 +2,9 @@ package abr.user_playlist_abr;
 
 import java.util.List;
 
+/**
+ * @author David Li
+ */
 public class UserPlaylistUseCase implements UserPlaylistInputBoundary{
     UserPlaylistOutputBoundary outputBoundary;
     UserPlaylistDatabaseGateway databaseGateway;
@@ -12,6 +15,7 @@ public class UserPlaylistUseCase implements UserPlaylistInputBoundary{
         this.databaseGateway = databaseGateway;
         this.responseModel = new UserPlaylistResponseModel();
     }
+
     @Override
     public void addToUserPlaylist(UserPlaylistRequestModel userPlaylistRequestModel) {
         List<String> playList = databaseGateway.addPlaylistInUser(userPlaylistRequestModel.userName, userPlaylistRequestModel.playListID);

@@ -18,7 +18,7 @@ public interface User extends Serializable {
     void setFriendList(HashMap <String, String> newFriendList);
     BufferedImage getUserAvatar();
     LocalDateTime getAccountCreationTime();
-    void setUserAvatar(UserAvatar avatar);
+    void setUserAvatar(BufferedImage tempUserAvatar);
     void setPassword(String passWord);
     void addPlaylistID(String playlistID);
     void deletePlaylistID(String playlistID);

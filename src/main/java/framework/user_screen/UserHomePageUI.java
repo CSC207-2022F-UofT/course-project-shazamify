@@ -99,7 +99,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
             controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUserName());
 
             boolean isValid = userAvatarMngViewModel.isDirectoryValid();
-
+            avatarImageButton.setIcon(new ImageIcon(userStatusViewModel.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
         }
     }
 
@@ -135,6 +135,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     private void updateScreenComponents(){
         userName.setText(userStatusViewModel.getUserName());
         passwordLabel.setText("Password is:" + userStatusViewModel.getPassWord());
+        avatarImageButton.setIcon(new ImageIcon(userStatusViewModel.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
     }
 
     public static void main(String[] args) {

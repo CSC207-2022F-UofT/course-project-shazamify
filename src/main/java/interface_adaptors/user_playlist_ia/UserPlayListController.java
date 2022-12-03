@@ -2,7 +2,6 @@ package interface_adaptors.user_playlist_ia;
 
 import abr.user_playlist_abr.UserPlaylistInputBoundary;
 import abr.user_playlist_abr.UserPlaylistRequestModel;
-import entities.user_entities.User;
 
 /**
  * @author David Li
