@@ -27,7 +27,7 @@ public class UserRegHelper {
             responseModel.setPasswordValidity(true);
         } else { // If the password or userName's characters are illegal
             responseModel.setSecurityQuestionValidity(securityQuestionValidity);
-            responseModel.setUsernameValidity(userNameValidity);
+            responseModel.setUsernameValidity(false);
             responseModel.setPasswordValidity(passwordValidity);
         }
         return responseModel;

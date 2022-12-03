@@ -1,58 +1,73 @@
 package user_unit_test.reg;
 
 import org.junit.Test;
-import abr.user_reg_abr.UserRegisterDataBaseGateway;
-import ds.user_reg_ds.UserRegisterFileGateway;
-import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
-import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
+import user_unit_test.testing_tools.UserDataBaseEraser;
+import user_unit_test.testing_tools.UserRegTestUser;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+@author David Li
+ */
 public class UserRegUseCaseUnitTest {
 
-    /**
-     * Initialize a test environment, and a clean user_database
-     * @return a usercase for test purpose
-     */
-    public UserRegUseCase initial() {
-        UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
-        dataBaseGateway.clearDatabase();
-        UserRegOutputBoundary boundary = new UserRegPresenter();
-        return new UserRegUseCase(boundary, dataBaseGateway);
+
+    @Test
+    public void passWordAndRepassWordNotMatch() {
+        UserDataBaseEraser.eraseUserDataBase();
+        UserRegViewModel regViewModel = new UserRegViewModel();
+        String userName = "001";
+        String passWord = "002";
+        String rePassword = "003";
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        assert !regViewModel.isPasswordValid();
     }
 
     @Test
-    public void passWordAndRepassWordNotMatch(){
-        UserRegUseCase userRegUseCase = initial();
-        Map<String, String> securityQuestionMap= new HashMap<>();
-        securityQuestionMap.put("1","2");
-        UserRegRequestModel requestModel = new UserRegRequestModel("qazwsx741","1404528381","qazwsx741",securityQuestionMap);
-        UserRegViewModel viewModel = userRegUseCase.register(requestModel);
-        assert viewModel.isPasswordValid();
-    }
-
-    @Test
-    public void userNameAlreadyExists(){
-        UserRegUseCase userRegUseCase = initial();
-        Map<String, String> securityQuestionMap= new HashMap<>();
-        securityQuestionMap.put("1","2");
-        UserRegRequestModel requestModel = new UserRegRequestModel("qazwsx741","140452838","qazwsx741", securityQuestionMap);
-        userRegUseCase.register(requestModel);
-        // Register the requestModel 2nd times
-        UserRegViewModel viewModel2 = userRegUseCase.register(requestModel);
-        assert !viewModel2.isUsernameValid();
+    public void userNameAlreadyExists() {
+        UserDataBaseEraser.eraseUserDataBase();
+        UserRegViewModel regViewModel = new UserRegViewModel();
+        String userName = "001";
+        String passWord = "002";
+        String rePassword = "002";
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        assert !regViewModel.isUsernameValid();
     }
 
     @Test
     public void noSecurityQuestionFilled(){
-        UserRegUseCase userRegUseCase = initial();
-        Map<String, String> securityQuestionMap= new HashMap<>();
-        UserRegRequestModel requestModel = new UserRegRequestModel("qazwsx741","140452838","qazwsx741", securityQuestionMap);
-        UserRegViewModel viewModel = userRegUseCase.register(requestModel);
-        assert !viewModel.isSecurityQuestionValidity();
+        UserDataBaseEraser.eraseUserDataBase();
+        UserRegViewModel regViewModel = new UserRegViewModel();
+        String userName = "001";
+        String passWord = "002";
+        String rePassword = "002";
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        assert !regViewModel.isSecurityQuestionValidity();
+    }
+
+    @Test
+    public void trickyUserName(){
+        UserDataBaseEraser.eraseUserDataBase();
+        UserRegViewModel regViewModel = new UserRegViewModel();
+        String userName = "*&^%$%^&*(";
+        String passWord = "002";
+        String rePassword = "002";
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        assert !regViewModel.isUsernameValid();
+    }
+
+    @Test
+    public void trickyPassword(){
+        UserDataBaseEraser.eraseUserDataBase();
+        UserRegViewModel regViewModel = new UserRegViewModel();
+        String userName = "001";
+        String passWord = "$%^&*(";
+        String rePassword = "$%^&*(";
+        UserRegTestUser.registerUser(userName, passWord, rePassword, regViewModel);
+        assert !regViewModel.isPasswordValid();
     }
 }
