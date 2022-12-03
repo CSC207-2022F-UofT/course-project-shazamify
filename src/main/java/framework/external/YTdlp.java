@@ -11,7 +11,7 @@ public class YTdlp {
 
     public YTdlp() {
         this.ffmpegLoc = "C:\\Users\\alvinuy\\Downloads\\ffmpeg-20190911-944d76a-win64-static\\ffmpeg-20190911-944d76a-win64-static\\bin";
-        this.outputLoc = "C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\build\\songs\\%(title)s.mp3";
+        this.outputLoc = "C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\src\\main\\resources\\songs\\%(title)s.mp3";
     }
 
     public YTdlp(String ffmpegLoc, String outputLoc) {
