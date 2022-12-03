@@ -1,31 +1,18 @@
-package abr.user_login_abr;
-
-import entities.user_entities.User;
+package interface_adaptors.user_login_ia;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class UserLogResponseModel {
-    boolean userNameValid;
-    boolean userPasswordValid;
+public class UserStatusViewModel {
     String userName;
     String passWord;
     BufferedImage userAvatar;
     LocalDateTime accountCreateTime;
     HashMap<String, String> friendList = new HashMap<>();
-
-
-
-
-
-    public void setValidUserName(boolean validLogin) {
-        this.userNameValid = validLogin;
-    }
-
-    public void setUserPasswordValid(boolean userPasswordValid) {
-        this.userPasswordValid = userPasswordValid;
-    }
+    List<UserStatusObserver> userStatusObservers = new ArrayList<>();
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -59,19 +46,22 @@ public class UserLogResponseModel {
         return accountCreateTime;
     }
 
-    public boolean isValidUserName() {
-        return userNameValid;
-    }
-
-    public boolean isUserPasswordValid() {
-        return userPasswordValid;
-    }
-
     public void setFriendList(HashMap<String, String> friendList) {
         this.friendList = friendList;
     }
-
     public HashMap<String, String> getFriendList() {
         return friendList;
+    }
+    public void addUserStatusObserver(UserStatusObserver userStatusObserver){
+        userStatusObservers.add(userStatusObserver);
+    }
+
+    public void deleteUserStatusObserver(UserStatusObserver userStatusObserver){
+        userStatusObservers.remove(userStatusObserver);
+    }
+    public void userUpdated(){
+        for (UserStatusObserver observer : userStatusObservers){
+            observer.userUpdated();
+        }
     }
 }

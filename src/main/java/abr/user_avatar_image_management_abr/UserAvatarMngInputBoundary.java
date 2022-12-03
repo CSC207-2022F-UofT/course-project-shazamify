@@ -4,6 +4,6 @@ import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel
 
 public interface UserAvatarMngInputBoundary {
 
-    UserAvatarMngViewModel verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel);
+    void verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel);
 
 }

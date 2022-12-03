@@ -5,19 +5,23 @@ import java.io.File;
 /***
  * The Song entity class responsible for holding a name, id, and duration.
  */
-public class Song implements Record {
+//TODO: does this implement record?
+public class Song{
     private String name;
     private String id;
     private int duration;
 //    TODO add audiofilePath attribute
     private String filePath;
 
+    /***
+     * Empty constructor necessary for MongoDB encoding
+     */
     public Song() {
 
     }
 
     /***
-     * Default constructor
+     *
      * @param name - The song name
      * @param id - The identifier key for the song
      * @param duration - The duration of the song in seconds.
