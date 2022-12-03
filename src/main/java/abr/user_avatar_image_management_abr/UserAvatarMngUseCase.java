@@ -19,7 +19,7 @@ public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
         this.outputBoundary = outputBoundary;
     }
     @Override
-    public UserAvatarMngViewModel verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel) {
+    public void verifyAndChangeAvatar(UserAvatarMngRequestModel requestModel) {
         // Initialize the data from pacakage
         String userName = requestModel.userName;
         String directory = requestModel.directory;
@@ -42,7 +42,7 @@ public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
         }
 
         // call output Boundary
-        return outputBoundary.packageAndPresent(responseModel);
+        outputBoundary.packageAndPresent(responseModel);
     }
 
     private UserAvatar createUserAvatar(String directory) throws IOException {

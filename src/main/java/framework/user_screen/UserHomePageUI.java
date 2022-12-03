@@ -7,13 +7,13 @@ import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import ds.user_avatar_image_management_ds.UserAvatarFileGateway;
 import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
-import entities.user_entities.User;
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegRequestModel;
 import abr.user_reg_abr.UserRegUseCase;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
 import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
 
@@ -29,8 +29,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserHomePageUI extends JPanel {
-    User user;
+    UserStatusViewModel userStatusViewModel;
     UserAvatarMngController controller;
+    UserAvatarMngViewModel userAvatarMngViewModel;
     final JFrame frame = new JFrame();
     JButton avatarImageButton, changeAccountUserName, changeAccountPassword;
     JLabel userName, creationTimeLabel, passwordLabel;
@@ -40,9 +41,10 @@ public class UserHomePageUI extends JPanel {
     int HEIGHT = 100;
 
 
-    public UserHomePageUI(User user, UserAvatarMngController controller){
-        this.user = user;
+    public UserHomePageUI(UserAvatarMngController controller, UserStatusViewModel userStatusViewModel, UserAvatarMngViewModel avatarMngViewModel){
+        this.userStatusViewModel = userStatusViewModel;
         this.controller = controller;
+        this.userAvatarMngViewModel = avatarMngViewModel;
 
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -88,17 +90,9 @@ public class UserHomePageUI extends JPanel {
         int chooseIndicator = fileChooser.showOpenDialog(null);
 
         if (chooseIndicator == JFileChooser.APPROVE_OPTION) {
-            UserAvatarMngViewModel viewModel =
-                    controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), user.getUserName());
+            controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUser().getUserName());
 
-            User modifiedUser = viewModel.getUser();
-            boolean isValid = viewModel.isDirectoryValid();
-
-            // If we change the avatar successfully, display avatar
-            if (isValid){
-                this.user = modifiedUser;
-                avatarImageButton.setIcon(new ImageIcon(user.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
-            }
+            boolean isValid = userAvatarMngViewModel.isDirectoryValid();
 
         }
     }
@@ -123,36 +117,40 @@ public class UserHomePageUI extends JPanel {
     }
 
     private void createScreenComponents() {
-        avatarImageButton = new JButton(new ImageIcon(user.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
-        userName = new JLabel(user.getUserName());
+        avatarImageButton = new JButton(new ImageIcon(userStatusViewModel.getUser().getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
+        userName = new JLabel(userStatusViewModel.getUser().getUserName());
         userName.setFont(new Font("Serif", Font.PLAIN, 30));
-        creationTimeLabel = new JLabel("Account creation time is: " + user.getAccountCreationTime());
-        passwordLabel = new JLabel("Password is:" + user.getPassword());
+        creationTimeLabel = new JLabel("Account creation time is: " + userStatusViewModel.getUser().getAccountCreationTime());
+        passwordLabel = new JLabel("Password is:" + userStatusViewModel.getUser().getPassword());
         changeAccountPassword = new JButton("change password");
         changeAccountUserName = new JButton("change username");
     }
 
     public static void main(String[] args) {
         // Initialize components for avatar
-        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter();
+        UserAvatarMngViewModel avatarMngViewModel= new UserAvatarMngViewModel();
+        UserStatusViewModel statusViewModel = new UserStatusViewModel();
+        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter(avatarMngViewModel, statusViewModel);
         UserAvatarDatabaseGateway userAvatarDatabaseGateway = new UserAvatarFileGateway();
         UserAvatarMngInputBoundary userAvatarMngInputBoundary = new UserAvatarMngUseCase(userAvatarDatabaseGateway, userAvatarMngOutputBoundary);
         UserAvatarMngController userAvatarMngController= new UserAvatarMngController(userAvatarMngInputBoundary);
 
         // Initialize components for register
+        UserRegViewModel regViewModel = new UserRegViewModel();
         UserRegisterDataBaseGateway registerDataBaseGateway = new UserRegisterFileGateway();
         registerDataBaseGateway.clearDatabase();
-        UserRegOutputBoundary boundary = new UserRegPresenter();
+        UserRegOutputBoundary boundary = new UserRegPresenter(regViewModel);
         UserRegUseCase userRegUseCase = new UserRegUseCase(boundary, registerDataBaseGateway);
         Map<String, String> securityQuestionMap= new HashMap<>();
         securityQuestionMap.put("1","2");
 
         // Register a sample User
         UserRegRequestModel requestModel = new UserRegRequestModel("111","222","111",securityQuestionMap);
-        UserRegViewModel viewModel = userRegUseCase.register(requestModel);
+        userRegUseCase.register(requestModel);
 
         // Set ip UI
-        User user = userAvatarDatabaseGateway.getUser("222");
-        UserHomePageUI ui = new UserHomePageUI(user, userAvatarMngController);
+//        User user = userAvatarDatabaseGateway.getUser("222");
+//
+//        UserHomePageUI ui = new UserHomePageUI(user, userAvatarMngController);
     }
 }

@@ -4,12 +4,15 @@ import abr.user_login_abr.UserLogOutputBoundary;
 import abr.user_login_abr.UserLogResponseModel;
 
 public class UserLogPresenter implements UserLogOutputBoundary {
+    UserLogViewModel viewModel;
+
+    public UserLogPresenter(UserLogViewModel viewModel){
+        this.viewModel = viewModel;
+    }
 
     @Override
-    public UserLogViewModel packageAndPresent(UserLogResponseModel responseModel) {
-        UserLogViewModel viewModel = new UserLogViewModel();
-        viewModel.setValidUserName(responseModel.isValidUserName());
-        viewModel.setUserPasswordValid(responseModel.isUserPasswordValid());
-        return viewModel;
+    public void packageAndPresent(UserLogResponseModel responseModel) {
+        this.viewModel.setValidUserName(responseModel.isValidUserName());
+        this.viewModel.setUserPasswordValid(responseModel.isUserPasswordValid());
     }
 }

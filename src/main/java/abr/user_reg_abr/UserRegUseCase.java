@@ -21,17 +21,17 @@ public class UserRegUseCase implements UserRegInputBoundary{
     }
 
     @Override
-    public UserRegViewModel register(UserRegRequestModel requestModel){
+    public void register(UserRegRequestModel requestModel){
         UserRegResponseModel emptyResponseModel = new UserRegResponseModel();
         UserRegResponseModel processedResponseModel = userRegHelper.register(requestModel,
                 emptyResponseModel, dataBaseGateway);
-        return outputBoundary.packageAndPresent(processedResponseModel);
+        outputBoundary.packageAndPresent(processedResponseModel);
     }
 
     @Override
-    public UserRegViewModel giveRecommendPassword() {
+    public void giveRecommendPassword() {
         UserRegResponseModel emptyResponseModel = new UserRegResponseModel();
         UserRegResponseModel responseModel = userRecommendPasswordHelper.giveRandomPassword(emptyResponseModel);
-        return outputBoundary.packageAndPresent(responseModel);
+        outputBoundary.packageAndPresent(responseModel);
     }
 }

@@ -24,9 +24,11 @@ public class UserRegUI extends JPanel {
     JComboBox<String> securityQuestions;
 
     UserRegController controller;
+    UserRegViewModel regViewModel;
 
-    public UserRegUI(UserRegController controller){
+    public UserRegUI(UserRegController controller, UserRegViewModel regViewModel){
         this.controller = controller;
+        this.regViewModel = regViewModel;
 
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -59,8 +61,8 @@ public class UserRegUI extends JPanel {
      * Event triggered when user clicked on recommend password
      */
     private void notifyListenerOnRecommendPassword() {
-        UserRegViewModel viewModel = controller.giveRecommendPassword();
-        String recommendPassword = viewModel.getRecommendPassword();
+        controller.giveRecommendPassword();
+        String recommendPassword = regViewModel.getRecommendPassword();
         userPassWordField.setText(recommendPassword);
         userRePassWordField.setText(recommendPassword);
         JOptionPane.showMessageDialog(this, recommendPassword);
@@ -76,13 +78,13 @@ public class UserRegUI extends JPanel {
         Map<String, String> securityQuestionMap = new HashMap<>();
         securityQuestionMap.put((String) securityQuestions.getSelectedItem(), securityQuestionField.getText());
 
-        UserRegViewModel viewModel = controller.register(name, password, rePassword, securityQuestionMap);
-        if (viewModel.isPasswordValid() & viewModel.isUsernameValid() & viewModel.isSecurityQuestionValidity()) {
+        controller.register(name, password, rePassword, securityQuestionMap);
+        if (regViewModel.isPasswordValid() & regViewModel.isUsernameValid() & regViewModel.isSecurityQuestionValidity()) {
             String registerSuccessMessage = "register success\n password: %1$s.\n username: %2$s.\n security questions: %3$s\n";
-            registerSuccessMessage = String.format(registerSuccessMessage, viewModel.isPasswordValid(), viewModel.isUsernameValid(), viewModel.isSecurityQuestionValidity());
+            registerSuccessMessage = String.format(registerSuccessMessage, regViewModel.isPasswordValid(), regViewModel.isUsernameValid(), regViewModel.isSecurityQuestionValidity());
             JOptionPane.showMessageDialog(this, registerSuccessMessage);
         } else {String registerFailureMessage = "register failed\n password: %1$s.\n username: %2$s.\n security questions: %3$s\n";
-            registerFailureMessage = String.format(registerFailureMessage, viewModel.isPasswordValid(), viewModel.isUsernameValid(), viewModel.isSecurityQuestionValidity());
+            registerFailureMessage = String.format(registerFailureMessage, regViewModel.isPasswordValid(), regViewModel.isUsernameValid(), regViewModel.isSecurityQuestionValidity());
             JOptionPane.showMessageDialog(this, registerFailureMessage);
     }}
 
@@ -143,12 +145,13 @@ public class UserRegUI extends JPanel {
      * Temporary test method
      */
     public static void main(String[] args) {
+        UserRegViewModel regViewModel = new UserRegViewModel();
         UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
-        UserRegOutputBoundary presenter = new UserRegPresenter();
+        UserRegOutputBoundary presenter = new UserRegPresenter(regViewModel);
         UserRegInputBoundary useCase = new UserRegUseCase(presenter, dataBaseGateway);
         UserRegController controller = new UserRegController(useCase);
 
-
-        UserRegUI registerScreen = new UserRegUI(controller);
+        UserRegViewModel userRegViewModel = new UserRegViewModel();
+        UserRegUI registerScreen = new UserRegUI(controller, userRegViewModel);
     }
 }

@@ -10,9 +10,9 @@ public class UserLogController {
         this.inputBoundary = inputBoundary;
     }
 
-    public UserLogViewModel login(String userName, String passWord){
+    public void login(String userName, String passWord){
         UserLogRequestModel requestModel = new UserLogRequestModel(userName,passWord);
 
-        return inputBoundary.loginUser(requestModel);
+        inputBoundary.loginUser(requestModel);
     }
 }

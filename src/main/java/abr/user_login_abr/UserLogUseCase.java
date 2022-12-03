@@ -1,7 +1,5 @@
 package abr.user_login_abr;
 
-import interface_adaptors.user_login_ia.UserLogViewModel;
-
 public class UserLogUseCase implements UserLogInputBoundary{
     UserLogOutputBoundary outputBoundary;
     UserLoginDataBaseGateway dataBaseGateway;
@@ -12,7 +10,7 @@ public class UserLogUseCase implements UserLogInputBoundary{
     }
 
     @Override
-    public UserLogViewModel loginUser(UserLogRequestModel requestModel) {
+    public void loginUser(UserLogRequestModel requestModel) {
         String userName = requestModel.getUsername();
         String passWord = requestModel.getPassword();
 
@@ -24,6 +22,6 @@ public class UserLogUseCase implements UserLogInputBoundary{
         } else {
             ResponseModel.setUserPasswordValid(false);
         }
-        return outputBoundary.packageAndPresent(ResponseModel);
+        outputBoundary.packageAndPresent(ResponseModel);
     }
 }
