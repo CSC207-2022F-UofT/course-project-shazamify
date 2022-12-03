@@ -1,8 +1,6 @@
 package framework.items;
 
-
-import entities.playlist_entities.Playlist;
-import interface_adaptors.MediaPlaylistController;
+import entities.user_entities.User;
 import interface_adaptors.SearchResultsViewModel;
 
 import javax.imageio.ImageIO;
@@ -12,35 +10,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 import static javax.swing.BorderFactory.createMatteBorder;
 
-public class PlaylistCollectionItem extends JPanel{
+public class FriendsCollectionItem extends JPanel{
 
     private int index;
-    private Playlist playlist;
+    private User friend;
 
-    public PlaylistCollectionItem(int index, Playlist playlist, int width, int height) {
+    public FriendsCollectionItem(int index, User friend, int width, int height) {
 
         this.index = index;
-        this.playlist = playlist;
-
+        this.friend = friend;
         this.setMaximumSize(new Dimension(width, height));
-        //this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
         this.setBackground(Color.DARK_GRAY);
 
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
+
+        File defaultd = new File("C:\\Users\\alexs\\Documents\\cs\\207\\ui\\test\\profile.png");
         try {
-            Image cover = ImageIO.read(playlist.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
+            Image defaultprofile = ImageIO.read(defaultd).getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+            this.add(renderImage(new ImageIcon(defaultprofile)));
         }catch(java.io.IOException e){}
 
-
-        this.add(renderLabel(playlist.getName()));
-
+        this.add(renderLabel(friend.getUserName()));
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
         this.setBorder(blackline);
@@ -49,13 +46,14 @@ public class PlaylistCollectionItem extends JPanel{
     public int getIndex(){
         return this.index;
     }
-    private void handleClick(JButton button, ActionEvent e){
-        // System.out.println("Item " + index + " - PlaylistCollection Clicked");
+    private void handlePlayButtonAction(JButton button, ActionEvent e){
+        // System.out.println("Item " + index + " - Play Button Clicked");
+
     }
     private JLabel renderLabel(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font(label.getName(), Font.PLAIN, 16));
-        //label.setBackground(Color.DARK_GRAY);
+        //label.setBackground(Color.WHITE);
         label.setForeground(Color.WHITE);
         label.setOpaque(false);
         return label;
@@ -64,7 +62,6 @@ public class PlaylistCollectionItem extends JPanel{
     private JLabel renderImage(ImageIcon cover){
         JLabel coverlabel = new JLabel(cover);
         coverlabel.setOpaque(false);
-        //coverlabel.setMaximumSize(new Dimension(25, 50));
         return coverlabel;
     }
 
@@ -82,7 +79,6 @@ public class PlaylistCollectionItem extends JPanel{
             if(source instanceof JPanel){
                 JPanel panelPressed = (JPanel) source;
                 panelPressed.setBackground(Color.blue);
-                MediaPlaylistController.displayPlaylist(playlist);
                 RecordViewModel.getInstance().getView().setVisible(true);
                 SearchResultsViewModel.getInstance().getView().setVisible(false);
             }
@@ -114,5 +110,5 @@ public class PlaylistCollectionItem extends JPanel{
         public void mouseReleased(MouseEvent arg0) {}
 
     }
-
+    
 }

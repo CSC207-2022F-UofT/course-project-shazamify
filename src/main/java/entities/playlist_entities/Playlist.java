@@ -2,6 +2,8 @@ package entities.playlist_entities;
 
 import entities.Record;
 import entities.Song;
+
+import java.io.File;
 import java.util.ArrayList;
 
 ;
@@ -57,7 +59,7 @@ public class Playlist implements Record {
         return this.getId() + " duration: " + this.getDuration();
     }
 
-    public String getOwner(){return this.owner;}
+    public String getArtist(){return this.owner;}
     public String getDescription(){return this.description;}
     public String setDescription(String description){
         this.description = description;
@@ -70,14 +72,6 @@ public class Playlist implements Record {
         this.privacy = privacy;
         return this.getId() + " privacy: " + this.getPrivacy();
     }
-    public int getPic() {return this.pic;}
-    public ArrayList<Song> getContents() {return this.contents;}
-
-    public ArrayList<String> getStringContents(){
-        ArrayList<String> listOfSongs = new ArrayList<>();
-        for (Song song : this.getContents()){
-            listOfSongs.add(song.getName());
-        }
-        return listOfSongs;
-    }
+    public File getCover() {return null;}
+    public ArrayList<Song> getSongs() {return this.contents;}
 }
