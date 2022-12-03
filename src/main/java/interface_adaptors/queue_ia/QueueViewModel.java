@@ -1,19 +1,60 @@
 package interface_adaptors.queue_ia;
 
-import java.util.List;
+import entities.playlist_entities.Playlist;
+import framework.items.PlaylistCollectionItem;
+import framework.items.QueueCollectionItem;
+import interface_adaptors.AbstractViewModel;
 
-/***
- * The queue view model is responsible for taking in the packaged data structure from the view model and displaying
- * the queue (as a list of songs) on the UI
- */
-public class QueueViewModel {
-    private List<String> songList;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
-    public void setSongList(List<String> songList) {
-        this.songList = songList;
+public class QueueViewModel extends AbstractViewModel<ArrayList<String>> {
+
+    private static QueueViewModel instance;
+    private ArrayList<String> song_ids;
+
+    /**
+     * Gets instance of singleton
+     * @return instance
+     */
+    public static QueueViewModel getInstance() {
+        if (instance == null) {instance = new QueueViewModel();}
+        return instance;
     }
 
-    public List<String> getSongList() {
-        return songList;
+    /**
+     * Updates view
+     * @param song_ids
+     */
+    public void updateView(ArrayList<String> song_ids) {
+        // Update data
+        this.song_ids = song_ids;
+        // Initialize view
+        initView();
+        // Render view
+        renderView();
     }
+
+    /**
+     * Renders view
+     */
+    private void renderView() {
+        // Create list panel
+        JPanel list = new JPanel();
+        list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
+        list.setBackground(Color.DARK_GRAY);
+        // Populate list panel with items
+        for (int i = 0; i < song_ids.size(); i++) {
+            list.add(new QueueCollectionItem(i, song_ids.get(i), width, 60));
+        }
+        // Create scroll panel
+        JScrollPane scrollPanel = new JScrollPane(list);
+        scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setPreferredSize(new Dimension(width, height));
+        // Add panel to view
+        view.add(scrollPanel, BorderLayout.CENTER);
+    }
+
 }
