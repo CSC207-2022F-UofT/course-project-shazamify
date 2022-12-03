@@ -3,5 +3,6 @@
 build
 
 .gradle
+.idea
 
 UserDatabase.ser

@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /***
  * The Song entity class responsible for holding a name, id, and duration.
@@ -28,6 +29,7 @@ public class Song implements Record {
         this.duration = duration;
     }
 
+
     public String getName() {
         return this.name;
     }
@@ -38,6 +40,16 @@ public class Song implements Record {
 
     public int getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public File getCover() {
+        return null;
+    }
+
+    @Override
+    public String getArtist() {
+        return null;
     }
 
     public void setName(String name) {
@@ -52,7 +64,8 @@ public class Song implements Record {
         this.duration = duration;
     }
 
-    @Override
+    public ArrayList<Song> getSongs(){return null;}
+
     public String toString() {
         return "Song{" +
                 "name='" + name + '\'' +
