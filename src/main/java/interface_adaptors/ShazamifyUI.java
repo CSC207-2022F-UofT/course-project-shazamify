@@ -1,28 +1,23 @@
 package interface_adaptors;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
+import abr.user_interact_abr.manage_friend_request_abr.*;
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
+import abr.user_interact_abr.show_friend_list_abr.*;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
-import framework.*;
-import framework.buttons.ButtonFriendsCollection;
-import framework.buttons.ButtonPlaylistsCollection;
-import framework.buttons.ButtonViewAccount;
 import interface_adaptors.display_ia.DisplaySearchUseCase;
 import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
+import framework.buttons.*;
+import framework.items.*;
+import interface_adaptors.*;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
-
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+
 
 public class ShazamifyUI extends JFrame {
 
@@ -106,7 +101,7 @@ public class ShazamifyUI extends JFrame {
         ButtonPlaylistsCollection btnPlaylists = new ButtonPlaylistsCollection();
         //!!!!!!!!!!!!!!!!!select which button to display for testing:
         //initFriendListButton(overheadButtonsPanel);
-        ButtonFriendsCollection btnFriends = new ButtonFriendsCollectionAlt();
+        ButtonFriendsCollectionAlt btnFriends = new ButtonFriendsCollectionAlt();
 
         // Add buttons to the buttons panel
         overheadButtonsPanel.add(btnPlaylists);
