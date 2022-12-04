@@ -3,7 +3,7 @@ package framework.user_screen;
 
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
-import interface_adaptors.user_change_password_ia.UserChangePasswordController;
+import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
@@ -24,7 +24,7 @@ import java.io.File;
 public class UserHomePageUI extends JPanel implements UserStatusObserver {
     UserStatusViewModel userStatusViewModel;
     UserAvatarMngController userAvatarMngController;
-    UserChangePasswordController userChangePasswordController;
+    UserCPController userCPController;
     UserAvatarMngViewModel userAvatarMngViewModel;
     final JFrame frame = new JFrame();
     JButton avatarImageButton, changeAccountUserName, changeAccountPassword;
@@ -35,12 +35,12 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     int HEIGHT = 100;
 
 
-    public UserHomePageUI(UserAvatarMngController avatarMngController, UserChangePasswordController changePasswordController,
+    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController,
                           UserStatusViewModel userStatusViewModel, UserAvatarMngViewModel avatarMngViewModel){
         this.userStatusViewModel = userStatusViewModel;
         this.userAvatarMngController = avatarMngController;
         this.userAvatarMngViewModel = avatarMngViewModel;
-        this.userChangePasswordController = changePasswordController;
+        this.userCPController = changePasswordController;
         // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
@@ -69,7 +69,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     }
 
     private void notifyListenerOnChangePasswordClicked() {
-        new UserChangePasswordUI(userStatusViewModel, userChangePasswordController, userAvatarMngController, userAvatarMngViewModel);
+        new UserChangePasswordUI(userStatusViewModel, userCPController, userAvatarMngController, userAvatarMngViewModel);
         frame.dispose();
     }
 

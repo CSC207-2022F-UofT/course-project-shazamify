@@ -1,6 +1,6 @@
 package abr.user_change_password_abr;
 
-public class UserChangePasswordRequestModel {
+public class UserCPRequestModel {
     private String userName;
     private String password;
 

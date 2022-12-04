@@ -1,13 +1,13 @@
 package ds.user_change_password_ds;
 
-import abr.user_change_password_abr.UserChangePasswordDatabaseGateway;
+import abr.user_change_password_abr.UserCPDatabaseGateway;
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
 import entities.user_entities.User;
 
 import java.util.Map;
 
-public class UserChangePasswordFileGateway implements UserChangePasswordDatabaseGateway {
+public class UserCPFileGateway implements UserCPDatabaseGateway {
     @Override
     public void changePassword(String userName, String passWord) {
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");

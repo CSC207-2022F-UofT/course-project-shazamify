@@ -1,7 +1,7 @@
 package framework.user_screen;
 
 
-import interface_adaptors.user_change_password_ia.UserChangePasswordController;
+import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_interact_ia.TempFriendListObservable;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogViewModel;
@@ -23,13 +23,13 @@ public class UserLogUI extends JPanel {
     UserLogController controller;
     UserLogViewModel viewModel;
     UserStatusViewModel userStatusViewModel;
-    UserChangePasswordController userChangePasswordController;
+    UserCPController userCPController;
 
     public UserLogUI(UserLogController controller, UserLogViewModel viewModel,
-                     UserStatusViewModel userStatusViewModel, UserChangePasswordController userChangePasswordController) {
+                     UserStatusViewModel userStatusViewModel, UserCPController userCPController) {
         this.controller = controller;
         this.viewModel = viewModel;
-        this.userChangePasswordController = userChangePasswordController;
+        this.userCPController = userCPController;
         this.userStatusViewModel = userStatusViewModel;
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -64,7 +64,7 @@ public class UserLogUI extends JPanel {
     }
 
     private void notifyListenerOnForgetPasswordPerformed() {
-        new UserForgetPasswordUI(userStatusViewModel, userChangePasswordController, controller, viewModel);
+        new UserForgetPasswordUI(userStatusViewModel, userCPController, controller, viewModel);
         frame.dispose();
     }
 

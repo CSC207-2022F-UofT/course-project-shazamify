@@ -1,5 +1,5 @@
 package abr.user_change_password_abr;
 
-public interface UserChangePasswordOutputBoundary {
+public interface UserCPOutputBoundary {
     void packageAndPresent(String passWord);
 }

@@ -1,6 +1,6 @@
 package framework.user_screen;
 
-import interface_adaptors.user_change_password_ia.UserChangePasswordController;
+import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class UserForgetPasswordUI extends JPanel{
     UserStatusViewModel userStatusViewModel;
-    UserChangePasswordController changePasswordController;
+    UserCPController changePasswordController;
     UserLogController userLogController;
     UserLogViewModel userLogViewModel;
     String securityQuestion;
@@ -22,7 +22,7 @@ public class UserForgetPasswordUI extends JPanel{
     JTextField securityQuestionAnswerField;
     JButton resetPassword;
 
-    public UserForgetPasswordUI(UserStatusViewModel userStatusViewModel, UserChangePasswordController changePasswordController,
+    public UserForgetPasswordUI(UserStatusViewModel userStatusViewModel, UserCPController changePasswordController,
                                 UserLogController userLogController, UserLogViewModel userLogViewModel){
         this.userStatusViewModel = userStatusViewModel;
         this.changePasswordController = changePasswordController;

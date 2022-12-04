@@ -2,7 +2,7 @@ package framework.user_screen;
 
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
-import interface_adaptors.user_change_password_ia.UserChangePasswordController;
+import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class UserChangePasswordUI extends JPanel{
     UserStatusViewModel userStatusViewModel;
-    UserChangePasswordController controller;
+    UserCPController controller;
     UserAvatarMngController userAvatarMngController;
     UserAvatarMngViewModel userAvatarMngViewModel;
     JFrame frame = new JFrame();
@@ -19,7 +19,7 @@ public class UserChangePasswordUI extends JPanel{
     JLabel newPasswordLabel, passWordLabel;
     JButton resetPassword;
 
-    public UserChangePasswordUI(UserStatusViewModel userStatusViewModel, UserChangePasswordController controller,
+    public UserChangePasswordUI(UserStatusViewModel userStatusViewModel, UserCPController controller,
                                 UserAvatarMngController userAvatarMngController, UserAvatarMngViewModel avatarMngViewModel){
         this.userStatusViewModel = userStatusViewModel;
         this.controller = controller;
