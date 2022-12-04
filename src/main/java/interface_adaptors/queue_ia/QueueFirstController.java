@@ -1,6 +1,9 @@
 package interface_adaptors.queue_ia;
 
 
+import abr.queue_abr.queue.QueueFirstInputBoundary;
+import abr.queue_abr.queue.QueueFirstRequestModel;
+
 import java.util.*;
 
 /***
@@ -16,6 +19,6 @@ public class QueueFirstController {
     public void retrieve() {
         QueueFirstRequestModel firstRequestModel = new QueueFirstRequestModel();
 
-        firstInputBoundary.get(firstRequestModel);
+        firstInputBoundary.getFirst(firstRequestModel);
     }
 }
