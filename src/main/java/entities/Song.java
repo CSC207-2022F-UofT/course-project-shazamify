@@ -69,7 +69,6 @@ public class Song{
     }
 
     public ArrayList<Song> getSongs(){return null;}
-
 //    @Override
 //    public Object setSongs(ArrayList<Song> songs) {
 //        return null;
