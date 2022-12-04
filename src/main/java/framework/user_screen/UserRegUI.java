@@ -33,6 +33,7 @@ public class UserRegUI extends JPanel {
 
         // Set frame size
         frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

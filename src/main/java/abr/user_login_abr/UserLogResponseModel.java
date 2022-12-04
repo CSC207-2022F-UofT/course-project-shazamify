@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserLogResponseModel {
     private boolean userNameValid;
@@ -14,7 +15,7 @@ public class UserLogResponseModel {
     private LocalDateTime accountCreateTime;
     private HashMap<String, String> friendList;
     private List<String> playListIDs;
-
+    private Map<String, String> securityQuestions;
 
 
 
@@ -81,5 +82,13 @@ public class UserLogResponseModel {
 
     public void setPlayListIDs(List<String> playListIDs) {
         this.playListIDs = playListIDs;
+    }
+
+    public void setSecurityQuestions(Map<String, String> securityQuestions) {
+        this.securityQuestions = securityQuestions;
+    }
+
+    public Map<String, String> getSecurityQuestions() {
+        return securityQuestions;
     }
 }

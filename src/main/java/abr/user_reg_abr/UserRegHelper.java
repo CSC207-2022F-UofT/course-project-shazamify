@@ -45,7 +45,7 @@ public class UserRegHelper {
     }
 
     private UserSecurityQuestionPackage packageSecurityQuestions(Map<String, String> securityQuestionMap) {
-        return null;
+        return new UserSecurityQuestionPackage(securityQuestionMap);
     }
 
     /**

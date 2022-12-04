@@ -27,6 +27,7 @@ public class UserLogPresenter implements UserLogOutputBoundary {
             statusViewModel.setUserAvatar(responseModel.getUserAvatar());
             statusViewModel.setAccountCreateTime(responseModel.getAccountCreateTime());
             statusViewModel.setPlayListIds(responseModel.getPlayListIDs());
+            statusViewModel.setSecurityQuestions(responseModel.getSecurityQuestions());
             statusViewModel.userUpdated();
         }
     }

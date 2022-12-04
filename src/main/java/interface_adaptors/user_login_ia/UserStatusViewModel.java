@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserStatusViewModel {
     String userName;
@@ -16,6 +17,7 @@ public class UserStatusViewModel {
     // This is A list of PlaylistIds(Strings) !! Not the Playlist entities itself !!
     List<String> playListIds = new ArrayList<>();
     List<UserStatusObserver> userStatusObservers = new ArrayList<>();
+    Map<String, String> securityQuestions;
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -62,6 +64,13 @@ public class UserStatusViewModel {
 
     public List<String> getPlayListIds() {
         return playListIds;
+    }
+
+    public Map<String, String> getSecurityQuestions() {
+        return securityQuestions;
+    }
+    public void setSecurityQuestions(Map<String, String> securityQuestions) {
+        this.securityQuestions = securityQuestions;
     }
 
     public void addUserStatusObserver(UserStatusObserver userStatusObserver){
