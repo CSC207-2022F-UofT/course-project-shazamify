@@ -37,7 +37,6 @@ public class UserRegTestingTools {
         UserRegController userRegController = initializeTestEnvironment(userRegViewModel);
         Random random = new Random();
 
-
         String userName = String.valueOf(random.nextInt(1000000000));
         String passWord = String.valueOf(random.nextInt(1000000000));
 
