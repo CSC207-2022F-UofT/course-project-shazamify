@@ -1,21 +1,19 @@
 package abr.queue_abr.queue;
 
+//TODO javadocs
 /***
  * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
  * response model containing the new and updated queue list.
  */
-public class QueueUseCase implements QueueInputBoundary{
+public class QueueUUseCase implements QueueUInputBoundary {
 
-    private final QueueHelper queueHelper = new QueueHelper();
-    private final QueueOutputBoundary outputBoundary;
+    private final QueueUHelper queueUHelper = new QueueUHelper();
 
     /***
      * The constructor consists of an output boundary because it needs to send data back up through an interface,
      * with the present method helping to draw that connection without violating Clean Architecture dependency rules
-     * @param outputBoundary - The output boundary that the presenter will use to package and present data.
      */
-    public QueueUseCase(QueueOutputBoundary outputBoundary) {
-        this.outputBoundary = outputBoundary;
+    public QueueUUseCase() {
     }
 
     /***
@@ -25,10 +23,7 @@ public class QueueUseCase implements QueueInputBoundary{
      *                     the output boundary in preparation for presenting.
      */
     @Override
-    public void update(QueueRequestModel requestModel) {
-        QueueResponseModel responseModel = new QueueResponseModel();
-        QueueResponseModel updatedResponseModel = queueHelper.update(requestModel, responseModel);
-
-        outputBoundary.present(updatedResponseModel);
+    public void update(QueueURequestModel requestModel) {
+        queueUHelper.update(requestModel);
     }
 }
