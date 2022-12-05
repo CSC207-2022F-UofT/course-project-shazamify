@@ -1,10 +1,10 @@
 package framework.queue_screen;
 
-import abr.queue_abr.queue.QueueInputBoundary;
-import abr.queue_abr.queue.QueueOutputBoundary;
-import abr.queue_abr.queue.QueueUseCase;
-import interface_adaptors.queue_ia.QueueController;
-import interface_adaptors.queue_ia.QueuePresenter;
+import abr.queue_abr.queue.QueueUInputBoundary;
+import abr.queue_abr.queue.QueueUOutputBoundary;
+import abr.queue_abr.queue.QueueUUseCase;
+import interface_adaptors.queue_ia.QueueUController;
+import interface_adaptors.queue_ia.QueueUPresenter;
 import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.swing.*;
@@ -12,16 +12,16 @@ import javax.swing.*;
 public class QueueManagerUI {
 
     final JFrame queueFrame = new JFrame();
-    QueueController controller;
-    public QueueManagerUI(QueueController controller) {
+    QueueUController controller;
+    public QueueManagerUI(QueueUController controller) {
         this.controller = controller;
 
     }
     public static void main(String [] args) {
         QueueViewModel queueViewModel = new QueueViewModel();
-        QueueOutputBoundary presenter = new QueuePresenter(queueViewModel);
-        QueueInputBoundary useCase = new QueueUseCase(presenter);
-        QueueController controller = new QueueController(useCase);
+        QueueUOutputBoundary presenter = new QueueUPresenter(queueViewModel);
+        QueueUInputBoundary useCase = new QueueUUseCase(presenter);
+        QueueUController controller = new QueueUController(useCase);
 
         QueueManagerUI queueManagerUI = new QueueManagerUI(controller);
     }

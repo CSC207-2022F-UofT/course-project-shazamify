@@ -5,6 +5,6 @@ package abr.queue_abr.queue;
  * serves as the bridge between the UseCase and the Presenter, without violating any Clean Architecture dependency
  * rules.
  */
-public interface QueueOutputBoundary {
-    void present(QueueResponseModel responseModel);
+public interface QueueUOutputBoundary {
+    void present(QueueUResponseModel uResponseModel);
 }
