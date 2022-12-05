@@ -3,9 +3,9 @@ package framework.items;
 
 import entities.playlist_entities.Playlist;
 import interface_adaptors.MediaPlaylistController;
+import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.SearchResultsViewModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -33,10 +33,11 @@ public class PlaylistCollectionItem extends JPanel{
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
-        try {
-            Image cover = ImageIO.read(playlist.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
-        }catch(java.io.IOException e){}
+//        TODO: resolve after MongoDB serialization
+//        try {
+//            Image cover = ImageIO.read(playlist.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+//            this.add(renderImage(new ImageIcon(cover)));
+//        }catch(java.io.IOException ignored){}
 
 
         this.add(renderLabel(playlist.getName()));

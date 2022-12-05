@@ -1,68 +1,57 @@
 package user_unit_test.login;
 
-import org.junit.Test;
-import abr.user_login_abr.UserLoginDataBaseGateway;
-import ds.user_login_ds.UserLoginFileGateway;
-import abr.user_reg_abr.UserRegisterDataBaseGateway;
-import ds.user_reg_ds.UserRegisterFileGateway;
-import abr.user_login_abr.UserLogOutputBoundary;
-import abr.user_login_abr.UserLogRequestModel;
-import abr.user_login_abr.UserLogUseCase;
-import interface_adaptors.user_login_ia.UserLogPresenter;
 import interface_adaptors.user_login_ia.UserLogViewModel;
-import abr.user_reg_abr.UserRegOutputBoundary;
-import abr.user_reg_abr.UserRegRequestModel;
-import abr.user_reg_abr.UserRegUseCase;
-import interface_adaptors.user_reg_ia.UserRegPresenter;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
+import org.junit.Test;
+import user_unit_test.testing_tools.GenerateTenUsersDatabase;
+import user_unit_test.testing_tools.UserLogTestingTools;
 
-import java.util.HashMap;
-import java.util.Map;
+/**
+@author David Li
+
+ Cover all cases
+ */
 
 public class UserLogUseCaseUnitTest {
-    public UserLogUseCase initialize(){
-        // Initialzie User register part
-        UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
-        dataBaseGateway.clearDatabase();
-        UserRegOutputBoundary boundary = new UserRegPresenter();
-        UserRegUseCase userRegUseCase =  new UserRegUseCase(boundary, dataBaseGateway);
-
-        // Register a sample User
-        Map<String, String> securityQuestionMap= new HashMap<>();
-        securityQuestionMap.put("1","2");
-        UserRegRequestModel requestModel = new UserRegRequestModel("111","222","111",securityQuestionMap);
-        userRegUseCase.register(requestModel);
-
-        // Initialize User Login Part
-        UserLoginDataBaseGateway dataBaseGateway1 = new UserLoginFileGateway();
-        UserLogOutputBoundary boundary1 = new UserLogPresenter();
-        return new UserLogUseCase(boundary1, dataBaseGateway1);
-
-    }
+    // Initialize ViewModel
+    UserLogViewModel userLogViewModel = new UserLogViewModel();
+    UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
 
     @Test
     public void TestCorrectUserNameAndPassword(){
-        UserLogUseCase useCase = initialize();
-        UserLogRequestModel requestModel = new UserLogRequestModel("222", "111");
-        UserLogViewModel pak = useCase.loginUser(requestModel);
-        assert pak.isValidUserName();
-        assert pak.isUserPasswordValid();
+        // Initialize Database
+        GenerateTenUsersDatabase.generateTenUserDatabase();
+
+        // Login the User
+        String userName = "1";
+        String passWord = "1";
+        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        assert userLogViewModel.isValidUserName() && userLogViewModel.isUserPasswordValid();
+        assert userName.equals(userStatusViewModel.getUserName());
     }
 
     @Test
     public void TestWrongPassword(){
-        UserLogUseCase useCase = initialize();
-        UserLogRequestModel requestModel = new UserLogRequestModel("222","222");
-        UserLogViewModel pak = useCase.loginUser(requestModel);
-        assert !pak.isUserPasswordValid();
-        assert pak.isValidUserName();
+        // Initialize Database and ViewModel
+        GenerateTenUsersDatabase.generateTenUserDatabase();
+
+        // Login the User
+        String userName = "1";
+        String passWord = "2";
+        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        assert userLogViewModel.isValidUserName() && !userLogViewModel.isUserPasswordValid();
+
     }
 
     @Test
     public void TestWrongUserName(){
-        UserLogUseCase useCase = initialize();
-        UserLogRequestModel requestModel = new UserLogRequestModel("000","111");
-        UserLogViewModel pak = useCase.loginUser(requestModel);
-        assert !pak.isUserPasswordValid();
-        assert !pak.isValidUserName();
+        // Initialize Database and ViewModel
+        GenerateTenUsersDatabase.generateTenUserDatabase();
+
+        // Login the User
+        String userName = "11";
+        String passWord = "2";
+        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        assert !userLogViewModel.isValidUserName() && !userLogViewModel.isUserPasswordValid();
     }
 }

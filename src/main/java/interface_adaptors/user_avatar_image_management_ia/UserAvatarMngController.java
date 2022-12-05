@@ -10,10 +10,10 @@ public class UserAvatarMngController {
         this.inputBoundary = inputBoundary;
     }
 
-    public UserAvatarMngViewModel verifyAndChangeAvatar(String directory, String userName){
+    public void verifyAndChangeAvatar(String directory, String userName){
         UserAvatarMngRequestModel requestModel = new UserAvatarMngRequestModel();
         requestModel.setDirectory(directory);
         requestModel.setUserName(userName);
-        return inputBoundary.verifyAndChangeAvatar(requestModel);
+        inputBoundary.verifyAndChangeAvatar(requestModel);
     }
 }

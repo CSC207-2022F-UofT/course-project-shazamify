@@ -13,11 +13,10 @@ public class Playlist implements Record {
 
     private String id;
     private int duration;
-    private ArrayList<Song> contents;
+    private ArrayList<String> contents;
     private final String owner;
     private String description;
     private Privacy privacy;
-    private int pic;
 
     /***
      * Default constructor for playlist
@@ -28,11 +27,11 @@ public class Playlist implements Record {
         this.name = "";
         this.id = id;
         this.duration = 0;
-        this.contents = new ArrayList<>();
+        this.contents = new ArrayList<String>();
         this.owner = "";
         this.description = "";
         this.privacy = Privacy.PRIVATE;
-        this.pic = 0; //set to default
+
     }
     //TODO: initialize with default names
     @Override
@@ -73,5 +72,46 @@ public class Playlist implements Record {
         return this.getId() + " privacy: " + this.getPrivacy();
     }
     public File getCover() {return null;}
-    public ArrayList<Song> getSongs() {return this.contents;}
+    public ArrayList<String> getSongs() {return this.contents;}
+    public Object setSongs(ArrayList<String> contents){this.contents = contents;
+        return null;
+    }
+    public boolean reOrderSongs(String songID, int ind){
+        if(this.contents.contains(songID) && ind < this.contents.size()){
+            this.deleteSong(songID);
+            this.addSong(songID, ind);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void deleteSong(String songID){
+        if(this.contents.contains(songID)){
+            this.contents.remove(songID);
+        }
+    }
+
+    public boolean addSong(String songID){
+        if (this.contents.contains(songID)){
+            return false;
+        }
+        else{
+            this.contents.add(songID);
+            return true;
+        }
+    }
+
+    public boolean addSong(String songID, int ind){
+        if(!(this.contents.contains(songID)) && ind < this.contents.size()){
+            this.contents.add(ind, songID);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 }

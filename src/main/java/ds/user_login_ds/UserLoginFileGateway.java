@@ -21,6 +21,11 @@ public class UserLoginFileGateway implements UserLoginDataBaseGateway {
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
         return userMap.containsKey(userName);
     }
+    @Override
+    public User getUser(String userName) {
+        Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
+        return userMap.get(userName);
+    }
 
     @Override
     public int getNumberOfUsers(){
