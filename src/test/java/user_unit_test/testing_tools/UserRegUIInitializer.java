@@ -14,9 +14,9 @@ import interface_adaptors.user_reg_ia.UserRegViewModel;
 This file can initialize a RegisterScreen For Testing.
  */
 public class UserRegUIInitializer {
-    public static void initializeUI(UserRegViewModel regViewModel){
+    public static void initializeUI(){
         // Initialize the User Presenter
-        UserRegPresenter userRegPresenter = new UserRegPresenter(regViewModel);
+        UserRegPresenter userRegPresenter = new UserRegPresenter();
         // Initialize the User Database Gateway
         UserRegisterDataBaseGateway userRegisterDataBaseGateway = new UserRegisterFileGateway();
         // Initialize the User ABR
@@ -24,11 +24,10 @@ public class UserRegUIInitializer {
         // Initialize the User Controller
         UserRegController userRegController = new UserRegController(userRegUseCase);
         // Initialize the User UI.
-        new UserRegUI(userRegController, regViewModel);
+        new UserRegUI(userRegController);
     }
 
     public static void main(String[] args) {
-        UserRegViewModel regViewModel = new UserRegViewModel();
-        UserRegUIInitializer.initializeUI(regViewModel);
+        UserRegUIInitializer.initializeUI();
     }
 }

@@ -35,9 +35,8 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     int HEIGHT = 100;
 
 
-    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController,
-                          UserStatusViewModel userStatusViewModel, UserAvatarMngViewModel avatarMngViewModel){
-        this.userStatusViewModel = userStatusViewModel;
+    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController, UserAvatarMngViewModel avatarMngViewModel){
+        this.userStatusViewModel = UserStatusViewModel.getInstance();
         this.userAvatarMngController = avatarMngController;
         this.userAvatarMngViewModel = avatarMngViewModel;
         this.userCPController = changePasswordController;
@@ -69,7 +68,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     }
 
     private void notifyListenerOnChangePasswordClicked() {
-        new UserChangePasswordUI(userStatusViewModel, userCPController, userAvatarMngController, userAvatarMngViewModel);
+        new UserChangePasswordUI(userStatusViewModel, userCPController, userAvatarMngController);
         frame.dispose();
     }
 
