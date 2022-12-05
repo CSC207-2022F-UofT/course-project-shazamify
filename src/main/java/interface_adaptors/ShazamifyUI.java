@@ -5,6 +5,7 @@ import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.Dele
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.*;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
+import interface_adaptors.display_ia.DisplaySearchUseCase;
 import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
@@ -16,6 +17,7 @@ import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+
 
 public class ShazamifyUI extends JFrame {
 
@@ -40,8 +42,8 @@ public class ShazamifyUI extends JFrame {
 
         //MediaPlaylistController.listSongs();
         PlaylistCollectionController.displayPlaylists(null);
-        //TODO: this does not exist
-        //SearchController.displaySearchBar();
+        DisplaySearchUseCase SearchController;
+        SearchController.displaySearchBar();
     }
 
     private JPanel createContentPanel(int width, int height) {
@@ -97,10 +99,13 @@ public class ShazamifyUI extends JFrame {
 
         // Instantiate buttons
         ButtonPlaylistsCollection btnPlaylists = new ButtonPlaylistsCollection();
-        initFriendListButton(overheadButtonsPanel);
+        //!!!!!!!!!!!!!!!!!select which button to display for testing:
+        //initFriendListButton(overheadButtonsPanel);
+        ButtonFriendsCollectionAlt btnFriends = new ButtonFriendsCollectionAlt();
 
         // Add buttons to the buttons panel
         overheadButtonsPanel.add(btnPlaylists);
+        overheadButtonsPanel.add(btnFriends);
 
         panel.add(overheadButtonsPanel, BorderLayout.NORTH);
 
