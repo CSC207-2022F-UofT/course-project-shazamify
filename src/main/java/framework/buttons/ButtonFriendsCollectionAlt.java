@@ -1,5 +1,7 @@
 package framework.buttons;
 
+import interface_adaptors.FriendsCollectionController;
+import interface_adaptors.FriendsCollectionViewModel;
 import interface_adaptors.PlaylistCollectionViewModel;
 
 import javax.imageio.ImageIO;
