@@ -29,12 +29,3 @@ The DAO design pattern acts as an API for the database and implements CRUD opera
 
 ## Queue Notes
 The song queue entity is a singleton class- there will only ever be one instance of a queue at a time. This design was chosen rather than making the song queue a subclass of a playlist (since both objects contain lists of song objects), because of the vast differences between the two objects (the only common factor within between them is one of their attributes).
-
-
-## User interaction
-### Observer pattern
-- implemented in the interface adaptor layer
-- Observable: the current (login) user's friendList
-- Observer: an interface implemented by all friend manager controllers
-
-When the user's friendList changes in response to actions of accept/ deny a friend request or delete a friend, the controller that's responsible for the action calls the observer interface's setFriendList() method, which calls each of the friend manager controllers to update their local friendList attribute.
