@@ -26,7 +26,6 @@ public class SongDAOImplTest {
         LOGGER.info("Start test");
         Song s = new Song("Song1", "1", 90);
 
-//        TODO: change from hardcoded
         String uri = "mongodb://root:rootpassword@localhost:27017";
 
         DatabaseInitializer.init();

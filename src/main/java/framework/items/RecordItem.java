@@ -25,19 +25,20 @@ public class RecordItem extends JPanel {
         this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
-        try {
-            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
-        }
-        catch(java.io.IOException e)
-        {
-            System.out.println(e);
-        }
+//        TODO: resolve after MongoDB serialization
+//        try {
+//            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
+//            this.add(renderImage(new ImageIcon(cover)));
+//        }
+//        catch(java.io.IOException e)
+//        {
+//            System.out.println(e);
+//        }
 
-        this.add(renderLabel(song.getAlbum()));
-        this.add(renderLabel(song.getArtist()));
-        this.add(renderLabel(song.getTitle()));
-        this.add(renderLabel(song.getYear()));
+//        this.add(renderLabel(song.getAlbum()));
+//        this.add(renderLabel(song.getArtist()));
+        this.add(renderLabel(song.getName()));
+//        this.add(renderLabel(song.getYear()));
 
         this.add(renderInputs());
         //this.add(renderButton());

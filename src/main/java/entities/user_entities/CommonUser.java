@@ -2,6 +2,7 @@ package entities.user_entities;
 
 import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
+import entities.playlist_entities.Playlist;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -9,7 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CommonUser implements User, Serializable {
     private String userName;
@@ -20,6 +23,7 @@ public class CommonUser implements User, Serializable {
     private final LocalDateTime accountCreateTime;
 
     private HashMap<String, String> friendList = new HashMap<>();
+    final private List<String> playlistIDs = new ArrayList<>();
 
     public CommonUser(String userName, String passWord) {
         this.userName = userName;
@@ -87,6 +91,7 @@ public class CommonUser implements User, Serializable {
 
     public BufferedImage getUserAvatar() {
         return userAvatar.getBufferedImage();
+
     }
 
     @Override
@@ -95,12 +100,25 @@ public class CommonUser implements User, Serializable {
     }
 
     @Override
-    public void setUserAvatar(UserAvatar avatar) {
-        this.userAvatar = avatar;
+    public void setUserAvatar(BufferedImage tempUserAvatar) {
+        this.userAvatar = new UserAvatar(tempUserAvatar);
     }
 
     @Override
     public void setPassword(String passWord) {
         this.passWord = passWord;
+    }
+
+    @Override
+    public void addPlaylistID(String playlistID) {
+        this.playlistIDs.add(playlistID);
+    }
+    @Override
+    public void deletePlaylistID(String playlistID) {
+        this.playlistIDs.remove(playlistID);
+    }
+    @Override
+    public List<String> getPlaylistIDs() {
+        return playlistIDs;
     }
 }
