@@ -26,7 +26,7 @@ public class SendFriendRequestViewShowcase {
         // Create the parts to plug into the Use Case
         FriendManagerDsGateway dsGateway = new FriendManagerFileDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
-        UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
+        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
         userStatusViewModel.setUserName("Star");
         userStatusViewModel.updateFriendList(dsGateway.getFriendList("Star"));
 

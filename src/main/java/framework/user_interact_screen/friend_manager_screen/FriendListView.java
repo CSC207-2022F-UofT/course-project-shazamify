@@ -59,7 +59,7 @@ public class FriendListView extends JPanel{
     }
 
     private void checkFriendProfileButtonClicked(String name){
-        FriendProfileView friendProfileView = new FriendProfileView(this, deleteFriendOrDenyFriendRequestController, name);
+        DeleteFriendView deleteFriendView = new DeleteFriendView(this, deleteFriendOrDenyFriendRequestController, name);
     }
 
     private void createPendingFriendProfileButtons(String name){
