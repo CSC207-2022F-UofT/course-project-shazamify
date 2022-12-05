@@ -17,14 +17,14 @@ public class UserLogTestingTools {
     /**
      * Login the user, and mutate viewModels
      */
-    public static void LoginUser(String userName, String passWord, UserLogViewModel userLogViewModel, UserStatusViewModel statusViewModel){
-        UserLogController userLogController = initializeTestingPlatform(userLogViewModel, statusViewModel);
+    public static void LoginUser(String userName, String passWord){
+        UserLogController userLogController = initializeTestingPlatform();
         userLogController.login(userName, passWord);
     }
 
-    private static UserLogController initializeTestingPlatform(UserLogViewModel userLogViewModel, UserStatusViewModel statusViewModel) {
+    private static UserLogController initializeTestingPlatform() {
         // Initialize the User Presenter
-        UserLogPresenter userLogPresenter = new UserLogPresenter(userLogViewModel, statusViewModel);
+        UserLogPresenter userLogPresenter = new UserLogPresenter();
         // Initialize the User Database Gateway
         UserLoginDataBaseGateway userLoginDataBaseGateway = new UserLoginFileGateway();
         // Initialize the User ABR

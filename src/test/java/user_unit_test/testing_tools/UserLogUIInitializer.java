@@ -15,17 +15,15 @@ import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_change_password_ia.UserCPPresenter;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogPresenter;
-import interface_adaptors.user_login_ia.UserLogViewModel;
-import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 /**
  @author David Li
  */
 public class UserLogUIInitializer {
 
-    public static void initializeUI(UserLogViewModel logViewModel, UserStatusViewModel statusViewModel){
+    public static void initializeUI(){
         // Initialize the User Presenter
-        UserLogPresenter userLogPresenter = new UserLogPresenter(logViewModel, statusViewModel);
+        UserLogPresenter userLogPresenter = new UserLogPresenter();
         // Initialize the User Database Gateway
         UserLoginDataBaseGateway userLoginDataBaseGateway = new UserLoginFileGateway();
         // Initialize the User ABR
@@ -34,18 +32,16 @@ public class UserLogUIInitializer {
         UserLogController userLogController = new UserLogController(userLogInputBoundary);
         // Initialize the User UI.
 
-        UserCPOutputBoundary userCPOutputBoundary = new UserCPPresenter(statusViewModel);
+        UserCPOutputBoundary userCPOutputBoundary = new UserCPPresenter();
         UserCPDatabaseGateway userCPDatabaseGateway = new UserCPFileGateway();
         UserCPInputBoundary userCPInputBoundary =
                 new UserCPUseCase(userCPOutputBoundary, userCPDatabaseGateway);
         UserCPController userCPController =  new UserCPController(userCPInputBoundary);
 
-        new UserLogUI(userLogController,logViewModel, statusViewModel, userCPController);
+        new UserLogUI(userLogController, userCPController);
         }
 
     public static void main(String[] args) {
-        UserLogViewModel logViewModel = new UserLogViewModel();
-        UserStatusViewModel statusViewModel = new UserStatusViewModel();
-        UserLogUIInitializer.initializeUI(logViewModel, statusViewModel);
+        UserLogUIInitializer.initializeUI();
     }
 }

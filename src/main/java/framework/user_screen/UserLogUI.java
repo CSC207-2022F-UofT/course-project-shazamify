@@ -25,12 +25,11 @@ public class UserLogUI extends JPanel {
     UserStatusViewModel userStatusViewModel;
     UserCPController userCPController;
 
-    public UserLogUI(UserLogController controller, UserLogViewModel viewModel,
-                     UserStatusViewModel userStatusViewModel, UserCPController userCPController) {
+    public UserLogUI(UserLogController controller, UserCPController userCPController) {
         this.controller = controller;
-        this.viewModel = viewModel;
+        this.viewModel = UserLogViewModel.getInstance();
         this.userCPController = userCPController;
-        this.userStatusViewModel = userStatusViewModel;
+        this.userStatusViewModel = UserStatusViewModel.getInstance();
         // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
@@ -64,8 +63,6 @@ public class UserLogUI extends JPanel {
     }
 
     private void notifyListenerOnForgetPasswordPerformed() {
-        new UserForgetPasswordUI(userStatusViewModel, userCPController, controller, viewModel);
-        frame.dispose();
     }
 
     private void notifyListenerOnRegisterPerformed() {

@@ -1,16 +1,19 @@
 package abr.playlist_abr;
 
+
 import entities.playlist_entities.Playlist;
 import entities.playlist_entities.Privacy;
 
 import java.util.ArrayList;
 
-public class PlaylistResponseModel {
-    public Playlist playlist;
+public class PlaylistResponseModel{
+    private static PlaylistDAOOutput playlistDAOOutput;
+    private Playlist playlist;
 
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
+    public PlaylistResponseModel(String plID) {
+        this.playlist = this.playlistDAOOutput.findById(plID).get();
     }
+
 
     public String getName() {return this.playlist.getName();}
 
