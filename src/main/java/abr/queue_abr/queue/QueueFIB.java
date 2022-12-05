@@ -5,6 +5,6 @@ package abr.queue_abr.queue;
  * in the queue.
  * Draws the connection between the queue first controller and the use case for first song.
  */
-public interface QueueFirstInputBoundary {
-    void getFirst(QueueFirstRequestModel firstRequestModel);
+public interface QueueFIB {
+    void getFirst(QueueFReqM firstRequestModel);
 }

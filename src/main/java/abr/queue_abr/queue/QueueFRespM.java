@@ -3,20 +3,21 @@ package abr.queue_abr.queue;
 import java.util.*;
 
 /***
- * The queue response model is a list of the songs that has been updated and currently inside the queue.
+ * The queue first response model is a list of the songs that has been updated and currently inside the queue.
+ * It also contains the ID of a song that needs to be played immediately.
  */
-public class QueueFirstResponseModel {
+public class QueueFRespM {
     private List<String> songList;
     private String songID;
 
-    public QueueFirstResponseModel(){
+    public QueueFRespM(){
     }
 
     public void setSongList(List<String> songList) {
         this.songList = songList;
     }
 
-    public void setSong(String songID) {
+    public void setSongID(String songID) {
         this.songID = songID;
     }
 

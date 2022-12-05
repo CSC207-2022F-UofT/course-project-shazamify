@@ -1,11 +1,9 @@
 package abr.queue_abr.queue;
 
-import java.util.*;
-
-public class QueueFirstRequestModel {
+public class QueueFReqM {
     /***
      * An empty class intentionally left this way so the Controller does not immediately call on the use case
      */
-    public QueueFirstRequestModel() {
+    public QueueFReqM() {
     }
 }
