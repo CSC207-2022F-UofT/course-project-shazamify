@@ -2,6 +2,7 @@ package interface_adaptors.queue_ia;
 
 import abr.queue_abr.queue.QueueUInputBoundary;
 import abr.queue_abr.queue.QueueURequestModel;
+import abr.queue_abr.queue.QueueUUseCase;
 
 import java.util.*;
 
@@ -10,13 +11,13 @@ import java.util.*;
  * The Queue controller is responsible for passing down the song list of IDs from the UI level to the use case.
  */
 public class QueueUController {
-    static QueueUInputBoundary inputBoundary;
+    QueueUInputBoundary inputBoundary;
 
-    public QueueUController() {
-        inputBoundary = null;
+    public QueueUController(QueueUInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 
-    public static void send(List<String> songList) {
+    public void send(List<String> songList) {
         QueueURequestModel requestModel = new QueueURequestModel(songList);
 
         inputBoundary.update(requestModel);
