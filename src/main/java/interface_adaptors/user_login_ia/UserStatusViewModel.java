@@ -8,16 +8,28 @@ import java.util.List;
 import java.util.Map;
 
 public class UserStatusViewModel {
-    String userName;
-    String passWord;
-    BufferedImage userAvatar;
-    LocalDateTime accountCreateTime;
-    HashMap<String, String> friendList = new HashMap<>();
+    private String userName;
+    private String passWord;
+    private BufferedImage userAvatar;
+    private LocalDateTime accountCreateTime;
+    private HashMap<String, String> friendList = new HashMap<>();
 
     // This is A list of PlaylistIds(Strings) !! Not the Playlist entities itself !!
-    List<String> playListIds = new ArrayList<>();
-    List<UserStatusObserver> userStatusObservers = new ArrayList<>();
-    Map<String, String> securityQuestions;
+    private List<String> playListIds = new ArrayList<>();
+    private final List<UserStatusObserver> userStatusObservers = new ArrayList<>();
+    private Map<String, String> securityQuestions;
+    private static UserStatusViewModel instance;
+
+    public static UserStatusViewModel getInstance() {
+        if(instance == null) {
+            instance = new UserStatusViewModel();
+        }
+        return instance;
+    }
+
+    private UserStatusViewModel(){
+
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;

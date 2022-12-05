@@ -14,8 +14,8 @@ import user_unit_test.testing_tools.UserLogTestingTools;
 
 public class UserLogUseCaseUnitTest {
     // Initialize ViewModel
-    UserLogViewModel userLogViewModel = new UserLogViewModel();
-    UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
+    UserLogViewModel userLogViewModel = UserLogViewModel.getInstance();
+    UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
 
     @Test
     public void TestCorrectUserNameAndPassword(){
@@ -25,7 +25,7 @@ public class UserLogUseCaseUnitTest {
         // Login the User
         String userName = "1";
         String passWord = "1";
-        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        UserLogTestingTools.LoginUser(userName, passWord);
         assert userLogViewModel.isValidUserName() && userLogViewModel.isUserPasswordValid();
         assert userName.equals(userStatusViewModel.getUserName());
     }
@@ -38,7 +38,7 @@ public class UserLogUseCaseUnitTest {
         // Login the User
         String userName = "1";
         String passWord = "2";
-        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        UserLogTestingTools.LoginUser(userName, passWord);
         assert userLogViewModel.isValidUserName() && !userLogViewModel.isUserPasswordValid();
 
     }
@@ -51,7 +51,7 @@ public class UserLogUseCaseUnitTest {
         // Login the User
         String userName = "11";
         String passWord = "2";
-        UserLogTestingTools.LoginUser(userName, passWord, userLogViewModel, userStatusViewModel);
+        UserLogTestingTools.LoginUser(userName, passWord);
         assert !userLogViewModel.isValidUserName() && !userLogViewModel.isUserPasswordValid();
     }
 }

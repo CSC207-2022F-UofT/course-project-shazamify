@@ -15,12 +15,11 @@ public class GenerateTenUsersDatabase {
      */
     public static void generateTenUserDatabase(){
         UserDataBaseEraser.eraseUserDataBase();
-        UserRegViewModel userRegViewModel = new UserRegViewModel();
         for(int i=0; i<10; i++){
             String userName = String.valueOf(i);
             String passWord = String.valueOf(i);
 
-            UserRegTestingTools.registerUser(userName, passWord, passWord, userRegViewModel);
+            UserRegTestingTools.registerUser(userName, passWord, passWord);
         }
     }
 }

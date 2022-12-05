@@ -20,7 +20,7 @@ public class UserChangePasswordUI extends JPanel{
     JButton resetPassword;
 
     public UserChangePasswordUI(UserStatusViewModel userStatusViewModel, UserCPController controller,
-                                UserAvatarMngController userAvatarMngController, UserAvatarMngViewModel avatarMngViewModel){
+                                UserAvatarMngController userAvatarMngController){
         this.userStatusViewModel = userStatusViewModel;
         this.controller = controller;
         frame.setLayout(null);
@@ -57,7 +57,7 @@ public class UserChangePasswordUI extends JPanel{
             // Wait for 1 second
             Thread.sleep(1000);
             // Close the window, and go back to main page
-            new UserHomePageUI(userAvatarMngController, controller, userStatusViewModel, userAvatarMngViewModel);
+            new UserHomePageUI(userAvatarMngController, controller, userAvatarMngViewModel);
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Old Password is not correct");
