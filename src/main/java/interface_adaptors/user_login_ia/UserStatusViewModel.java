@@ -51,7 +51,7 @@ public class UserStatusViewModel {
         return accountCreateTime;
     }
 
-    public void setFriendList(HashMap<String, String> friendList) {
+    public void updateFriendList(HashMap<String, String> friendList) {
         this.friendList = friendList;
     }
     public HashMap<String, String> getFriendList() {
