@@ -1,10 +1,8 @@
 package queue_abr_test;
 
-import abr.queue_abr.queue.QueueInputBoundary;
-import abr.queue_abr.queue.QueueOutputBoundary;
-import abr.queue_abr.queue.QueueUseCase;
-import interface_adaptors.queue_ia.QueueController;
-import interface_adaptors.queue_ia.QueuePresenter;
+import abr.queue_abr.queue.QueueUInputBoundary;
+import abr.queue_abr.queue.QueueUUseCase;
+import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
 
 import java.util.List;
@@ -12,14 +10,14 @@ import java.util.List;
 public class QueueUpdate {
 
     public static void updateQueue(List<String> stringList, QueueViewModel queueViewModel) {
-        QueueController queueController = initializeControllerTest(queueViewModel);
-        queueController.send(stringList);
+        QueueUController queueUController = initializeControllerTest(queueViewModel);
+        queueUController.send(stringList);
     }
 
-    private static QueueController initializeControllerTest(QueueViewModel queueViewModel) {
-        QueueOutputBoundary queuePresenter = new QueuePresenter(queueViewModel);
-        QueueInputBoundary queueInputBoundary = new QueueUseCase(queuePresenter);
+    private static QueueUController initializeControllerTest(QueueViewModel queueViewModel) {
+        QueueUOutputBoundary queuePresenter = new QueueUPresenter(queueViewModel);
+        QueueUInputBoundary queueInputBoundary = new QueueUUseCase(queuePresenter);
 
-        return new QueueController(queueInputBoundary);
+        return new QueueUController(queueInputBoundary);
     }
 }

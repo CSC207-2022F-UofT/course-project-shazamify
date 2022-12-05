@@ -18,7 +18,7 @@ public class RecordItem extends JPanel {
     private int index;
     private Song song;
 
-    public RecordItem(int index, Song song, int width, int height) {
+    public RecordItem(int index, String song, int width, int height) {
 
         this.index = index;
         this.song = song;
