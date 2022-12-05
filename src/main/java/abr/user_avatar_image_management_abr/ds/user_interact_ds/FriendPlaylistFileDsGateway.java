@@ -1,4 +1,4 @@
-package ds.user_interact_ds;
+package abr.user_avatar_image_management_abr.ds.user_interact_ds;
 
 import abr.user_interact_abr.friend_playlist_interact_abr.FriendPlaylistDsGateway;
 import entities.playlist_entities.Playlist;

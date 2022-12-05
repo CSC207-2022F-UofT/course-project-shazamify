@@ -1,7 +1,7 @@
-package ds.user_search_engine;
+package abr.user_avatar_image_management_abr.ds.user_search_engine;
 
 import abr.search_engine_abr.SearchEngineDatabaseGateway;
-import ds.user_database.UserFileReader;
+import abr.user_avatar_image_management_abr.ds.user_database.UserFileReader;
 import entities.user_entities.User;
 
 import java.util.Map;

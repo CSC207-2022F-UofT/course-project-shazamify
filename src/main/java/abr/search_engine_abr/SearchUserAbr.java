@@ -1,6 +1,6 @@
 package abr.search_engine_abr;
 
-import ds.user_search_engine.SearchEngineFileGateway;
+import abr.user_avatar_image_management_abr.ds.user_search_engine.SearchEngineFileGateway;
 import entities.user_entities.User;
 
 import java.util.ArrayList;

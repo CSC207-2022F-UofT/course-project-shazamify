@@ -1,8 +1,8 @@
-package ds.user_avatar_image_management_ds;
+package abr.user_avatar_image_management_abr.ds.user_avatar_image_management_ds;
 
 import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
-import ds.user_database.UserFileReader;
-import ds.user_database.UserFileWriter;
+import abr.user_avatar_image_management_abr.ds.user_database.UserFileReader;
+import abr.user_avatar_image_management_abr.ds.user_database.UserFileWriter;
 import entities.user_entities.User;
 import entities.user_entities.UserAvatar;
 

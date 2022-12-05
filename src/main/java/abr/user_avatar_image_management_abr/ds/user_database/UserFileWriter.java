@@ -1,4 +1,4 @@
-package ds.user_database;
+package abr.user_avatar_image_management_abr.ds.user_database;
 
 import entities.user_entities.User;
 

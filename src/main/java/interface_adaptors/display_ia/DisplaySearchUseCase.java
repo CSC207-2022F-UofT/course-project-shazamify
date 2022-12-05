@@ -34,12 +34,11 @@ public class DisplaySearchUseCase extends AbstractDisplayUseCase {
     public void search(String text) {
         try {
             // Fetch songs from database
-//            TODO: rename functions to appropriate method
-//            ArrayList<Song> songs = doSearchSongs(text);
-//            ArrayList<User> users = doSearchUsers(text);
+            ArrayList<Song> songs = doSearchSongs(text);
+            ArrayList<User> users = doSearchUsers(text);
             //ArrayList<Album> albums = doSearchAlbums(text);
             // Send to ViewModel
-//            SearchResultsViewModel.getInstance().updateView(songs, users);
+            SearchResultsViewModel.getInstance().updateView(songs, users);
         }
         catch ( Exception e ) {
             System.out.println(e.getStackTrace());

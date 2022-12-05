@@ -1,8 +1,8 @@
-package ds.user_login_ds;
+package abr.user_avatar_image_management_abr.ds.user_login_ds;
 
+import abr.user_avatar_image_management_abr.ds.user_database.UserFileReader;
+import abr.user_avatar_image_management_abr.ds.user_database.UserFileWriter;
 import abr.user_login_abr.UserLoginDataBaseGateway;
-import ds.user_database.UserFileReader;
-import ds.user_database.UserFileWriter;
 import entities.user_entities.User;
 
 import java.util.HashMap;

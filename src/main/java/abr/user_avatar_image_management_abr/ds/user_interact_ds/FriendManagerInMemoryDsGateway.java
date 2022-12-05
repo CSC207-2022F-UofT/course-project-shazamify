@@ -1,4 +1,4 @@
-package ds.user_interact_ds;
+package abr.user_avatar_image_management_abr.ds.user_interact_ds;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import entities.user_entities.CommonUser;

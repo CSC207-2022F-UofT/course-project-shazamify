@@ -1,4 +1,4 @@
-package ds;
+package abr.user_avatar_image_management_abr.ds;
 
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
