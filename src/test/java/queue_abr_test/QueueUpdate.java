@@ -1,10 +1,8 @@
 package queue_abr_test;
 
 import abr.queue_abr.queue.QueueUInputBoundary;
-import abr.queue_abr.queue.QueueUOutputBoundary;
 import abr.queue_abr.queue.QueueUUseCase;
 import interface_adaptors.queue_ia.QueueUController;
-import interface_adaptors.queue_ia.QueueUPresenter;
 import interface_adaptors.queue_ia.QueueViewModel;
 
 import java.util.List;
