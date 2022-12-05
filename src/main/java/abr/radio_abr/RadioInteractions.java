@@ -11,7 +11,7 @@ public class RadioInteractions {
     // return current song name, open up the radio stream and start playing it.
 
     // The second function will be likeStation -
-    // Allows user to ‘like’ a station and keep it stored somewhere.
+    // Allows user to 'like' a station and keep it stored somewhere.
     // It will also call RadioCollectionUpdate.
 
     public void playingNow(){

@@ -8,21 +8,20 @@ import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 public class UserUIInitializer {
     public static void main(String[] args) {
+        UserDataBaseEraser.eraseUserDataBase();
         UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
-        UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
-        UserLogViewModel userLogViewModel = new UserLogViewModel();
-        UserRegViewModel userRegViewModel = new UserRegViewModel();
+        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
 
-        LoginAndRegister(userStatusViewModel, userLogViewModel, userRegViewModel);
+        LoginAndRegister();
 
-        UserLogUIInitializer.initializeUI(userLogViewModel, userStatusViewModel);
-        UserRegUIInitializer.initializeUI(userRegViewModel);
-        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI(userAvatarMngViewModel, userStatusViewModel);
+        UserLogUIInitializer.initializeUI();
+        UserRegUIInitializer.initializeUI();
+        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI(userAvatarMngViewModel);
         userStatusViewModel.addUserStatusObserver(userHomePageUI);
     }
 
-    private static void LoginAndRegister(UserStatusViewModel userStatusViewModel, UserLogViewModel userLogViewModel, UserRegViewModel userRegViewModel) {
-        UserRegTestingTools.registerUser("1234567890","1234567890","1234567890", userRegViewModel);
-        UserLogTestingTools.LoginUser("1234567890","1234567890", userLogViewModel, userStatusViewModel);
+    private static void LoginAndRegister() {
+        UserRegTestingTools.registerUser("1234567890","1234567890","1234567890");
+        UserLogTestingTools.LoginUser("1234567890","1234567890");
     }
 }

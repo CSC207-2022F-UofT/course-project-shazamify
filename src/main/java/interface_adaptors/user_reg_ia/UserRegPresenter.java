@@ -6,8 +6,8 @@ import entities.user_entities.User;
 
 public class UserRegPresenter implements UserRegOutputBoundary {
     UserRegViewModel regViewModel;
-    public UserRegPresenter(UserRegViewModel regViewModel){
-        this.regViewModel = regViewModel;
+    public UserRegPresenter(){
+        this.regViewModel = UserRegViewModel.getInstance();
     }
     @Override
     public void packageAndPresent(UserRegResponseModel responseModel) {

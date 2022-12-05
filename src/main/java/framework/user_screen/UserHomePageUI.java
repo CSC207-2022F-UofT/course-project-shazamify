@@ -1,22 +1,11 @@
 package framework.user_screen;
 
-import abr.user_avatar_image_management_abr.UserAvatarMngInputBoundary;
-import abr.user_avatar_image_management_abr.UserAvatarMngOutputBoundary;
-import abr.user_avatar_image_management_abr.UserAvatarMngUseCase;
-import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
-import ds.user_avatar_image_management_ds.UserAvatarFileGateway;
-import abr.user_reg_abr.UserRegisterDataBaseGateway;
-import ds.user_reg_ds.UserRegisterFileGateway;
-import abr.user_reg_abr.UserRegOutputBoundary;
-import abr.user_reg_abr.UserRegRequestModel;
-import abr.user_reg_abr.UserRegUseCase;
+
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
-import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter;
+import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
-import interface_adaptors.user_reg_ia.UserRegPresenter;
-import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -26,12 +15,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * @author David Li
+ *
+ * Initialize a HomePage JPanel of the User
+ */
 public class UserHomePageUI extends JPanel implements UserStatusObserver {
     UserStatusViewModel userStatusViewModel;
-    UserAvatarMngController controller;
+    UserAvatarMngController userAvatarMngController;
+    UserCPController userCPController;
     UserAvatarMngViewModel userAvatarMngViewModel;
     final JFrame frame = new JFrame();
     JButton avatarImageButton, changeAccountUserName, changeAccountPassword;
@@ -42,11 +35,11 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     int HEIGHT = 100;
 
 
-    public UserHomePageUI(UserAvatarMngController controller, UserStatusViewModel userStatusViewModel, UserAvatarMngViewModel avatarMngViewModel){
-        this.userStatusViewModel = userStatusViewModel;
-        this.controller = controller;
+    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController, UserAvatarMngViewModel avatarMngViewModel){
+        this.userStatusViewModel = UserStatusViewModel.getInstance();
+        this.userAvatarMngController = avatarMngController;
         this.userAvatarMngViewModel = avatarMngViewModel;
-
+        this.userCPController = changePasswordController;
         // Set components for interface_adaptors
         frame.setLayout(null);
         createScreenComponents();
@@ -55,6 +48,7 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
 
         // Set frame size
         frame.setSize(700,400);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +58,18 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
                 notifyListenerOnAvatarClicked();
             }
         });
+
+        changeAccountPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyListenerOnChangePasswordClicked();
+            }
+        });
+    }
+
+    private void notifyListenerOnChangePasswordClicked() {
+        new UserChangePasswordUI(userStatusViewModel, userCPController, userAvatarMngController);
+        frame.dispose();
     }
 
     private void notifyListenerOnAvatarClicked() {
@@ -91,10 +97,10 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
         int chooseIndicator = fileChooser.showOpenDialog(null);
 
         if (chooseIndicator == JFileChooser.APPROVE_OPTION) {
-            controller.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUserName());
+            userAvatarMngController.verifyAndChangeAvatar(fileChooser.getSelectedFile().getAbsolutePath(), userStatusViewModel.getUserName());
 
             boolean isValid = userAvatarMngViewModel.isDirectoryValid();
-
+            avatarImageButton.setIcon(new ImageIcon(userStatusViewModel.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
         }
     }
 
@@ -105,7 +111,6 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
         frame.add(passwordLabel);
         frame.add(changeAccountUserName);
         frame.add(changeAccountPassword);
-
     }
 
     private void setBoundForComponents() {
@@ -130,38 +135,10 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     private void updateScreenComponents(){
         userName.setText(userStatusViewModel.getUserName());
         passwordLabel.setText("Password is:" + userStatusViewModel.getPassWord());
+        avatarImageButton.setIcon(new ImageIcon(userStatusViewModel.getUserAvatar().getScaledInstance(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB)));
     }
-
-    public static void main(String[] args) {
-        // Initialize components for avatar
-        UserAvatarMngViewModel avatarMngViewModel= new UserAvatarMngViewModel();
-        UserStatusViewModel statusViewModel = new UserStatusViewModel();
-        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter(avatarMngViewModel, statusViewModel);
-        UserAvatarDatabaseGateway userAvatarDatabaseGateway = new UserAvatarFileGateway();
-        UserAvatarMngInputBoundary userAvatarMngInputBoundary = new UserAvatarMngUseCase(userAvatarDatabaseGateway, userAvatarMngOutputBoundary);
-        UserAvatarMngController userAvatarMngController= new UserAvatarMngController(userAvatarMngInputBoundary);
-
-        // Initialize components for register
-        UserRegViewModel regViewModel = new UserRegViewModel();
-        UserRegisterDataBaseGateway registerDataBaseGateway = new UserRegisterFileGateway();
-        registerDataBaseGateway.clearDatabase();
-        UserRegOutputBoundary boundary = new UserRegPresenter(regViewModel);
-        UserRegUseCase userRegUseCase = new UserRegUseCase(boundary, registerDataBaseGateway);
-        Map<String, String> securityQuestionMap= new HashMap<>();
-        securityQuestionMap.put("1","2");
-
-        // Register a sample User
-        UserRegRequestModel requestModel = new UserRegRequestModel("111","222","111",securityQuestionMap);
-        userRegUseCase.register(requestModel);
-
-        //Set ip UI
-        UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
-        UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
-        UserHomePageUI ui = new UserHomePageUI(userAvatarMngController, userStatusViewModel, userAvatarMngViewModel);
-    }
-
     /**
-     * If the User is get updated
+     * If the User is get updated, then update the User Homepage components
      */
     @Override
     public void userUpdated() {

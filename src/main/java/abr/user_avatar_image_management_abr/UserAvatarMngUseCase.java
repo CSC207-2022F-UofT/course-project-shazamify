@@ -48,9 +48,9 @@ public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
         // If valid, Change avatar in user_database
         if (isValid) {
             try {
-                UserAvatar avatar = createUserAvatar(directory);
-                User user = databaseGateway.changeAvatar(userName, avatar);
-                responseModel.setUser(user);
+                BufferedImage img = ImageIO.read(new File(directory));
+                User user = databaseGateway.changeAvatar(userName, img);
+                responseModel.setUserAvatar(user.getUserAvatar());
                 responseModel.setDirectoryValid(true);
             } catch (IOException e){
                 throw new RuntimeException("File Directory not found when import avatar image");
@@ -61,11 +61,6 @@ public class UserAvatarMngUseCase implements UserAvatarMngInputBoundary{
 
         // call output Boundary
         outputBoundary.packageAndPresent(responseModel);
-    }
-
-    private UserAvatar createUserAvatar(String directory) throws IOException {
-        BufferedImage img = ImageIO.read(new File(directory));
-        return new UserAvatar(img);
     }
 
     private boolean verify(String directory){

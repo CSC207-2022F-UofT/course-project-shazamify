@@ -21,9 +21,9 @@ public class UserRegUI extends JPanel {
     UserRegController controller;
     UserRegViewModel regViewModel;
 
-    public UserRegUI(UserRegController controller, UserRegViewModel regViewModel) {
+    public UserRegUI(UserRegController controller) {
         this.controller = controller;
-        this.regViewModel = regViewModel;
+        this.regViewModel = UserRegViewModel.getInstance();
 
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -33,6 +33,7 @@ public class UserRegUI extends JPanel {
 
         // Set frame size
         frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

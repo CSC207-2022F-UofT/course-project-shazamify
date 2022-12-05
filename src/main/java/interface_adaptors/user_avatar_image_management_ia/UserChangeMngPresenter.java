@@ -8,14 +8,13 @@ public class UserChangeMngPresenter implements UserAvatarMngOutputBoundary {
     UserAvatarMngViewModel avatarMngViewModel;
     UserStatusViewModel statusViewModel;
 
-    public UserChangeMngPresenter(UserAvatarMngViewModel avatarMngViewModel, UserStatusViewModel statusViewModel){
+    public UserChangeMngPresenter(UserAvatarMngViewModel avatarMngViewModel){
         this.avatarMngViewModel = avatarMngViewModel;
-        this.statusViewModel = statusViewModel;
+        this.statusViewModel = UserStatusViewModel.getInstance();
     }
     @Override
     public void packageAndPresent(UserAvatarMngResponseModel responseModel) {
-        avatarMngViewModel.setUser(responseModel.getUser());
+        statusViewModel.setUserAvatar(responseModel.getUserAvatar());
         avatarMngViewModel.setDirectoryValid(responseModel.isDirectoryValid());
-//        statusViewModel.setUser(responseModel.getUser());
     }
 }

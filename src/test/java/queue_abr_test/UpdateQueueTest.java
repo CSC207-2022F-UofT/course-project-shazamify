@@ -17,13 +17,9 @@ public class UpdateQueueTest {
         List<String> ids = Arrays.asList("1", "2", "3", "4", "5");
         songQueue.setQueue(ids);
 
-
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("5", "4", "3", "2", "1"));
-
-        // Runs the use case
-        newQueue.update(newSongList);
+        QueueViewModel queueViewModel = new QueueViewModel();
+        queueViewModel.setSongList(songQueue.getQueue());
+        QueueUpdate.updateQueue(Arrays.asList("5", "4", "3", "2", "1"), queueViewModel);
 
         assertEquals(songQueue.getQueue(), Arrays.asList("5", "4", "3", "2", "1"));
     }
@@ -35,11 +31,9 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("1", "2", "3", "4", "5"));
-
-        newQueue.update(newSongList);
+        QueueViewModel queueViewModel = new QueueViewModel();
+        queueViewModel.setSongList(songQueue.getQueue());
+        QueueUpdate.updateQueue(Arrays.asList("1", "2", "3", "4", "5"), queueViewModel);
 
         assertEquals(songQueue.getQueue(), Arrays.asList("1", "2", "3", "4", "5"));
     }
@@ -51,12 +45,10 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("1"));
+        QueueViewModel queueViewModel = new QueueViewModel();
+        queueViewModel.setSongList(songQueue.getQueue());
+        QueueUpdate.updateQueue(List.of("1"), queueViewModel);
 
-        newQueue.update(newSongList);
-
-        assertEquals(songQueue.getQueue(), Arrays.asList("1"));
+        assertEquals(songQueue.getQueue(), List.of("1"));
     }
 }

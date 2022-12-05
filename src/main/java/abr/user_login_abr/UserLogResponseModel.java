@@ -1,20 +1,21 @@
 package abr.user_login_abr;
 
-import entities.user_entities.User;
-
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UserLogResponseModel {
-    boolean userNameValid;
-    boolean userPasswordValid;
-    String userName;
-    String passWord;
-    BufferedImage userAvatar;
-    LocalDateTime accountCreateTime;
-    HashMap<String, String> friendList = new HashMap<>();
-
+    private boolean userNameValid;
+    private boolean userPasswordValid;
+    private String userName;
+    private String password;
+    private BufferedImage userAvatar;
+    private LocalDateTime accountCreateTime;
+    private HashMap<String, String> friendList;
+    private List<String> playListIDs;
+    private Map<String, String> securityQuestions;
 
 
 
@@ -31,8 +32,8 @@ public class UserLogResponseModel {
         this.userName = userName;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setAccountCreateTime(LocalDateTime accountCreateTime) {
@@ -47,8 +48,8 @@ public class UserLogResponseModel {
         return userName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
     public BufferedImage getUserAvatar() {
@@ -73,5 +74,21 @@ public class UserLogResponseModel {
 
     public HashMap<String, String> getFriendList() {
         return friendList;
+    }
+
+    public List<String> getPlayListIDs() {
+        return playListIDs;
+    }
+
+    public void setPlayListIDs(List<String> playListIDs) {
+        this.playListIDs = playListIDs;
+    }
+
+    public void setSecurityQuestions(Map<String, String> securityQuestions) {
+        this.securityQuestions = securityQuestions;
+    }
+
+    public Map<String, String> getSecurityQuestions() {
+        return securityQuestions;
     }
 }
