@@ -1,5 +1,5 @@
 # Pr# Project Hightlights and Summaries by Feature
-oject Hightlights and Summaries by Feature
+object Hightlights and Summaries by Feature
 
 ## Project Setup
 JDK >= 11
