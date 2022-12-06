@@ -1,5 +1,4 @@
-# Pr# Project Hightlights and Summaries by Feature
-object Hightlights and Summaries by Feature
+# Project Hightlights and Summaries by Feature
 
 ## Project Setup
 JDK >= 11
@@ -33,3 +32,32 @@ The song queue entity is a singleton class- there will only ever be one instance
 The history queue has been somewhat completed, however it can be noticed that there is no implementation of it. The reason for that is, due to time constraints, the song recommender (which is the primary reason we decided on implementing the queue history in the first place) was placed on hold until functionality of our main program was accomplished.
 
 
+## Design Patterns
+### Factory Pattern
+- implemented in the entities layer, like UserFactory.
+- Can be used to initialize different types of Users(CommonUser, PremiumUser, Guest)
+By using UserFactory creating different types of User, we can obscure the creation process for these related objects.
+
+### Facade Pattern
+- implemented in the use case layer
+- Can be used to encapsulate the code that each subclass only have one responsibility.
+
+Facade class: UserRegUseCase and QueueUseCase
+subclasses: UserRegHelper, UserRecommendPasswordHelper, QueueHelper
+
+When the UserRegUseCase receive requests from UserRegController, it will distribute the works into subclasses, and each subclass will only have one responsibility.
+UserRegHelper will register the User into UserDatabase, and UserRecommendPasswordHelper responsible for giving out recommend password.
+
+### Observer Pattern
+- implemented in the interface adaptor layer
+- Observable: UserStatusViewModel, including current LoggedIn User Status, like entities UserName, UserAvatar, UserFriendList and UserPlaylist
+- Observer: Controllers and UIs.
+
+The UserStatusViewModel is a Singleton Class that visible by the package. Everytime the user logged into the system, the UserLogPresenter will update the UserStatusViewModel, and send update to various of subscribers that implement UserStatusObserver.
+
+### Singleton Pattern
+- implemented in interface adapter Layer, mostly view models.
+- Having private constructor and static .getInstance()
+
+Used to make the ViewModels observable for the package, unique and potentially able to implements interface and extends superclasses.
+UIs and Controllers would be able to access information that is pre-prepared, and don't need to go through different layers.
