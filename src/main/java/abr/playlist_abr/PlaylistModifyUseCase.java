@@ -21,9 +21,8 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Song> song = this.songDAOOutput.findById(requestModel.songID);
         if (playlist.isPresent() && song.isPresent()) {
             playlist.get().addSong(requestModel.songID);
-            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
-            playlistResM.setPlaylist(playlist.get());
-            //TODO: updateView(ResM)
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel(playlist.get().getId());
+            //TODO: updateView(playlistResM)
         }
     }
 
@@ -33,9 +32,8 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Song> song = this.songDAOOutput.findById(requestModel.songID);
         if (playlist.isPresent() && song.isPresent()) {
             playlist.get().deleteSong(requestModel.songID);
-            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
-            playlistResM.setPlaylist(playlist.get());
-            //TODO: updateView(ResM)
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel(playlist.get().getId());
+            //TODO: updateView(playlistResM)
         }
 
     }
@@ -45,9 +43,9 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         if (playlist.isPresent()){
             playlist.get().setPrivacy(requestModel.privacy);
-            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
-            playlistResM.setPlaylist(playlist.get());
-            //TODO: updateView(ResM)
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel(playlist.get().getId());
+
+            //TODO: updateView(playlistResM)
         }
 
     }
@@ -57,9 +55,9 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
         if (playlist.isPresent()) {
             playlist.get().setName(requestModel.plName);
-            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
-            playlistResM.setPlaylist(playlist.get());
-            //TODO: updateView(ResM)
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel(playlist.get().getId());
+
+            //TODO: updateView(playlistResM)
         }
 
     }
@@ -71,9 +69,9 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         int index = requestModel.songIndex;
         if (playlist.isPresent() && (index < playlist.get().getSongs().size())) {
             playlist.get().reOrderSongs(requestModel.songID, index);
-            PlaylistResponseModel playlistResM = new PlaylistResponseModel();
-            playlistResM.setPlaylist(playlist.get());
-            //TODO: updateView(ResM)
+            PlaylistResponseModel playlistResM = new PlaylistResponseModel(playlist.get().getId());
+
+            //TODO: updateView(playlistResM)
         }
 
     }
