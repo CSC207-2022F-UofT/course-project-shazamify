@@ -29,3 +29,6 @@ The DAO design pattern acts as an API for the database and implements CRUD opera
 
 ## Queue Notes
 The song queue entity is a singleton class- there will only ever be one instance of a queue at a time. This design was chosen rather than making the song queue a subclass of a playlist (since both objects contain lists of song objects), because of the vast differences between the two objects (the only common factor within between them is one of their attributes).
+The history queue has been somewhat completed, however it can be noticed that there is no implementation of it. The reason for that is, due to time constraints, the song recommender (which is the primary reason we decided on implementing the queue history in the first place) was placed on hold until functionality of our main program was accomplished.
+
+
