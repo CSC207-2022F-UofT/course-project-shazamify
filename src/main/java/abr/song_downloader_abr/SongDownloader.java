@@ -26,7 +26,7 @@ public class SongDownloader {
         return new Song(name, id, duration);
     }
 
-//    TODO: rename from main when finished project
+    //    TODO: rename from main when finished project
     public void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk

@@ -10,7 +10,7 @@ import ds.DatabaseInitializer;
 import entities.playlist_entities.Playlist;
 
 public class PlaylistDAOInputImpl implements PlaylistDAOInput {
-    private MongoDatabase database;
+    private final MongoDatabase database;
 
     public PlaylistDAOInputImpl() {
         String uri = "mongodb://root:rootpassword@localhost:27017";

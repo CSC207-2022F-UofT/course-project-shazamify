@@ -1,8 +1,6 @@
 package entities.queue_entities;
 
-import entities.Song;
-
-import java.util.*;
+import java.util.HashMap;
 
 public class HistoryQueue {
     /***
@@ -11,7 +9,7 @@ public class HistoryQueue {
      * The hashmap can add key/values and be returned.
      */
     private static HistoryQueue historyQueue;
-    private HashMap<String, Float> songHashMap;
+    private final HashMap<String, Float> songHashMap;
 
     // Creates history queue with an empty hashmap
     private HistoryQueue() {
