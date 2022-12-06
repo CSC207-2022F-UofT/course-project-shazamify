@@ -2,9 +2,11 @@ package framework.items;
 
 
 import entities.playlist_entities.Playlist;
+import framework.buttons.ButtonRevealQueue;
 import interface_adaptors.MediaPlaylistController;
 import interface_adaptors.SearchResultsViewModel;
 import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.imageio.ImageIO;
@@ -15,7 +17,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Collections;
 import java.util.Queue;
+import java.util.List;
 
 import static javax.swing.BorderFactory.createMatteBorder;
 
@@ -24,10 +28,13 @@ public class QueueCollectionItem extends JPanel{
     private int index;
     private String song_id;
 
-    public QueueCollectionItem(int index, String song_id, int width, int height) {
+    private int lastindex;
+
+    public QueueCollectionItem(int index, String song_id, int lastindex, int width, int height) {
 
         this.index = index;
         this.song_id = song_id;
+        this.lastindex = lastindex;
 
         this.setMaximumSize(new Dimension(width, height));
         //this.setPreferredSize(new Dimension(width, height));
@@ -49,18 +56,12 @@ public class QueueCollectionItem extends JPanel{
         this.add(renderLabel(songDTO.getTitle()));
         this.add(renderLabel(songDTO.getYear()));
 
-
+        this.add(renderInputs());
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
         this.setBorder(blackline);
+    }
 
-    }
-    public int getIndex(){
-        return this.index;
-    }
-    private void handleClick(JButton button, ActionEvent e){
-        // System.out.println("Item " + index + " - PlaylistCollection Clicked");
-    }
     private JLabel renderLabel(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font(label.getName(), Font.PLAIN, 16));
@@ -73,21 +74,19 @@ public class QueueCollectionItem extends JPanel{
     private JLabel renderImage(ImageIcon cover){
         JLabel coverlabel = new JLabel(cover);
         coverlabel.setOpaque(false);
-        //coverlabel.setMaximumSize(new Dimension(25, 50));
         return coverlabel;
     }
-
 
     private JPanel renderInputs(){
         JPanel buttonPanel = new JPanel(new GridLayout());
         buttonPanel.setOpaque(false);
-        buttonPanel.add(renderPlayButton());
-        //buttonPanel.add(renderMenu());
-        //buttonPanel.add(renderAddButton());
-        buttonPanel.add(renderMenuBar());
 
-        // Add option to remove song from playlist
-        buttonPanel.add(renderDeleteButton());
+        if (this.index > 0){renderShiftUpButton();}
+        if (this.index < this.lastindex){renderShiftDownButton();}
+
+        buttonPanel.add(renderPlayButton());
+        buttonPanel.add(renderMenuBar());
+        buttonPanel.add(renderRemoveButton());
 
         // Otherwise add placeholder for xtra space
         // JLabel placeholder = new JLabel(" ");
@@ -95,91 +94,16 @@ public class QueueCollectionItem extends JPanel{
         //buttonPanel.add(placeholder);
         return buttonPanel;
     }
-    /*
-    private JButton renderAddButton(){
-        JButton button = new JButton();
-        try {
-            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/plusiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
-            //button.setBackground(Color.WHITE);
-            button.setOpaque(false);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    handleAddButtonAction(button, e);
-                }
-            });
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-
-        button.setBorderPainted(false);
-        button.setBorder(null);
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setContentAreaFilled(false);
-
-        return button;
-    }
-    */
 
     private JButton renderPlayButton() {
         final JButton button = new JButton();
         try {
             button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/playiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
-            //button.setBackground(Color.WHITE);
             button.setOpaque(false);
-            /*button.addActionListener(new ActionListener() {
+            button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     handlePlayButtonAction(button, e);
-                }
-            });*/
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-
-        button.setBorderPainted(false);
-        button.setBorder(null);
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setContentAreaFilled(false);
-
-
-        return button;
-    }
-
-    public JButton renderDeleteButton(){
-        final JButton button = new JButton();
-        try {
-            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconwhite.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-            //button.setBackground(Color.WHITE);
-            button.setOpaque(false);
-            button.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-                @Override
-                public void mouseEntered(MouseEvent e){
-                    try {
-                        button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconred.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-                    } catch (Exception ex){}
-                }
-                @Override
-                public void mouseExited(MouseEvent e){
-                    try {
-                        button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconwhite.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-                    } catch (Exception ex){}
                 }
             });
         }
@@ -192,6 +116,130 @@ public class QueueCollectionItem extends JPanel{
         button.setMargin(new Insets(0, 0, 0, 0));
         button.setContentAreaFilled(false);
 
+        return button;
+    }
+
+    public JButton renderShiftUpButton(){
+        final JButton button = new JButton();
+
+        try {
+            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/shiftupicon.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        button.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Retrieve current order and swap song with the one above
+                List<String> currentQueueOrder = QueueController.getSongs();
+                Collections.swap(currentQueueOrder, index, index - 1);
+
+                //Update the queue with the new order and redraw view model
+                QueueUController.send(currentQueueOrder);
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e){}
+            @Override
+            public void mouseExited(MouseEvent e){}
+        });
+
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setBorder(null);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setContentAreaFilled(false);
+
+        return button;
+    }
+
+    public JButton renderShiftDownButton(){
+        final JButton button = new JButton();
+
+        try {
+            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/shiftdownicon.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        button.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Retrieve current order and swap song with the one below
+                List<String> currentQueueOrder = QueueController.getSongs();
+                Collections.swap(currentQueueOrder, index, index + 1);
+
+                //Update the queue with the new order and redraw view model
+                QueueUController.send(currentQueueOrder);
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e){}
+            @Override
+            public void mouseExited(MouseEvent e){}
+        });
+
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setBorder(null);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setContentAreaFilled(false);
+
+        return button;
+    }
+    public JButton renderRemoveButton(){
+        final JButton button = new JButton();
+
+        try {
+            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/removeicon.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        button.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Retrieve current order and remove song id while updating view model
+                List<String> currentQueueOrder = QueueController.getSongs();
+                currentQueueOrder.remove(song_id);
+                QueueUController.send(currentQueueOrder);
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e){
+                try {
+                    button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/removeiconred.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+                } catch (Exception ex){}
+            }
+            @Override
+            public void mouseExited(MouseEvent e){
+                try {
+                    button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/removeicon.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+                } catch (Exception ex){}
+            }
+        });
+
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setBorder(null);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setContentAreaFilled(false);
 
         return button;
     }
@@ -214,25 +262,14 @@ public class QueueCollectionItem extends JPanel{
         }
         menu.setBackground(Color.DARK_GRAY);
         menu.setOpaque(false);
-        JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
         JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
-        menu.add(addToQueueMenuItem);
         menu.add(addToPlaylistMenuItem);
         return menu;
     }
 
     private class PanelListener implements MouseListener {
-
         @Override
-        public void mouseClicked(MouseEvent event) {
-            /* source is the object that got clicked
-             *
-             * If the source is actually a JPanel,
-             * then will the object be parsed to JPanel
-             * since we need the setBackground() method
-             */
-        }
-
+        public void mouseClicked(MouseEvent event) {}
         @Override
         public void mouseEntered(MouseEvent event) {
             Object source = event.getSource();
@@ -242,7 +279,6 @@ public class QueueCollectionItem extends JPanel{
                 //panelPressed.setBackground(//new Color(71,71,71))
             }
         }
-
         @Override
         public void mouseExited(MouseEvent event) {
             Object source = event.getSource();
@@ -251,12 +287,9 @@ public class QueueCollectionItem extends JPanel{
                 panelPressed.setBackground(Color.DARK_GRAY);
             }
         }
-
         @Override
         public void mousePressed(MouseEvent arg0) {}
-
         @Override
         public void mouseReleased(MouseEvent arg0) {}
-
     }
 }

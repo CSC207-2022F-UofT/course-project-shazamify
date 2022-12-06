@@ -2,16 +2,17 @@ package interface_adaptors;
 
 import entities.playlist_entities.Playlist;
 import framework.items.PlaylistCollectionItem;
+import interface_adaptors.user_login_ia.UserStatusObserver;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Playlist>> implements UserStatusObserver{
+public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<String>> implements UserStatusObserver {
 
     private static PlaylistCollectionViewModel instance;
     private ArrayList<String> playlist_ids;
-    private UserStatusViewModel userStatusViewModel;
 
     /**
      * Gets instance of singleton
@@ -56,7 +57,7 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Pla
         view.add(scrollPanel, BorderLayout.CENTER);
     }
     @Override
-    private void userUpdate(){
+    private void userUpdated(){
         ArrayList<String> userplaylists = UserStatusViewModel.getInstance().getPlaylistIds;
         this.updateView(userplaylists);
     }
