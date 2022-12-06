@@ -1,6 +1,7 @@
 package entities.queue_entities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SongQueue {
     /***
@@ -25,11 +26,11 @@ public class SongQueue {
         return queue;
     }
 
-    public void setQueue(List<String> queue) {
-        this.songList = queue;
-    }
-
     public List<String> getQueue() {
         return this.songList;
+    }
+
+    public void setQueue(List<String> queue) {
+        this.songList = queue;
     }
 }

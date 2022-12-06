@@ -1,58 +1,114 @@
 package entities;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /***
  * The Song entity class responsible for holding a name, id, and duration.
  */
-public class Song implements Record {
+//TODO: does this implement record?
+public class Song {
+    /**
+     * The name of the song to be displayed and the fileName
+     */
     private String name;
+    /**
+     * Unique id of song, matches YouTube id
+     */
     private String id;
+    /**
+     * Duration of the song in seconds
+     */
     private int duration;
-//    TODO add audiofilePath attribute
+    /**
+     * Path of the mp3 file
+     */
     private String filePath;
 
+    /**
+     * Empty constructor necessary for MongoDB encoding
+     */
     public Song() {
 
     }
 
-    /***
-     * Default constructor
-     * @param name - The song name
-     * @param id - The identifier key for the song
+    /**
+     * Creates a Song with a name, unique id, duration of the song in seconds, and the appropriate file path based on the name
+     *
+     * @param name     - The song name
+     * @param id       - The identifier key for the song
      * @param duration - The duration of the song in seconds.
      */
     public Song(String name, String id, int duration) {
         this.name = name;
         this.id = id;
         this.duration = duration;
+        this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
     }
 
+    /**
+     * @return {@link Song#name}
+     */
     public String getName() {
         return this.name;
     }
 
-    public String getId() {
-        return this.id;
-    }
-
-    public int getDuration() {
-        return this.duration;
-    }
-
+    /**
+     * @param name {@link Song#name}
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return {@link Song#id}
+     */
+    public String getId() {
+        return this.id;
+    }
+
+//    @Override
+//    public File getCover() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getArtist() {
+//        return null;
+//    }
+
+    /**
+     * @param id {@link Song#id}
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return {@link Song#duration}
+     */
+    public int getDuration() {
+        return this.duration;
+    }
+
+    /**
+     * @param duration {@link Song#duration}
+     */
     public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    @Override
+    public ArrayList<Song> getSongs() {
+        return null;
+    }
+//    @Override
+//    public Object setSongs(ArrayList<Song> songs) {
+//        return null;
+//    }
+
+    /**
+     * @return String representation of Song. Mainly for debugging purposes.
+     */
     public String toString() {
         return "Song{" +
                 "name='" + name + '\'' +
@@ -60,6 +116,7 @@ public class Song implements Record {
                 ", duration=" + duration +
                 '}';
     }
+
 
     public File getFile() {
 //        TODO: implement method

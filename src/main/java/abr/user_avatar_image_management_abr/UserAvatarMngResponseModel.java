@@ -2,9 +2,11 @@ package abr.user_avatar_image_management_abr;
 
 import entities.user_entities.User;
 
+import java.awt.image.BufferedImage;
+
 public class UserAvatarMngResponseModel {
     private boolean isDirectoryValid;
-    private User user;
+    private BufferedImage userAvatar;
 
     public void setDirectoryValid(boolean directoryValid) {
         isDirectoryValid = directoryValid;
@@ -14,11 +16,11 @@ public class UserAvatarMngResponseModel {
         return isDirectoryValid;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserAvatar(BufferedImage userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
-    public User getUser() {
-        return user;
+    public BufferedImage getUserAvatar() {
+        return userAvatar;
     }
 }

@@ -1,8 +1,9 @@
 package entities.user_entities;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class UserSecurityQuestionPackage {
+public class UserSecurityQuestionPackage implements Serializable {
     Map<String, String> securityQuestions;
 
     public UserSecurityQuestionPackage(Map<String, String> userSecurityQuestionMap){
@@ -25,5 +26,9 @@ public class UserSecurityQuestionPackage {
      */
     public String getSecurityQuestionsAnswer(String question){
         return securityQuestions.get(question);
+    }
+
+    public Map<String, String> getSecurityQuestionsMap() {
+        return securityQuestions;
     }
 }

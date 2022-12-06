@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /***
- * Abstract class for the Record containing the abstract methods for getting the attributes.
+ * Interface for the Record containing the methods for getting the attributes.
  */
 public interface Record {
     String getName();
@@ -17,5 +17,6 @@ public interface Record {
 
     String getArtist();
 
-    ArrayList<Song> getSongs();
+    ArrayList<String> getSongs();
+
 }

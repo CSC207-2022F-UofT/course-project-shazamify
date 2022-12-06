@@ -1,27 +1,22 @@
 package interface_adaptors.user_interact_ia;
 
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
-
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class ShowFriendListController implements FriendListObserver{
-    final OrderFriendListInputBoundary inputBoundary;
+public class ShowFriendListController{
+    OrderFriendListInputBoundary inputBoundary;
+    UserStatusViewModel userStatusViewModel;
 
-    HashMap<String, String> tempFriendList;
-
-
-    public ShowFriendListController(OrderFriendListInputBoundary inputBoundary) {
+    public ShowFriendListController(OrderFriendListInputBoundary inputBoundary, UserStatusViewModel userStatusViewModel) {
         this.inputBoundary = inputBoundary;
-        TempFriendListObservable.addObserver(this);
+        this.userStatusViewModel = userStatusViewModel;
     }
-
+    /**
+     * @return  an ordered arraylist of user friend list that's suitable for displaying on screen
+     */
     public ArrayList<String> returnOrderedUserFriendList(){
-        return inputBoundary.returnOrderedUserFriendList(tempFriendList);
+        return inputBoundary.returnOrderedUserFriendList(userStatusViewModel.getFriendList());
     }
 
-    @Override
-    public void updateTempFriendList(HashMap<String, String> tempFriendList) {
-        this.tempFriendList = tempFriendList;
-    }
 }

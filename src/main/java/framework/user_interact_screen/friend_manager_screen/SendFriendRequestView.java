@@ -2,7 +2,6 @@ package framework.user_interact_screen.friend_manager_screen;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
-import interface_adaptors.user_interact_ia.TempFriendListObservable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,7 +45,6 @@ public class SendFriendRequestView extends JPanel{
         try {
             FriendManagerResponseModel responseModel = controller.reactTo(friendNameField.getText());
             JOptionPane.showMessageDialog(this, responseModel.getMsgToDisplay());
-            TempFriendListObservable.setFriendList(responseModel.getFriendList());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

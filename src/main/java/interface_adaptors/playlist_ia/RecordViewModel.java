@@ -78,7 +78,7 @@ public class RecordViewModel extends AbstractViewModel<Record> {
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         list.setOpaque(false);
         // Populate list panel with items
-        ArrayList<Song> songs = record.getSongs();
+        ArrayList<String> songs = record.getSongs();
         for (int i = 0; i < songs.size(); i++) {
             list.add(new RecordItem(i, songs.get(i), width - 30, 50));
         }

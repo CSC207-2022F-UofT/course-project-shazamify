@@ -1,12 +1,7 @@
 package framework.user_screen;
 
-import abr.user_reg_abr.UserRegisterDataBaseGateway;
-import ds.user_reg_ds.UserRegisterFileGateway;
-import abr.user_reg_abr.UserRegInputBoundary;
-import abr.user_reg_abr.UserRegOutputBoundary;
-import abr.user_reg_abr.UserRegUseCase;
+
 import interface_adaptors.user_reg_ia.UserRegController;
-import interface_adaptors.user_reg_ia.UserRegPresenter;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
 
 import javax.swing.*;
@@ -24,9 +19,11 @@ public class UserRegUI extends JPanel {
     JComboBox<String> securityQuestions;
 
     UserRegController controller;
+    UserRegViewModel regViewModel;
 
-    public UserRegUI(UserRegController controller){
+    public UserRegUI(UserRegController controller) {
         this.controller = controller;
+        this.regViewModel = UserRegViewModel.getInstance();
 
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -35,7 +32,8 @@ public class UserRegUI extends JPanel {
         addScreenComponents();
 
         // Set frame size
-        frame.setSize(600,400);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,8 +57,8 @@ public class UserRegUI extends JPanel {
      * Event triggered when user clicked on recommend password
      */
     private void notifyListenerOnRecommendPassword() {
-        UserRegViewModel viewModel = controller.giveRecommendPassword();
-        String recommendPassword = viewModel.getRecommendPassword();
+        controller.giveRecommendPassword();
+        String recommendPassword = regViewModel.getRecommendPassword();
         userPassWordField.setText(recommendPassword);
         userRePassWordField.setText(recommendPassword);
         JOptionPane.showMessageDialog(this, recommendPassword);
@@ -69,37 +67,39 @@ public class UserRegUI extends JPanel {
     /**
      * Event triggered when user clicked on register
      */
-    private void notifyListenerOnRegisterClicked(){
+    private void notifyListenerOnRegisterClicked() {
         String name = userNameField.getText();
         String password = String.valueOf(userPassWordField.getPassword());
         String rePassword = String.valueOf(userRePassWordField.getPassword());
         Map<String, String> securityQuestionMap = new HashMap<>();
         securityQuestionMap.put((String) securityQuestions.getSelectedItem(), securityQuestionField.getText());
 
-        UserRegViewModel viewModel = controller.register(name, password, rePassword, securityQuestionMap);
-        if (viewModel.isPasswordValid() & viewModel.isUsernameValid() & viewModel.isSecurityQuestionValidity()) {
+        controller.register(name, password, rePassword, securityQuestionMap);
+        if (regViewModel.isPasswordValid() & regViewModel.isUsernameValid() & regViewModel.isSecurityQuestionValidity()) {
             String registerSuccessMessage = "register success\n password: %1$s.\n username: %2$s.\n security questions: %3$s\n";
-            registerSuccessMessage = String.format(registerSuccessMessage, viewModel.isPasswordValid(), viewModel.isUsernameValid(), viewModel.isSecurityQuestionValidity());
+            registerSuccessMessage = String.format(registerSuccessMessage, regViewModel.isPasswordValid(), regViewModel.isUsernameValid(), regViewModel.isSecurityQuestionValidity());
             JOptionPane.showMessageDialog(this, registerSuccessMessage);
-        } else {String registerFailureMessage = "register failed\n password: %1$s.\n username: %2$s.\n security questions: %3$s\n";
-            registerFailureMessage = String.format(registerFailureMessage, viewModel.isPasswordValid(), viewModel.isUsernameValid(), viewModel.isSecurityQuestionValidity());
+        } else {
+            String registerFailureMessage = "register failed\n password: %1$s.\n username: %2$s.\n security questions: %3$s\n";
+            registerFailureMessage = String.format(registerFailureMessage, regViewModel.isPasswordValid(), regViewModel.isUsernameValid(), regViewModel.isSecurityQuestionValidity());
             JOptionPane.showMessageDialog(this, registerFailureMessage);
-    }}
+        }
+    }
 
     private void setBoundForComponents() {
         // Set up Boundaries for Labels and text fields.
-        userNameLabel.setBounds(10,20,220,25);
-        userNameField.setBounds(240,20,300,25);
-        passWordLabel.setBounds(10,65,220,25);
-        userPassWordField.setBounds(240,65,300,25);
-        rePasswordLabel.setBounds(10,110,220,25);
-        userRePassWordField.setBounds(240,110,300,25);
-        securityQuestions.setBounds(10,155,220,25);
-        securityQuestionField.setBounds(240,155,300,25);
+        userNameLabel.setBounds(10, 20, 220, 25);
+        userNameField.setBounds(240, 20, 300, 25);
+        passWordLabel.setBounds(10, 65, 220, 25);
+        userPassWordField.setBounds(240, 65, 300, 25);
+        rePasswordLabel.setBounds(10, 110, 220, 25);
+        userRePassWordField.setBounds(240, 110, 300, 25);
+        securityQuestions.setBounds(10, 155, 220, 25);
+        securityQuestionField.setBounds(240, 155, 300, 25);
         // Set up Buttons
-        RegisterButton.setBounds(30,250,100,50);
-        RecommendPasswordButton.setBounds(180,250,200,50);
-        backToLogin.setBounds(410,250,150,50);
+        RegisterButton.setBounds(30, 250, 100, 50);
+        RecommendPasswordButton.setBounds(180, 250, 200, 50);
+        backToLogin.setBounds(410, 250, 150, 50);
     }
 
     private void addScreenComponents() {
@@ -136,19 +136,5 @@ public class UserRegUI extends JPanel {
                 "What was the make of your first car?",
                 "What was your favorite food as a child?"};
         securityQuestions = new JComboBox<>(tempSecurityQuestions);
-    }
-
-
-    /**
-     * Temporary test method
-     */
-    public static void main(String[] args) {
-        UserRegisterDataBaseGateway dataBaseGateway = new UserRegisterFileGateway();
-        UserRegOutputBoundary presenter = new UserRegPresenter();
-        UserRegInputBoundary useCase = new UserRegUseCase(presenter, dataBaseGateway);
-        UserRegController controller = new UserRegController(useCase);
-
-
-        UserRegUI registerScreen = new UserRegUI(controller);
     }
 }
