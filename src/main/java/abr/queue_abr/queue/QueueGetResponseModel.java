@@ -2,9 +2,8 @@ package abr.queue_abr.queue;
 
 import java.util.*;
 
-//TODO javadocs
 /***
- * The queue response model is a list of the songs that has been updated and currently inside the queue.
+ * The queue response model is data structure containing a list of song IDs inside the queue.
  */
 public class QueueGetResponseModel {
     private List<String> songList;

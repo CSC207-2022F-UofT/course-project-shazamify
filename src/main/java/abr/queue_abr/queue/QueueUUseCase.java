@@ -1,6 +1,5 @@
 package abr.queue_abr.queue;
 
-//TODO javadocs
 /***
  * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
  * response model containing the new and updated queue list.
