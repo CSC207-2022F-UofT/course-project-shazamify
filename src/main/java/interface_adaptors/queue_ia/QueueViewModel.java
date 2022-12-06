@@ -8,6 +8,7 @@ import interface_adaptors.AbstractViewModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class QueueViewModel extends AbstractViewModel<ArrayList<String>> {
 
@@ -25,7 +26,6 @@ public class QueueViewModel extends AbstractViewModel<ArrayList<String>> {
 
     /**
      * Updates view
-     * @param song_ids
      */
     public void updateView(ArrayList<String> song_ids) {
         // Update data
@@ -46,7 +46,7 @@ public class QueueViewModel extends AbstractViewModel<ArrayList<String>> {
         list.setBackground(Color.DARK_GRAY);
         // Populate list panel with items
         for (int i = 0; i < song_ids.size(); i++) {
-            list.add(new QueueCollectionItem(i, song_ids.get(i), width, 60));
+            list.add(new QueueCollectionItem(i, song_ids.size(), song_ids.get(i), width, 60));
         }
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);

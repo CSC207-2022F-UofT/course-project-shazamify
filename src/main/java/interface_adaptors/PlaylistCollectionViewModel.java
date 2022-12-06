@@ -7,10 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Playlist>> {
+public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Playlist>> implements UserStatusObserver{
 
     private static PlaylistCollectionViewModel instance;
-    private ArrayList<Playlist> playlists;
+    private ArrayList<String> playlist_ids;
+    private UserStatusViewModel userStatusViewModel;
 
     /**
      * Gets instance of singleton
@@ -25,9 +26,9 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Pla
      * Updates view
      * @param playlists
      */
-    public void updateView(ArrayList<Playlist> playlists) {
+    public void updateView(ArrayList<String> playlist_ids) {
         // Update data
-        this.playlists = playlists;
+        this.playlist_ids = playlist_ids;
         // Initialize view
         initView();
         // Render view
@@ -43,8 +44,8 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Pla
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         list.setBackground(Color.DARK_GRAY);
         // Populate list panel with items
-        for (int i = 0; i < playlists.size(); i++) {
-            list.add(new PlaylistCollectionItem(i, playlists.get(i), width, 60));
+        for (int i = 0; i < playlist_ids.size(); i++) {
+            list.add(new PlaylistCollectionItem(i, playlist_ids.get(i), width, 60));
         }
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
@@ -53,6 +54,11 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Pla
         scrollPanel.setPreferredSize(new Dimension(width, height));
         // Add panel to view
         view.add(scrollPanel, BorderLayout.CENTER);
+    }
+    @Override
+    private void userUpdate(){
+        ArrayList<String> userplaylists = UserStatusViewModel.getInstance().getPlaylistIds;
+        this.updateView(userplaylists);
     }
 
 }

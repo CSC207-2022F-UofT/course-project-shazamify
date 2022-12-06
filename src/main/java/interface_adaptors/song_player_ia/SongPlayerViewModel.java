@@ -75,6 +75,7 @@ public class SongPlayerViewModel extends AbstractViewModel<Song> {
             buttonsPanel.add(new ButtonPause());
             buttonsPanel.add(new ButtonStop());
             buttonsPanel.add(new ButtonSeekEnd());
+            buttonsPanel.add(new ButtonRevealQueue());
 
             // Add buttons panel to the content panel
             view.add(buttonsPanel, BorderLayout.CENTER);

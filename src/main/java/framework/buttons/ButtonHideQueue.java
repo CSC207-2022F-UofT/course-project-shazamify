@@ -1,6 +1,6 @@
 package framework.buttons;
 
-import interface_adaptors.song_player_ia.SongPlayerController;
+import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,11 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonPlay extends JButton {
+public class ButtonHideQueue extends JButton {
 
-    public ButtonPlay() {
+    private ButtonRevealQueue revealbutton;
+
+    public ButtonHideQueue(){
         try {
-            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerplayicon.png"))));
+            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerrevealqueue.png"))));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -23,9 +25,14 @@ public class ButtonPlay extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SongPlayerController.playSong();
+                QueueViewModel.getInstance().getView().setVisible(false);
+                AlterVisibility();
             }
         });
     }
 
+    public void AlterVisibility(){
+        revealbutton.setVisible(true);
+        this.setVisible(false);
+    }
 }
