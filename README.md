@@ -55,7 +55,3 @@ The UserStatusViewModel is a Singleton Class that visible by the package. Everyt
 
 Used to make the ViewModels observable for the package, unique and potentially able to implements interface and extends superclasses.
 UIs and Controllers would be able to access information that is pre-prepared, and don't need to go through different layers.
-
-### Dependency Injection
-- implemented in use case layer.
-- 
