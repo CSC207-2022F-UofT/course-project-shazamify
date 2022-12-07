@@ -17,11 +17,11 @@ public class RadioPlayer {
     private static boolean keepPlaying;
 
     /** Read sampled audio data from the specified URL and play it */
-    public static void playStream(String stationName)
+    public static void playStream(URL url)
             throws IOException, UnsupportedAudioFileException,
             LineUnavailableException
     {
-        StationLibrary stationSelection = new StationLibrary();
+        /*StationLibrary stationSelection = new StationLibrary();
         List<RadioStation> stationList = stationSelection.getStations();
 
         RadioStation station = null;
@@ -33,7 +33,7 @@ public class RadioPlayer {
             }
         }
 
-        URL url = station.getStreamURL();
+        URL url = station.getStreamURL();*/
 
         AudioInputStream ain = null;  // We read audio data from here
         SourceDataLine line = null;   // And write it here.

@@ -23,8 +23,7 @@ public class RadioStation {
      * @param streamURL - The stream URL provided by the user.
      * @param thumbnailURL - URL to an icon or picture that represents the stream. (PNG, JPG)
      */
-    public void RadioStation(String id, String name, String streamURL, String homepageURL, String thumbnailURL, String[] tags,
-                                    String country, String[] languages){
+    public void RadioStation(String id, String name, String streamURL, String thumbnailURL){
         // This function will assign all the basic information (the information that most likely will not change).
         this.id = id;
         this.name = name;

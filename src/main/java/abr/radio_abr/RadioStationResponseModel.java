@@ -3,9 +3,9 @@ package abr.radio_abr;
 // TODO: Javadocs
 
 public class RadioStationResponseModel {
-      public String stationName;
-      public String streamURL;
-      public String thumbnailURL;
+      private String stationName;
+      private String streamURL;
+      private String thumbnailURL;
 
     public void setStationName(String stationName){
         this.stationName = stationName;
