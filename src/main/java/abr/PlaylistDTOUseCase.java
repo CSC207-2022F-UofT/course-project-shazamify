@@ -10,18 +10,23 @@ import entities.playlist_entities.Playlist;
 import java.awt.*;
 
 public class PlaylistDTOUseCase {
-    public static String getName(String id){
+    public static String getName(String id) {
         PlaylistDAOOutput playlistdaoout = new PlaylistDAOOutputImpl();
-        Playlist s = playlistdaoout.findById(id).get();
-        return s.getName();
+        return playlistdaoout.findById(id).get().getName();
     }
-    public static String getArtist(String id){
-        //TODO: access Playlist by id return their Artist attribute)
+
+    public static String getArtist(String id) {
+        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
+        return playlistdaoout.findById(id).get().getArtist();
     }
-    public static Image getCover(String id){
-        //TODO: access Playlist by id return their Cover attribute)
+
+    public static String getCover(String id) {
+        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
+        return playlistdaoout.findById(id).get().getCover();
     }
-    public static String getYear(String id){
-        //TODO: access Playlist by id return their year attribute)
+
+    public static String getYear(String id) {
+        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
+        return playlistdaoout.findById(id).get().getYear();
     }
 }
