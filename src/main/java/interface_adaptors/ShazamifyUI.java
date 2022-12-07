@@ -43,7 +43,8 @@ public class ShazamifyUI extends JFrame {
         //MediaPlaylistController.listSongs();
         PlaylistCollectionController.displayPlaylists(null);
         DisplaySearchUseCase SearchController;
-        SearchController.displaySearchBar();
+//        TODO: uncomment
+//        SearchController.displaySearchBar();
     }
 
     private JPanel createContentPanel(int width, int height) {
@@ -117,17 +118,18 @@ public class ShazamifyUI extends JFrame {
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
 
         OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
-        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList);
-
-        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
-        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest);
-
-        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
-        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest);
-
-        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
-
-        overheadButtonsPanel.add(btnFriends);
+//        TODO: uncomment
+//        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList);
+//
+//        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
+//        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest);
+//
+//        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
+//        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest);
+//
+//        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
+//
+//        overheadButtonsPanel.add(btnFriends);
     }
 
     private JPanel createCollectionsPanel(int width, int height){
