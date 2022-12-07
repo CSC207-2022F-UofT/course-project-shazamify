@@ -28,22 +28,21 @@ public class UserHomePageUIInitializer {
      * !! Do not try to pass in an empty UserStatusViewModel, this will cause an error. !!
      * !! Please Register or Login First !!
      * @param userAvatarMngViewModel The ViewModel for User avatar
-     * @param userStatusViewModel The ViewModel for User Status
      */
-    public static UserHomePageUI initializeUI(UserAvatarMngViewModel userAvatarMngViewModel, UserStatusViewModel userStatusViewModel){
+    public static UserHomePageUI initializeUI(UserAvatarMngViewModel userAvatarMngViewModel){
         // UserAvatarPart
-        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter(userAvatarMngViewModel, userStatusViewModel);
+        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter(userAvatarMngViewModel);
         UserAvatarDatabaseGateway userAvatarDatabaseGateway = new UserAvatarFileGateway();
         UserAvatarMngInputBoundary userAvatarMngInputBoundary = new UserAvatarMngUseCase(userAvatarDatabaseGateway, userAvatarMngOutputBoundary);
         UserAvatarMngController userAvatarMngController= new UserAvatarMngController(userAvatarMngInputBoundary);
         // User Change PassWord part
-        UserCPOutputBoundary userCPOutputBoundary = new UserCPPresenter(userStatusViewModel);
+        UserCPOutputBoundary userCPOutputBoundary = new UserCPPresenter();
         UserCPDatabaseGateway userCPDatabaseGateway = new UserCPFileGateway();
         UserCPInputBoundary userCPInputBoundary =
                 new UserCPUseCase(userCPOutputBoundary, userCPDatabaseGateway);
         UserCPController userCPController =  new UserCPController(userCPInputBoundary);
 
         // Initialize the UI
-        return new UserHomePageUI(userAvatarMngController, userCPController, userStatusViewModel, userAvatarMngViewModel);
+        return new UserHomePageUI(userAvatarMngController, userCPController, userAvatarMngViewModel);
     }
 }

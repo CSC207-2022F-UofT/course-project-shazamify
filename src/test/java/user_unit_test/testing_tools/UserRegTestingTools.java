@@ -21,8 +21,8 @@ public class UserRegTestingTools {
     /**
      * By Pass in userViewModel and required parameters, the function will register the user and permute userRegViewModel
      */
-    public static void registerUser(String userName, String passWord, String rePassword, UserRegViewModel userRegViewModel){
-        UserRegController userRegController = initializeTestEnvironment(userRegViewModel);
+    public static void registerUser(String userName, String passWord, String rePassword){
+        UserRegController userRegController = initializeTestEnvironment();
         // Generate a UserSecurityQuestion with both question and answer be test.
         Map<String, String> securityQuestionMap = UserSecurityQuestionGenerator.generateSecurityQuestionMap();
 
@@ -33,8 +33,8 @@ public class UserRegTestingTools {
     /**
      * By given a security question Map, this function will create a User with random 10 digits numeric String
      */
-    public static void registerUser(Map<String, String> securityQuestionMap, UserRegViewModel userRegViewModel){
-        UserRegController userRegController = initializeTestEnvironment(userRegViewModel);
+    public static void registerUser(Map<String, String> securityQuestionMap){
+        UserRegController userRegController = initializeTestEnvironment();
         Random random = new Random();
 
         String userName = String.valueOf(random.nextInt(1000000000));
@@ -47,8 +47,8 @@ public class UserRegTestingTools {
     /**
      * Register a complete random User
      */
-    public static void registerUser(UserRegViewModel userRegViewModel){
-        UserRegController userRegController = initializeTestEnvironment(userRegViewModel);
+    public static void registerUser(){
+        UserRegController userRegController = initializeTestEnvironment();
         Random random = new Random();
 
 
@@ -61,9 +61,9 @@ public class UserRegTestingTools {
         userRegController.register(userName, passWord, passWord, securityQuestionMap);
     }
 
-    private static UserRegController initializeTestEnvironment(UserRegViewModel userRegViewModel){
+    private static UserRegController initializeTestEnvironment(){
         // Initialize the User Presenter
-        UserRegPresenter userRegPresenter = new UserRegPresenter(userRegViewModel);
+        UserRegPresenter userRegPresenter = new UserRegPresenter();
         // Initialize the User Database Gateway
         UserRegisterDataBaseGateway userRegisterDataBaseGateway = new UserRegisterFileGateway();
         // Initialize the User ABR
