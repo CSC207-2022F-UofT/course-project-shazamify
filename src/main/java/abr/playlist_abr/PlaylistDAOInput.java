@@ -2,6 +2,10 @@ package abr.playlist_abr;
 
 import entities.playlist_entities.Playlist;
 
+/**
+ * Playlist's database Gateway
+ */
+
 public interface PlaylistDAOInput {
     /**
      * save the playlist in the database

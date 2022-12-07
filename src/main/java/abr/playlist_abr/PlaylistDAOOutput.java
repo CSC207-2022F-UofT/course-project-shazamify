@@ -4,6 +4,9 @@ import entities.playlist_entities.Playlist;
 
 import java.util.Optional;
 
+/**
+ * PlaylistDS Gateway
+ */
 public interface PlaylistDAOOutput {
     /**
      * find Playlist in database by ID

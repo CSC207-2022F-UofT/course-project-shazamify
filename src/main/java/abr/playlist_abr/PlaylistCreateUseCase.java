@@ -7,7 +7,7 @@ public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
     private final PlaylistDAOInput playlistDAOInput;
 
 
-    /**
+    /** containing PlaylistCreate's logic
      *
      *
      * @param playlistDAOInput

@@ -1,5 +1,8 @@
 package abr.playlist_abr;
 
+/**
+ * methods to modify the playlist
+ */
 public interface PlaylistModifyInputBoundary {
     /**
      * add a song to the playlist

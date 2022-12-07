@@ -6,6 +6,9 @@ import entities.playlist_entities.Playlist;
 
 import java.util.Optional;
 
+/**
+ * PlaylistModify Logic
+ */
 public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
     private final PlaylistDAOOutput playlistDAOOutput;
     private final SongDAOOutput songDAOOutput;
@@ -13,6 +16,11 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         this.playlistDAOOutput = playlistDAOOutput;
         this.songDAOOutput = songDAOOutput;
     }
+
+    /**
+     * add a song to playlist
+     * @param requestModel: modify Playlist's properties
+     */
     @Override
     public void addToPlaylist(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
@@ -24,6 +32,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
         }
     }
 
+    /**
+     * delete a song from playlist
+     * @param requestModel: modify Playlist's properties
+     */
     @Override
     public void deleteSong(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
@@ -36,6 +48,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
 
     }
 
+    /**
+     * change the privacy of a playlist
+     * @param requestModel: modify Playlist's properties
+     */
     @Override
     public void setPrivacy(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
@@ -48,6 +64,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
 
     }
 
+    /**
+     * set the name of the playlist
+     * @param requestModel: modify Playlist's properties
+     */
     @Override
     public void setName(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
@@ -60,6 +80,10 @@ public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
 
     }
 
+    /**
+     * reorder playlist's contents
+     * @param requestModel: modify Playlist's properties
+     */
     @Override
     public void reOrderPL(PlaylistModifyRequestModel requestModel) {
         Optional<Playlist> playlist = this.playlistDAOOutput.findById(requestModel.plID);
