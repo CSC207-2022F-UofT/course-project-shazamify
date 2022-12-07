@@ -7,11 +7,9 @@ import entities.playlist_entities.Playlist;
 import java.util.Optional;
 
 public class PlaylistModifyUseCase implements PlaylistModifyInputBoundary {
-    private final PlaylistModifyOutputBoundary outputBoundary;
     private final PlaylistDAOOutput playlistDAOOutput;
     private final SongDAOOutput songDAOOutput;
-    public PlaylistModifyUseCase (PlaylistModifyOutputBoundary outputBoundary, PlaylistDAOOutput playlistDAOOutput, SongDAOOutput songDAOOutput){
-        this.outputBoundary = outputBoundary;
+    public PlaylistModifyUseCase (PlaylistDAOOutput playlistDAOOutput, SongDAOOutput songDAOOutput){
         this.playlistDAOOutput = playlistDAOOutput;
         this.songDAOOutput = songDAOOutput;
     }

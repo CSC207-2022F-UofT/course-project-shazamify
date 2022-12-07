@@ -1,6 +1,7 @@
 package abr.playlist_abr;
 
 
+import ds.playlist_ds.PlaylistDAOOutputImpl;
 import entities.playlist_entities.Playlist;
 import entities.playlist_entities.Privacy;
 
@@ -11,6 +12,7 @@ public class PlaylistResponseModel{
     private Playlist playlist;
 
     public PlaylistResponseModel(String plID) {
+        this.playlistDAOOutput = new PlaylistDAOOutputImpl();
         this.playlist = this.playlistDAOOutput.findById(plID).get();
     }
 
