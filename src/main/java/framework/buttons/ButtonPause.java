@@ -1,6 +1,6 @@
 package framework.buttons;
 
-import interface_adaptors.song_player_ia.SongPlayerController;
+import interface_adaptors.display_ia.SongPlayerAudio;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class ButtonPause extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SongPlayerController.pauseSong();
+                SongPlayerAudio.getInstance().pauseSong();
             }
         });
     }

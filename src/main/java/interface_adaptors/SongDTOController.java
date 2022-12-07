@@ -15,4 +15,7 @@ public class SongDTOController {
         return SongDTOUseCase.getCover(id);
     }
     public static String getYear(String id){ return SongDTOUseCase.getYear(id); }
+    public static int getDuration(String id){
+        return SongDTOUseCase.getDuration(id);
+    }
 }

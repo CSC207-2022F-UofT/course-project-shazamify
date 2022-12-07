@@ -1,6 +1,7 @@
 package framework.items;
 
 import interface_adaptors.SongDTOController;
+import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.song_player_ia.SongPlayerController;
 import interface_adaptors.visualizer_ia.SongVisualizerController;
 
@@ -55,8 +56,8 @@ public class RecordItem extends JPanel {
     }
 
     private void handlePlayButtonAction(JButton button, ActionEvent e){
-       SongVisualizerController.visualizeSong(song);
-       SongPlayerController.displaySongPlayer(song);
+        SongVisualizerController.visualizeSong(song);
+        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
     }
 
     private void handleDeleteButtonAction(JButton button, ActionEvent e){
@@ -136,7 +137,7 @@ public class RecordItem extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     SongVisualizerController.visualizeSong(song_id);
-                    SongPlayerController.displaySongPlayer(song_id);;
+                    SongPlayerAudio.getInstance().displaySongPlayer(song_id);
                 }
             });
         }

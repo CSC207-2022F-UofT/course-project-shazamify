@@ -1,5 +1,6 @@
 package framework.buttons;
 
+import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.song_player_ia.SongPlayerController;
 
 import javax.imageio.ImageIO;
@@ -23,7 +24,7 @@ public class ButtonSeekEnd extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SongPlayerController.seekEndSong();
+                SongPlayerAudio.getInstance().seekEndSong();
             }
         });
     }

@@ -1,9 +1,8 @@
 package interface_adaptors.song_player_ia;
 
-import entities.Song;
 import framework.buttons.*;
 import interface_adaptors.AbstractViewModel;
-import interface_adaptors.display_ia.DisplaySongPlayerUseCase;
+import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
 import javax.swing.*;
@@ -11,10 +10,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
-public class SongPlayerViewModel extends AbstractViewModel<Song> {
+public class SongPlayerViewModel extends AbstractViewModel<String> {
 
     private static SongPlayerViewModel instance;
-    private static Song song;
+    private static String song_id;
     private static JSlider slider;
 
     /**
@@ -28,11 +27,11 @@ public class SongPlayerViewModel extends AbstractViewModel<Song> {
 
     /**
      * Updates view
-     * @param song
+     * @param song_id
      */
-    public void updateView(Song song) {
+    public void updateView(String song_id) {
         // Update data
-        this.song = song;
+        this.song_id = song_id;
         // Initialize view
         initView();
         // Render slider
@@ -46,7 +45,7 @@ public class SongPlayerViewModel extends AbstractViewModel<Song> {
      */
     private void renderSlider() {
         // Create slider
-        slider = new JSlider(JSlider.HORIZONTAL, 0, DisplaySongPlayerUseCase.NUM_INTERVALS, 0);
+        slider = new JSlider(JSlider.HORIZONTAL, 0, SongPlayerAudio.NUM_INTERVALS, 0);
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 SongVisualizerViewModel.getInstance().progressUpdate(slider.getValue());
