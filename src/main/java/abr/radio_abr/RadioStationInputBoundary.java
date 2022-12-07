@@ -1,8 +1,6 @@
 package abr.radio_abr;
 
-import interface_adaptors.radio_ia.RadioPlayerViewModel;
-
-import java.util.ArrayList;
+import radio_ia.RadioPlayerViewModel;
 
 /***
  * RadioStationInputBoundary exists to serve as an input boundary between other classes and the request model.
