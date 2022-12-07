@@ -1,6 +1,7 @@
 package queue_abr_test;
 
-import abr.queue_abr.queue.*;
+import abr.queue_abr.queue.QueueUInputBoundary;
+import abr.queue_abr.queue.QueueUUseCase;
 import entities.queue_entities.*;
 import interface_adaptors.queue_ia.*;
 import org.junit.Test;
@@ -17,9 +18,9 @@ public class UpdateQueueTest {
         List<String> ids = Arrays.asList("1", "2", "3", "4", "5");
         songQueue.setQueue(ids);
 
-        QueueViewModel queueViewModel = new QueueViewModel();
-        queueViewModel.setSongList(songQueue.getQueue());
-        QueueUpdate.updateQueue(Arrays.asList("5", "4", "3", "2", "1"), queueViewModel);
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(Arrays.asList("5", "4", "3", "2", "1"));
 
         assertEquals(songQueue.getQueue(), Arrays.asList("5", "4", "3", "2", "1"));
     }
@@ -31,9 +32,9 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueViewModel queueViewModel = new QueueViewModel();
-        queueViewModel.setSongList(songQueue.getQueue());
-        QueueUpdate.updateQueue(Arrays.asList("1", "2", "3", "4", "5"), queueViewModel);
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(Arrays.asList("1", "2", "3", "4", "5"));
 
         assertEquals(songQueue.getQueue(), Arrays.asList("1", "2", "3", "4", "5"));
     }
@@ -45,9 +46,9 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueViewModel queueViewModel = new QueueViewModel();
-        queueViewModel.setSongList(songQueue.getQueue());
-        QueueUpdate.updateQueue(List.of("1"), queueViewModel);
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(List.of("1"));
 
         assertEquals(songQueue.getQueue(), List.of("1"));
     }

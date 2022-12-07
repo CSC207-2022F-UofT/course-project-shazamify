@@ -1,9 +1,9 @@
 package abr.queue_abr.queue;
 
-//TODO: javadoc
 /***
- * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
- * response model containing the new and updated queue list.
+ * The queue first use case contains a facade class which determines what the new queue should be. It stores the queue
+ * without the first song and the song ID of the first song in a data transfer object. It then calls on the
+ * response model's present method, which will bring this information up to the view model.
  */
 public class QueueFUC implements QueueFIB{
 
@@ -22,13 +22,12 @@ public class QueueFUC implements QueueFIB{
     /***
      * Overrides the input boundary method and creates a response model with data prepared by the queue helper
      * in for it to be packaged by the output boundary.
-     * @param fReqM - The list of songs that the queue should be updated to. It should also be passed onto
-     *                     the output boundary in preparation for presenting.
+     * @param fReqM - An intentionally empty class.
      */
     @Override
     public void getFirst(QueueFReqM fReqM) {
         QueueFRespM fRespM = new QueueFRespM();
-        QueueFDTO queueFDTO = queueFHelper.next(fReqM, fRespM);
+        QueueFDTO queueFDTO = queueFHelper.next();
         fRespM.setSongList(queueFDTO.songList);
         fRespM.setSongID(queueFDTO.songID);
 
