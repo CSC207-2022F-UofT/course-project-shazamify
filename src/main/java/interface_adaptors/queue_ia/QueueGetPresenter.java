@@ -3,7 +3,6 @@ package interface_adaptors.queue_ia;
 import abr.queue_abr.queue.QueueGetOutputBoundary;
 import abr.queue_abr.queue.QueueGetResponseModel;
 
-//TODO javadocs
 /***
  * The queue presenter is responsible for taking the response model list of songs and packaging it for the view model.
  */
