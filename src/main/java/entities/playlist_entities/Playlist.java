@@ -51,9 +51,8 @@ public class Playlist implements Record {
         return this.duration;
     }
 
-    public String setDuration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
-        return this.getId() + " duration: " + this.getDuration();
     }
 
     public String getArtist() {
@@ -64,9 +63,8 @@ public class Playlist implements Record {
         return this.description;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this.getId() + " description: " + this.getDescription();
     }
 
     public Privacy getPrivacy() {
@@ -86,9 +84,8 @@ public class Playlist implements Record {
         return this.contents;
     }
 
-    public Object setSongs(ArrayList<String> contents) {
+    public void setSongs(ArrayList<String> contents) {
         this.contents = contents;
-        return null;
     }
 
     public boolean reOrderSongs(String songID, int ind) {
