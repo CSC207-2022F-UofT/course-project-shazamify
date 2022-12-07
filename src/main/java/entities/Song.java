@@ -155,8 +155,7 @@ public class Song {
     }
 
 
-    public File getFile() {
-//        TODO: implement method
-        return null;
+    public String getFile() {
+        return this.filePath;
     }
 }
