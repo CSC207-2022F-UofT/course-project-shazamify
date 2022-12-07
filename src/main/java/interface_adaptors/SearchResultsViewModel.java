@@ -6,7 +6,6 @@ import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
-import user.entities.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +21,9 @@ public class SearchResultsViewModel {
     private int width;
     private int height;
 
-    private ArrayList<Song> songs;
+    private ArrayList<String> songs;
     //private ArrayList<Album> albums;
-    private ArrayList<User> users;
+    private ArrayList<String> users;
 
     private JPanel viewSongs;
     private JPanel viewUsers;
@@ -65,12 +64,10 @@ public class SearchResultsViewModel {
 
     /**
      * Updates view
-     * @param songs
      * potentially add Radio stations
      */
-    public void updateView(ArrayList<Song> songs, ArrayList<User> users) {
+    public void updateViewUser(ArrayList<String> users) {
         // Update data
-        this.songs = songs;
         this.users = users;
         // Initialize view
         initView();

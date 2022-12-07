@@ -1,7 +1,10 @@
 package abr.search_engine_abr;
 
+import abr.user_playlist_abr.UserPlaylistOutputBoundary;
 import ds.user_search_engine.SearchEngineFileGateway;
+import entities.Song;
 import entities.user_entities.User;
+import interface_adaptors.search_engine_ia.SearchEnginePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +13,30 @@ import java.util.List;
  * @author Zhaolang05
  * @date 2022/11/18/17:01
  */
-public class SearchUserAbr {
+public class SearchUserAbr implements SearchUserInputBoundary{
     private SearchEngineFileGateway userDao = new SearchEngineFileGateway();
     private int limitCount = 5;
+    SearchEngineOutputBoundary outputBoundary = new SearchEnginePresenter();
+    SearchEngineResponseModel responseModel = new SearchEngineResponseModel();
+
+    public SearchUserAbr(SearchEngineOutputBoundary outputBoundary){
+        this.outputBoundary = outputBoundary;
+        this.responseModel = new SearchEngineResponseModel();
+    }
+
+    public void sendSearchUserToViewModel(String searchName){
+        List<User> resultedUser = searchUsers(searchName);
+        List<String> resultedUserNames = new ArrayList<>();
+
+        for (User user: resultedUser){
+            resultedUserNames.add(user.getUserName());
+        }
+
+        responseModel.setUserSearchResult(resultedUserNames);
+        outputBoundary.packageAndPresentUser(responseModel);
+    }
+
+
 
     /**
      * Search user by name, first match equals, then match starts with, and finally matches contains.
@@ -44,8 +68,5 @@ public class SearchUserAbr {
         {
              return searchResult;
         }
-
     }
-
-
 }
