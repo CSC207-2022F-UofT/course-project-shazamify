@@ -1,6 +1,7 @@
 package interface_adaptors;
 
 import entities.playlist_entities.Playlist;
+import framework.buttons.ButtonCreatePlaylist;
 import framework.items.PlaylistCollectionItem;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
@@ -8,11 +9,12 @@ import interface_adaptors.user_login_ia.UserStatusViewModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<String>> implements UserStatusObserver {
+public class PlaylistCollectionViewModel extends AbstractViewModel<List<String>> implements UserStatusObserver {
 
     private static PlaylistCollectionViewModel instance;
-    private ArrayList<String> playlist_ids;
+    private List<String> playlist_ids;
 
     /**
      * Gets instance of singleton
@@ -25,9 +27,9 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Str
 
     /**
      * Updates view
-     * @param playlists
+     * @param playlist_ids
      */
-    public void updateView(ArrayList<String> playlist_ids) {
+    public void updateView(List<String> playlist_ids) {
         // Update data
         this.playlist_ids = playlist_ids;
         // Initialize view
@@ -48,6 +50,7 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Str
         for (int i = 0; i < playlist_ids.size(); i++) {
             list.add(new PlaylistCollectionItem(i, playlist_ids.get(i), width, 60));
         }
+        list.add(new ButtonCreatePlaylist(width, 60));
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
         scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -57,8 +60,8 @@ public class PlaylistCollectionViewModel extends AbstractViewModel<ArrayList<Str
         view.add(scrollPanel, BorderLayout.CENTER);
     }
     @Override
-    private void userUpdated(){
-        ArrayList<String> userplaylists = UserStatusViewModel.getInstance().getPlaylistIds;
+    public void userUpdated(){
+        List<String> userplaylists = UserStatusViewModel.getInstance().getPlayListIds();
         this.updateView(userplaylists);
     }
 

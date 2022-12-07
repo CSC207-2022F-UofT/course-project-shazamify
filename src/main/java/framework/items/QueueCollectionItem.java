@@ -1,12 +1,7 @@
 package framework.items;
 
 
-import entities.playlist_entities.Playlist;
-import framework.buttons.ButtonRevealQueue;
-import interface_adaptors.MediaPlaylistController;
-import interface_adaptors.RecordDTOController;
-import interface_adaptors.SearchResultsViewModel;
-import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.SongDTOController;
 import interface_adaptors.queue_ia.QueueGetController;
 import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
@@ -20,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collections;
-import java.util.Queue;
 import java.util.List;
 
 import static javax.swing.BorderFactory.createMatteBorder;
@@ -54,10 +48,10 @@ public class QueueCollectionItem extends JPanel{
 
 
         //this.add(renderLabel(RecordDTOController.getAlbum()));
-        this.add(renderImage(new ImageIcon(RecordDTOController.getCover(song_id))));
-        this.add(renderLabel(RecordDTOController.getArtist(song_id)));
-        this.add(renderLabel(RecordDTOController.getName(song_id)));
-        this.add(renderLabel(RecordDTOController.getYear(song_id)));
+        this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        this.add(renderLabel(SongDTOController.getArtist(song_id)));
+        this.add(renderLabel(SongDTOController.getName(song_id)));
+        this.add(renderLabel(SongDTOController.getYear(song_id)));
 
         this.add(renderInputs());
 
