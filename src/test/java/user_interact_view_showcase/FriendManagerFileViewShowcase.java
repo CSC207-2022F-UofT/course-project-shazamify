@@ -31,7 +31,7 @@ public class FriendManagerFileViewShowcase { // for presentation demo only
         // Create the parts to plug into the Use Case
         FriendManagerDsGateway dsGateway = new FriendManagerFileDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
-        UserStatusViewModel userStatusViewModel = new UserStatusViewModel();
+        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
 
         // set up user status view model
         userStatusViewModel.setUserName("Star");
