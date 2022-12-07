@@ -121,8 +121,7 @@ public class UserStatusViewModel {
         this.setUserName("Guest");
         this.setUserAvatar(getDefaultAvatar());
         this.setPlayListIds(new ArrayList<>());
-//        TODO: method not found
-        this.setFriendList(new HashMap<>());
+        this.updateFriendList(new HashMap<>());
         this.setLogInStatus(false);
     }
 
