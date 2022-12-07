@@ -1,7 +1,6 @@
 package queue_abr_test;
 
-import abr.queue_abr.queue.QueueUInputBoundary;
-import abr.queue_abr.queue.QueueUUseCase;
+import abr.queue_abr.queue.*;
 import entities.queue_entities.*;
 import interface_adaptors.queue_ia.*;
 import org.junit.Test;
@@ -51,5 +50,19 @@ public class UpdateQueueTest {
         controller.send(List.of("1"));
 
         assertEquals(songQueue.getQueue(), List.of("1"));
+    }
+
+    @Test
+    public void clearQueue() {
+        SongQueue songQueue = SongQueue.getInstance();
+        List<String> ids = Arrays.asList("1", "2", "3", "4", "5");
+
+        songQueue.setQueue(ids);
+
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(List.of());
+
+        assertEquals(songQueue.getQueue(), List.of());
     }
 }
