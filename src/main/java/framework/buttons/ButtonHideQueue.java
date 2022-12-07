@@ -1,7 +1,6 @@
 package framework.buttons;
 
-import interface_adaptors.display_ia.SongPlayerAudio;
-import interface_adaptors.song_player_ia.SongPlayerController;
+import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,11 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonSeekStart extends JButton {
+public class ButtonHideQueue extends JButton {
 
-    public ButtonSeekStart() {
+    private ButtonRevealQueue revealbutton;
+
+    public ButtonHideQueue(){
         try {
-            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerskipforwardicon.png"))));
+            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerrevealqueue.png"))));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -24,9 +25,14 @@ public class ButtonSeekStart extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SongPlayerAudio.getInstance().seekStartSong();
+                QueueViewModel.getInstance().getView().setVisible(false);
+                AlterVisibility();
             }
         });
     }
 
+    public void AlterVisibility(){
+        revealbutton.setVisible(true);
+        this.setVisible(false);
+    }
 }

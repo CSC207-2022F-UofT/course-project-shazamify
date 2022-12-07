@@ -7,6 +7,7 @@ import abr.user_interact_abr.show_friend_list_abr.*;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import interface_adaptors.display_ia.DisplaySearchUseCase;
 import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
 import framework.buttons.*;
@@ -182,6 +183,7 @@ public class ShazamifyUI extends JFrame {
         listsPanel.setBackground(new Color(36, 36, 36));
         listsPanel.add(RecordViewModel.getInstance().getView(width, height));
         listsPanel.add(SearchResultsViewModel.getInstance().getView(width, height));
+        listsPanel.add(QueueViewModel.getInstance().getView(width, height));
         panel.add(listsPanel, BorderLayout.CENTER);
 
         return panel;
