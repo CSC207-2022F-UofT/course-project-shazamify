@@ -4,8 +4,10 @@ package framework.items;
 import entities.playlist_entities.Playlist;
 import framework.buttons.ButtonRevealQueue;
 import interface_adaptors.MediaPlaylistController;
+import interface_adaptors.RecordDTOController;
 import interface_adaptors.SearchResultsViewModel;
 import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.queue_ia.QueueGetController;
 import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
 
@@ -51,10 +53,11 @@ public class QueueCollectionItem extends JPanel{
         }catch(java.io.IOException e){}
 
 
-        this.add(renderLabel(songDTO.getAlbum()));
-        this.add(renderLabel(songDTO.getArtist()));
-        this.add(renderLabel(songDTO.getTitle()));
-        this.add(renderLabel(songDTO.getYear()));
+        //this.add(renderLabel(RecordDTOController.getAlbum()));
+        this.add(renderImage(new ImageIcon(RecordDTOController.getCover(song_id))));
+        this.add(renderLabel(RecordDTOController.getArtist(song_id)));
+        this.add(renderLabel(RecordDTOController.getName(song_id)));
+        this.add(renderLabel(RecordDTOController.getYear(song_id)));
 
         this.add(renderInputs());
 
@@ -100,17 +103,24 @@ public class QueueCollectionItem extends JPanel{
         try {
             button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/playiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
             button.setOpaque(false);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    handlePlayButtonAction(button, e);
-                }
-            });
         }
         catch (Exception e){
             System.out.println(e);
         }
-
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Retrieve current queue list and remove all preceding songs while updating view model
+                List<String> currentQueueOrder = QueueController.getSongs();
+                for (int i = 0; i < index; i++){
+                    currentQueueOrder.remove(i);
+                }
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+                QueueUController.send(currentQueueOrder);
+                //Play song
+                handlePlayButtonAction(button, e);
+            }
+        });
         button.setBorderPainted(false);
         button.setBorder(null);
         button.setMargin(new Insets(0, 0, 0, 0));
@@ -173,7 +183,7 @@ public class QueueCollectionItem extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Retrieve current order and swap song with the one below
-                List<String> currentQueueOrder = QueueController.getSongs();
+                List<String> currentQueueOrder = QueueGetController.getSongs();
                 Collections.swap(currentQueueOrder, index, index + 1);
 
                 //Update the queue with the new order and redraw view model
@@ -265,6 +275,12 @@ public class QueueCollectionItem extends JPanel{
         JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
         menu.add(addToPlaylistMenuItem);
         return menu;
+    }
+
+    public List<String> getCurrentQueueOrder(){
+        QueueGetInputBoundary getInputBoundary = new QueueGetUseCase();
+        QueueGetController controller = new QueueGetController(getInputBoundary);
+        return controller.retrievelist();
     }
 
     private class PanelListener implements MouseListener {
