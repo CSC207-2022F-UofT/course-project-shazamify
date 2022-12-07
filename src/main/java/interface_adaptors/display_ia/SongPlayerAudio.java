@@ -2,6 +2,7 @@ package interface_adaptors.display_ia;
 
 import entities.Song;
 import interface_adaptors.AbstractDisplayUseCase;
+import interface_adaptors.SongDTOController;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 import javax.sound.sampled.*;
@@ -9,11 +10,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DisplaySongPlayerUseCase extends AbstractDisplayUseCase {
+public class SongPlayerAudio extends AbstractDisplayUseCase {
 
     public static final int NUM_INTERVALS = 100;
 
-    private static DisplaySongPlayerUseCase instance;
+    private static SongPlayerAudio instance;
 
     private Clip clip;
     private AudioInputStream stream;
@@ -23,40 +24,39 @@ public class DisplaySongPlayerUseCase extends AbstractDisplayUseCase {
      * Gets instance of singleton
      * @return instance
      */
-    public static DisplaySongPlayerUseCase getInstance() {
-        if (instance == null) {instance = new DisplaySongPlayerUseCase();}
+    public static SongPlayerAudio getInstance() {
+        if (instance == null) {instance = new SongPlayerAudio();}
         return instance;
     }
 
     /**
      * Executes use case
-     * @param song
+     * @param song_id
      */
-    public void displaySongPlayer(Song song) {
+    public void displaySongPlayer(String song_id) {
         // Send to ViewModel
-        SongPlayerViewModel.getInstance().updateView(song);
+        SongPlayerViewModel.getInstance().updateView(song_id);
         // Clean-up
         try { clip.stop(); clip.close(); } catch (Exception e) {};
         try { stream.close(); } catch (Exception e) {};
         try { timer.stop(); } catch (Exception e) {};
         // Extract clip
-        clip = extractClip(song);
+        clip = extractClip(song_id);
         // Init timer
-        initTimer(song);
+        initTimer(song_id);
     }
 
     /**
      * Extracts clip from the song
-     * @param song
+     * @param song_id
      * @return Clip clip
      */
-    private Clip extractClip(Song song){
+    private Clip extractClip(String song_id){
         Clip clip = null;
         try {
             AudioFormat format;
             DataLine.Info info;
-//            TODO: resolve after MongoDB serialization
-//            stream = AudioSystem.getAudioInputStream(song.getFile());
+            stream = AudioSystem.getAudioInputStream(SongDTOController.getFile(song_id));
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
@@ -70,16 +70,16 @@ public class DisplaySongPlayerUseCase extends AbstractDisplayUseCase {
 
     /**
      * Initializes timer object
-     * @param song
+     * @param song_id
      */
-    private void initTimer(Song song) {
-        int timerDelay = (int) (song.getDuration() * 1000) / DisplaySongPlayerUseCase.NUM_INTERVALS;
+    private void initTimer(String song_id) {
+        int timerDelay = (int) (SongDTOController.getDuration(song_id) * 1000) / SongPlayerAudio.NUM_INTERVALS;
         // Create timer
         timer = new Timer(timerDelay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int progress = SongPlayerViewModel.getProgress();
-                if ( progress == DisplaySongPlayerUseCase.NUM_INTERVALS ) {
+                if ( progress == SongPlayerAudio.NUM_INTERVALS ) {
                     timer.stop();
                 }
                 else {

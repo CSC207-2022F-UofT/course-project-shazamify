@@ -2,6 +2,7 @@ package interface_adaptors.queue_ia;
 
 import abr.queue_abr.queue.QueueFOB;
 import abr.queue_abr.queue.QueueFRespM;
+import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 //TODO song player view model
 /***
@@ -10,11 +11,9 @@ import abr.queue_abr.queue.QueueFRespM;
  */
 public class QueueFirstPresenter implements QueueFOB {
 
-    QueueViewModel viewModel;
+    private final QueueViewModel viewModel = QueueViewModel.getInstance();
+    private final SongPlayerViewModel songPlayerViewModel = SongPlayerViewModel.getInstance();
 
-    public QueueFirstPresenter(QueueViewModel queueViewModel) {
-        this.viewModel = queueViewModel;
-    }
     @Override
     public void present(QueueFRespM fRespM) {
         viewModel.setSong_ids(fRespM.getSongList());

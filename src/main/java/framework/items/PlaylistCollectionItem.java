@@ -3,9 +3,9 @@ package framework.items;
 
 import entities.playlist_entities.Playlist;
 import interface_adaptors.MediaPlaylistController;
-import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.SearchResultsViewModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -18,12 +18,12 @@ import static javax.swing.BorderFactory.createMatteBorder;
 public class PlaylistCollectionItem extends JPanel{
 
     private int index;
-    private Playlist playlist;
+    private String playlist_id;
 
-    public PlaylistCollectionItem(int index, Playlist playlist, int width, int height) {
+    public PlaylistCollectionItem(int index, String playlist_id, int width, int height) {
 
         this.index = index;
-        this.playlist = playlist;
+        this.playlist_id = playlist_id;
 
         this.setMaximumSize(new Dimension(width, height));
         //this.setPreferredSize(new Dimension(width, height));
@@ -33,14 +33,14 @@ public class PlaylistCollectionItem extends JPanel{
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
-//        TODO: resolve after MongoDB serialization
-//        try {
-//            Image cover = ImageIO.read(playlist.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-//            this.add(renderImage(new ImageIcon(cover)));
-//        }catch(java.io.IOException ignored){}
+        //TODO: playlistDTO initializaion
+        try {
+            Image cover = ImageIO.read(playlistDTO.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            this.add(renderImage(new ImageIcon(cover)));
+        }catch(java.io.IOException e){}
 
 
-        this.add(renderLabel(playlist.getName()));
+        this.add(renderLabel(playlistDTO.getName()));
 
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
@@ -83,7 +83,8 @@ public class PlaylistCollectionItem extends JPanel{
             if(source instanceof JPanel){
                 JPanel panelPressed = (JPanel) source;
                 panelPressed.setBackground(Color.blue);
-                MediaPlaylistController.displayPlaylist(playlist);
+                //MediaPlaylistController.displayPlaylist(playlist);
+                RecordViewModel.getInstance().updateView(playlist_id);
                 RecordViewModel.getInstance().getView().setVisible(true);
                 SearchResultsViewModel.getInstance().getView().setVisible(false);
             }

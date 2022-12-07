@@ -46,7 +46,7 @@ public class QueueViewModel extends AbstractViewModel<List<String>> {
         list.setBackground(Color.DARK_GRAY);
         // Populate list panel with items
         for (int i = 0; i < song_ids.size(); i++) {
-            list.add(new QueueCollectionItem(i, song_ids.get(i), width, 60));
+            list.add(new QueueCollectionItem(i,  song_ids.get(i), song_ids.size(),  width, 60));
         }
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
@@ -59,5 +59,9 @@ public class QueueViewModel extends AbstractViewModel<List<String>> {
 
     public void setSong_ids(List<String> song_ids) {
         this.song_ids = song_ids;
+    }
+
+    public List<String> getSong_ids() {
+        return this.song_ids;
     }
 }
