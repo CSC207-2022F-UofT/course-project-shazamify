@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 public class RadioPlayerViewModel {
     private static RadioPlayerViewModel instance;
     private static String stationName;
+    private static String stationID;
     private static String streamURL;
 
     protected JPanel view;
@@ -29,8 +30,9 @@ public class RadioPlayerViewModel {
         return instance;
     }
 
-    public void updateView(String stationName) {
+    public void updateView(String stationName, String stationID) {
         this.stationName = stationName;
+        this.stationID = stationID;
         initView();
         renderButtons();
         renderStream();
@@ -73,7 +75,7 @@ public class RadioPlayerViewModel {
             stopButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    RadioPlayer.stopStream();
+                    DisplayRadioPlayerUseCase.stopStream();
                 } // This is to call the controller to stop the stream.
             });
 
@@ -92,7 +94,7 @@ public class RadioPlayerViewModel {
 
     private void renderStream(){
         try {
-            RadioControl.displayRadioPlayer(stationName); // This is to begin playing the stream.
+            DisplayRadioPlayerUseCase.playStream(stationID); // This is to begin playing the stream.
         }
         catch (Exception e) {
             System.out.println(e);

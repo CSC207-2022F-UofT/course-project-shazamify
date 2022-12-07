@@ -14,21 +14,21 @@ import java.awt.*;
 
 
 public class RadioStationUI extends JPanel {
-    // TODO: finish this!
 
     final JFrame frame = new JFrame("Radio Station");
     final String stationName;
-    // final RadioStation station;
+    final String stationID;
 
     final String thumbnailURL;
     final boolean likeStatus;
     RadioControl control;
 
-    public RadioStationUI(String stationName, String thumbnailURL, boolean getLiked, RadioControl control){
+    public RadioStationUI(String stationName, String thumbnailURL, boolean getLiked, RadioControl control, String stationID){
         this.control = control;
         this.stationName = stationName;
         this.thumbnailURL = thumbnailURL;
         this.likeStatus = getLiked;
+        this.stationID = stationID;
     }
 
     private void frameSetUp(){
@@ -49,7 +49,7 @@ public class RadioStationUI extends JPanel {
     }
     private void playNowButtonClicked(){
         // communicate with controller here
-        // RadioControl.displayRadioPlayer();
+        RadioControl.displayRadioPlayer(this.stationName, this.stationID);
     }
 
     private void likeStationButtonSetUp() {

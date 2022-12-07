@@ -1,9 +1,9 @@
 package interface_adaptors.radio_ia;
 
-import abr.radio_abr.RadioStationOutputBoundary;
-import abr.radio_abr.RadioStationResponseModel;
+import abr.radio_abr.RadioStationInputBoundary;
+import abr.radio_abr.RadioStationRequestModel;
 
-public class RadioPlayerPresenter implements RadioStationOutputBoundary {
+public class RadioPlayerPresenter implements RadioStationInputBoundary {
     /***
      * The queue presenter is responsible for taking the response model list of songs and packaging it for the view model.
      */
@@ -15,7 +15,7 @@ public class RadioPlayerPresenter implements RadioStationOutputBoundary {
     }
 
     @Override
-    public void packageAndPresent(RadioStationResponseModel responseModel){
-        viewModel.updateView(responseModel.stationName);
+    public void get(RadioStationRequestModel requestModel){
+        viewModel.updateView(requestModel.getStationName(), requestModel.getStationID());
     }
 }

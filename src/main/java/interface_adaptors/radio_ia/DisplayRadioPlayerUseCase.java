@@ -3,9 +3,12 @@ package interface_adaptors.radio_ia;
 
 import abr.radio_abr.RadioPlayer;
 
-public class DisplayRadioPlayerUseCase {
+/**
+ * This controller's main purpose is to communicate Radio Station information between the RadioControl
+ * as well as the various Radio ABR things.
+ */
 
-    // TODO: literally just finish this
+public class DisplayRadioPlayerUseCase {
 
     private static DisplayRadioPlayerUseCase instance;
 
@@ -19,16 +22,16 @@ public class DisplayRadioPlayerUseCase {
      *
      * @param
      */
-    public void displayRadioPlayer(String stationName) {
+    public void displayRadioPlayer(String stationID, String stationName) {
         //Send to ViewModel
-        RadioPlayerViewModel.getInstance().updateView(stationName);
+        RadioPlayerViewModel.getInstance().updateView(stationName, stationID);
     }
     /**
      * Plays the station stream
      */
-    public void playStream(String stationName) {
+    public static void playStream(String stationID) {
         try {
-            // RadioPlayer.playStream(stationName);
+            RadioPlayer.playStream(stationID);
         }
         catch (Exception e) {
             System.out.println(e);
@@ -38,7 +41,7 @@ public class DisplayRadioPlayerUseCase {
     /**
      * Stops playing the song
      */
-    public void stopStream() {
+    public static void stopStream() {
         try {
             RadioPlayer.stopStream();
         }

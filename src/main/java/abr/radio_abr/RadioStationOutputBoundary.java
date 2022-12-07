@@ -5,6 +5,5 @@ package abr.radio_abr;
  * to classes when they require it, without them needing to cross lines in our clean architecture.
  */
 public interface RadioStationOutputBoundary {
-
     void packageAndPresent(RadioStationResponseModel responseModel);
 }
