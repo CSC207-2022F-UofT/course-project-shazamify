@@ -10,6 +10,7 @@ import com.mongodb.client.MongoDatabase;
 import ds.DatabaseInitializer;
 import ds.song_ds.SongDAOInputImpl;
 import entities.Song;
+import framework.external.Downloadable;
 import framework.external.YTdlp;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class SongDownloader {
         Scanner sc = new Scanner(System.in);
         String link = sc.nextLine();
 
-        YTdlp p = new YTdlp();
+        Downloadable p = new YTdlp();
         p.download(link);
         moveToDatabase();
     }

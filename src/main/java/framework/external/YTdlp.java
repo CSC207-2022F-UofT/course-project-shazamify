@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class YTdlp {
+public class YTdlp implements Downloadable{
 
     /**
      * Location of ffmpeg.exe
