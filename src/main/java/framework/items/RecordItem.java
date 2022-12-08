@@ -3,6 +3,7 @@ package framework.items;
 import interface_adaptors.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
+import interface_adaptors.playlist_ia.PlaylistModifyControl;
 import interface_adaptors.song_player_ia.SongPlayerController;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerController;
@@ -22,9 +23,10 @@ public class RecordItem extends JPanel {
 
     private int index;
     private String song_id;
+    private String pl_id;
 
-    public RecordItem(int index, String song_id, int width, int height) {
-
+    public RecordItem(int index, String song_id, int width, int height, String pl_id) {
+        this.pl_id = pl_id;
         this.index = index;
         this.song_id = song_id;
         this.setMaximumSize(new Dimension(width, height));
@@ -167,6 +169,8 @@ public class RecordItem extends JPanel {
         button.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                PlaylistModifyControl playListModifier = new PlaylistModifyControl();
+                playListModifier.deleteSong(pl_id, song_id);
 
             }
             @Override
