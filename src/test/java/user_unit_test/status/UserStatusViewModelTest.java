@@ -16,7 +16,7 @@ public class UserStatusViewModelTest {
         UserDataBaseEraser.eraseUserDataBase();
 
         UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
-
+        userStatusViewModel.initializeDefaultUser();
         // Test the default user
         assert userStatusViewModel.getUserName().equals("Guest");
         assert userStatusViewModel.getPassWord() == null;
@@ -27,10 +27,6 @@ public class UserStatusViewModelTest {
         UserLogTestingTools.LoginUser("testName", "testPassword");
 
         assert userStatusViewModel.getUserName().equals("testName");
-        assert userStatusViewModel.getUserName().equals("testPassword");
-        BufferedImage bufferedImage = userStatusViewModel.getUserAvatar();
-
-        // Test the Changing Image
-
+        assert userStatusViewModel.getPassWord().equals("testPassword");
     }
 }
