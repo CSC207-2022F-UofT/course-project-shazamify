@@ -30,6 +30,9 @@ public class ButtonHideQueue extends JButton {
             }
         });
     }
+    public void SetCompanion(ButtonRevealQueue companion){
+        this.revealbutton = companion;
+    }
 
     public void AlterVisibility(){
         revealbutton.setVisible(true);

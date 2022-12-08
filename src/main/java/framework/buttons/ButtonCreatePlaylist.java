@@ -30,7 +30,7 @@ public class ButtonCreatePlaylist extends JPanel {
         //TODO: playlistDTO initializaion
         try {
             Image cover = ImageIO.read(getClass().getResource( "src/main/resources/friendsicon.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
+            this.add(renderImage(new ImageIcon(cover)), BorderLayout.CENTER);
         }catch(java.io.IOException e){}
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));

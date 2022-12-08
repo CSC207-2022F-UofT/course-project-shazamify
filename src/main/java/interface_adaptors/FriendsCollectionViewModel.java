@@ -21,21 +21,22 @@ import interface_adaptors.user_login_ia.UserStatusViewModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class FriendsCollectionViewModel extends AbstractViewModel<List<String>> implements UserStatusObserver {
+public class FriendsCollectionViewModel extends AbstractViewModel<HashMap<String, String>> implements UserStatusObserver {
 
     private static FriendsCollectionViewModel instance;
-    private List<String> friend_ids;
+    private HashMap<String, String> friendUserNames;
 
     public static FriendsCollectionViewModel getInstance() {
         if (instance == null) {instance = new FriendsCollectionViewModel();}
         return instance;
     }
 
-    public void updateView(List<String> friend_ids) {
+    public void updateView(HashMap<String, String> friendUserNames) {
         // Update data
-        this.friend_ids = friend_ids;
+        this.friendUserNames = friendUserNames;
         // Initialize view
         initView();
         // Render view
@@ -51,8 +52,12 @@ public class FriendsCollectionViewModel extends AbstractViewModel<List<String>> 
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         list.setBackground(Color.DARK_GRAY);
         // Populate list panel with items
-        for (int i = 0; i < friend_ids.size(); i++) {
-            list.add(new FriendsCollectionItem(i, friend_ids.get(i), this.width, 60));
+        int i = 0;
+        for (String userName : friendUserNames.keySet()) {
+            if (friendUserNames.get(userName) == "friend") {
+                list.add(new FriendsCollectionItem(i, userName, this.width, 60));
+            }
+            i++;
         }
         list.add(initExpandFriendListButton());
         // Create scroll panel
@@ -79,14 +84,14 @@ public class FriendsCollectionViewModel extends AbstractViewModel<List<String>> 
                 new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
 
         ButtonExpandFriends btnFriends = new ButtonExpandFriends(showFriendListController,
-                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
+                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController, this.width, 60);
 
         return btnFriends;
     }
 
     @Override
     public void userUpdated(){
-        List<String> userfriends = UserStatusViewModel.getInstance().getFriendList();
+        HashMap<String, String> userfriends = UserStatusViewModel.getInstance().getFriendList();
         this.updateView(userfriends);
     }
 }

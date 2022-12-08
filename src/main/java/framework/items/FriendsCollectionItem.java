@@ -18,12 +18,12 @@ import static javax.swing.BorderFactory.createMatteBorder;
 public class FriendsCollectionItem extends JPanel{
 
     private int index;
-    private User friend;
+    private String friendUserName;
 
-    public FriendsCollectionItem(int index, User friend, int width, int height) {
+    public FriendsCollectionItem(int index, String friendUserName, int width, int height) {
 
         this.index = index;
-        this.friend = friend;
+        this.friendUserName = friendUserName;
         this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
         this.setBackground(Color.DARK_GRAY);
@@ -38,7 +38,7 @@ public class FriendsCollectionItem extends JPanel{
             this.add(renderImage(new ImageIcon(defaultprofile)));
         }catch(java.io.IOException e){}
 
-        this.add(renderLabel(friend.getUserName()));
+        this.add(renderLabel(friendUserName));
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
         this.setBorder(blackline);

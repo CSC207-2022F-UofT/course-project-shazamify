@@ -53,10 +53,10 @@ public class RecordItem extends JPanel {
         return this.index;
     }
 
-    private void handlePlayButtonAction(JButton button, ActionEvent e){
-        SongVisualizerController.visualizeSong(song);
-        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
-    }
+//    private void handlePlayButtonAction(JButton button, ActionEvent e){
+//        SongVisualizerController.visualizeSong(song);
+//        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
+//    }
 
     private void handleDeleteButtonAction(JButton button, ActionEvent e){
 
@@ -134,7 +134,7 @@ public class RecordItem extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    SongVisualizerController.visualizeSong(song_id);
+                    //SongVisualizerController.visualizeSong(song_id);
                     SongPlayerAudio.getInstance().displaySongPlayer(song_id);
                 }
             });
