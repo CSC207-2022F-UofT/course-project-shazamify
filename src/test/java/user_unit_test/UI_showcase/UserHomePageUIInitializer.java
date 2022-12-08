@@ -1,4 +1,4 @@
-package user_unit_test.testing_tools;
+package user_unit_test.UI_showcase;
 
 import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import abr.user_avatar_image_management_abr.UserAvatarMngInputBoundary;
