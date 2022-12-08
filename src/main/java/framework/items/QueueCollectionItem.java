@@ -82,7 +82,7 @@ public class QueueCollectionItem extends JPanel{
     private JPanel renderInputs(){
         JPanel buttonPanel = new JPanel(new GridLayout());
         buttonPanel.setOpaque(false);
-
+        System.out.println(index);
         if (this.index > 0){renderShiftUpButton();}
         if (this.index < this.lastindex){renderShiftDownButton();}
 
