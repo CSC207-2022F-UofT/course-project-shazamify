@@ -1,6 +1,5 @@
 package framework.buttons;
 
-import interface_adaptors.FriendsCollectionController;
 import interface_adaptors.FriendsCollectionViewModel;
 import interface_adaptors.PlaylistCollectionViewModel;
 
@@ -36,7 +35,7 @@ public class ButtonFriendsCollection extends JButton {
                 button.clicked(false);
                 FriendsCollectionViewModel.getInstance().getView().setVisible(true);
                 PlaylistCollectionViewModel.getInstance().getView().setVisible(false);
-                FriendsCollectionController.displayFriends(null);
+                //FriendsCollectionController.displayFriends(null);
             }
         });
     }

@@ -1,6 +1,7 @@
 package framework.items;
 
 import entities.Song;
+import interface_adaptors.SongDTOController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,12 +13,12 @@ import java.awt.event.MouseListener;
 public class SearchSongItem extends JPanel {
 
     private int index;
-    private Song song;
+    private String songId;
 
-    public SearchSongItem(int index, Song song, int width, int height) {
+    public SearchSongItem(int index, String songId, int width, int height) {
 
         this.index = index;
-        this.song = song;
+        this.songId = songId;
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
@@ -33,7 +34,7 @@ public class SearchSongItem extends JPanel {
 
 //        this.add(renderLabel(song.getAlbum()));
 //        this.add(renderLabel(song.getArtist()));
-        this.add(renderLabel(song.getName()));
+        this.add(renderLabel(SongDTOController.getName(songId)));
 //        this.add(renderLabel(song.getYear()));
 
         PanelListener listener = new PanelListener();
