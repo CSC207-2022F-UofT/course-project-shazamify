@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,15 +41,15 @@ public class QueueCollectionItem extends JPanel{
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
-        //TODO: songDTO = ... responseBlahBlahBlah
         try {
-            Image cover = ImageIO.read(songDTO.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            File coverfile = new File(SongDTOController.getCover(song_id));
+            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
             this.add(renderImage(new ImageIcon(cover)));
         }catch(java.io.IOException e){}
 
 
         //this.add(renderLabel(RecordDTOController.getAlbum()));
-        this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        //this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
         this.add(renderLabel(SongDTOController.getArtist(song_id)));
         this.add(renderLabel(SongDTOController.getName(song_id)));
         this.add(renderLabel(SongDTOController.getYear(song_id)));

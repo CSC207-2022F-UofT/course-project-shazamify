@@ -8,6 +8,8 @@ import entities.Song;
 import entities.playlist_entities.Playlist;
 
 import java.awt.*;
+import java.io.File;
+import java.util.List;
 
 public class PlaylistDTOUseCase {
     public static String getName(String id) {
@@ -16,17 +18,22 @@ public class PlaylistDTOUseCase {
     }
 
     public static String getArtist(String id) {
-        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
+        PlaylistDAOOutput playlistdaoout = new PlaylistDAOOutputImpl();
         return playlistdaoout.findById(id).get().getArtist();
     }
 
-    public static String getCover(String id) {
-        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
+    public static File getCover(String id) {
+        PlaylistDAOOutput playlistdaoout = new PlaylistDAOOutputImpl();
         return playlistdaoout.findById(id).get().getCover();
     }
 
-    public static String getYear(String id) {
-        SongDAOOutput playlistdaoout = new SongDAOOutputImpl();
-        return playlistdaoout.findById(id).get().getYear();
+    public static List<String> getSongs(String id){
+        PlaylistDAOOutput playlistdaoout = new PlaylistDAOOutputImpl();
+        return playlistdaoout.findById(id).get().getSongs();
     }
+
+//    public static String getYear(String id) {
+//        PlaylistDAOOutput playlistdaoout = new PlaylistDAOOutputImpl();
+//        return playlistdaoout.findById(id).get().getYear();
+//    }
 }
