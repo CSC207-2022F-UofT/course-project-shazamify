@@ -11,6 +11,7 @@ import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
 import framework.buttons.*;
+import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
@@ -179,7 +180,9 @@ public class ShazamifyUI extends JFrame {
         panel.setPreferredSize(new Dimension(width, height));
         //panel.add(UserProfileViewModel.getInstance().getView(width, height));
         //panel.setOpaque(false);
-        panel.add(new ButtonViewAccount(), BorderLayout.EAST);
+        ButtonViewAccount buttonViewAccount = new ButtonViewAccount();
+        UserStatusViewModel.getInstance().addUserStatusObserver(buttonViewAccount);
+        panel.add(buttonViewAccount, BorderLayout.EAST);
         panel.setOpaque(false);
         return panel;
     }

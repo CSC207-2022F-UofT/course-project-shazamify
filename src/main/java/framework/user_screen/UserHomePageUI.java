@@ -50,7 +50,6 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
         frame.setSize(700,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         avatarImageButton.addActionListener(new ActionListener() {
             @Override
