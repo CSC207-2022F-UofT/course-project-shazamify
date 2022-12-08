@@ -29,9 +29,14 @@ public class SongDownloader {
         Scanner sc = new Scanner(System.in);
         String link = sc.nextLine();
 
+//        Downloadable p = new YTdlp();
+//        p.download(link);
+        moveToDatabase();
+    }
+
+    public static void download(String link) {
         Downloadable p = new YTdlp();
         p.download(link);
-        moveToDatabase();
     }
 
     public static Song readJSON(DocumentContext dc) throws IOException {

@@ -8,9 +8,12 @@ import entities.Song;
 import entities.radio_entities.RadioStation;
 import entities.user_entities.User;
 import interface_adaptors.search_engine_ia.SearchEnginePresenter;
+import org.junit.Test;
 
 import java.util.List;
 import java.util.Objects;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Zhaozs

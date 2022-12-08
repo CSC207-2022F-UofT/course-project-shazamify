@@ -14,11 +14,8 @@ import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter
  */
 public class ChangeAvatarTestingTools {
     public static UserAvatarMngController getChangeAvatarController(){
-        // Initialie the viewmodel
-        UserAvatarMngViewModel viewModel = new UserAvatarMngViewModel();
-
         // Get componets
-        UserAvatarMngOutputBoundary outputBoundary = new UserChangeMngPresenter(viewModel);
+        UserAvatarMngOutputBoundary outputBoundary = new UserChangeMngPresenter();
         UserAvatarDatabaseGateway databaseGateway = new UserAvatarFileGateway();
         UserAvatarMngInputBoundary inputBoundary = new UserAvatarMngUseCase(databaseGateway, outputBoundary);
 
