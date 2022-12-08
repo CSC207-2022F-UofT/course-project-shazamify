@@ -19,10 +19,11 @@ import java.util.List;
 public class ButtonRevealQueue extends JButton {
 
     private ButtonHideQueue hidebutton;
+    private JPanel buttonspanel;
 
     public ButtonRevealQueue(){
         try {
-            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerrevealqueue.png"))));
+            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerhidequeueicon.png"))));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -36,10 +37,11 @@ public class ButtonRevealQueue extends JButton {
                 List<String> currentQueueOrder = getCurrentQueueOrder();
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
                 QueueViewModel.getInstance().getView().setVisible(true);
-                AlterVisibility();
+                //AlterVisibility();
             }
         });
     }
+
 
     public void SetCompanion(ButtonHideQueue companion){
         this.hidebutton = companion;

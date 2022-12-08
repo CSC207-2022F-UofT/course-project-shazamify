@@ -25,9 +25,9 @@ public class SongDownloader {
     public static void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk
-        System.out.println("Enter youtube link: ");
-        Scanner sc = new Scanner(System.in);
-        String link = sc.nextLine();
+//        System.out.println("Enter youtube link: ");
+//        Scanner sc = new Scanner(System.in);
+//        String link = sc.nextLine();
 
 //        Downloadable p = new YTdlp();
 //        p.download(link);

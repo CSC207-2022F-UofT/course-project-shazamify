@@ -35,8 +35,8 @@ public class ButtonSearch extends JButton {
                 searchEngineController.updateSearchSongResult(textField.getText());
                 //searchEngineController.updateSearch();
                 System.out.println("then update..");
-                SearchResultsViewModel.getInstance().updateView();
-
+                //SearchResultsViewModel.getInstance().updateView();
+                searchEngineController.updateSearch();
                 RecordViewModel.getInstance().getView().setVisible(false);
                 SearchResultsViewModel.getInstance().getView().setVisible(true);
             }
