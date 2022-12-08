@@ -1,6 +1,9 @@
 package framework.items;
 
+import abr.radio_abr.RadioStationInputBoundary;
+import framework.radio_screen.RadioStationUI;
 import interface_adaptors.SongDTOController;
+import interface_adaptors.radio_ia.RadioControl;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,11 +15,13 @@ public class SearchRadioItem extends JPanel {
 
     private int index;
     private String stationID;
+    private String stationName;
 
-    public SearchRadioItem(int index, String stationID, int width, int height) {
+    public SearchRadioItem(int index, String stationID, String stationName, int width, int height) {
 
         this.index = index;
         this.stationID = stationID;
+        this.stationName = stationName;
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
@@ -70,6 +75,11 @@ public class SearchRadioItem extends JPanel {
              * then will the object be parsed to JPanel
              * since we need the setBackground() method
              */
+
+            RadioStationUI radioStationUI = new RadioStationUI(
+                    stationName, stationID);
+
+            radioStationUI.frameSetUp();
         }
 
         @Override
