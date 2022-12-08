@@ -233,8 +233,10 @@ public class SearchResultsViewModel {
         // Populate list panel with items
         for (int i = 0; i < users.size(); i++) {
             list.add(new SearchUserItem(i, users.get(i), width - 30, 50));
-            list.add(addFriendRequestButton(users.get(i)));
-        }
+            if (UserStatusViewModel.getInstance().getLogInStatus() & !Objects.equals(UserStatusViewModel.getInstance().getUserName(), users.get(i))){
+                list.add(addFriendRequestButton(users.get(i)));
+                }
+            }
         list.setBackground(Color.DARK_GRAY);
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
