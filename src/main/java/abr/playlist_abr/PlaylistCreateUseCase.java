@@ -5,25 +5,28 @@ import org.bson.types.ObjectId;
 
 public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
     private final PlaylistDAOInput playlistDAOInput;
-    private final PlaylistCreateOutputBoundary outputBoundary;
-    private final PlaylistCreateResponseModel playlistCreateResponseModel;
 
 
-    public PlaylistCreateUseCase(PlaylistCreateOutputBoundary outputBoundary, PlaylistDAOInput playlistDAOInput, PlaylistCreateResponseModel playlistCreateResponseModel){
-        this.outputBoundary = outputBoundary;
+    /** containing PlaylistCreate's logic
+     *
+     *
+     * @param playlistDAOInput
+     */
+    public PlaylistCreateUseCase(PlaylistDAOInput playlistDAOInput){
         this.playlistDAOInput = playlistDAOInput;
-        this.playlistCreateResponseModel = playlistCreateResponseModel;
     }
 
-    public PlaylistCreateResponseModel playlistCreate(){
+    /** Create the playlist's logic
+     *
+     * @return Playlist but in Response Model
+     */
+    public PlaylistResponseModel playlistCreate(){
         ObjectId id = new ObjectId();
         Playlist newPlaylist = new Playlist(id.toString());
         playlistDAOInput.save(newPlaylist);
-        this.playlistCreateResponseModel.setPlaylist(newPlaylist);
-        this.outputBoundary.present(this.playlistCreateResponseModel);
-        return this.playlistCreateResponseModel;
-
-
+        PlaylistResponseModel playlistResM = new PlaylistResponseModel(newPlaylist.getId());
+        //TODO: updateView(playlistResM)
+        return playlistResM;
     }
 
 }

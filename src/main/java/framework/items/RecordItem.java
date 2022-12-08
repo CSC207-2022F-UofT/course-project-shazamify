@@ -1,6 +1,7 @@
 package framework.items;
 
-import entities.Song;
+import interface_adaptors.SongDTOController;
+import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.song_player_ia.SongPlayerController;
 import interface_adaptors.visualizer_ia.SongVisualizerController;
 
@@ -12,32 +13,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 public class RecordItem extends JPanel {
 
     private int index;
-    private Song song;
+    private String song_id;
 
-    public RecordItem(int index, Song song, int width, int height) {
+    public RecordItem(int index, String song_id, int width, int height) {
 
         this.index = index;
-        this.song = song;
+        this.song_id = song_id;
         this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
         try {
-            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
+            File coverfile = new File(SongDTOController.getCover(song_id));
+            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
             this.add(renderImage(new ImageIcon(cover)));
         }
-        catch(java.io.IOException e)
-        {
-            System.out.println(e);
-        }
+        catch(java.io.IOException e) {}
 
-        this.add(renderLabel(song.getAlbum()));
-        this.add(renderLabel(song.getArtist()));
-        this.add(renderLabel(song.getTitle()));
-        this.add(renderLabel(song.getYear()));
+        //this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        this.add(renderLabel(SongDTOController.getArtist(song_id)));
+        this.add(renderLabel(SongDTOController.getName(song_id)));
+        this.add(renderLabel(SongDTOController.getYear(song_id)));
 
         this.add(renderInputs());
         //this.add(renderButton());
@@ -54,8 +54,8 @@ public class RecordItem extends JPanel {
     }
 
     private void handlePlayButtonAction(JButton button, ActionEvent e){
-       SongVisualizerController.visualizeSong(song);
-       SongPlayerController.displaySongPlayer(song);
+        SongVisualizerController.visualizeSong(song);
+        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
     }
 
     private void handleDeleteButtonAction(JButton button, ActionEvent e){
@@ -98,6 +98,7 @@ public class RecordItem extends JPanel {
         //buttonPanel.add(placeholder);
         return buttonPanel;
     }
+    //TODO: potentially remove this since functionality was replaced by menu
     private JButton renderAddButton(){
         JButton button = new JButton();
         try {
@@ -125,6 +126,7 @@ public class RecordItem extends JPanel {
 
     private JButton renderPlayButton() {
         final JButton button = new JButton();
+
         try {
             button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/playiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
             //button.setBackground(Color.WHITE);
@@ -132,7 +134,8 @@ public class RecordItem extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    handlePlayButtonAction(button, e);
+                    SongVisualizerController.visualizeSong(song_id);
+                    SongPlayerAudio.getInstance().displaySongPlayer(song_id);
                 }
             });
         }
@@ -153,49 +156,42 @@ public class RecordItem extends JPanel {
         final JButton button = new JButton();
         try {
             button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconwhite.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-            //button.setBackground(Color.WHITE);
             button.setOpaque(false);
-            button.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-                @Override
-                public void mouseEntered(MouseEvent e){
-                    try {
-                        button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconred.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-                    } catch (Exception ex){}
-                }
-                @Override
-                public void mouseExited(MouseEvent e){
-                    try {
-                        button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconwhite.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
-                    } catch (Exception ex){}
-                }
-            });
         }
         catch (Exception e){
             System.out.println(e);
         }
+        button.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e){
+                try {
+                    button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconred.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+                } catch (Exception ex){}
+            }
+            @Override
+            public void mouseExited(MouseEvent e){
+                try {
+                    button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/trashiconwhite.png")).getScaledInstance(18, 25, Image.SCALE_DEFAULT)));
+                } catch (Exception ex){}
+            }
+        });
 
         button.setBorderPainted(false);
         button.setBorder(null);
         button.setMargin(new Insets(0, 0, 0, 0));
         button.setContentAreaFilled(false);
 
-
         return button;
     }
+
     public JMenuBar renderMenuBar(){
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(renderMenu());
@@ -223,17 +219,10 @@ public class RecordItem extends JPanel {
     }
 
     private class PanelListener implements MouseListener {
-
         @Override
         public void mouseClicked(MouseEvent event) {
-            /* source is the object that got clicked
-             *
-             * If the source is actually a JPanel,
-             * then will the object be parsed to JPanel
-             * since we need the setBackground() method
-             */
+            //TODO: potentially display song using RecordViewModel?
         }
-
         @Override
         public void mouseEntered(MouseEvent event) {
             Object source = event.getSource();
@@ -243,7 +232,6 @@ public class RecordItem extends JPanel {
                 //panelPressed.setBackground(//new Color(71,71,71))
             }
         }
-
         @Override
         public void mouseExited(MouseEvent event) {
             Object source = event.getSource();
@@ -252,12 +240,9 @@ public class RecordItem extends JPanel {
                 panelPressed.setBackground(Color.DARK_GRAY);
             }
         }
-
         @Override
         public void mousePressed(MouseEvent arg0) {}
-
         @Override
         public void mouseReleased(MouseEvent arg0) {}
-
     }
 }
