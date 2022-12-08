@@ -3,6 +3,7 @@ package interface_adaptors;
 import entities.Song;
 import entities.user_entities.User;
 import framework.buttons.ButtonSearchAlbums;
+import framework.buttons.ButtonSearchRadio;
 import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
@@ -29,10 +30,12 @@ public class SearchResultsViewModel {
 
     private JPanel viewSongs;
     private JPanel viewUsers;
+    private JPanel viewRadio;
     private JPanel viewAlbums;
     private ButtonSearchSongs btnSearchSongs;
     private ButtonSearchAlbums btnSearchAlbums;
     private ButtonSearchUsers btnSearchUsers;
+    private ButtonSearchRadio btnSearchRadio;
 
     private int BUTTONS_HEIGHT = 50;
 
@@ -98,11 +101,13 @@ public class SearchResultsViewModel {
         listsPanel.add(renderSongsView());
         //listsPanel.add(renderAlbumsView());
         listsPanel.add(renderUsersView());
+        listsPanel.add(renderRadioView());
         content.add(renderButtonsView(), BorderLayout.NORTH);
         content.add(listsPanel, BorderLayout.CENTER);
         viewSongs.setVisible(true);
         //viewAlbums.setVisible(false);
         viewUsers.setVisible(false);
+        viewRadio.setVisible(false);
         // Add panel to view
         view.add(content);
     }
@@ -112,18 +117,23 @@ public class SearchResultsViewModel {
      */
     private JPanel renderButtonsView() {
 
-        JPanel panel = new JPanel(new GridLayout(1, 0));
+        JPanel buttonpanel = new JPanel();
+        buttonpanel.setLayout(new BoxLayout(buttonpanel, BoxLayout.X_AXIS));
+        buttonpanel.setOpaque(false);
+        //JPanel panel = new JPanel(new GridLayout(1, 0));
+        JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, BUTTONS_HEIGHT));
-        panel.setOpaque(false);
+        //VSO
+        panel.setBackground(Color.DARK_GRAY);
 
         // Instantiate buttons
         btnSearchSongs = new ButtonSearchSongs();
-        btnSearchAlbums = new ButtonSearchAlbums();
+        btnSearchRadio = new ButtonSearchRadio();
         btnSearchUsers = new ButtonSearchUsers();
 
         // Initialize buttons
         btnSearchSongs.clicked(true);
-        btnSearchAlbums.clicked(false);
+        btnSearchRadio.clicked(false);
         btnSearchUsers.clicked(false);
 
         // Add listeners
@@ -131,38 +141,53 @@ public class SearchResultsViewModel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnSearchSongs.clicked(true);
-                btnSearchAlbums.clicked(false);
+                btnSearchRadio.clicked(false);
                 btnSearchUsers.clicked(false);
                 viewSongs.setVisible(true);
-                viewAlbums.setVisible(false);
+                //viewAlbums.setVisible(false);
+                viewRadio.setVisible(false);
                 viewUsers.setVisible(false);
         }});
-        btnSearchAlbums.addActionListener(new ActionListener() {
+//        btnSearchAlbums.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                btnSearchSongs.clicked(false);
+//                btnSearchAlbums.clicked(true);
+//                btnSearchUsers.clicked(false);
+//                viewSongs.setVisible(false);
+//                //viewAlbums.setVisible(true);
+//                viewUsers.setVisible(false);
+//            }});
+        btnSearchRadio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnSearchSongs.clicked(false);
-                btnSearchAlbums.clicked(true);
+                btnSearchRadio.clicked(true);
                 btnSearchUsers.clicked(false);
                 viewSongs.setVisible(false);
-                viewAlbums.setVisible(true);
+                //viewAlbums.setVisible(true);
+                viewRadio.setVisible(true);
                 viewUsers.setVisible(false);
             }});
+
         btnSearchUsers.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnSearchSongs.clicked(false);
-                btnSearchAlbums.clicked(false);
+                btnSearchRadio.clicked(false);
                 btnSearchUsers.clicked(true);
                 viewSongs.setVisible(false);
-                viewAlbums.setVisible(false);
+                //viewAlbums.setVisible(false);
+                viewRadio.setVisible(false);
                 viewUsers.setVisible(true);
             }});
 
         // Add buttons to the buttons panel
-        panel.add(btnSearchSongs);
+        buttonpanel.add(btnSearchSongs);
         //panel.add(btnSearchAlbums);
-        panel.add(btnSearchUsers);
-
+        buttonpanel.add(btnSearchUsers);
+        buttonpanel.add(btnSearchRadio);
+        panel.add(buttonpanel, BorderLayout.WEST);
         return panel;
     }
 
@@ -177,9 +202,11 @@ public class SearchResultsViewModel {
         JPanel list = new JPanel();
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         // Populate list panel with items
+        System.out.println(songs.size());
         for (int i = 0; i < songs.size(); i++) {
             list.add(new SearchSongItem(i, songs.get(i), width - 30, 50));
         }
+        list.setBackground(Color.DARK_GRAY);
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
         scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -204,6 +231,29 @@ public class SearchResultsViewModel {
         for (int i = 0; i < users.size(); i++) {
             list.add(new SearchUserItem(i, users.get(i), width - 30, 50));
         }
+        list.setBackground(Color.DARK_GRAY);
+        // Create scroll panel
+        JScrollPane scrollPanel = new JScrollPane(list);
+        scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setPreferredSize(new Dimension(width - 30, height));
+        // Add panel to view
+        viewUsers.add(scrollPanel, BorderLayout.CENTER);
+        return viewUsers;
+    }
+
+    private JPanel renderRadioView() {
+        // Create content panel
+        viewRadio = new JPanel();
+        viewRadio.setPreferredSize(new Dimension(width, height - BUTTONS_HEIGHT));
+        // Create list panel
+        JPanel list = new JPanel();
+        list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
+        // Populate list panel with items
+        for (int i = 0; i < radios.size(); i++) {
+            list.add(new SearchUserItem(i, radios.get(i), width - 30, 50));
+        }
+        list.setBackground(Color.DARK_GRAY);
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);
         scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

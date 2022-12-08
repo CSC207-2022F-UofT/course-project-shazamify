@@ -1,8 +1,10 @@
 package framework.items;
 
+import interface_adaptors.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.song_player_ia.SongPlayerController;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerController;
 
 import javax.imageio.ImageIO;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.List;
 
 public class RecordItem extends JPanel {
 
@@ -225,10 +228,13 @@ public class RecordItem extends JPanel {
 
         menu.setBackground(Color.DARK_GRAY);
         menu.setOpaque(false);
-        JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
-        JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
-        menu.add(addToQueueMenuItem);
-        menu.add(addToPlaylistMenuItem);
+        List<String> userPlaylistsIds = UserStatusViewModel.getInstance().getPlayListIds();
+        for (String id: userPlaylistsIds){
+            String playlistName = PlaylistDTOController.getName(id);
+            JMenuItem addToPlaylistMenuItem = new AddToPlaylistMenuItem(playlistName, id, song_id);
+            menu.add(addToPlaylistMenuItem);
+        }
+
         return menu;
     }
 
