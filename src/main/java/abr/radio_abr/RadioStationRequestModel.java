@@ -1,7 +1,10 @@
 package abr.radio_abr;
 
 
-// TODO: Javadocs
+/**
+ * @author cynth
+ * The purpose of this Request Model is to allow upper level controllers and such to access entity level information.
+ */
 
 public class RadioStationRequestModel {
     private final String stationName;
