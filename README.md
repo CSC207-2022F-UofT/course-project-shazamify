@@ -31,6 +31,12 @@ The DAO design pattern acts as an API for the database and implements CRUD opera
 The song queue entity is a singleton class- there will only ever be one instance of a queue at a time. This design was chosen rather than making the song queue a subclass of a playlist (since both objects contain lists of song objects), because of the vast differences between the two objects (the only common factor within between them is one of their attributes).
 The history queue has been somewhat completed, however it can be noticed that there is no implementation of it. The reason for that is, due to time constraints, the song recommender (which is the primary reason we decided on implementing the queue history in the first place) was placed on hold until functionality of our main program was accomplished.
 
+## Radio Notes
+### API Interaction - TBD
+The structure of various radio features was made with the intention of having an API serve as a database/source of our radio station objects. Unfortunately due to time constraints and various unforeseen issues, the API calls currently do not function as intended. Various RadioStation objects have been created to serve as a demonstrative of how the rest of the radio features are supposed to function. 
+
+### Liking and Saving Radio Stations - TBD 
+The RadioStation entities have an attribute called "like" attached to them. This is because there is a planned feature of users being able to like certain radio stations and have it then be added into a sort of psuedo-playlist of their favourite radio stations. Unfortunately due to time constraints this feature was placed on hold in order to prioritize the main functionality of our program.
 
 ## Design Patterns
 ### Factory Pattern
@@ -65,6 +71,13 @@ UIs and Controllers would be able to access information that is pre-prepared, an
 
 ## Testing notes
 
+### Radio Testing, Or Lack Thereof
+There is one test currently implemented that tests a radio feature - the general search engine test. Beyond that there are no present tests for radio for two very specific reasons. 
+
+The first reason being that the current main function of radio beyond being searched for is to stream audio in real time. It is not exactly possible to create at test case for audio playing correctely, and thus there are no test cases present. 
+
+The second reason is that the other main functions of radio would have been RadioLike and the Favourite Radio Station collections. As noted above, these features have been put on hold, and thus no test cases have been made for them. 
+
 ## GitHub actions
 
-Added GitHub action to start up MongoDB server on default port so DAO tests can run on build.
+Added GitHub action to start up MongoDB server on default port so DAO tests can run on build. Look into how to ignore certain tests, specifically SongDownloader.
