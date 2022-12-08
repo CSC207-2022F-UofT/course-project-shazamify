@@ -1,14 +1,6 @@
 package interface_adaptors.display_ia;
 
-import entities.Song;
-import entities.user_entities.User;
-import interface_adaptors.AbstractDisplayUseCase;
-import interface_adaptors.SearchBarViewModel;
-import interface_adaptors.SearchResultsViewModel;
-
-import java.util.ArrayList;
-
-public class DisplaySearchUseCase extends AbstractDisplayUseCase {
+public class DisplaySearchUseCase {
 
     private static DisplaySearchUseCase instance;
 

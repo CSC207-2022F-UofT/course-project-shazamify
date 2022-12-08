@@ -1,7 +1,5 @@
 package interface_adaptors.display_ia;
 
-import entities.Song;
-import interface_adaptors.AbstractDisplayUseCase;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
@@ -11,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class SongPlayerAudio extends AbstractDisplayUseCase {
+public class SongPlayerAudio {
 
     public static final int NUM_INTERVALS = 100;
 

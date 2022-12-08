@@ -1,7 +1,6 @@
 package interface_adaptors.song_player_ia;
 
 import framework.buttons.*;
-import interface_adaptors.AbstractViewModel;
 import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
