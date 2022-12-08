@@ -1,4 +1,4 @@
-package user_unit_test.testing_tools;
+package user_unit_test.UI_showcase;
 
 import abr.user_reg_abr.UserRegInputBoundary;
 import abr.user_reg_abr.UserRegUseCase;
@@ -7,7 +7,7 @@ import ds.user_reg_ds.UserRegisterFileGateway;
 import framework.user_screen.UserRegUI;
 import interface_adaptors.user_reg_ia.UserRegController;
 import interface_adaptors.user_reg_ia.UserRegPresenter;
-import interface_adaptors.user_reg_ia.UserRegViewModel;
+
 /**
 @author David Li
 
