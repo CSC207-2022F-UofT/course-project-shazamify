@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonFriendsCollection extends JButton {
+public class ButtonExpandFriends extends JButton {
 
     private Icon iconClicked ;
     private Icon icon;
@@ -21,9 +21,9 @@ public class ButtonFriendsCollection extends JButton {
     SendFriendRequestController acceptFriendRequestController;
     DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController;
 
-    public ButtonFriendsCollection(ShowFriendListController showFriendListController,
-                                   SendFriendRequestController acceptFriendRequestController,
-                                   DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController){
+    public ButtonExpandFriends(ShowFriendListController showFriendListController,
+                               SendFriendRequestController acceptFriendRequestController,
+                               DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController){
 
         this.showFriendListController = showFriendListController;
         this.acceptFriendRequestController = acceptFriendRequestController;

@@ -1,5 +1,7 @@
 package entities.playlist_entities;
 
+import abr.song_abr.SongDAOOutput;
+import ds.song_ds.SongDAOOutputImpl;
 import entities.Record;
 
 import java.io.File;
@@ -77,7 +79,9 @@ public class Playlist implements Record {
     }
 
     public File getCover() {
-        return null;
+        SongDAOOutput songdaoout = new SongDAOOutputImpl();
+        String firstSongId = this.contents.get(0);
+        return new File(songdaoout.findById(firstSongId).get().getCover());
     }
 
     public ArrayList<String> getSongs() {

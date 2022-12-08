@@ -1,7 +1,6 @@
 package abr.search_engine_abr;
 
 import entities.Song;
-import entities.Record;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +9,27 @@ import java.util.List;
  * @author Zhaolang05
  * @date 2022/11/13/17:01
  */
-public class SearchSongAbr {
+public class SearchSongAbr implements SearchSongInputBoundary{
     private SongLibrary songLibrary = new SongLibrary();
     private int limitCount = 5;
+    private SearchEngineOutputBoundary outputBoundary;
+    private SearchEngineResponseModel responseModel;
+    public SearchSongAbr(SearchEngineOutputBoundary outputBoundary){
+        this.responseModel = new SearchEngineResponseModel();
+        this.outputBoundary = outputBoundary;
+    }
+    @Override
+    public void sendSearchSongsToViewModel(String searchName){
+        List<Song> resultedSong = searchSongs(searchName);
+        List<String> resultedSongIds = new ArrayList<>();
+
+        for (Song song: resultedSong){
+            resultedSongIds.add(song.getId());
+        }
+
+        responseModel.setUserSearchResult(resultedSongIds);
+        outputBoundary.packageAndPresentSongs(responseModel);
+    }
 
     /***
      *  Search song by name, first match equals, then match starts with, and finally matches contains

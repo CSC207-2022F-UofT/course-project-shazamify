@@ -11,8 +11,6 @@ import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
 import framework.buttons.*;
-import framework.items.*;
-import interface_adaptors.*;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
@@ -114,7 +112,7 @@ public class ShazamifyUI extends JFrame {
         return panel;
     }
 
-    private void initFriendListButton(JPanel overheadButtonsPanel){
+    private void initExpandFriendListButton(JPanel overheadButtonsPanel){
         UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
         FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
@@ -129,7 +127,7 @@ public class ShazamifyUI extends JFrame {
         DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController =
                 new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
 
-        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController,
+        ButtonExpandFriends btnFriends = new ButtonExpandFriends(showFriendListController,
                 acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
 
         overheadButtonsPanel.add(btnFriends);
