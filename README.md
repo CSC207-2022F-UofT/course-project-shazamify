@@ -1,3 +1,4 @@
+# *The Database has to be implemented for the program to run!*
 # Project Hightlights and Summaries by Feature
 
 ## Project Setup
