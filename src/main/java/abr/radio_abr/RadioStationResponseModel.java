@@ -1,6 +1,11 @@
 package abr.radio_abr;
 
-// TODO: Javadocs
+/**
+ * @author cynth
+ *
+ * The purpose of this RequestModel is to essentially help transfer information through
+ * the OutputBoundary and thus not violate Clean Architecture.
+ */
 
 public class RadioStationResponseModel {
       private String stationName;
