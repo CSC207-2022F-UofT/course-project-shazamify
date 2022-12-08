@@ -4,8 +4,8 @@
   "type": "module",
   "dependencies": {
     "radio-browser-api": "^6.0.1",
-    "node-fetch": "^3.3.0",
-    "trireme": "^0.9.3"
+    "trireme": "^0.9.3",
+    "fs-jetpack": "^5.1.0"
   }
 }
 
