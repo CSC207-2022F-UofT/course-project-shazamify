@@ -43,17 +43,17 @@ public class SongDownloaderTest {
 
     @Test
     public void jsonProvided_read_success() throws IOException {
-        Path jsonPath = Paths.get("src\\main\\resources\\songs\\Baby Shark.mp3.info.json");
+        Path jsonPath = Paths.get("src\\main\\resources\\songs\\Despacito.mp3.info.json");
 
         String content = Files.readString(jsonPath);
         DocumentContext jsonContext = JsonPath.parse(content);
 
         Song s = readJSON(jsonContext);
 
-        assertEquals("Baby Shark", s.getName());
-        assertEquals("1-iKwZKc7Ok", s.getId());
-        assertEquals(96, s.getDuration());
-        assertEquals("Pinkfong Baby Shark - Kids' Songs & Stories", s.getArtist());
+        assertEquals("Despacito", s.getName());
+        assertEquals("FXovf5dsRTw", s.getId());
+        assertEquals(229, s.getDuration());
+        assertEquals("Luis Fonsi", s.getArtist());
         assertEquals("2017", s.getYear());
     }
 
