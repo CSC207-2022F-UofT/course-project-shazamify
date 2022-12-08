@@ -12,8 +12,8 @@ public class PlaylistCreateControl {
     }
 
 
-    public PlaylistResponseModel create(){
-        return playlistCreateInputBoundary.playlistCreate();
+    public PlaylistResponseModel create(String name){
+        return playlistCreateInputBoundary.playlistCreate(name);
 
     }
 }
