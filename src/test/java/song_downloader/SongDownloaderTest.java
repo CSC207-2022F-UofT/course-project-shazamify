@@ -43,7 +43,7 @@ public class SongDownloaderTest {
 
     @Test
     public void jsonProvided_read_success() throws IOException {
-        Path jsonPath = Paths.get("src\\main\\resources\\songs\\Despacito.mp3.info.json");
+        Path jsonPath = Paths.get("src/main/resources/songs/Despacito.mp3.info.json");
 
         String content = Files.readString(jsonPath);
         DocumentContext jsonContext = JsonPath.parse(content);
