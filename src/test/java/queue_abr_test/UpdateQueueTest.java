@@ -17,13 +17,9 @@ public class UpdateQueueTest {
         List<String> ids = Arrays.asList("1", "2", "3", "4", "5");
         songQueue.setQueue(ids);
 
-
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("5", "4", "3", "2", "1"));
-
-        // Runs the use case
-        newQueue.update(newSongList);
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(Arrays.asList("5", "4", "3", "2", "1"));
 
         assertEquals(songQueue.getQueue(), Arrays.asList("5", "4", "3", "2", "1"));
     }
@@ -35,11 +31,9 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("1", "2", "3", "4", "5"));
-
-        newQueue.update(newSongList);
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(Arrays.asList("1", "2", "3", "4", "5"));
 
         assertEquals(songQueue.getQueue(), Arrays.asList("1", "2", "3", "4", "5"));
     }
@@ -51,12 +45,24 @@ public class UpdateQueueTest {
 
         songQueue.setQueue(ids);
 
-        QueueOutputBoundary queuePresenter = new QueuePresenter();
-        QueueInputBoundary newQueue = new QueueUseCase(queuePresenter);
-        QueueRequestModel newSongList = new QueueRequestModel(Arrays.asList("1"));
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(List.of("1"));
 
-        newQueue.update(newSongList);
+        assertEquals(songQueue.getQueue(), List.of("1"));
+    }
 
-        assertEquals(songQueue.getQueue(), Arrays.asList("1"));
+    @Test
+    public void clearQueue() {
+        SongQueue songQueue = SongQueue.getInstance();
+        List<String> ids = Arrays.asList("1", "2", "3", "4", "5");
+
+        songQueue.setQueue(ids);
+
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(List.of());
+
+        assertEquals(songQueue.getQueue(), List.of());
     }
 }

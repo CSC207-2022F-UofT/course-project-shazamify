@@ -1,23 +1,15 @@
 package user_interact_view_showcase;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
+import abr.user_interact_abr.manage_friend_request_abr.*;
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
-import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
-import ds.user_database.UserFileReader;
+import abr.user_interact_abr.show_friend_list_abr.*;
 import ds.user_database.UserFileWriter;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
-import entities.user_entities.CommonUser;
-import entities.user_entities.User;
+import entities.user_entities.*;
 import framework.user_interact_screen.friend_manager_screen.FriendListView;
-import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
-import interface_adaptors.user_interact_ia.SendFriendRequestController;
-import interface_adaptors.user_interact_ia.ShowFriendListController;
-import interface_adaptors.user_interact_ia.TempFriendListObservable;
+import interface_adaptors.user_interact_ia.*;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +19,8 @@ import java.util.Map;
 public class FriendManagerFileViewShowcase { // for presentation demo only
     public static void main(String[] args) {
         // put in some users, the methods used should only be called by user registration, it's only here for testing purposes
-        //FriendManagerFileDsGateway.clearDatabase();
-        //userDBSetup();
+        FriendManagerFileDsGateway.clearDatabase(); // uncomment this line to setup ,then comment again
+        userDBSetup(); // uncomment this line to setup ,then comment again
 
         // Build the main program window
         JFrame application = new JFrame("Send Friend Request Example");
@@ -36,25 +28,27 @@ public class FriendManagerFileViewShowcase { // for presentation demo only
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        TempFriendListObservable.setCurrentUser("Star");
-
         // Create the parts to plug into the Use Case
         FriendManagerDsGateway dsGateway = new FriendManagerFileDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
+        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
+
+        // set up user status view model
+        userStatusViewModel.setUserName("Star");
+        userStatusViewModel.updateFriendList(dsGateway.getFriendList("Star"));
 
         OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
-        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList);
+        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList, userStatusViewModel);
 
         FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
-        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest);
+        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest, userStatusViewModel);
 
         FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
-        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest);
+        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
 
         // setup users & friendLists in user DB, the methods used should only be called by user registration, it's only here for testing purposes
 
-        //userFriendListSetup(dsGateway);
-        TempFriendListObservable.setFriendList(UserFileReader.getUserMap("UserDatabase.ser").get("Star").getFriendList());
+        userFriendListSetup(dsGateway, userStatusViewModel); // uncomment this line to setup ,then comment again
 
         // Build the GUI, plugging in the parts
         FriendListView screen = new FriendListView(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
@@ -77,7 +71,7 @@ public class FriendManagerFileViewShowcase { // for presentation demo only
         UserFileWriter.writeUserMap(userMap,"UserDatabase.ser");
     }
 
-    private static void userFriendListSetup(FriendManagerDsGateway dsGateway){
+    private static void userFriendListSetup(FriendManagerDsGateway dsGateway, UserStatusViewModel userStatusViewModel){
         // add some friends to Star's friendList
         HashMap<String, String> starFriendList = new HashMap<>();
         starFriendList.put("Jae", "pending_Jae");
@@ -102,6 +96,9 @@ public class FriendManagerFileViewShowcase { // for presentation demo only
         dsGateway.save("Star", "Angela", starFriendList, angelaFriendList);
         dsGateway.save("Star", "Mike", starFriendList, mikeFriendList);
         dsGateway.save("Star", "Millie", starFriendList, millieFriendList);
+
+        userStatusViewModel.setUserName("Star");
+        userStatusViewModel.updateFriendList(starFriendList);
     }
 
 

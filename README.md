@@ -18,12 +18,18 @@ Run the following command in a terminal
 cd src/main/docker
 docker-compose up -d
 ```
+
+Once the docker container is initialized the `moveToDatabase()` method in SongDownloader can move the songs in `src/resources/songs` to the database.
+
 ## DAOImpl Notes
 SongDAOImpl and PlaylistDAOImpl import entities, which may seem like a Clean Architecture violation. These Piazza posts [1](https://piazza.com/class/l5v1b8gfz6b60m/post/557) and [2](https://piazza.com/class/l5v1b8gfz6b60m/post/320), say it's ok
 to allow the gateway to return entities directly.
 
+The DAO design pattern acts as an API for the database and implements CRUD operations (Create, Read, Update, Delete).
+
 ## Queue Notes
 The song queue entity is a singleton class- there will only ever be one instance of a queue at a time. This design was chosen rather than making the song queue a subclass of a playlist (since both objects contain lists of song objects), because of the vast differences between the two objects (the only common factor within between them is one of their attributes).
+The history queue has been somewhat completed, however it can be noticed that there is no implementation of it. The reason for that is, due to time constraints, the song recommender (which is the primary reason we decided on implementing the queue history in the first place) was placed on hold until functionality of our main program was accomplished.
 
 
 ## Design Patterns
@@ -54,4 +60,5 @@ The UserStatusViewModel is a Singleton Class that visible by the package. Everyt
 - Having private constructor and static .getInstance()
 
 Used to make the ViewModels observable for the package, unique and potentially able to implements interface and extends superclasses.
+
 UIs and Controllers would be able to access information that is pre-prepared, and don't need to go through different layers.

@@ -3,7 +3,7 @@ package interface_adaptors.visualizer_ia;
 import entities.Amplitude;
 import framework.visualizer.AmplitudeBar;
 import interface_adaptors.AbstractViewModel;
-import interface_adaptors.display_ia.DisplaySongPlayerUseCase;
+import interface_adaptors.display_ia.SongPlayerAudio;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,8 +40,8 @@ public class SongVisualizerViewModel extends AbstractViewModel<ArrayList<Amplitu
      */
     private void render(ArrayList<Amplitude> amplitudes) {
 
-        int intervalSize = amplitudes.size() / DisplaySongPlayerUseCase.NUM_INTERVALS;
-        int barWidth = this.width / DisplaySongPlayerUseCase.NUM_INTERVALS;
+        int intervalSize = amplitudes.size() / SongPlayerAudio.NUM_INTERVALS;
+        int barWidth = this.width / SongPlayerAudio.NUM_INTERVALS;
         int barHeight = 0;
         int index = 0;
 

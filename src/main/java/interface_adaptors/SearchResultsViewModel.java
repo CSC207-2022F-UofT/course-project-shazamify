@@ -1,6 +1,7 @@
 package interface_adaptors;
 
 import entities.Song;
+import entities.user_entities.User;
 import framework.buttons.ButtonSearchAlbums;
 import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;

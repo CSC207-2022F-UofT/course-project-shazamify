@@ -24,9 +24,8 @@ public class SongDAOImplTest {
     @Test
     public void songProvided_save_success() {
         LOGGER.info("Start test");
-        Song s = new Song("Song1", "1", 90);
+        Song s = new Song("Song1", "1", 90, "Allen", "2022");
 
-//        TODO: change from hardcoded
         String uri = "mongodb://root:rootpassword@localhost:27017";
 
         DatabaseInitializer.init();
@@ -37,14 +36,18 @@ public class SongDAOImplTest {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             try {
                 songDAOin = new SongDAOInputImpl(mongoClient);
+                songDAOout = new SongDAOOutputImpl(mongoClient);
                 songDAOin.delete(s);
                 songDAOin.save(s);
                 LOGGER.info("Saved");
                 Optional<Song> songResult = songDAOout.findById("1");
+
                 assertTrue(songResult.isPresent());
                 assertEquals(songResult.get().getName(), s.getName());
                 assertEquals(songResult.get().getId(), s.getId());
                 assertEquals(songResult.get().getDuration(), s.getDuration());
+                assertEquals(songResult.get().getArtist(), s.getArtist());
+                assertEquals(songResult.get().getYear(), s.getYear());
             } finally {
                 songDAOin.delete(s);
                 LOGGER.info("Deleted");

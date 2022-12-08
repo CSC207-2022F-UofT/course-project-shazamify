@@ -8,7 +8,8 @@ import ds.song_ds.*;
 import java.util.*;
 
 /***
- * The class responsible for updating the history queue with songs that have been listened to.
+ * The class responsible for updating the history queue with songs that have been listened to. This class will remain
+ * unimplemented as, due to time constraints, will not be used by the song recommender.
  */
 public class HistoryUseCase {
     public void add(String id, double elapsed) {

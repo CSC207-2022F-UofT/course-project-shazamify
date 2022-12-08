@@ -3,26 +3,31 @@ package interface_adaptors.user_interact_ia;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import java.util.HashMap;
 
-public class DeleteFriendOrDenyFriendRequestController implements FriendListObserver{
+public class DeleteFriendOrDenyFriendRequestController{
     FriendManagerInputBoundary inputBoundary;
-    HashMap<String, String> tempFriendList;
+    UserStatusViewModel userStatusViewModel;
 
-    public DeleteFriendOrDenyFriendRequestController(FriendManagerInputBoundary inputBoundary) {
+
+
+    public DeleteFriendOrDenyFriendRequestController(FriendManagerInputBoundary inputBoundary, UserStatusViewModel userStatusViewModel) {
         this.inputBoundary = inputBoundary;
-        TempFriendListObservable.addObserver(this);
+        this.userStatusViewModel = userStatusViewModel;
     }
 
+    /**
+     * @param friendID friend's user name
+     * @return a FriendManagerResponseModel that contains a msg to display on screen and an updated user's friendList
+     */
     public FriendManagerResponseModel reactTo(String friendID){
-        FriendManagerRequestModel requestModel = new FriendManagerRequestModel(TempFriendListObservable.currentUser,
-                friendID, tempFriendList);
-        return inputBoundary.reactTo(requestModel);
+        FriendManagerRequestModel requestModel = new FriendManagerRequestModel(userStatusViewModel.getUserName(),
+                friendID, userStatusViewModel.getFriendList());
+        FriendManagerResponseModel responseModel = inputBoundary.reactTo(requestModel);
+        userStatusViewModel.updateFriendList(responseModel.getFriendList());
+        return responseModel;
     }
 
-    @Override
-    public void updateTempFriendList(HashMap<String, String> tempFriendList) {
-        this.tempFriendList = tempFriendList;
-    }
 }

@@ -1,6 +1,7 @@
 package framework.items;
 
 import entities.user_entities.User;
+import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.SearchResultsViewModel;
 
 import javax.imageio.ImageIO;

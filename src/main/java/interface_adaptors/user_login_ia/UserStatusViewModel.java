@@ -82,7 +82,7 @@ public class UserStatusViewModel {
         return accountCreateTime;
     }
 
-    public void setFriendList(HashMap<String, String> friendList) {
+    public void updateFriendList(HashMap<String, String> friendList) {
         this.friendList = friendList;
     }
     public HashMap<String, String> getFriendList() {
@@ -121,7 +121,7 @@ public class UserStatusViewModel {
         this.setUserName("Guest");
         this.setUserAvatar(getDefaultAvatar());
         this.setPlayListIds(new ArrayList<>());
-        this.setFriendList(new HashMap<>());
+        this.updateFriendList(new HashMap<>());
         this.setLogInStatus(false);
     }
 
