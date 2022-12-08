@@ -5,7 +5,6 @@ import java.util.List;
 public class SearchEngineResponseModel {
     private List<String> userSearchResult;
     private List<String> songSearchResult;
-
     private List<String> radioSearchResult;
 
     public List<String> getSongSearchResult() {

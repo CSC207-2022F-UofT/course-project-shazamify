@@ -7,7 +7,7 @@ import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
-
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,10 +22,10 @@ public class SearchResultsViewModel {
     private int width;
     private int height;
 
-    private ArrayList<String> songs;
+    private List<String> songs;
     //private ArrayList<Album> albums;
-    private ArrayList<String> users;
-    private ArrayList<String> radios;
+    private List<String> users;
+    private List<String> radios;
 
     private JPanel viewSongs;
     private JPanel viewUsers;
@@ -63,34 +63,28 @@ public class SearchResultsViewModel {
         getView().removeAll();
         view.updateUI();
     }
+    public void updateView(){
+        // Initialize view
+        initView();
+        // Render playlist
+        renderView();
+    }
 
     /**
      * Updates view
      * potentially add Radio stations
      */
-    public void updateViewUser(ArrayList<String> users) {
+    public void updateViewUser(List<String> users) {
         // Update data
         this.users = users;
-        // Initialize view
-        initView();
-        // Render playlist
-        renderView();
     }
 
-    public void updateViewSongs(ArrayList<String> songs){
+    public void updateViewSongs(List<String> songs){
         this.songs = songs;
-        // Initialize view
-        initView();
-        // Render playlist
-        renderView();
     }
 
-    public void updateViewRadio(ArrayList<String> radio){
+    public void updateViewRadio(List<String> radio){
         this.radios = radio;
-        // Initialize view
-        initView();
-        // Render playlist
-        renderView();
     }
 
     /**
