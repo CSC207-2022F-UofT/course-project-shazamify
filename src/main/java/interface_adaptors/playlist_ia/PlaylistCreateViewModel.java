@@ -1,6 +1,7 @@
 package interface_adaptors.playlist_ia;
 
 import framework.UserManagementInitializer;
+import interface_adaptors.PlaylistCollectionViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.user_playlist_ia.UserPlayListController;
 
@@ -9,19 +10,23 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class PlaylistCreateViewModel extends JFrame {
+public class PlaylistCreateViewModel extends JPanel {
     TextField textField;
+    JFrame jFrame;
     public PlaylistCreateViewModel(){
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JLabel("Enter playlist name:"), BorderLayout.NORTH);
-        panel.add(createButton(), BorderLayout.CENTER);
+        this.jFrame = new JFrame();
+        jFrame.setVisible(true);
+        jFrame.setSize(600,300);
+        jFrame.add(new JLabel("Enter playlist name:"), BorderLayout.NORTH);
+        jFrame.add(createButton(), BorderLayout.CENTER);
         TextField textField = new TextField();
         this.textField = textField;
-        panel.add(textField);
+        jFrame.add(textField);
     }
 
     public JButton createButton(){
         JButton createButton = new JButton("Create");
+        createButton.setBounds(200,50,100,100);
         createButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -32,6 +37,8 @@ public class PlaylistCreateViewModel extends JFrame {
                 UserPlayListController userPlayListController = UserManagementInitializer.getUserPlaylistController();
                 String userName = UserStatusViewModel.getInstance().getUserName();
                 userPlayListController.addPlayListInUser(userName, plID);
+                new PlaylistCreateViewModel();
+                PlaylistCollectionViewModel.getInstance().updateView(UserStatusViewModel.getInstance().getPlayListIds());
             }
             @Override
             public void mousePressed(MouseEvent e) {}
