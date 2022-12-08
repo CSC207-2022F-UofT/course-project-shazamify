@@ -51,8 +51,10 @@ public class SongDownloader {
             year = ((String) dc.read("$['upload_date']")).substring(0,4);
         }
 
+        Song s = new Song(name, id, duration, artist, year);
+        System.out.println("Important " + s.getFilePath());
 
-        return new Song(name, id, duration, artist, year);
+        return s;
     }
 
     public static void moveToDatabase() throws Exception {
