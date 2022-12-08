@@ -1,5 +1,9 @@
 package interface_adaptors.playlist_ia;
 
+import framework.UserManagementInitializer;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
+import interface_adaptors.user_playlist_ia.UserPlayListController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -23,9 +27,11 @@ public class PlaylistCreateViewModel extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 //TODO: URGENT
                 PlaylistCreateControl playlistCreateControl = new PlaylistCreateControl();
-                playlistCreateControl.create(textField.getText());
+                String plID = playlistCreateControl.create(textField.getText()).getID();
                 // ASK DAVID HOW TO CONNECT CURRENT USER THIS PLAYLIST
-                // PlaylistCollectionViewModel.update(UserStatusViewModel.getInstance().playlistids)
+                UserPlayListController userPlayListController = UserManagementInitializer.getUserPlaylistController();
+                String userName = UserStatusViewModel.getInstance().getUserName();
+                userPlayListController.addPlayListInUser(userName, plID);
             }
             @Override
             public void mousePressed(MouseEvent e) {}
