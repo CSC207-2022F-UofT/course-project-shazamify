@@ -121,8 +121,8 @@ public class UserStatusViewModel {
         this.setUserName("Guest");
         this.setUserAvatar(getDefaultAvatar());
         this.setPlayListIds(new ArrayList<>());
-        this.setFriendList(new HashMap<>());
-        this.setLogInStatus(false);
+//        this.setFriendList(new HashMap<>());
+//        this.setLogInStatus(false);
     }
 
     private BufferedImage getDefaultAvatar() {
