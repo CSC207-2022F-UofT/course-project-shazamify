@@ -25,6 +25,7 @@ public class SearchResultsViewModel {
     private ArrayList<String> songs;
     //private ArrayList<Album> albums;
     private ArrayList<String> users;
+    private ArrayList<String> radios;
 
     private JPanel viewSongs;
     private JPanel viewUsers;
@@ -76,6 +77,21 @@ public class SearchResultsViewModel {
         renderView();
     }
 
+    public void updateViewSongs(ArrayList<String> songs){
+        this.songs = songs;
+        // Initialize view
+        initView();
+        // Render playlist
+        renderView();
+    }
+
+    public void updateViewRadio(ArrayList<String> radio){
+        this.radios = radio;
+        // Initialize view
+        initView();
+        // Render playlist
+        renderView();
+    }
 
     /**
      * Renders view
