@@ -18,4 +18,9 @@ public class SearchEnginePresenter implements SearchEngineOutputBoundary {
     public void packageAndPresentSongs(SearchEngineResponseModel responseModel) {
         SearchResultsViewModel.getInstance().updateViewUser((ArrayList<String>) responseModel.getSongSearchResult());
     }
+
+    @Override
+    public void packageAndPresentRadio(SearchEngineResponseModel responseModel){
+        SearchResultsViewModel.getInstance().updateViewUser((ArrayList<String>) responseModel.getRadioSearchResult());
+    }
 }
