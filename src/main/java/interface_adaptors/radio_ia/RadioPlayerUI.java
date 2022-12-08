@@ -72,7 +72,7 @@ public class RadioPlayerUI extends JPanel {
     private void renderButtons() {
         try {
             // Create buttons panel
-            JPanel buttonsPanel = new JPanel(new GridLayout(1, 0));
+            JPanel buttonsPanel = new JPanel(new GridLayout(0, 1));
             buttonsPanel.setSize(40, 40);
 
             // Create label
