@@ -128,7 +128,7 @@ public class UserStatusViewModel {
 
     private BufferedImage getDefaultAvatar() {
         try {
-            return ImageIO.read(new File("default_avatar.jpg"));
+            return ImageIO.read(new File("src/main/resources/defaultprofilepicture.jpg"));
         } catch (IOException e){
             throw new RuntimeException("Failed to create Default Avatar");
         }

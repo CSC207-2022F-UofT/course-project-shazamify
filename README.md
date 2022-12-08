@@ -48,11 +48,13 @@ By using UserFactory creating different types of User, we can obscure the creati
 - implemented in the use case layer
 - Can be used to encapsulate the code that each subclass only have one responsibility.
 
-Facade class: UserRegUseCase and QueueUseCase
-subclasses: UserRegHelper, UserRecommendPasswordHelper, QueueHelper
+Facade class: UserRegUseCase, QueueFUC, QueueGetUseCase, QueueUUseCase
+subclasses: UserRegHelper, UserRecommendPasswordHelper, QueueFHelper, QueueGetHelper, QueueUHelper
 
 When the UserRegUseCase receive requests from UserRegController, it will distribute the works into subclasses, and each subclass will only have one responsibility.
 UserRegHelper will register the User into UserDatabase, and UserRecommendPasswordHelper responsible for giving out recommend password.
+
+The queue helpers are responsible for doing the actual list modifiying/updating. It will access the singleton queue and do necessary changes.
 
 ### Observer Pattern
 - implemented in the interface adaptor layer
