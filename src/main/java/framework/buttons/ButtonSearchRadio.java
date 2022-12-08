@@ -10,8 +10,8 @@ public class ButtonSearchRadio extends JButton {
 
     public ButtonSearchRadio(){
         try {
-            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/searchradiotab.png")));
-            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/searchradiotabclicked.png")));
+            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/searchradiotab.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
+            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/searchradiotabclicked.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
         } catch (Exception e) {
             System.out.println(e);
         }

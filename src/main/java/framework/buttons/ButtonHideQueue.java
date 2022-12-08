@@ -11,10 +11,11 @@ import java.awt.event.ActionListener;
 public class ButtonHideQueue extends JButton {
 
     private ButtonRevealQueue revealbutton;
+    private JPanel buttonspanel;
 
     public ButtonHideQueue(){
         try {
-            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerrevealqueue.png"))));
+            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerrevealqueueicon.png"))));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -26,10 +27,11 @@ public class ButtonHideQueue extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 QueueViewModel.getInstance().getView().setVisible(false);
-                AlterVisibility();
+                //AlterVisibility();
             }
         });
     }
+    public void Init(){}
     public void SetCompanion(ButtonRevealQueue companion){
         this.revealbutton = companion;
     }

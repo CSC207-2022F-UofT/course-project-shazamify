@@ -54,6 +54,8 @@ public class SongPlayerAudio extends AbstractDisplayUseCase {
      */
     private Clip extractClip(String song_id){
         Clip clip = null;
+        System.out.println("going into extract file path -- " + SongDTOController.getFilePath(song_id));
+        //TODO: getFilePath returning nill
         try {
             AudioFormat format;
             DataLine.Info info;
