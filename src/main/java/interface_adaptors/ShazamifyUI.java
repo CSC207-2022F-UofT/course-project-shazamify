@@ -202,7 +202,7 @@ public class ShazamifyUI extends JFrame {
         JPanel listsPanel = new JPanel();
         listsPanel.setBackground(new Color(36, 36, 36));
         listsPanel.add(RecordViewModel.getInstance().getView(width, height));
-        //listsPanel.add(SearchResultsViewModel.getInstance().getView(width, height));
+        listsPanel.add(SearchResultsViewModel.getInstance().getView(width, height));
         listsPanel.add(QueueViewModel.getInstance().getView(width, height));
         panel.add(listsPanel, BorderLayout.CENTER);
 
