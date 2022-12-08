@@ -38,7 +38,6 @@ public class UserLogUI extends JPanel {
         frame.setSize(600,300);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         LoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

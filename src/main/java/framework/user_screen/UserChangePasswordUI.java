@@ -34,7 +34,6 @@ public class UserChangePasswordUI extends JPanel{
         frame.setSize(700,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         resetPassword.addActionListener(new ActionListener() {
             @Override
