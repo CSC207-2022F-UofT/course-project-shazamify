@@ -45,11 +45,11 @@ public class QueueCollectionItem extends JPanel{
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
-        try {
-            File coverfile = new File(SongDTOController.getCover(song_id));
-            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
-        }catch(java.io.IOException e){}
+//        try {
+//            File coverfile = new File(SongDTOController.getCover(song_id));
+//            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+//            this.add(renderImage(new ImageIcon(cover)));
+//        }catch(java.io.IOException e){}
 
 
         //this.add(renderLabel(RecordDTOController.getAlbum()));
@@ -82,7 +82,7 @@ public class QueueCollectionItem extends JPanel{
     private JPanel renderInputs(){
         JPanel buttonPanel = new JPanel(new GridLayout());
         buttonPanel.setOpaque(false);
-
+        System.out.println(index);
         if (this.index > 0){renderShiftUpButton();}
         if (this.index < this.lastindex){renderShiftDownButton();}
 

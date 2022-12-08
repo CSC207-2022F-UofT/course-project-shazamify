@@ -5,10 +5,8 @@ import abr.song_abr.SongDAOOutput;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-
 import ds.DatabaseInitializer;
 import entities.Song;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +79,7 @@ public class SongDAOImplTest {
                 assertTrue(songResult1.isPresent());
 
                 FindIterable<Song> songResults2 = songDAOout.findByNameList("Son");
-                for(Song s2 : songResults2) {
+                for (Song s2 : songResults2) {
                     assertEquals("Song1", s2.getName());
                 }
 
@@ -92,5 +90,72 @@ public class SongDAOImplTest {
             }
         }
     }
+
+    @Test
+    public void idProvided_filePath_found() {
+        LOGGER.info("Start test");
+        Song s = new Song("Song1", "1", 90, "Allen", "2022");
+        Song s2 = new Song("Despacito", "test", 90, "Allen", "2022");
+
+        String uri = "mongodb://root:rootpassword@localhost:27017";
+
+        DatabaseInitializer.init();
+
+        SongDAOInput songDAOin = null;
+        SongDAOOutput songDAOout = null;
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            try {
+                songDAOin = new SongDAOInputImpl(mongoClient);
+                songDAOout = new SongDAOOutputImpl(mongoClient);
+                songDAOin.delete(s);
+                songDAOin.delete(s2);
+                songDAOin.save(s);
+                songDAOin.save(s2);
+                LOGGER.info("Saved");
+
+                Optional<Song> songResult1 = songDAOout.findByName("Song1");
+                assertTrue(songResult1.isPresent());
+
+                assertEquals("src/main/resources/songs/Song1.mp3", songResult1.get().getFilePath());
+
+                Optional<Song> songResult2 = songDAOout.findById("test");
+                assertTrue(songResult2.isPresent());
+                assertEquals("src/main/resources/songs/Despacito.mp3", songResult2.get().getFilePath());
+
+
+            } finally {
+                songDAOin.delete(s);
+                songDAOin.delete(s2);
+                LOGGER.info("Deleted");
+            }
+        }
+    }
+
+    @Test
+    public void despacitoTest() {
+        LOGGER.info("Start test");
+
+        String uri = "mongodb://root:rootpassword@localhost:27017";
+
+        DatabaseInitializer.init();
+
+        SongDAOOutput songDAOout = null;
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+
+            String id = "FXovf5dsRTw";
+            songDAOout = new SongDAOOutputImpl(mongoClient);
+
+            Optional<Song> songResult1 = songDAOout.findById(id);
+            assertTrue(songResult1.isPresent());
+
+            assertEquals("src/main/resources/songs/Despacito.mp3", songResult1.get().getFilePath());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

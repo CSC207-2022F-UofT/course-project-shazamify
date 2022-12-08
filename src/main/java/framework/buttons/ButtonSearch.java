@@ -3,6 +3,7 @@ package framework.buttons;
 import framework.SearchEngineInitializer;
 import interface_adaptors.SearchResultsViewModel;
 import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.search_engine_ia.SearchEngineController;
 
 
@@ -38,6 +39,7 @@ public class ButtonSearch extends JButton {
                 //SearchResultsViewModel.getInstance().updateView();
                 searchEngineController.updateSearch();
                 RecordViewModel.getInstance().getView().setVisible(false);
+                QueueViewModel.getInstance().getView().setVisible(false);
                 SearchResultsViewModel.getInstance().getView().setVisible(true);
             }
         });

@@ -1,8 +1,13 @@
 package interface_adaptors.display_ia;
 
+import abr.queue_abr.queue.QueueFIB;
+import abr.queue_abr.queue.QueueFOB;
+import abr.queue_abr.queue.QueueFUC;
 import entities.Song;
 import interface_adaptors.AbstractDisplayUseCase;
 import interface_adaptors.SongDTOController;
+import interface_adaptors.queue_ia.QueueFirstController;
+import interface_adaptors.queue_ia.QueueFirstPresenter;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 import javax.sound.sampled.*;
@@ -54,6 +59,10 @@ public class SongPlayerAudio extends AbstractDisplayUseCase {
      */
     private Clip extractClip(String song_id){
         Clip clip = null;
+        System.out.println(SongDTOController.getArtist(song_id));
+        System.out.println(SongDTOController.getName(song_id));
+        System.out.println(SongDTOController.getDuration(song_id));
+        System.out.println(SongDTOController.getYear(song_id));
         System.out.println("going into extract file path -- " + SongDTOController.getFilePath(song_id));
         //TODO: getFilePath returning nill
         try {
@@ -156,7 +165,10 @@ public class SongPlayerAudio extends AbstractDisplayUseCase {
      */
     public void seekEndSong() {
         try {
-            System.out.println("SongPlayer - Seek End");
+            QueueFOB fob = new QueueFirstPresenter();
+            QueueFIB fib = new QueueFUC(fob);
+            QueueFirstController firstController = new QueueFirstController(fib);
+            firstController.retrieveFirst();
         }
         catch (Exception e) {
             System.out.println(e.getStackTrace());

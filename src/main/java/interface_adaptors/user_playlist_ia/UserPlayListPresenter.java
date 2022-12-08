@@ -16,5 +16,6 @@ public class UserPlayListPresenter implements UserPlaylistOutputBoundary {
     public void packageAndPresent(UserPlaylistResponseModel userPlaylistResponseModel) {
         List<String> userPlayListIDs = userPlaylistResponseModel.getUserPlaylistIDs();
         userStatusViewModel.setPlayListIds(userPlayListIDs);
+        userStatusViewModel.userUpdated();
     }
 }

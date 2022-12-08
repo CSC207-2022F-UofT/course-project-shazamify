@@ -11,5 +11,6 @@ public class UserLogOutController {
      */
     public void logout(){
         UserStatusViewModel.getInstance().logout();
+        UserStatusViewModel.getInstance().userUpdated();
     }
 }
