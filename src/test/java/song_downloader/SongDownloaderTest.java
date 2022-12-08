@@ -55,6 +55,7 @@ public class SongDownloaderTest {
         assertEquals(229, s.getDuration());
         assertEquals("Luis Fonsi", s.getArtist());
         assertEquals("2017", s.getYear());
+        assertEquals("src/main/resources/songs/Despacito.mp3", s.getFilePath());
     }
 
 }

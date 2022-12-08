@@ -30,10 +30,6 @@ public class Song {
     private String artist;
     private String year;
 
-    public String getCover() {
-        return coverPath;
-    }
-
 
     public String getArtist() {
         return artist;
@@ -69,16 +65,16 @@ public class Song {
         this.name = name;
         this.id = id;
         this.duration = duration;
-        this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
-        this.coverPath = "src\\main\\resources\\songs\\" + name + ".webp";
+        this.filePath = "src/main/resources/songs/" + name + ".mp3";
+        this.coverPath = "src/main/resources/songs/" + name + ".webp";
     }
 
     public Song(String name, String id, int duration, String artist, String year) {
         this.name = name;
         this.id = id;
         this.duration = duration;
-        this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
-        this.coverPath = "src\\main\\resources\\songs\\" + name + ".webp";
+        this.filePath = "src/main/resources/songs/" + name + ".mp3";
+        this.coverPath = "src/main/resources/songs/" + name + ".webp";
         this.artist = artist;
         this.year = year;
     }
@@ -155,7 +151,20 @@ public class Song {
     }
 
 
-    public String getFile() {
+
+    public String getFilePath() {
         return this.filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getCoverPath() {
+        return this.coverPath;
+    }
+
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
     }
 }
