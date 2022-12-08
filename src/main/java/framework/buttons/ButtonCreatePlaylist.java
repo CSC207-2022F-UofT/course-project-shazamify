@@ -2,6 +2,8 @@ package framework.buttons;
 
 import framework.items.PlaylistCollectionItem;
 import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.ShazamifyUI;
+import interface_adaptors.playlist_ia.PlaylistCreateViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -28,7 +30,7 @@ public class ButtonCreatePlaylist extends JPanel {
         //TODO: playlistDTO initializaion
         try {
             Image cover = ImageIO.read(getClass().getResource( "src/main/resources/friendsicon.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-            this.add(renderImage(new ImageIcon(cover)));
+            this.add(renderImage(new ImageIcon(cover)), BorderLayout.CENTER);
         }catch(java.io.IOException e){}
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
@@ -43,7 +45,7 @@ public class ButtonCreatePlaylist extends JPanel {
     private class PanelListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent event) {
-            // TODO: Dat, please add pop up window form where user inputs playlist name and presses button "Create"
+            PlaylistCreateViewModel playlistCreateViewModel = new PlaylistCreateViewModel();
         }
         @Override
         public void mouseEntered(MouseEvent event) {

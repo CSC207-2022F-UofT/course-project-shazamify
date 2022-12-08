@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 public class RecordItem extends JPanel {
 
@@ -26,17 +27,14 @@ public class RecordItem extends JPanel {
         this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
-//        TODO: resolve after MongoDB serialization
-//        try {
-//            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
-//            this.add(renderImage(new ImageIcon(cover)));
-//        }
-//        catch(java.io.IOException e)
-//        {
-//            System.out.println(e);
-//        }
-        // TODO: use RecordDTOController
-        this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        try {
+            File coverfile = new File(SongDTOController.getCover(song_id));
+            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            this.add(renderImage(new ImageIcon(cover)));
+        }
+        catch(java.io.IOException e) {}
+
+        //this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
         this.add(renderLabel(SongDTOController.getArtist(song_id)));
         this.add(renderLabel(SongDTOController.getName(song_id)));
         this.add(renderLabel(SongDTOController.getYear(song_id)));
@@ -55,10 +53,10 @@ public class RecordItem extends JPanel {
         return this.index;
     }
 
-    private void handlePlayButtonAction(JButton button, ActionEvent e){
-        SongVisualizerController.visualizeSong(song);
-        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
-    }
+//    private void handlePlayButtonAction(JButton button, ActionEvent e){
+//        SongVisualizerController.visualizeSong(song);
+//        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
+//    }
 
     private void handleDeleteButtonAction(JButton button, ActionEvent e){
 
@@ -136,7 +134,7 @@ public class RecordItem extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    SongVisualizerController.visualizeSong(song_id);
+                    //SongVisualizerController.visualizeSong(song_id);
                     SongPlayerAudio.getInstance().displaySongPlayer(song_id);
                 }
             });
@@ -211,6 +209,20 @@ public class RecordItem extends JPanel {
         } catch (Exception e) {
             System.out.println(e);
         }
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setOpaque(false);
+        JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
+        //JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
+        JMenu addToPlaylistMenu = renderPlaylistOptions();
+
+        menu.add(addToQueueMenuItem);
+        menu.add(addToPlaylistMenu);
+        return menu;
+    }
+
+    public JMenu renderPlaylistOptions() {
+        JMenu menu = new JMenu("Add to Playlist");
+
         menu.setBackground(Color.DARK_GRAY);
         menu.setOpaque(false);
         JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");

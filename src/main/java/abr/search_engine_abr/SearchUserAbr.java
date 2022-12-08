@@ -10,9 +10,30 @@ import java.util.List;
  * @author Zhaolang05
  * @date 2022/11/18/17:01
  */
-public class SearchUserAbr {
+public class SearchUserAbr implements SearchUserInputBoundary{
     private SearchEngineFileGateway userDao = new SearchEngineFileGateway();
     private int limitCount = 5;
+    SearchEngineOutputBoundary outputBoundary;
+    SearchEngineResponseModel responseModel;
+
+    public SearchUserAbr(SearchEngineOutputBoundary outputBoundary){
+        this.outputBoundary = outputBoundary;
+        this.responseModel = new SearchEngineResponseModel();
+    }
+
+    public void sendSearchUserToViewModel(String searchName){
+        List<User> resultedUser = searchUsers(searchName);
+        List<String> resultedUserNames = new ArrayList<>();
+
+        for (User user: resultedUser){
+            resultedUserNames.add(user.getUserName());
+        }
+
+        responseModel.setUserSearchResult(resultedUserNames);
+        outputBoundary.packageAndPresentUser(responseModel);
+    }
+
+
 
     /**
      * Search user by name, first match equals, then match starts with, and finally matches contains.
@@ -44,8 +65,5 @@ public class SearchUserAbr {
         {
              return searchResult;
         }
-
     }
-
-
 }

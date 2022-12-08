@@ -1,7 +1,6 @@
 package framework.buttons;
 
 import interface_adaptors.FriendsCollectionViewModel;
-import interface_adaptors.PlaylistCollectionController;
 import interface_adaptors.PlaylistCollectionViewModel;
 
 import javax.imageio.ImageIO;
@@ -36,7 +35,8 @@ public class ButtonPlaylistsCollection extends JButton {
                 button.clicked(false);
                 FriendsCollectionViewModel.getInstance().getView().setVisible(false);
                 PlaylistCollectionViewModel.getInstance().getView().setVisible(true);
-                PlaylistCollectionController.displayPlaylists(null);}
+                //PlaylistCollectionController.displayPlaylists(null);
+            }
         });
 
     }

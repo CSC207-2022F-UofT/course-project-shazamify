@@ -2,8 +2,9 @@ package framework.items;
 
 
 import entities.playlist_entities.Playlist;
-import interface_adaptors.MediaPlaylistController;
+import interface_adaptors.PlaylistDTOController;
 import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -33,14 +34,13 @@ public class PlaylistCollectionItem extends JPanel{
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
-        //TODO: playlistDTO initializaion
         try {
-            Image cover = ImageIO.read(playlistDTO.getCover()).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            Image cover = ImageIO.read(PlaylistDTOController.getCover(playlist_id)).getScaledInstance(50,50,Image.SCALE_DEFAULT);
             this.add(renderImage(new ImageIcon(cover)));
         }catch(java.io.IOException e){}
 
 
-        this.add(renderLabel(playlistDTO.getName()));
+        this.add(renderLabel(PlaylistDTOController.getName(playlist_id)));
 
 
         Border blackline = createMatteBorder(0, 0, 1, 0, new Color(36,36,36));
