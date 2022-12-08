@@ -2,12 +2,10 @@ package interface_adaptors.display_ia;
 
 import entities.playlist_entities.Playlist;
 import entities.user_entities.User;
-import interface_adaptors.AbstractDisplayUseCase;
-import interface_adaptors.PlaylistCollectionViewModel;
 
 import java.util.ArrayList;
 
-public class DisplayPlaylistCollectionUseCase extends AbstractDisplayUseCase {
+public class DisplayPlaylistCollectionUseCase {
 
     private static DisplayPlaylistCollectionUseCase instance;
 

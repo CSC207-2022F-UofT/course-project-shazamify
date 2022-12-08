@@ -17,7 +17,6 @@ public class RadioPlayerViewModel {
     private static RadioPlayerViewModel instance;
     private static String stationName;
     private static String stationID;
-    private static String streamURL;
 
     protected JPanel view;
     protected int width;
