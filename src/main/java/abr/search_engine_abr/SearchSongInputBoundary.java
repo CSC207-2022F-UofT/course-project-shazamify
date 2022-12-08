@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SearchSongInputBoundary {
     public void sendSearchSongsToViewModel(String searchName);
+
+    public void updateView();
 }

@@ -18,6 +18,10 @@ public class SearchSongAbr implements SearchSongInputBoundary{
         this.responseModel = new SearchEngineResponseModel();
         this.outputBoundary = outputBoundary;
     }
+    public void updateView(){
+        outputBoundary.present();
+    }
+
     @Override
     public void sendSearchSongsToViewModel(String searchName){
         List<Song> resultedSong = searchSongs(searchName);
@@ -27,7 +31,7 @@ public class SearchSongAbr implements SearchSongInputBoundary{
             resultedSongIds.add(song.getId());
         }
 
-        responseModel.setUserSearchResult(resultedSongIds);
+        responseModel.setSongSearchResult(resultedSongIds);
         outputBoundary.packageAndPresentSongs(responseModel);
     }
 
