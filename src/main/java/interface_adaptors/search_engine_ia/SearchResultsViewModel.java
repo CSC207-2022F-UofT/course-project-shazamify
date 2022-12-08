@@ -1,11 +1,8 @@
-package interface_adaptors;
+package interface_adaptors.search_engine_ia;
 
-import abr.radio_abr.StationLibrary;
 import abr.user_interact_abr.manage_friend_request_abr.*;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
-import entities.Song;
-import entities.user_entities.User;
 import framework.buttons.*;
 import framework.items.*;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
@@ -16,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class SearchResultsViewModel {
 

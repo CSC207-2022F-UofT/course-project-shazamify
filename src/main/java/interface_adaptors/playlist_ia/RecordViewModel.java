@@ -3,13 +3,10 @@ package interface_adaptors.playlist_ia;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-import entities.Record;
-import entities.Song;
 import framework.items.RecordItem;
 import interface_adaptors.AbstractViewModel;
-import interface_adaptors.PlaylistDTOController;
+
 import java.util.List;
 
 public class RecordViewModel extends AbstractViewModel<String> {

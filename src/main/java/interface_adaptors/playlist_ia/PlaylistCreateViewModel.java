@@ -1,7 +1,6 @@
 package interface_adaptors.playlist_ia;
 
 import framework.UserManagementInitializer;
-import interface_adaptors.PlaylistCollectionViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.user_playlist_ia.UserPlayListController;
 

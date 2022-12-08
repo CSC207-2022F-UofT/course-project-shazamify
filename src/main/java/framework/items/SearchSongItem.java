@@ -1,8 +1,7 @@
 package framework.items;
 
 import abr.queue_abr.queue.*;
-import entities.Song;
-import interface_adaptors.PlaylistDTOController;
+import interface_adaptors.playlist_ia.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.queue_ia.QueueGetController;
@@ -19,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.List;
 
 public class SearchSongItem extends JPanel {

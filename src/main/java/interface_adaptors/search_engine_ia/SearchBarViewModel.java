@@ -1,6 +1,7 @@
-package interface_adaptors;
+package interface_adaptors.search_engine_ia;
 
 import framework.buttons.ButtonSearch;
+import interface_adaptors.AbstractViewModel;
 
 import javax.swing.*;
 import java.awt.*;

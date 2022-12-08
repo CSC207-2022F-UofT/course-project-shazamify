@@ -1,12 +1,10 @@
 package framework.items;
 
-import interface_adaptors.PlaylistDTOController;
+import interface_adaptors.playlist_ia.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.playlist_ia.PlaylistModifyControl;
-import interface_adaptors.song_player_ia.SongPlayerController;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
-import interface_adaptors.visualizer_ia.SongVisualizerController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

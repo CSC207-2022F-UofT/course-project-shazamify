@@ -1,12 +1,14 @@
 package interface_adaptors;
 
 
-import interface_adaptors.playlist_ia.RecordViewModel;
+import interface_adaptors.playlist_ia.*;
 import interface_adaptors.queue_ia.QueueViewModel;
+import interface_adaptors.search_engine_ia.*;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 import framework.buttons.*;
 
+import interface_adaptors.user_interact_ia.FriendsCollectionViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
