@@ -82,7 +82,7 @@ public class RecordViewModel extends AbstractViewModel<String> {
         // Populate list panel with items
         List<String> songs = PlaylistDTOController.getSongs(record_id);
         for (int i = 0; i < songs.size(); i++) {
-            list.add(new RecordItem(i, songs.get(i), width - 30, 50));
+            list.add(new RecordItem(i, songs.get(i), width - 30, 50, record_id));
         }
         // Create scroll panel
         JScrollPane scrollPanel = new JScrollPane(list);

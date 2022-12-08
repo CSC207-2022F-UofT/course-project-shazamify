@@ -1,9 +1,14 @@
 package framework.items;
 
+import abr.queue_abr.queue.*;
 import entities.Song;
 import interface_adaptors.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
+import interface_adaptors.queue_ia.QueueGetController;
+import interface_adaptors.queue_ia.QueueGetPresenter;
+import interface_adaptors.queue_ia.QueueUController;
+import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.imageio.ImageIO;
@@ -137,13 +142,42 @@ public class SearchSongItem extends JPanel {
         }
         menu.setBackground(Color.DARK_GRAY);
         menu.setOpaque(false);
-        JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
+        //JMenuItem addToQueueMenuItem = r;
         //JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
         JMenu addToPlaylistMenu = renderPlaylistOptions();
-
+        JMenuItem addToQueueMenuItem = addToQueueMenu();
         menu.add(addToQueueMenuItem);
         menu.add(addToPlaylistMenu);
         return menu;
+    }
+
+    public JMenuItem addToQueueMenu() {
+        JMenuItem addToQueueMenu = new JMenuItem("Add to Queue");
+        addToQueueMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<String> currentQueueOrder = getCurrentQueueOrder();
+                currentQueueOrder.add(songId);
+                sendQueueOrder(currentQueueOrder);
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+            }
+        });
+        return addToQueueMenu;
+    }
+
+    public List<String> getCurrentQueueOrder(){
+        QueueGetOutputBoundary getOutputBoundary = new QueueGetPresenter();
+        QueueGetInputBoundary getInputBoundary = new QueueGetUseCase(getOutputBoundary);
+        QueueGetController getController = new QueueGetController(getInputBoundary);
+        getController.retrieveList();
+
+        return QueueViewModel.getInstance().getSong_ids();
+    }
+
+    public void sendQueueOrder(List<String> currentQueueOrder) {
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(currentQueueOrder);
     }
 
     public JMenu renderPlaylistOptions() {

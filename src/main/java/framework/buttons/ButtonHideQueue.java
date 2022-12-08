@@ -1,5 +1,7 @@
 package framework.buttons;
 
+import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueViewModel;
 
 import javax.imageio.ImageIO;
@@ -27,6 +29,8 @@ public class ButtonHideQueue extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 QueueViewModel.getInstance().getView().setVisible(false);
+                RecordViewModel.getInstance().getView().setVisible(false);
+                SearchResultsViewModel.getInstance().getView().setVisible(true);
                 //AlterVisibility();
             }
         });

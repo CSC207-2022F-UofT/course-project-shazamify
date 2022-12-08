@@ -3,6 +3,8 @@ package framework.buttons;
 import abr.queue_abr.queue.QueueGetInputBoundary;
 import abr.queue_abr.queue.QueueGetOutputBoundary;
 import abr.queue_abr.queue.QueueGetUseCase;
+import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueGetController;
 import interface_adaptors.queue_ia.QueueGetPresenter;
 import interface_adaptors.queue_ia.QueueViewModel;
@@ -36,6 +38,8 @@ public class ButtonRevealQueue extends JButton {
             public void actionPerformed(ActionEvent e) {
                 List<String> currentQueueOrder = getCurrentQueueOrder();
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
+                RecordViewModel.getInstance().getView().setVisible(false);
+                SearchResultsViewModel.getInstance().getView().setVisible(false);
                 QueueViewModel.getInstance().getView().setVisible(true);
                 //AlterVisibility();
             }
