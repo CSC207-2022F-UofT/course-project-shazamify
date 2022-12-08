@@ -38,9 +38,13 @@ public class SearchBarViewModel extends AbstractViewModel<Object> {
      * Renders view
      */
     private void renderView() {
+
         // Create content panel
-        JPanel content = new JPanel(new GridLayout(1, 0));
+        JPanel content = new JPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
         textField = new JTextField();
+        //textField.setSize(new Dimension((int)width/3, height));
+        textField.setSize(new Dimension(50, 50));
         content.add(textField);
         content.add(new ButtonSearch(textField));
 

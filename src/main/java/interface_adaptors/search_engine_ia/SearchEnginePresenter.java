@@ -11,6 +11,7 @@ public class SearchEnginePresenter implements SearchEngineOutputBoundary {
 
     @Override
     public void packageAndPresentUser(SearchEngineResponseModel responseModel) {
+        System.out.println("should retrieve");
         SearchResultsViewModel.getInstance().updateViewUser(responseModel.getUserSearchResult());
     }
 
@@ -27,4 +28,6 @@ public class SearchEnginePresenter implements SearchEngineOutputBoundary {
     public void present(){
         SearchResultsViewModel.getInstance().updateView();
     }
+
+
 }

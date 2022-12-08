@@ -112,9 +112,14 @@ public class SearchResultsViewModel {
      */
     private JPanel renderButtonsView() {
 
-        JPanel panel = new JPanel(new GridLayout(1, 0));
+        JPanel buttonpanel = new JPanel();
+        buttonpanel.setLayout(new BoxLayout(buttonpanel, BoxLayout.X_AXIS));
+        buttonpanel.setOpaque(false);
+        //JPanel panel = new JPanel(new GridLayout(1, 0));
+        JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, BUTTONS_HEIGHT));
-        panel.setOpaque(false);
+        //VSO
+        panel.setBackground(Color.DARK_GRAY);
 
         // Instantiate buttons
         btnSearchSongs = new ButtonSearchSongs();
@@ -134,7 +139,7 @@ public class SearchResultsViewModel {
                 btnSearchAlbums.clicked(false);
                 btnSearchUsers.clicked(false);
                 viewSongs.setVisible(true);
-                viewAlbums.setVisible(false);
+                //viewAlbums.setVisible(false);
                 viewUsers.setVisible(false);
         }});
         btnSearchAlbums.addActionListener(new ActionListener() {
@@ -144,7 +149,7 @@ public class SearchResultsViewModel {
                 btnSearchAlbums.clicked(true);
                 btnSearchUsers.clicked(false);
                 viewSongs.setVisible(false);
-                viewAlbums.setVisible(true);
+                //viewAlbums.setVisible(true);
                 viewUsers.setVisible(false);
             }});
         btnSearchUsers.addActionListener( new ActionListener() {
@@ -154,15 +159,15 @@ public class SearchResultsViewModel {
                 btnSearchAlbums.clicked(false);
                 btnSearchUsers.clicked(true);
                 viewSongs.setVisible(false);
-                viewAlbums.setVisible(false);
+                //viewAlbums.setVisible(false);
                 viewUsers.setVisible(true);
             }});
 
         // Add buttons to the buttons panel
-        panel.add(btnSearchSongs);
+        buttonpanel.add(btnSearchSongs);
         //panel.add(btnSearchAlbums);
-        panel.add(btnSearchUsers);
-
+        buttonpanel.add(btnSearchUsers);
+        panel.add(buttonpanel, BorderLayout.WEST);
         return panel;
     }
 
@@ -177,6 +182,7 @@ public class SearchResultsViewModel {
         JPanel list = new JPanel();
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         // Populate list panel with items
+        System.out.println(songs.size());
         for (int i = 0; i < songs.size(); i++) {
             list.add(new SearchSongItem(i, songs.get(i), width - 30, 50));
         }

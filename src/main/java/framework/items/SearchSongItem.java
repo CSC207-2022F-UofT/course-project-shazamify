@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 public class SearchSongItem extends JPanel {
 
@@ -22,20 +23,17 @@ public class SearchSongItem extends JPanel {
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
-//        TODO: resolve after MongoDB serialization
-//        try {
-//            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
-//            this.add(renderImage(new ImageIcon(cover)));
-//        }
-//        catch(java.io.IOException e)
-//        {
-//            System.out.println(e);
-//        }
+        try {
+            File coverfile = new File(SongDTOController.getCover(songId));
+            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            this.add(renderImage(new ImageIcon(cover)));
+        }
+        catch(java.io.IOException e) {}
 
-//        this.add(renderLabel(song.getAlbum()));
-//        this.add(renderLabel(song.getArtist()));
+        //this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        this.add(renderLabel(SongDTOController.getArtist(songId)));
         this.add(renderLabel(SongDTOController.getName(songId)));
-//        this.add(renderLabel(song.getYear()));
+        this.add(renderLabel(SongDTOController.getYear(songId)));
 
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);

@@ -22,8 +22,10 @@ public class PlaylistCreateViewModel extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //TODO: URGENT
-                PlaylistCreateControl playlistCreateControl = new PlaylistCreateControl();
-                playlistCreateControl.create(textField.getText());
+                //PlaylistCreateControl playlistCreateControl = new PlaylistCreateControl();
+                //playlistCreateControl.create(textField.getText());
+                // ASK DAVID HOW TO CONNECT CURRENT USER THIS PLAYLIST
+                // PlaylistCollectionViewModel.update(UserStatusViewModel.getInstance().playlistids)
             }
             @Override
             public void mousePressed(MouseEvent e) {}
