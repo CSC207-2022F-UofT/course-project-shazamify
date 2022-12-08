@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 
 /***
+ * @author cynth
+ *
  * The Radio Player view model displays that a stream is playing.
  */
 

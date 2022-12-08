@@ -4,6 +4,8 @@ package interface_adaptors.radio_ia;
 import abr.radio_abr.RadioPlayer;
 
 /**
+ * @author cynth
+ *
  * This controller's main purpose is to communicate Radio Station information between the RadioControl
  * as well as the various Radio ABR things.
  */
