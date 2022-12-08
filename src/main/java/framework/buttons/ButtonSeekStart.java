@@ -13,7 +13,7 @@ public class ButtonSeekStart extends JButton {
 
     public ButtonSeekStart() {
         try {
-            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerskipforwardicon.png"))));
+            this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/playerskipbackicon.png"))));
         } catch (Exception e) {
             System.out.println(e);
         }

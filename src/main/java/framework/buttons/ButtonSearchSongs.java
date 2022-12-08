@@ -11,8 +11,8 @@ public class ButtonSearchSongs extends JButton {
 
     public ButtonSearchSongs(){
         try {
-            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/playlistsicon.png")));
-            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/playlistsiconclicked.png")));
+            icon = new ImageIcon(ImageIO.read(getClass().getResource( "/musictabicon.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
+            iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/musictabiconclicked.png")).getScaledInstance(120,50, Image.SCALE_DEFAULT));
         } catch (Exception e) {
             System.out.println(e);
         }
