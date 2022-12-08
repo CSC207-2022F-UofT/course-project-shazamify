@@ -66,7 +66,7 @@ public class SongDownloader {
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase db = mongoClient.getDatabase("Shazamify");
-            db.drop();
+            db.getCollection("songs").drop();
 
             SongDAOInput songDAOin = new SongDAOInputImpl(mongoClient);
 

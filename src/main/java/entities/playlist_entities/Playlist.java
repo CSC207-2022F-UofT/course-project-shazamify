@@ -16,6 +16,10 @@ public class Playlist implements Record {
     private String description;
     private Privacy privacy;
 
+    public String getOwner() {
+        return owner;
+    }
+
     /***
      * Default constructor for playlist
      *
@@ -79,9 +83,11 @@ public class Playlist implements Record {
     }
 
     public File getCover() {
-        SongDAOOutput songdaoout = new SongDAOOutputImpl();
-        String firstSongId = this.contents.get(0);
-        return new File(songdaoout.findById(firstSongId).get().getCover());
+//        TODO: need to find different implementation
+//        SongDAOOutput songdaoout = new SongDAOOutputImpl();
+//        String firstSongId = this.contents.get(0);
+//        return new File(songdaoout.findById(firstSongId).get().getCover());
+        return null;
     }
 
     public ArrayList<String> getSongs() {
