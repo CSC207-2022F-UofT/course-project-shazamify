@@ -2,16 +2,10 @@ package user_interact_abr_test;
 
 
 import org.junit.Test;
-import ds.user_database.UserFileReader;
-import ds.user_database.UserFileWriter;
-
-import entities.user_entities.CommonUser;
-import entities.user_entities.User;
+import ds.user_database.*;
+import entities.user_entities.*;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 public class FriendManagerFileDsGatewayTest {

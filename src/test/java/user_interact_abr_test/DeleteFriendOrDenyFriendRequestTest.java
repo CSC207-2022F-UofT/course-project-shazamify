@@ -1,7 +1,7 @@
 package user_interact_abr_test;
 
 import abr.user_interact_abr.manage_friend_request_abr.*;
-import abr.user_avatar_image_management_abr.ds.user_interact_ds.FriendManagerInMemoryDsGateway;
+import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
 import org.junit.Test;
 
