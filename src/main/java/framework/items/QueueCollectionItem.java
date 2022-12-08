@@ -1,9 +1,11 @@
 package framework.items;
 
 
+import abr.queue_abr.queue.*;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.queue_ia.QueueGetController;
+import interface_adaptors.queue_ia.QueueGetPresenter;
 import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerController;
@@ -108,12 +110,12 @@ public class QueueCollectionItem extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Retrieve current queue list and remove all preceding songs while updating view model
-                List<String> currentQueueOrder = QueueController.getSongs();
+                List<String> currentQueueOrder = getCurrentQueueOrder();
                 for (int i = 0; i < index; i++){
                     currentQueueOrder.remove(i);
                 }
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
-                QueueUController.send(currentQueueOrder);
+                sendQueueOrder(currentQueueOrder);
                 //Play song
                 //SongVisualizerController.visualizeSong(song_id);
                 SongPlayerAudio.getInstance().displaySongPlayer(song_id);
@@ -141,11 +143,11 @@ public class QueueCollectionItem extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Retrieve current order and swap song with the one above
-                List<String> currentQueueOrder = QueueController.getSongs();
+                List<String> currentQueueOrder = getCurrentQueueOrder();
                 Collections.swap(currentQueueOrder, index, index - 1);
 
                 //Update the queue with the new order and redraw view model
-                QueueUController.send(currentQueueOrder);
+                sendQueueOrder(currentQueueOrder);
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
             }
             @Override
@@ -181,11 +183,11 @@ public class QueueCollectionItem extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Retrieve current order and swap song with the one below
-                List<String> currentQueueOrder = QueueGetController.getSongs();
+                List<String> currentQueueOrder = getCurrentQueueOrder();
                 Collections.swap(currentQueueOrder, index, index + 1);
 
                 //Update the queue with the new order and redraw view model
-                QueueUController.send(currentQueueOrder);
+                sendQueueOrder(currentQueueOrder);
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
             }
             @Override
@@ -220,9 +222,9 @@ public class QueueCollectionItem extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Retrieve current order and remove song id while updating view model
-                List<String> currentQueueOrder = QueueController.getSongs();
+                List<String> currentQueueOrder = getCurrentQueueOrder();
                 currentQueueOrder.remove(song_id);
-                QueueUController.send(currentQueueOrder);
+                sendQueueOrder(currentQueueOrder);
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
             }
             @Override
@@ -276,9 +278,18 @@ public class QueueCollectionItem extends JPanel{
     }
 
     public List<String> getCurrentQueueOrder(){
-        QueueGetInputBoundary getInputBoundary = new QueueGetUseCase();
-        QueueGetController controller = new QueueGetController(getInputBoundary);
-        return controller.retrievelist();
+        QueueGetOutputBoundary getOutputBoundary = new QueueGetPresenter();
+        QueueGetInputBoundary getInputBoundary = new QueueGetUseCase(getOutputBoundary);
+        QueueGetController getController = new QueueGetController(getInputBoundary);
+        getController.retrieveList();
+
+        return QueueViewModel.getInstance().getSong_ids();
+    }
+
+    public void sendQueueOrder(List<String> currentQueueOrder) {
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(currentQueueOrder);
     }
 
     private class PanelListener implements MouseListener {
