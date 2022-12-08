@@ -52,7 +52,7 @@ public class FriendsCollectionViewModel extends AbstractViewModel<List<String>> 
 
     @Override
     public void userUpdated(){
-        List<String> userplaylists = UserStatusViewModel.getInstance().getFriendList();
-        this.updateView(userplaylists);
+        List<String> userfriends = UserStatusViewModel.getInstance().getFriendList();
+        this.updateView(userfriends);
     }
 }

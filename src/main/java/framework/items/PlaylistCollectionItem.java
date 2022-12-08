@@ -4,6 +4,7 @@ package framework.items;
 import entities.playlist_entities.Playlist;
 import interface_adaptors.MediaPlaylistController;
 import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.playlist_ia.RecordViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
