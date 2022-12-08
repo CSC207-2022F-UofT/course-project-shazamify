@@ -1,4 +1,4 @@
-package interface_adaptors.user_interact_ia;
+package interface_adaptors;
 
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
@@ -9,15 +9,20 @@ import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_atte
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
 import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
+import entities.user_entities.User;
 import framework.buttons.ButtonExpandFriends;
 import framework.items.FriendsCollectionItem;
-import interface_adaptors.AbstractViewModel;
+import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_interact_ia.ShowFriendListController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FriendsCollectionViewModel extends AbstractViewModel<HashMap<String, String>> implements UserStatusObserver {
 

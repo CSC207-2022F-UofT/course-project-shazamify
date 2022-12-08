@@ -1,7 +1,7 @@
 package framework.buttons;
 
-import interface_adaptors.user_interact_ia.FriendsCollectionViewModel;
-import interface_adaptors.playlist_ia.PlaylistCollectionViewModel;
+import interface_adaptors.FriendsCollectionViewModel;
+import interface_adaptors.PlaylistCollectionViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

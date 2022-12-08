@@ -1,11 +1,16 @@
 package framework.buttons;
 
+import framework.items.PlaylistCollectionItem;
+import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.ShazamifyUI;
 import interface_adaptors.playlist_ia.PlaylistCreateViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

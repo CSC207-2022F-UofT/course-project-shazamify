@@ -1,6 +1,6 @@
 package framework.buttons;
 
-import interface_adaptors.search_engine_ia.SearchResultsViewModel;
+import interface_adaptors.SearchResultsViewModel;
 import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueViewModel;
 

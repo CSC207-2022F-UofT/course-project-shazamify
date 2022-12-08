@@ -1,4 +1,4 @@
-package interface_adaptors.playlist_ia;
+package interface_adaptors;
 
 import abr.PlaylistDTOUseCase;
 import abr.SongDTOUseCase;
