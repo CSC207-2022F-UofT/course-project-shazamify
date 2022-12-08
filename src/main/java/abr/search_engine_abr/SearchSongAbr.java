@@ -1,8 +1,6 @@
 package abr.search_engine_abr;
 
 import entities.Song;
-import entities.Record;
-import entities.user_entities.User;
 
 import java.util.ArrayList;
 import java.util.List;

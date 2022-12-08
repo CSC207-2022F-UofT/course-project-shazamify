@@ -1,10 +1,7 @@
 package abr.search_engine_abr;
 
-import abr.user_playlist_abr.UserPlaylistOutputBoundary;
 import ds.user_search_engine.SearchEngineFileGateway;
-import entities.Song;
 import entities.user_entities.User;
-import interface_adaptors.search_engine_ia.SearchEnginePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +13,8 @@ import java.util.List;
 public class SearchUserAbr implements SearchUserInputBoundary{
     private SearchEngineFileGateway userDao = new SearchEngineFileGateway();
     private int limitCount = 5;
-    SearchEngineOutputBoundary outputBoundary = new SearchEnginePresenter();
-    SearchEngineResponseModel responseModel = new SearchEngineResponseModel();
+    SearchEngineOutputBoundary outputBoundary;
+    SearchEngineResponseModel responseModel;
 
     public SearchUserAbr(SearchEngineOutputBoundary outputBoundary){
         this.outputBoundary = outputBoundary;
