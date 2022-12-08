@@ -8,10 +8,13 @@ public class RadioStationRequestModel {
     private final String streamURL;
     private final String thumbnailURL;
 
-    public RadioStationRequestModel(String stationName, String streamURL, String thumbnailURL){
+    private final String stationID;
+
+    public RadioStationRequestModel(String stationName, String streamURL, String thumbnailURL, String stationID){
         this.stationName = stationName;
         this.streamURL = streamURL;
         this.thumbnailURL = thumbnailURL;
+        this.stationID = stationID;
 
     }
 
@@ -27,4 +30,5 @@ public class RadioStationRequestModel {
         return thumbnailURL;
     }
 
+    public String getStationID(){return stationID;}
 }
