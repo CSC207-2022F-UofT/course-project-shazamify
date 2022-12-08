@@ -66,6 +66,7 @@ public class UserRegTestingTools {
         UserRegPresenter userRegPresenter = new UserRegPresenter();
         // Initialize the User Database Gateway
         UserRegisterDataBaseGateway userRegisterDataBaseGateway = new UserRegisterFileGateway();
+        
         // Initialize the User ABR
         UserRegInputBoundary userRegUseCase = new UserRegUseCase(userRegPresenter, userRegisterDataBaseGateway);
         // Initialize the User Controller
