@@ -25,9 +25,8 @@ public class AddToPlaylistMenuItem extends JMenuItem {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: URGENT
-                //PlaylistModifyInputBoundary inputBoundary = new PlaylistModifyUseCase(new PlaylistDAOOutputImpl(), new SongDAOOutput());
-                //PlaylistModifyControl playListModifier = new PlaylistModifyControl();
-                //playListModifier.addToPlaylist(playlistId, songId);
+                PlaylistModifyControl playListModifier = new PlaylistModifyControl();
+                playListModifier.addToPlaylist(playlistId, songId);
             }
         });
     }

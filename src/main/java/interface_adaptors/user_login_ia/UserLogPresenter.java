@@ -30,6 +30,7 @@ public class UserLogPresenter implements UserLogOutputBoundary {
             statusViewModel.setPlayListIds(responseModel.getPlayListIDs());
             statusViewModel.setSecurityQuestions(responseModel.getSecurityQuestions());
             statusViewModel.setLogInStatus(true);
+            statusViewModel.updateFriendList(responseModel.getFriendList());
             statusViewModel.userUpdated();
         }
     }
