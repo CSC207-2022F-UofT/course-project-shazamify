@@ -14,7 +14,7 @@ public class ButtonPlaylistsCollection extends JButton {
 
     private Icon iconclicked ;
     private Icon icon;
-    private ButtonExpandFriends button;
+    private ButtonFriendsCollection button;
 
     public ButtonPlaylistsCollection(){
         try {
@@ -41,7 +41,7 @@ public class ButtonPlaylistsCollection extends JButton {
 
     }
 
-    public void setButtonFriendsCollection(ButtonExpandFriends button) {
+    public void setButtonFriendsCollection(ButtonFriendsCollection button) {
         this.button = button;
     }
 

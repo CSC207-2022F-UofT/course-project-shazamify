@@ -74,6 +74,14 @@ public class SongPlayerViewModel extends AbstractViewModel<String> {
             buttonsPanel.add(new ButtonPause());
             buttonsPanel.add(new ButtonStop());
             buttonsPanel.add(new ButtonSeekEnd());
+
+            //Entangled buttons
+            ButtonRevealQueue buttonRevealQueue = new ButtonRevealQueue();
+            ButtonHideQueue buttonHideQueue = new ButtonHideQueue();
+            buttonRevealQueue.SetCompanion(buttonHideQueue);
+            buttonHideQueue.SetCompanion(buttonRevealQueue);
+            buttonHideQueue.setVisible(false);
+
             buttonsPanel.add(new ButtonRevealQueue());
 
             // Add buttons panel to the content panel

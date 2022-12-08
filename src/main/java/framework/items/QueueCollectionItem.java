@@ -2,9 +2,11 @@ package framework.items;
 
 
 import interface_adaptors.SongDTOController;
+import interface_adaptors.display_ia.SongPlayerAudio;
 import interface_adaptors.queue_ia.QueueGetController;
 import interface_adaptors.queue_ia.QueueUController;
 import interface_adaptors.queue_ia.QueueViewModel;
+import interface_adaptors.visualizer_ia.SongVisualizerController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -113,7 +115,8 @@ public class QueueCollectionItem extends JPanel{
                 QueueViewModel.getInstance().updateView(currentQueueOrder);
                 QueueUController.send(currentQueueOrder);
                 //Play song
-                handlePlayButtonAction(button, e);
+                //SongVisualizerController.visualizeSong(song_id);
+                SongPlayerAudio.getInstance().displaySongPlayer(song_id);
             }
         });
         button.setBorderPainted(false);

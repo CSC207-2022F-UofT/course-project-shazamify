@@ -10,13 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonFriendsCollectionAlt extends JButton {
+public class ButtonFriendsCollection extends JButton {
 
     private Icon iconclicked ;
     private Icon icon;
     private ButtonPlaylistsCollection button;
 
-    public ButtonFriendsCollectionAlt(){
+    public ButtonFriendsCollection(){
         try {
             icon = new ImageIcon(ImageIO.read(getClass().getResource( "/friendsicon.png")));
             iconclicked = new ImageIcon(ImageIO.read(getClass().getResource( "/friendsiconclicked.png")));
