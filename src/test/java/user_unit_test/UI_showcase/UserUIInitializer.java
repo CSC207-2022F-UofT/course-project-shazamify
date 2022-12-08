@@ -10,14 +10,13 @@ import user_unit_test.testing_tools.UserRegTestingTools;
 public class UserUIInitializer {
     public static void main(String[] args) {
         UserDataBaseEraser.eraseUserDataBase();
-        UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
         UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
 
         LoginAndRegister();
 
         UserLogUIInitializer.initializeUI();
         UserRegUIInitializer.initializeUI();
-        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI(userAvatarMngViewModel);
+        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI();
         userStatusViewModel.addUserStatusObserver(userHomePageUI);
     }
 

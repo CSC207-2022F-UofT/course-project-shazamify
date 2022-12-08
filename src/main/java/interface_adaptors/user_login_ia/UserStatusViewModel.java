@@ -119,6 +119,7 @@ public class UserStatusViewModel {
 
     public void initializeDefaultUser(){
         this.setUserName("Guest");
+        this.setPassWord(null);
         this.setUserAvatar(getDefaultAvatar());
         this.setPlayListIds(new ArrayList<>());
         this.updateFriendList(new HashMap<>());
