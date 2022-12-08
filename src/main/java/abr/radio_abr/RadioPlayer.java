@@ -73,8 +73,8 @@ public class RadioPlayer {
             // to the line.  Make it large enough to hold 4k audio frames.
             // Note that the SourceDataLine also has its own internal buffer.
             int framesize = format.getFrameSize( );
-            byte[  ] buffer = new byte[4 * 1024 * framesize]; // the buffer
-            int numbytes = 0;                               // how many bytes
+            byte[  ] buffer = new byte[4 * 1024 * framesize];
+            int numbytes = 0;
 
             // We haven't started the line yet.
             boolean started = false;
