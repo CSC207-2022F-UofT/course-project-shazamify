@@ -13,6 +13,7 @@ import interface_adaptors.user_interact_ia.*;
 import framework.buttons.*;
 import framework.items.*;
 import interface_adaptors.*;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
 import javax.imageio.ImageIO;
@@ -114,19 +115,22 @@ public class ShazamifyUI extends JFrame {
     }
 
     private void initFriendListButton(JPanel overheadButtonsPanel){
+        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
         FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
 
         OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
-        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList);
+        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList, userStatusViewModel);
 
         FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
-        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest);
+        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest, userStatusViewModel);
 
         FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
-        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController = new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest);
+        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController =
+                new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
 
-        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
+        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection(showFriendListController,
+                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
 
         overheadButtonsPanel.add(btnFriends);
     }

@@ -60,4 +60,8 @@ public class QueueViewModel extends AbstractViewModel<List<String>> {
     public void setSong_ids(List<String> song_ids) {
         this.song_ids = song_ids;
     }
+
+    public List<String> getSong_ids() {
+        return this.song_ids;
+    }
 }

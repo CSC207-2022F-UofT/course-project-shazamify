@@ -1,6 +1,12 @@
 package interface_adaptors.user_login_ia;
 
+import entities.user_entities.UserAvatar;
+import interface_adaptors.user_reg_ia.UserRegViewModel;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +25,7 @@ public class UserStatusViewModel {
     private final List<UserStatusObserver> userStatusObservers = new ArrayList<>();
     private Map<String, String> securityQuestions;
     private static UserStatusViewModel instance;
+    private static boolean logInStatus;
 
     public static UserStatusViewModel getInstance() {
         if(instance == null) {
@@ -28,7 +35,19 @@ public class UserStatusViewModel {
     }
 
     private UserStatusViewModel(){
+        this.initializeDefaultUser();
+    }
 
+    public void logout(){
+        this.initializeDefaultUser();
+    }
+
+    public void setLogInStatus(boolean logInStatus) {
+        UserStatusViewModel.logInStatus = logInStatus;
+    }
+
+    public boolean getLogInStatus() {
+        return logInStatus;
     }
 
     public void setUserName(String userName) {
@@ -95,6 +114,22 @@ public class UserStatusViewModel {
     public void userUpdated(){
         for (UserStatusObserver observer : userStatusObservers){
             observer.userUpdated();
+        }
+    }
+
+    private void initializeDefaultUser(){
+        this.setUserName("Guest");
+        this.setUserAvatar(getDefaultAvatar());
+        this.setPlayListIds(new ArrayList<>());
+        this.updateFriendList(new HashMap<>());
+        this.setLogInStatus(false);
+    }
+
+    private BufferedImage getDefaultAvatar() {
+        try {
+            return ImageIO.read(new File("default_avatar.jpg"));
+        } catch (IOException e){
+            throw new RuntimeException("Failed to create Default Avatar");
         }
     }
 }

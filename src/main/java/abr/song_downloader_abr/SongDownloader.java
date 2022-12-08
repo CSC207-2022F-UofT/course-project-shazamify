@@ -3,11 +3,14 @@ package abr.song_downloader_abr;
 import abr.song_abr.SongDAOInput;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 import ds.DatabaseInitializer;
 import ds.song_ds.SongDAOInputImpl;
 import entities.Song;
+import framework.external.Downloadable;
 import framework.external.YTdlp;
 
 import java.io.IOException;
@@ -18,28 +21,36 @@ import java.util.Scanner;
 
 public class SongDownloader {
 
-    public static Song readJSON(DocumentContext dc) throws IOException {
-        String id = dc.read("$['id']");
-        String name = dc.read("$['title']");
-        int duration = dc.read("$['duration']");
-
-        return new Song(name, id, duration);
-    }
-
     //    TODO: rename from main when finished project
-    public void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk
         System.out.println("Enter youtube link: ");
         Scanner sc = new Scanner(System.in);
         String link = sc.nextLine();
 
-        YTdlp p = new YTdlp();
+        Downloadable p = new YTdlp();
         p.download(link);
         moveToDatabase();
     }
 
-    public void moveToDatabase() throws Exception {
+    public static Song readJSON(DocumentContext dc) throws IOException {
+        String id = dc.read("$['id']");
+        String name = dc.read("$['title']");
+        int duration = dc.read("$['duration']");
+        String artist = dc.read("$['channel']");
+        String year;
+        try {
+            year = Integer.toString(dc.read("$['release_year']"));
+        } catch(PathNotFoundException e) {
+            year = ((String) dc.read("$['upload_date']")).substring(0,4);
+        }
+
+
+        return new Song(name, id, duration, artist, year);
+    }
+
+    public static void moveToDatabase() throws Exception {
 //        download json and mp3 to directory using yt-dlp
 //        iterate over json files in directory
 //        create Song object if json file does not belong to playlist
@@ -49,9 +60,12 @@ public class SongDownloader {
         DatabaseInitializer.init();
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase db = mongoClient.getDatabase("Shazamify");
+            db.drop();
+
             SongDAOInput songDAOin = new SongDAOInputImpl(mongoClient);
 
-            Files.walk(Paths.get("C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\build\\songs"), FileVisitOption.FOLLOW_LINKS).filter(t ->
+            Files.walk(Paths.get("src\\main\\resources\\songs"), FileVisitOption.FOLLOW_LINKS).filter(t ->
                     t.toString().endsWith(".info.json")).forEach(path -> {
                 try {
                     String content = Files.readString(path);

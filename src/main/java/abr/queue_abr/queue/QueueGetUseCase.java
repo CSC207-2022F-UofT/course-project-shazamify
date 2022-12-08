@@ -1,9 +1,8 @@
 package abr.queue_abr.queue;
 
-//TODO update javadocs
 /***
- * The queue use case contains a facade class which determines what the new queue should be. It returns an updated
- * response model containing the new and updated queue list.
+ * The queue use case contains a facade class which retrieves the queue's list of song IDs. It returns an updated
+ * response model containing the list.
  */
 public class QueueGetUseCase implements QueueGetInputBoundary {
 
@@ -20,15 +19,15 @@ public class QueueGetUseCase implements QueueGetInputBoundary {
     }
 
     /***
-     * Overrides the input boundary method and creates a response model with data prepared by the queue helper
-     * in for it to be packaged by the output boundary.
+     * Overrides the input boundary method and creates a data transfer object with data prepared by the queue helper
+     * for it to be packaged by the output boundary/response model.
      * @param getRequestModel - The list of songs that the queue should be updated to. It should also be passed onto
      *                     the output boundary in preparation for presenting.
      */
     @Override
     public void get(QueueGetRequestModel getRequestModel) {
         QueueGetResponseModel getResponseModel = new QueueGetResponseModel();
-        QueueGetDTO queueGetDTO = queueGetHelper.get(getRequestModel, getResponseModel);
+        QueueGetDTO queueGetDTO = queueGetHelper.get();
         getResponseModel.setSongList(queueGetDTO.songList);
 
         getOutputBoundary.present(getResponseModel);

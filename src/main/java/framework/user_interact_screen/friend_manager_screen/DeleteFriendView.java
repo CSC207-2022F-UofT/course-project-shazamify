@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 /**
  * A screen that shows the friend's profile, TBA since playList feature is not finished
  */
-public class FriendProfileView extends JPanel { //TODO: add other components such as view playlist ,.etc
+public class DeleteFriendView extends JPanel { //TODO: add other components such as view playlist ,.etc
     final JFrame frame = new JFrame("Friend Profile");
     final DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController;
     final String friendName;
     final FriendListView friendListView;
 
-    public FriendProfileView(FriendListView friendListView, DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController,
-                             String name){
+    public DeleteFriendView(FriendListView friendListView, DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController,
+                            String name){
         this.deleteFriendOrDenyFriendRequestController = deleteFriendOrDenyFriendRequestController;
         this.friendName = name;
         this.friendListView = friendListView;

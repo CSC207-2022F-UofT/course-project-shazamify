@@ -4,17 +4,16 @@ import entities.queue_entities.SongQueue;
 
 import java.util.*;
 
-//TODO javadoc
 public class QueueUHelper {
 
     /***
      * The helper class responsible for dealing with comparing the two lists. Updates the current queue object to
-     * contain the requested song list.
-     * @param uRequestModel - A data structure containing the desired queue list.
+     * contain the requested song list of song IDs.
+     * @param uRequestModel - A data structure containing the desired list of song IDs to be put inside the queue .
      */
     public void update(QueueURequestModel uRequestModel) {
 
-        // songList is a full list of the song order that is to be desired.
+        // songList is a full list of the song IDs that is desired
         // songQueue is the queue object that contains the current queue list
         List<String> songList = uRequestModel.getSongList();
         SongQueue songQueue = SongQueue.getInstance();
