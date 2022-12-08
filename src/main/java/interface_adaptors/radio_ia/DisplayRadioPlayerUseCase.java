@@ -26,7 +26,10 @@ public class DisplayRadioPlayerUseCase {
      */
     public void displayRadioPlayer(String stationID, String stationName) {
         //Send to ViewModel
-        RadioPlayerViewModel.getInstance().updateView(stationName, stationID);
+        //RadioPlayerViewModel.getInstance().updateView(stationName, stationID);
+        RadioPlayerUI radioPlayerUI = new RadioPlayerUI(stationName, stationID);
+        radioPlayerUI.frameSetUp();
+        playStream(stationID);
     }
     /**
      * Plays the station stream
@@ -40,16 +43,5 @@ public class DisplayRadioPlayerUseCase {
         }
     }
 
-    /**
-     * Stops playing the song
-     */
-    public static void stopStream() {
-        try {
-            RadioPlayer.stopStream();
-        }
-        catch (Exception e) {
-
-        }
-    }
 
 }
