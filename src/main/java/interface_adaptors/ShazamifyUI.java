@@ -182,7 +182,16 @@ public class ShazamifyUI extends JFrame {
         //panel.setOpaque(false);
         ButtonViewAccount buttonViewAccount = new ButtonViewAccount();
         UserStatusViewModel.getInstance().addUserStatusObserver(buttonViewAccount);
-        panel.add(buttonViewAccount, BorderLayout.EAST);
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(buttonViewAccount);
+        menuBar.setMinimumSize(new Dimension(50,50));
+        menuBar.setBackground(new Color(36,36,36));
+        menuBar.setOpaque(false);
+
+        panel.add(menuBar, BorderLayout.EAST);
+
+        //panel.add(buttonViewAccount, BorderLayout.EAST);
         panel.setOpaque(false);
         return panel;
     }

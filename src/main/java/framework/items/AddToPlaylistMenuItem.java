@@ -12,7 +12,7 @@ public class AddToPlaylistMenuItem extends JMenuItem {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                PlaylistModifyControl playlistModifier = new PlaylistModifyControl();
+            //TODO: MODIFY HERE
 
             }
             @Override
