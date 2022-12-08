@@ -21,7 +21,9 @@ public class PlaylistCreateViewModel extends JFrame {
         createButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                //TODO: URGENT
+                PlaylistCreateControl playlistCreateControl = new PlaylistCreateControl();
+                playlistCreateControl.create(textField.getText());
             }
             @Override
             public void mousePressed(MouseEvent e) {}
