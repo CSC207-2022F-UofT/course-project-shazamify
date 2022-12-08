@@ -14,4 +14,8 @@ public class UserDataBaseEraser {
         UserRegisterDataBaseGateway userRegisterDataBaseGateway = new UserRegisterFileGateway();
         userRegisterDataBaseGateway.clearDatabase();
     }
+
+    public static void main(String[] args) {
+        eraseUserDataBase();
+    }
 }

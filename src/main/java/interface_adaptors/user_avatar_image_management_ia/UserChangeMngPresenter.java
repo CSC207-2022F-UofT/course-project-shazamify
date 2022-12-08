@@ -16,5 +16,6 @@ public class UserChangeMngPresenter implements UserAvatarMngOutputBoundary {
     public void packageAndPresent(UserAvatarMngResponseModel responseModel) {
         statusViewModel.setUserAvatar(responseModel.getUserAvatar());
         avatarMngViewModel.setDirectoryValid(responseModel.isDirectoryValid());
+        statusViewModel.userUpdated();
     }
 }
