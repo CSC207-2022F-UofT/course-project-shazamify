@@ -10,8 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonSearch extends JButton {
+    private JTextField textField;
 
     public ButtonSearch(JTextField textField) {
+        this.textField = textField;
         try {
             this.setIcon(new ImageIcon(ImageIO.read(getClass().getResource( "/search.png"))));
         } catch (Exception e) {
