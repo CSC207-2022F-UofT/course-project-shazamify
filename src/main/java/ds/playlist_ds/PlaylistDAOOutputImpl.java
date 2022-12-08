@@ -27,7 +27,7 @@ public class PlaylistDAOOutputImpl implements PlaylistDAOOutput {
 
     @Override
     public Optional<Playlist> findById(String id) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
+        MongoCollection<Playlist> coll = database.getCollection("playlists", Playlist.class);
         Playlist p = coll.find(Filters.eq("_id", id)).first();
 
         return Optional.ofNullable(p);
@@ -35,7 +35,7 @@ public class PlaylistDAOOutputImpl implements PlaylistDAOOutput {
 
     @Override
     public Optional<Playlist> findByName(String name) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
+        MongoCollection<Playlist> coll = database.getCollection("playlists", Playlist.class);
         Playlist p = coll.find(Filters.eq("name", name)).first();
 
         return Optional.ofNullable(p);
