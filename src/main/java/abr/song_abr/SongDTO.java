@@ -20,7 +20,7 @@ public class SongDTO {
         songFile1 = null;
         // We assume that the song ID exists and there will be a file to store in the DTO
         if (songDAOOutput.findById(this.songID).isPresent()) {
-            songFile1 = songDAOOutput.findById(this.songID).get().getFile();
+            songFile1 = songDAOOutput.findById(this.songID).get().getFilePath();
         }
         this.songFile = songFile1;
     }

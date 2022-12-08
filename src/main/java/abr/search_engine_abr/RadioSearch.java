@@ -55,7 +55,7 @@ public class RadioSearch implements SearchRadioInputBoundary {
         List<RadioStation> searchResult = new ArrayList<>();
         List<RadioStation> startsWithResult = new ArrayList<>();
         List<RadioStation> containsResult = new ArrayList<>();
-        List<RadioStation> stationList = stationLibrary.getStations(); // Fix this soon!
+        List<RadioStation> stationList = stationLibrary.getStations();
 
         for (RadioStation radioStation : stationList) {
             if (radioStation.getName().toUpperCase().equals(textForSearch)) {

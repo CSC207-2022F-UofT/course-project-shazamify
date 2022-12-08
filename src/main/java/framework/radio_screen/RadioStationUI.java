@@ -43,7 +43,17 @@ public class RadioStationUI extends JPanel {
     }
 
     private void playNowButtonSetUp(){
+        JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
+        buttonPanel.setSize(40, 40);
+
         JButton playNow = new JButton("Play Now!");
+        JLabel name = new JLabel(stationName);
+
+        buttonPanel.add(playNow);
+        buttonPanel.add(name);
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
+
 
         playNow.addActionListener(e -> playNowButtonClicked());
     }

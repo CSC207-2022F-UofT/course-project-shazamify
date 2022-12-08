@@ -37,7 +37,7 @@ public class SearchRadioItem extends JPanel {
 
 //        this.add(renderLabel(song.getAlbum()));
 //        this.add(renderLabel(song.getArtist()));
-        this.add(renderLabel(SongDTOController.getName(stationID)));
+        this.add(renderLabel(stationName));
 //        this.add(renderLabel(song.getYear()));
 
         PanelListener listener = new PanelListener();
