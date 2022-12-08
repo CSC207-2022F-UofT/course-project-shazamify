@@ -1,8 +1,13 @@
 package interface_adaptors.display_ia;
 
+import abr.queue_abr.queue.QueueFIB;
+import abr.queue_abr.queue.QueueFOB;
+import abr.queue_abr.queue.QueueFUC;
 import entities.Song;
 import interface_adaptors.AbstractDisplayUseCase;
 import interface_adaptors.SongDTOController;
+import interface_adaptors.queue_ia.QueueFirstController;
+import interface_adaptors.queue_ia.QueueFirstPresenter;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 import javax.sound.sampled.*;
@@ -156,7 +161,10 @@ public class SongPlayerAudio extends AbstractDisplayUseCase {
      */
     public void seekEndSong() {
         try {
-            System.out.println("SongPlayer - Seek End");
+            QueueFOB fob = new QueueFirstPresenter();
+            QueueFIB fib = new QueueFUC(fob);
+            QueueFirstController firstController = new QueueFirstController(fib);
+            firstController.retrieveFirst();
         }
         catch (Exception e) {
             System.out.println(e.getStackTrace());
