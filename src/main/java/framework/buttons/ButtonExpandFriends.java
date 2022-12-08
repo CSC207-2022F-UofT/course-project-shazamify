@@ -55,7 +55,7 @@ public class ButtonExpandFriends extends JButton {
         this.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                button.clicked(false);
+                //button.clicked(false);
                 FriendListView screen = new FriendListView(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
             }
         });

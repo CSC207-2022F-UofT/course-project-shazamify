@@ -1,17 +1,12 @@
 package interface_adaptors;
 
-import abr.user_interact_abr.manage_friend_request_abr.*;
-import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.DeleteFriendOrDenyFriendRequest;
-import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
-import abr.user_interact_abr.show_friend_list_abr.*;
-import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
-import interface_adaptors.display_ia.DisplaySearchUseCase;
+
 import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
-import interface_adaptors.user_interact_ia.*;
+
 import framework.buttons.*;
-import interface_adaptors.user_login_ia.UserStatusObserver;
+
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
@@ -116,26 +111,6 @@ public class ShazamifyUI extends JFrame {
         return panel;
     }
 
-//    private void initExpandFriendListButton(JPanel overheadButtonsPanel){
-//        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
-//        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
-//        FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
-//
-//        OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
-//        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList, userStatusViewModel);
-//
-//        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
-//        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest, userStatusViewModel);
-//
-//        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
-//        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController =
-//                new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
-//
-//        ButtonExpandFriends btnFriends = new ButtonExpandFriends(showFriendListController,
-//                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
-//
-//        overheadButtonsPanel.add(btnFriends);
-//    }
 
     private JPanel createCollectionsPanel(int width, int height){
         JPanel panel = new JPanel();

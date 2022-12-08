@@ -1,6 +1,5 @@
 package framework.user_interact_screen.friend_manager_screen;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
 
 import javax.swing.*;
@@ -43,8 +42,7 @@ public class SendFriendRequestView extends JPanel{
 
     private void sendFriendRequestButtonClicked() { //TODO: take friendID input from SearchEngine instead
         try {
-            FriendManagerResponseModel responseModel = controller.reactTo(friendNameField.getText());
-            JOptionPane.showMessageDialog(this, responseModel.getMsgToDisplay());
+            JOptionPane.showMessageDialog(this,controller.reactTo(friendNameField.getText()).getMsgToDisplay());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
