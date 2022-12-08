@@ -8,8 +8,7 @@ import user_unit_test.testing_tools.UserRegTestingTools;
 
 import java.awt.image.BufferedImage;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class UserStatusViewModelTest {
     @Test
@@ -20,8 +19,8 @@ public class UserStatusViewModelTest {
         userStatusViewModel.initializeDefaultUser();
         // Test the default user
         assertEquals("Guest", userStatusViewModel.getUserName());
-        assertEquals(null, userStatusViewModel.getPassWord());
-        assertNotEquals(null, userStatusViewModel.getUserAvatar());
+        assertNull(userStatusViewModel.getPassWord());
+        assertNotNull(userStatusViewModel.getUserAvatar());
 
         // Test the loggedIn user
         UserRegTestingTools.registerUser("testName", "testPassword", "testPassword");
