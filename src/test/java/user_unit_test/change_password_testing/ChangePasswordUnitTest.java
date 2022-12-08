@@ -8,6 +8,8 @@ import user_unit_test.testing_tools.ChangePasswordTestingTool;
 import user_unit_test.testing_tools.UserDataBaseEraser;
 import user_unit_test.testing_tools.UserLogTestingTools;
 import user_unit_test.testing_tools.UserRegTestingTools;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ChangePasswordUnitTest {
     @Test
@@ -24,11 +26,11 @@ public class ChangePasswordUnitTest {
         userCPController.changePassword("testName", "newTestPassword");
 
         // Test if we can login with the new password
-        assert userStatusViewModel.getPassWord().equals("newTestPassword");
+        assertEquals("newTestPassword", userStatusViewModel.getPassWord());
         UserLogTestingTools.LoginUser("testName","newTestPassword");
 
-        assert UserLogViewModel.getInstance().isValidUserName();
-        assert UserLogViewModel.getInstance().isUserPasswordValid();
+        assertTrue(UserLogViewModel.getInstance().isValidUserName());
+        assertTrue(UserLogViewModel.getInstance().isUserPasswordValid());
 
     }
 }
