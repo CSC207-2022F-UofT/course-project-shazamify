@@ -24,7 +24,7 @@ public class ChangePasswordUnitTest {
         userCPController.changePassword("testName", "newTestPassword");
 
         // Test if we can login with the new password
-        assert userStatusViewModel.getPassWord().equals("newTestPassWord");
+        assert userStatusViewModel.getPassWord().equals("newTestPassword");
         UserLogTestingTools.LoginUser("testName","newTestPassword");
 
         assert UserLogViewModel.getInstance().isValidUserName();
