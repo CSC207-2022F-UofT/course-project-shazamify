@@ -25,19 +25,19 @@ public class PlaylistDAOInputImpl implements PlaylistDAOInput {
 
     @Override
     public void save(Playlist p) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
+        MongoCollection<Playlist> coll = database.getCollection("playlists", Playlist.class);
         coll.insertOne(p);
     }
 
     @Override
     public void update(Playlist p) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
+        MongoCollection<Playlist> coll = database.getCollection("playlists", Playlist.class);
         coll.findOneAndReplace(Filters.eq(p.getId()), p);
     }
 
     @Override
     public void delete(Playlist p) {
-        MongoCollection<Playlist> coll = database.getCollection("Playlists", Playlist.class);
+        MongoCollection<Playlist> coll = database.getCollection("playlists", Playlist.class);
         coll.deleteOne(Filters.eq(p.getId()));
     }
 }

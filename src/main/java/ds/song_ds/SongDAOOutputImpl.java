@@ -1,15 +1,15 @@
 package ds.song_ds;
 
 import abr.song_abr.SongDAOOutput;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import ds.DatabaseInitializer;
 import entities.Song;
+import org.bson.Document;
 
+import javax.management.Query;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class SongDAOOutputImpl implements SongDAOOutput {
     private final MongoDatabase database;
@@ -38,6 +38,16 @@ public class SongDAOOutputImpl implements SongDAOOutput {
         MongoCollection<Song> coll = database.getCollection("songs", Song.class);
         Song s = coll.find(Filters.eq("name", name)).first();
 
+
         return Optional.ofNullable(s);
+    }
+
+    @Override
+    public FindIterable<Song> findByNameList(String name) {
+        MongoCollection<Song> coll = database.getCollection("songs", Song.class);
+
+        FindIterable<Song> s = coll.find(Filters.regex("name", "(?i)^" + name));
+
+        return s;
     }
 }
