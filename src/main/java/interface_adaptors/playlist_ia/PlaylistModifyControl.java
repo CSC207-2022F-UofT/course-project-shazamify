@@ -4,6 +4,9 @@ import abr.playlist_abr.PlaylistModifyInputBoundary;
 import abr.playlist_abr.PlaylistModifyRequestModel;
 import entities.playlist_entities.Privacy;
 
+/**
+ * functionalities to modify the Playlist
+ */
 public class PlaylistModifyControl {
     private final PlaylistModifyInputBoundary playlistModifyInputBoundary;
 
