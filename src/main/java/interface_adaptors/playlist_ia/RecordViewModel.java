@@ -9,12 +9,14 @@ import entities.Record;
 import entities.Song;
 import framework.items.RecordItem;
 import interface_adaptors.AbstractViewModel;
+import interface_adaptors.PlaylistDTOController;
+import java.util.List;
 
-public class RecordViewModel extends AbstractViewModel<Record> {
+public class RecordViewModel extends AbstractViewModel<String> {
 
     private static RecordViewModel instance;
     //private ArrayList<Song> songs;
-    private Record record;
+    private String record_id;
 
     /**
      * Gets instance of singleton
@@ -27,11 +29,11 @@ public class RecordViewModel extends AbstractViewModel<Record> {
 
     /**
      * Updates view
-     * @param record
+     * @param record_id
      */
-    public void updateView(Record record) {
+    public void updateView(String record_id) {
         // Update data
-        this.record = record;
+        this.record_id = record_id;
         // Initialize view
         initView();
         // Render playlist
@@ -54,17 +56,17 @@ public class RecordViewModel extends AbstractViewModel<Record> {
         overheadDisplayPanel.setPreferredSize(new Dimension(width, overheadDisplayHeight));
         overheadDisplayPanel.setBackground(new Color(50, 50, 50));
         try {
-            Image cover = ImageIO.read(record.getCover()).getScaledInstance(130,130,Image.SCALE_DEFAULT);
+            Image cover = ImageIO.read(PlaylistDTOController.getCover(record_id)).getScaledInstance(130,130,Image.SCALE_DEFAULT);
             overheadDisplayPanel.add(new JLabel(new ImageIcon(cover)));
         }catch(java.io.IOException e){}
         JPanel info = new JPanel(new GridLayout(0,1));
         info.setOpaque(false);
-        JLabel nameLabel = new JLabel(record.getName());
+        JLabel nameLabel = new JLabel(PlaylistDTOController.getName(record_id));
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setFont(new Font("Bold", Font.BOLD, 50));
         nameLabel.setOpaque(false);
 
-        JLabel artistLabel = new JLabel(record.getArtist());
+        JLabel artistLabel = new JLabel(PlaylistDTOController.getArtist(record_id));
         artistLabel.setForeground(Color.WHITE);
         artistLabel.setFont(new Font("Bold", Font.BOLD, 30));
         artistLabel.setOpaque(false);
@@ -78,7 +80,7 @@ public class RecordViewModel extends AbstractViewModel<Record> {
         list.setLayout(new BoxLayout(list, BoxLayout.Y_AXIS));
         list.setOpaque(false);
         // Populate list panel with items
-        ArrayList<String> songs = record.getSongs();
+        List<String> songs = PlaylistDTOController.getSongs(record_id);
         for (int i = 0; i < songs.size(); i++) {
             list.add(new RecordItem(i, songs.get(i), width - 30, 50));
         }

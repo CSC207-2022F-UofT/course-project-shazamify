@@ -9,6 +9,7 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class SongPlayerAudio extends AbstractDisplayUseCase {
 
@@ -56,7 +57,7 @@ public class SongPlayerAudio extends AbstractDisplayUseCase {
         try {
             AudioFormat format;
             DataLine.Info info;
-            stream = AudioSystem.getAudioInputStream(SongDTOController.getFile(song_id));
+            stream = AudioSystem.getAudioInputStream(new File(SongDTOController.getFilePath(song_id)));
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);

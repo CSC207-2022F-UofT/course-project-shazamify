@@ -2,6 +2,8 @@ package framework.buttons;
 
 import framework.items.PlaylistCollectionItem;
 import interface_adaptors.SearchResultsViewModel;
+import interface_adaptors.ShazamifyUI;
+import interface_adaptors.playlist_ia.PlaylistCreateViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -43,7 +45,7 @@ public class ButtonCreatePlaylist extends JPanel {
     private class PanelListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent event) {
-            // TODO: Dat, please add pop up window form where user inputs playlist name and presses button "Create"
+            PlaylistCreateViewModel playlistCreateViewModel = new PlaylistCreateViewModel();
         }
         @Override
         public void mouseEntered(MouseEvent event) {
