@@ -12,8 +12,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class ButtonViewAccount extends JButton implements UserStatusObserver {
+public class ButtonViewAccount extends JMenu implements UserStatusObserver {
 
     public ButtonViewAccount() {
         try {
@@ -25,15 +27,90 @@ public class ButtonViewAccount extends JButton implements UserStatusObserver {
         this.setBorder(null);
         this.setMargin(new Insets(0, 0, 0, 0));
         this.setContentAreaFilled(false);
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserLogController userLogController = UserManagementInitializer.getLogController();
-                UserCPController userCPController = UserManagementInitializer.getChangePasswordController();
-                new UserLogUI(userLogController, userCPController);
-            }
-        });
+
+        //Add rendered menus
+        this.add(renderLoginMenu());
+        this.add(renderRegisterMenu());
+        this.add(renderSettingsMenu());
+        this.add(renderLogoutMenu());
     }
+    public JMenuItem renderLoginMenu(){
+        JMenuItem loginMenuItem = new JMenuItem("Login");
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO: David please add login here
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+        return loginMenuItem;
+    }
+    public JMenuItem renderRegisterMenu(){
+        JMenuItem loginMenuItem = new JMenuItem("Register");
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO: add register
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+        return loginMenuItem;
+    }
+    public JMenuItem renderSettingsMenu(){
+        JMenuItem loginMenuItem = new JMenuItem("Settings");
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO: add settings
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+        return loginMenuItem;
+    }
+    public JMenuItem renderLogoutMenu(){
+        JMenuItem loginMenuItem = new JMenuItem("Logout");
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO: add logout
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+        return loginMenuItem;
+    }
+
 
     @Override
     public void userUpdated() {

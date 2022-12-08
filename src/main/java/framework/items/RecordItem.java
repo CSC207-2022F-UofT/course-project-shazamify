@@ -212,6 +212,20 @@ public class RecordItem extends JPanel {
         menu.setBackground(Color.DARK_GRAY);
         menu.setOpaque(false);
         JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
+        //JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
+        JMenu addToPlaylistMenu = renderPlaylistOptions();
+
+        menu.add(addToQueueMenuItem);
+        menu.add(addToPlaylistMenu);
+        return menu;
+    }
+
+    public JMenu renderPlaylistOptions() {
+        JMenu menu = new JMenu("Add to Playlist");
+
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setOpaque(false);
+        JMenuItem addToQueueMenuItem = new JMenuItem("Add to Queue");
         JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
         menu.add(addToQueueMenuItem);
         menu.add(addToPlaylistMenuItem);
