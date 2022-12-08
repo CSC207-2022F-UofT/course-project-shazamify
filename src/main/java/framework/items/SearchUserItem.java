@@ -11,12 +11,12 @@ import java.awt.event.MouseListener;
 public class SearchUserItem extends JPanel {
 
     private int index;
-    private User user;
+    private String userName;
 
-    public SearchUserItem(int index, User user, int width, int height) {
+    public SearchUserItem(int index, String userName, int width, int height) {
 
         this.index = index;
-        this.user = user;
+        this.userName = userName;
         this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
@@ -29,7 +29,7 @@ public class SearchUserItem extends JPanel {
 //            System.out.println(e);
 //        }
 
-        this.add(renderLabel(user.getUserName()));
+        this.add(renderLabel(userName));
 
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);

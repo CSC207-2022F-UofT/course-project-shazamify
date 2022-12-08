@@ -35,7 +35,6 @@ public class UserRegUI extends JPanel {
         frame.setSize(600, 400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Configure the Register Button
         RegisterButton.addActionListener(new ActionListener() {

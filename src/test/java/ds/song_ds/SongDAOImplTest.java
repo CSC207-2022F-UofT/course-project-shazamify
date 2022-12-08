@@ -2,6 +2,7 @@ package ds.song_ds;
 
 import abr.song_abr.SongDAOInput;
 import abr.song_abr.SongDAOOutput;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
@@ -24,7 +25,7 @@ public class SongDAOImplTest {
     @Test
     public void songProvided_save_success() {
         LOGGER.info("Start test");
-        Song s = new Song("Song1", "1", 90);
+        Song s = new Song("Song1", "1", 90, "Allen", "2022");
 
         String uri = "mongodb://root:rootpassword@localhost:27017";
 
@@ -36,14 +37,18 @@ public class SongDAOImplTest {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             try {
                 songDAOin = new SongDAOInputImpl(mongoClient);
+                songDAOout = new SongDAOOutputImpl(mongoClient);
                 songDAOin.delete(s);
                 songDAOin.save(s);
                 LOGGER.info("Saved");
                 Optional<Song> songResult = songDAOout.findById("1");
+
                 assertTrue(songResult.isPresent());
                 assertEquals(songResult.get().getName(), s.getName());
                 assertEquals(songResult.get().getId(), s.getId());
                 assertEquals(songResult.get().getDuration(), s.getDuration());
+                assertEquals(songResult.get().getArtist(), s.getArtist());
+                assertEquals(songResult.get().getYear(), s.getYear());
             } finally {
                 songDAOin.delete(s);
                 LOGGER.info("Deleted");
@@ -51,4 +56,41 @@ public class SongDAOImplTest {
         }
 
     }
+
+    @Test
+    public void songProvided_searchName_results() {
+        LOGGER.info("Start test");
+        Song s = new Song("Song1", "1", 90, "Allen", "2022");
+
+        String uri = "mongodb://root:rootpassword@localhost:27017";
+
+        DatabaseInitializer.init();
+
+        SongDAOInput songDAOin = null;
+        SongDAOOutput songDAOout = null;
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            try {
+                songDAOin = new SongDAOInputImpl(mongoClient);
+                songDAOout = new SongDAOOutputImpl(mongoClient);
+                songDAOin.delete(s);
+                songDAOin.save(s);
+                LOGGER.info("Saved");
+
+                Optional<Song> songResult1 = songDAOout.findByName("Song1");
+                assertTrue(songResult1.isPresent());
+
+                FindIterable<Song> songResults2 = songDAOout.findByNameList("Son");
+                for(Song s2 : songResults2) {
+                    assertEquals("Song1", s2.getName());
+                }
+
+
+            } finally {
+                songDAOin.delete(s);
+                LOGGER.info("Deleted");
+            }
+        }
+    }
+
 }

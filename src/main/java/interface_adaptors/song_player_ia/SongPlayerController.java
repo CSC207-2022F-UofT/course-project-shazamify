@@ -1,27 +1,23 @@
 package interface_adaptors.song_player_ia;
 
 import entities.Song;
-import interface_adaptors.display_ia.DisplaySongPlayerUseCase;
+import interface_adaptors.display_ia.SongPlayerAudio;
 
 public class SongPlayerController {
 
-    public static void displaySongPlayer(Song song){
-        DisplaySongPlayerUseCase.getInstance().displaySongPlayer(song);
+    public static void displaySongPlayer(String song_id){
+        SongPlayerAudio.getInstance().displaySongPlayer(song_id);
     }
     public static void playSong(){
-        DisplaySongPlayerUseCase.getInstance().playSong();
+        SongPlayerAudio.getInstance().playSong();
     }
     public static void stopSong(){
-        DisplaySongPlayerUseCase.getInstance().stopSong();
+        SongPlayerAudio.getInstance().stopSong();
     }
-    public static void pauseSong(){
-        DisplaySongPlayerUseCase.getInstance().pauseSong();
-    }
-    public static void seekStartSong(){
-        DisplaySongPlayerUseCase.getInstance().seekStartSong();
-    }
+    public static void pauseSong(){ SongPlayerAudio.getInstance().pauseSong();}
+    public static void seekStartSong(){SongPlayerAudio.getInstance().seekStartSong();}
     public static void seekEndSong(){
-        DisplaySongPlayerUseCase.getInstance().seekEndSong();
+        SongPlayerAudio.getInstance().seekEndSong();
     }
 
 }

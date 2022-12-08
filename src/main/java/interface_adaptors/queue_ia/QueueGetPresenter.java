@@ -8,11 +8,8 @@ import abr.queue_abr.queue.QueueGetResponseModel;
  */
 public class QueueGetPresenter implements QueueGetOutputBoundary {
 
-    QueueViewModel viewModel;
+    private final QueueViewModel viewModel = QueueViewModel.getInstance();
 
-    public QueueGetPresenter(QueueViewModel queueViewModel) {
-        this.viewModel = queueViewModel;
-    }
     @Override
     public void present(QueueGetResponseModel getResponseModel) {
         viewModel.setSong_ids(getResponseModel.getSongList());

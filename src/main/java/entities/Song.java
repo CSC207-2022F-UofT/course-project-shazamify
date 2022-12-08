@@ -25,6 +25,32 @@ public class Song {
      */
     private String filePath;
 
+    private String coverPath;
+
+    private String artist;
+    private String year;
+
+    public String getCover() {
+        return coverPath;
+    }
+
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
     /**
      * Empty constructor necessary for MongoDB encoding
      */
@@ -44,6 +70,17 @@ public class Song {
         this.id = id;
         this.duration = duration;
         this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
+        this.coverPath = "src\\main\\resources\\songs\\" + name + ".webp";
+    }
+
+    public Song(String name, String id, int duration, String artist, String year) {
+        this.name = name;
+        this.id = id;
+        this.duration = duration;
+        this.filePath = "src\\main\\resources\\songs\\" + name + ".mp3";
+        this.coverPath = "src\\main\\resources\\songs\\" + name + ".webp";
+        this.artist = artist;
+        this.year = year;
     }
 
     /**
@@ -118,8 +155,7 @@ public class Song {
     }
 
 
-    public File getFile() {
-//        TODO: implement method
-        return null;
+    public String getFile() {
+        return this.filePath;
     }
 }
