@@ -7,6 +7,9 @@ import ds.playlist_ds.PlaylistDAOOutputImpl;
 import ds.song_ds.SongDAOOutputImpl;
 import entities.playlist_entities.Privacy;
 
+/**
+ * functionalities to modify the Playlist
+ */
 public class PlaylistModifyControl {
     private final PlaylistModifyInputBoundary playlistModifyInputBoundary;
 
