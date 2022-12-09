@@ -9,5 +9,4 @@ public class ShazamifyApp {
     private static void launch() {
         (new ShazamifyUI()).setVisible(true);
     }
-
 }

@@ -29,7 +29,8 @@ public class FriendListView extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         frame.setSize(300, 600);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         updateButtons();
         frame.add(this);
