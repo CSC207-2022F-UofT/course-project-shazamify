@@ -27,11 +27,10 @@ public class UserHomePageUIInitializer {
      * Initialize a UserHomePageUI by given UserAvatarMngViewModel and UserStatusViewModel.
      * !! Do not try to pass in an empty UserStatusViewModel, this will cause an error. !!
      * !! Please Register or Login First !!
-     * @param userAvatarMngViewModel The ViewModel for User avatar
      */
-    public static UserHomePageUI initializeUI(UserAvatarMngViewModel userAvatarMngViewModel){
+    public static UserHomePageUI initializeUI(){
         // UserAvatarPart
-        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter(userAvatarMngViewModel);
+        UserAvatarMngOutputBoundary userAvatarMngOutputBoundary = new UserChangeMngPresenter();
         UserAvatarDatabaseGateway userAvatarDatabaseGateway = new UserAvatarFileGateway();
         UserAvatarMngInputBoundary userAvatarMngInputBoundary = new UserAvatarMngUseCase(userAvatarDatabaseGateway, userAvatarMngOutputBoundary);
         UserAvatarMngController userAvatarMngController= new UserAvatarMngController(userAvatarMngInputBoundary);
@@ -43,6 +42,6 @@ public class UserHomePageUIInitializer {
         UserCPController userCPController =  new UserCPController(userCPInputBoundary);
 
         // Initialize the UI
-        return new UserHomePageUI(userAvatarMngController, userCPController, userAvatarMngViewModel);
+        return new UserHomePageUI(userAvatarMngController, userCPController);
     }
 }

@@ -25,13 +25,18 @@ public class SongDownloader {
     public static void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk
-        System.out.println("Enter youtube link: ");
-        Scanner sc = new Scanner(System.in);
-        String link = sc.nextLine();
+//        System.out.println("Enter youtube link: ");
+//        Scanner sc = new Scanner(System.in);
+//        String link = sc.nextLine();
 
+//        Downloadable p = new YTdlp();
+//        p.download(link);
+        moveToDatabase();
+    }
+
+    public static void download(String link) {
         Downloadable p = new YTdlp();
         p.download(link);
-        moveToDatabase();
     }
 
     public static Song readJSON(DocumentContext dc) throws IOException {
@@ -46,8 +51,10 @@ public class SongDownloader {
             year = ((String) dc.read("$['upload_date']")).substring(0,4);
         }
 
+        Song s = new Song(name, id, duration, artist, year);
+        System.out.println("Important " + s.getFilePath());
 
-        return new Song(name, id, duration, artist, year);
+        return s;
     }
 
     public static void moveToDatabase() throws Exception {
@@ -61,7 +68,7 @@ public class SongDownloader {
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase db = mongoClient.getDatabase("Shazamify");
-            db.drop();
+            db.getCollection("songs").drop();
 
             SongDAOInput songDAOin = new SongDAOInputImpl(mongoClient);
 

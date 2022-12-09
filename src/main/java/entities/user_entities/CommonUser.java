@@ -35,7 +35,9 @@ public class CommonUser implements User, Serializable {
 
     private UserAvatar getDefaultAvatar() {
         try {
-            BufferedImage tempAvatar = ImageIO.read(new File("default_avatar.jpg"));
+//            BufferedImage tempAvatar = ImageIO.read(new File("default_avatar.jpg"));
+            // sry ;P
+            BufferedImage tempAvatar = ImageIO.read(new File("src/main/resources/defaultprofilepicture.jpg"));
             userAvatar = new UserAvatar(tempAvatar);
             return userAvatar;
         } catch (IOException e){

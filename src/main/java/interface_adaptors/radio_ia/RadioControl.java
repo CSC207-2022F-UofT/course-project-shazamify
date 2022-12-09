@@ -1,5 +1,6 @@
 package interface_adaptors.radio_ia;
 
+import abr.radio_abr.RadioPlayer;
 import abr.radio_abr.RadioStationInputBoundary;
 import abr.radio_abr.RadioLike;
 
@@ -29,7 +30,7 @@ public class RadioControl {
     }
 
     public static void stopStream(){
-        DisplayRadioPlayerUseCase.getInstance().stopStream();
+        RadioPlayer.stopStream();
     }
 
     public static void stationLike(String stationName) {

@@ -11,6 +11,7 @@ import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.song_player_ia.SongPlayerViewModel;
 import interface_adaptors.user_interact_ia.*;
 import framework.buttons.*;
+import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.visualizer_ia.SongVisualizerViewModel;
 
@@ -39,11 +40,13 @@ public class ShazamifyUI extends JFrame {
             this.setIconImage(logo.getImage());
         }catch(Exception e){}
 
-
+        //TODO: Figure these initializations out
         //MediaPlaylistController.listSongs();
-        PlaylistCollectionController.displayPlaylists(null);
-        DisplaySearchUseCase SearchController;
-        SearchController.displaySearchBar();
+        //PlaylistCollectionController.displayPlaylists(null);
+        //PlaylistCollectionViewModel.getInstance().updateView();
+        //DisplaySearchUseCase SearchController;
+        SearchBarViewModel.getInstance().updateView(null);
+        //SearchController.displaySearchBar();
     }
 
     private JPanel createContentPanel(int width, int height) {
@@ -84,7 +87,7 @@ public class ShazamifyUI extends JFrame {
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(createSongVisualizationPanel(FRAME_WIDTH, (SOUTH_HEIGHT/2)), BorderLayout.NORTH);
         panel.add(createSongPlayerPanel(FRAME_WIDTH, (SOUTH_HEIGHT/2)), BorderLayout.CENTER);
-        panel.setBackground(new Color(36, 36, 36));
+        //panel.setBackground(new Color(36, 36, 36));
         return panel;
     }
 
@@ -99,9 +102,10 @@ public class ShazamifyUI extends JFrame {
 
         // Instantiate buttons
         ButtonPlaylistsCollection btnPlaylists = new ButtonPlaylistsCollection();
-        //!!!!!!!!!!!!!!!!!select which button to display for testing:
-        //initFriendListButton(overheadButtonsPanel);
-        ButtonFriendsCollectionAlt btnFriends = new ButtonFriendsCollectionAlt();
+        ButtonFriendsCollection btnFriends = new ButtonFriendsCollection();
+
+        btnPlaylists.setButtonFriendsCollection(btnFriends);
+        btnFriends.setButtonPlaylistsCollection(btnPlaylists);
 
         // Add buttons to the buttons panel
         overheadButtonsPanel.add(btnPlaylists);
@@ -112,33 +116,38 @@ public class ShazamifyUI extends JFrame {
         return panel;
     }
 
-    private void initExpandFriendListButton(JPanel overheadButtonsPanel){
-        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
-        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
-        FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
-
-        OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
-        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList, userStatusViewModel);
-
-        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
-        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest, userStatusViewModel);
-
-        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
-        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController =
-                new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
-
-        ButtonExpandFriends btnFriends = new ButtonExpandFriends(showFriendListController,
-                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
-
-        overheadButtonsPanel.add(btnFriends);
-    }
+//    private void initExpandFriendListButton(JPanel overheadButtonsPanel){
+//        UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
+//        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
+//        FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
+//
+//        OrderFriendListInputBoundary orderFriendList = new OrderFriendList();
+//        ShowFriendListController showFriendListController = new ShowFriendListController(orderFriendList, userStatusViewModel);
+//
+//        FriendManagerInputBoundary acceptFriendRequest = new SendFriendRequest(dsGateway, presenter);
+//        SendFriendRequestController acceptFriendRequestController = new SendFriendRequestController(acceptFriendRequest, userStatusViewModel);
+//
+//        FriendManagerInputBoundary deleteOrDenyFriendRequest = new DeleteFriendOrDenyFriendRequest(dsGateway, presenter);
+//        DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController =
+//                new DeleteFriendOrDenyFriendRequestController(deleteOrDenyFriendRequest, userStatusViewModel);
+//
+//        ButtonExpandFriends btnFriends = new ButtonExpandFriends(showFriendListController,
+//                acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
+//
+//        overheadButtonsPanel.add(btnFriends);
+//    }
 
     private JPanel createCollectionsPanel(int width, int height){
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(width, height));
         JPanel listsPanel = new JPanel();
         listsPanel.setBackground(new Color(36, 36, 36));
+
+        UserStatusViewModel.getInstance().addUserStatusObserver(PlaylistCollectionViewModel.getInstance());
+        UserStatusViewModel.getInstance().addUserStatusObserver(FriendsCollectionViewModel.getInstance());
+
         listsPanel.add(PlaylistCollectionViewModel.getInstance().getView(width, height));
+        listsPanel.add(FriendsCollectionViewModel.getInstance().getView(width, height));
         panel.add(listsPanel, BorderLayout.CENTER);
         return panel;
     }
@@ -147,6 +156,7 @@ public class ShazamifyUI extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(SongVisualizerViewModel.getInstance().getView(width, height));
+        panel.setOpaque(false);
         return panel;
     }
 
@@ -154,6 +164,8 @@ public class ShazamifyUI extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(SongPlayerViewModel.getInstance().getView(width, height));
+        //panel.setBackground(new Color(36,36,36));
+        panel.setOpaque(false);
         return panel;
     }
 
@@ -169,7 +181,18 @@ public class ShazamifyUI extends JFrame {
         panel.setPreferredSize(new Dimension(width, height));
         //panel.add(UserProfileViewModel.getInstance().getView(width, height));
         //panel.setOpaque(false);
-        panel.add(new ButtonViewAccount(), BorderLayout.EAST);
+        ButtonViewAccount buttonViewAccount = new ButtonViewAccount();
+        UserStatusViewModel.getInstance().addUserStatusObserver(buttonViewAccount);
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(buttonViewAccount);
+        menuBar.setMinimumSize(new Dimension(50,50));
+        menuBar.setBackground(new Color(36,36,36));
+        menuBar.setOpaque(false);
+
+        panel.add(menuBar, BorderLayout.EAST);
+
+        //panel.add(buttonViewAccount, BorderLayout.EAST);
         panel.setOpaque(false);
         return panel;
     }

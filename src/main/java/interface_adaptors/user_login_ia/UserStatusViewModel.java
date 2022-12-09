@@ -117,8 +117,9 @@ public class UserStatusViewModel {
         }
     }
 
-    private void initializeDefaultUser(){
+    public void initializeDefaultUser(){
         this.setUserName("Guest");
+        this.setPassWord(null);
         this.setUserAvatar(getDefaultAvatar());
         this.setPlayListIds(new ArrayList<>());
         this.updateFriendList(new HashMap<>());
@@ -127,7 +128,7 @@ public class UserStatusViewModel {
 
     private BufferedImage getDefaultAvatar() {
         try {
-            return ImageIO.read(new File("default_avatar.jpg"));
+            return ImageIO.read(new File("src/main/resources/defaultprofilepicture.jpg"));
         } catch (IOException e){
             throw new RuntimeException("Failed to create Default Avatar");
         }

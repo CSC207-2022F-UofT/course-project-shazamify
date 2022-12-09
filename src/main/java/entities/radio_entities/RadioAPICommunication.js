@@ -6,16 +6,21 @@
 
 import { RadioBrowserApi } from 'radio-browser-api'
 
-// This entire page will contain the various sorts of functions that will be required by other classes in this project.
-// The list is as follows:
-// > Function to input various search terms, and get various items back
+/**
+ * The purpose of this file was to be the place where the JS commands for the API
+ * could be communicated. This has not been fully implemented yet, and thus it was
+ * most recently used to gather the information that was used to create the RadioStation
+ * objects present in StationLibrary.
+ *
+ * @type {RadioBrowserApi}
+ */
 
 const api = new RadioBrowserApi('My Radio App')
 
 const stations = await api.searchStations({
     countryCode: 'US',
     limit: 100,
-    offset: 0 // this is the default - can be omited
+    offset: 1 // 1 - is the second page
 })
 
-console.log(stations)
+console.log(stations);

@@ -11,7 +11,6 @@ public class RadioStation {
     private String id; // A globally unique identifier for the station
     private String name; // The name of the station
     private String streamURL; // The stream URL provided by the user
-    private String[] tags; // Tags of the stream
 
     public boolean like; // Whether the station is liked.
 
@@ -50,8 +49,5 @@ public class RadioStation {
         return this.like;
     }
 
-    public String[] getTags(){
-        return this.tags;
-    }
 
 }

@@ -9,14 +9,13 @@ import interface_adaptors.user_reg_ia.UserRegViewModel;
 public class UserUIInitializer {
     public static void main(String[] args) {
         UserDataBaseEraser.eraseUserDataBase();
-        UserAvatarMngViewModel userAvatarMngViewModel = new UserAvatarMngViewModel();
         UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
 
         LoginAndRegister();
 
         UserLogUIInitializer.initializeUI();
         UserRegUIInitializer.initializeUI();
-        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI(userAvatarMngViewModel);
+        UserHomePageUI userHomePageUI = UserHomePageUIInitializer.initializeUI();
         userStatusViewModel.addUserStatusObserver(userHomePageUI);
     }
 

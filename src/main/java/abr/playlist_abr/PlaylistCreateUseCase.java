@@ -20,9 +20,10 @@ public class PlaylistCreateUseCase implements PlaylistCreateInputBoundary {
      *
      * @return Playlist but in Response Model
      */
-    public PlaylistResponseModel playlistCreate(){
+    public PlaylistResponseModel playlistCreate(String name){
         ObjectId id = new ObjectId();
         Playlist newPlaylist = new Playlist(id.toString());
+        newPlaylist.setName(name);
         playlistDAOInput.save(newPlaylist);
         PlaylistResponseModel playlistResM = new PlaylistResponseModel(newPlaylist.getId());
         //TODO: updateView(playlistResM)

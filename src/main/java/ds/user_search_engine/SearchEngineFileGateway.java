@@ -10,6 +10,6 @@ public class SearchEngineFileGateway implements SearchEngineDatabaseGateway {
     @Override
     public User[] getUserArray() {
         Map<String, User> userMap = UserFileReader.getUserMap("UserDatabase.ser");
-        return (User[]) userMap.values().toArray();
+        return userMap.values().toArray(new User[0]);
     }
 }

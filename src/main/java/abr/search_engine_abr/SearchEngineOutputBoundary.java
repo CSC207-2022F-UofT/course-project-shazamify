@@ -5,4 +5,6 @@ import java.util.List;
 public interface SearchEngineOutputBoundary {
     public void packageAndPresentUser(SearchEngineResponseModel responseModel);
     public void packageAndPresentSongs(SearchEngineResponseModel responseModel);
+    void packageAndPresentRadio(SearchEngineResponseModel responseModel);
+    public void present();
 }

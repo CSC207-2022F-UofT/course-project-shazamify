@@ -34,7 +34,6 @@ public class UserChangePasswordUI extends JPanel{
         frame.setSize(700,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         resetPassword.addActionListener(new ActionListener() {
             @Override
@@ -57,7 +56,7 @@ public class UserChangePasswordUI extends JPanel{
             // Wait for 1 second
             Thread.sleep(1000);
             // Close the window, and go back to main page
-            new UserHomePageUI(userAvatarMngController, controller, userAvatarMngViewModel);
+            new UserHomePageUI(userAvatarMngController, controller);
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Old Password is not correct");

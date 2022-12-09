@@ -35,10 +35,10 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
     int HEIGHT = 100;
 
 
-    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController, UserAvatarMngViewModel avatarMngViewModel){
+    public UserHomePageUI(UserAvatarMngController avatarMngController, UserCPController changePasswordController){
         this.userStatusViewModel = UserStatusViewModel.getInstance();
         this.userAvatarMngController = avatarMngController;
-        this.userAvatarMngViewModel = avatarMngViewModel;
+        this.userAvatarMngViewModel = UserAvatarMngViewModel.getInstance();
         this.userCPController = changePasswordController;
         // Set components for interface_adaptors
         frame.setLayout(null);
@@ -50,7 +50,6 @@ public class UserHomePageUI extends JPanel implements UserStatusObserver {
         frame.setSize(700,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         avatarImageButton.addActionListener(new ActionListener() {
             @Override

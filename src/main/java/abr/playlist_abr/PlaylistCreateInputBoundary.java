@@ -8,5 +8,5 @@ public interface PlaylistCreateInputBoundary {
      *
      * @return DS containing params for RecordViewModel
      */
-    PlaylistResponseModel playlistCreate();
+    PlaylistResponseModel playlistCreate(String name);
 }
