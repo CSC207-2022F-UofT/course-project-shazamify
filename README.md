@@ -38,6 +38,14 @@ The structure of various radio features was made with the intention of having an
 ### Liking and Saving Radio Stations - TBD 
 The RadioStation entities have an attribute called "like" attached to them. This is because there is a planned feature of users being able to like certain radio stations and have it then be added into a sort of psuedo-playlist of their favourite radio stations. Unfortunately due to time constraints this feature was placed on hold in order to prioritize the main functionality of our program.
 
+## User Interaction Notes
+Friend limit :10 (increase or decrease by changing the FRIEND_LIMIT in SendFriendRequestHelper)
+
+Click on the button in circle to access friend list:
+
+![image](https://user-images.githubusercontent.com/43018428/206616536-9a4a6e50-2ec2-4fdf-bb83-96144c7a4d14.png)
+
+
 ## User Notes
 - Illegal User Password & UserName: Only check for the illegal symbal. i.e. Any simbal that is not Alphanumeric.
 - Change Avatar: Click the Avatar Button in setting to change the avatar. Note: It only support .jpg file;
