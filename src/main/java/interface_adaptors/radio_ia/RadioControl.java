@@ -25,10 +25,6 @@ public class RadioControl {
         DisplayRadioPlayerUseCase.getInstance().displayRadioPlayer(stationName, stationID);
     }
 
-    public static void startStream(String stationID) {
-        DisplayRadioPlayerUseCase.getInstance().playStream(stationID);
-    }
-
     public static void stopStream(){
         RadioPlayer.stopStream();
     }

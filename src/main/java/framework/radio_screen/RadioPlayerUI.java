@@ -1,6 +1,7 @@
-package interface_adaptors.radio_ia;
+package framework.radio_screen;
 
 import framework.buttons.*;
+import interface_adaptors.radio_ia.RadioControl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,37 +26,6 @@ public class RadioPlayerUI extends JPanel {
         this.stationID = stationID;
     }
 
-//    public void updateView(String stationName, String stationID) {
-//        this.stationName = stationName;
-//        this.stationID = stationID;
-//        // initView();
-//        renderButtons();
-//        renderStream();
-//    }
-
-//    public JPanel getView(int width, int height) {
-//        this.width = width;
-//        this.height = height;
-//        if (view == null) {
-//            view = new JPanel(new GridLayout(0, 1));
-//            view.setMaximumSize(new Dimension(width, height));
-//        }
-//        return view;
-//    }
-//
-//    public JPanel getView() {
-//        if (view == null) {
-//            view = new JPanel(new GridLayout(0, 1));
-//            view.setMaximumSize(new Dimension(width, height));
-//        }
-//        return view;
-//    }
-//
-//    public void initView() {
-//        getView().removeAll();
-//        view.updateUI();
-//    }
-
     public void frameSetUp(){
         frame.setSize(600, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -78,17 +48,20 @@ public class RadioPlayerUI extends JPanel {
             // Create label
             JLabel label = new JLabel(stationName);
             JLabel label1 = new JLabel("NOW PLAYING");
-            JButton stopButton = new ButtonStop();
 
-            stopButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    RadioControl.stopStream();
-                } // This is to call the controller to stop the stream.
-            });
+            //TODO: implement this
+
+            // JButton stopButton = new ButtonStop();
+
+//            stopButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    RadioControl.stopStream();
+//                } // This is to call the controller to stop the stream.
+//            });
 
             // Add buttons and label to the buttons panel
-            buttonsPanel.add(stopButton);
+            // buttonsPanel.add(stopButton);
             buttonsPanel.add(label);
             buttonsPanel.add(label1);
 
@@ -99,14 +72,5 @@ public class RadioPlayerUI extends JPanel {
             System.out.println(ex);
         }
     }
-
-//    private void renderStream(){
-//        try {
-//            DisplayRadioPlayerUseCase.playStream(stationID); // This is to begin playing the stream.
-//        }
-//        catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
 
 }
