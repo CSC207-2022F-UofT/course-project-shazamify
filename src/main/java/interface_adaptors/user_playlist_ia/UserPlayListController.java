@@ -8,7 +8,7 @@ import abr.user_playlist_abr.UserPlaylistRequestModel;
  */
 public class UserPlayListController {
     UserPlaylistInputBoundary inputBoundary;
-    UserPlaylistRequestModel requestModel;
+    UserPlaylistRequestModel requestModel = new UserPlaylistRequestModel();
     public UserPlayListController(UserPlaylistInputBoundary inputBoundary){
         this.inputBoundary = inputBoundary;
     }

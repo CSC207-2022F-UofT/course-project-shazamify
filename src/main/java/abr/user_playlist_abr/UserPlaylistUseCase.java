@@ -20,11 +20,13 @@ public class UserPlaylistUseCase implements UserPlaylistInputBoundary{
     public void addToUserPlaylist(UserPlaylistRequestModel userPlaylistRequestModel) {
         List<String> playList = databaseGateway.addPlaylistInUser(userPlaylistRequestModel.userName, userPlaylistRequestModel.playListID);
         responseModel.setUserPlaylistIDs(playList);
+        outputBoundary.packageAndPresent(responseModel);
     }
 
     @Override
     public void deleteInUserPlaylist(UserPlaylistRequestModel userPlaylistRequestModel) {
         List<String> playList = databaseGateway.deletePlaylistInUser(userPlaylistRequestModel.userName, userPlaylistRequestModel.playListID);
         responseModel.setUserPlaylistIDs(playList);
+        outputBoundary.packageAndPresent(responseModel);
     }
 }
