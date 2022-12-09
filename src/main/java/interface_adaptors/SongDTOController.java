@@ -2,8 +2,6 @@ package interface_adaptors;
 
 import abr.SongDTOUseCase;
 
-import java.awt.*;
-
 public class SongDTOController {
     public static String getName(String id){
         return SongDTOUseCase.getName(id);

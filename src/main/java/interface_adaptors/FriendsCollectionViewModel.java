@@ -8,6 +8,7 @@ import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.Dele
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
+import ds.user_interact_ds.FriendManagerFileDsGateway;
 import framework.buttons.ButtonExpandFriends;
 import framework.items.FriendsCollectionItem;
 import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
@@ -15,7 +16,6 @@ import interface_adaptors.user_interact_ia.SendFriendRequestController;
 import interface_adaptors.user_interact_ia.ShowFriendListController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
-import ds.user_interact_ds.FriendManagerFileDsGateway;
 
 import javax.swing.*;
 import java.awt.*;

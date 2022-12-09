@@ -2,7 +2,6 @@ package interface_adaptors.user_reg_ia;
 
 import abr.user_reg_abr.UserRegOutputBoundary;
 import abr.user_reg_abr.UserRegResponseModel;
-import entities.user_entities.User;
 
 public class UserRegPresenter implements UserRegOutputBoundary {
     UserRegViewModel regViewModel;

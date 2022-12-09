@@ -5,7 +5,6 @@ import framework.user_screen.UserHomePageUI;
 import framework.user_screen.UserLogUI;
 import framework.user_screen.UserRegUI;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
-import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
 import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
@@ -13,15 +12,10 @@ import interface_adaptors.user_login_ia.UserStatusViewModel;
 import interface_adaptors.user_logout_ia.UserLogOutController;
 import interface_adaptors.user_reg_ia.UserRegController;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class ButtonViewAccount extends JMenu implements UserStatusObserver {
 
