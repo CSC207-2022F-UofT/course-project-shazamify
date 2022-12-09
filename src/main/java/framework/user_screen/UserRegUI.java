@@ -1,6 +1,9 @@
 package framework.user_screen;
 
 
+import framework.UserManagementInitializer;
+import interface_adaptors.user_change_password_ia.UserCPController;
+import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_reg_ia.UserRegController;
 import interface_adaptors.user_reg_ia.UserRegViewModel;
 
@@ -50,6 +53,21 @@ public class UserRegUI extends JPanel {
                 notifyListenerOnRecommendPassword();
             }
         });
+
+        backToLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyListenerOnBackToLogin();
+            }
+        });
+    }
+
+    private void notifyListenerOnBackToLogin() {
+        UserLogController userLogController = UserManagementInitializer.getLogController();
+        UserCPController userCPController = UserManagementInitializer.getChangePasswordController();
+
+        new UserLogUI(userLogController, userCPController);
+        frame.dispose();
     }
 
     /**

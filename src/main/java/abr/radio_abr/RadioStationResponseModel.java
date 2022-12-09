@@ -1,5 +1,7 @@
 package abr.radio_abr;
 
+import java.util.List;
+
 /**
  * @author cynth
  *
@@ -8,24 +10,19 @@ package abr.radio_abr;
  */
 
 public class RadioStationResponseModel {
-      private String stationName;
-      private String streamURL;
-      private String thumbnailURL;
-      private String stationID;
+      private List<String> stationName;
+      private List<String> streamURL;
+      private List<String> stationID;
 
-    public void setStationName(String stationName){
+    public void setStationName(List<String> stationName){
         this.stationName = stationName;
     }
 
-    public void setStreamURL(String streamURL){
+    public void setStreamURL(List<String> streamURL){
         this.streamURL = streamURL;
     }
 
-    public void setThumbnailURL(String thumbnailURL){
-        this.thumbnailURL = thumbnailURL;
-    }
-
-    public void setStationID(String stationID){
+    public void setStationID(List<String> stationID){
         this.stationID = stationID;
     }
 }

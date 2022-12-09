@@ -54,6 +54,7 @@ public class SongPlayerViewModel extends AbstractViewModel<String> {
         // Create slider panel
         JPanel sliderPanel = new JPanel(new GridLayout(0, 1));
         sliderPanel.setMaximumSize(new Dimension(width, 10));
+        sliderPanel.setOpaque(false);
         sliderPanel.add(slider);
         // Add slider panel to the content panel
         view.add(sliderPanel, BorderLayout.NORTH);
@@ -72,7 +73,6 @@ public class SongPlayerViewModel extends AbstractViewModel<String> {
             buttonsPanel.add(new ButtonSeekStart());
             buttonsPanel.add(new ButtonPlay());
             buttonsPanel.add(new ButtonPause());
-            buttonsPanel.add(new ButtonStop());
             buttonsPanel.add(new ButtonSeekEnd());
 
             //Entangled buttons
@@ -80,12 +80,15 @@ public class SongPlayerViewModel extends AbstractViewModel<String> {
             ButtonHideQueue buttonHideQueue = new ButtonHideQueue();
             buttonRevealQueue.SetCompanion(buttonHideQueue);
             buttonHideQueue.SetCompanion(buttonRevealQueue);
-            buttonHideQueue.setVisible(false);
+            //buttonHideQueue.setVisible(false);
 
-            buttonsPanel.add(new ButtonRevealQueue());
+            buttonsPanel.add(buttonRevealQueue);
+            buttonsPanel.add(buttonHideQueue);
 
+            buttonsPanel.setBackground(new Color(36,36,36));
             // Add buttons panel to the content panel
             view.add(buttonsPanel, BorderLayout.CENTER);
+
         }
         catch (Exception ex) {
             System.out.println(ex);

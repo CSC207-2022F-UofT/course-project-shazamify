@@ -38,6 +38,13 @@ The structure of various radio features was made with the intention of having an
 ### Liking and Saving Radio Stations - TBD 
 The RadioStation entities have an attribute called "like" attached to them. This is because there is a planned feature of users being able to like certain radio stations and have it then be added into a sort of psuedo-playlist of their favourite radio stations. Unfortunately due to time constraints this feature was placed on hold in order to prioritize the main functionality of our program.
 
+## User Notes
+- Illegal User Password & UserName: Only check for the illegal symbal. i.e. Any simbal that is not Alphanumeric.
+- Change Avatar: Click the Avatar Button in setting to change the avatar. Note: It only support .jpg file;
+
+## Playlist Notes
+- Finished features: Playlist Create/Modify ABR, Entities, Back-end integration, User integration. Logic/Interface Adapters for all Playlist's feature: Create playlist, add/delete/reorder songs, change privacy, PlaylistCollection showcase, delete playlist, etc.
+- In development: full UI integration
 ## Design Patterns
 ### Factory Pattern
 - implemented in the entities layer, like UserFactory.
@@ -48,11 +55,13 @@ By using UserFactory creating different types of User, we can obscure the creati
 - implemented in the use case layer
 - Can be used to encapsulate the code that each subclass only have one responsibility.
 
-Facade class: UserRegUseCase and QueueUseCase
-subclasses: UserRegHelper, UserRecommendPasswordHelper, QueueHelper
+Facade class: UserRegUseCase, QueueFUC, QueueGetUseCase, QueueUUseCase
+subclasses: UserRegHelper, UserRecommendPasswordHelper, QueueFHelper, QueueGetHelper, QueueUHelper
 
 When the UserRegUseCase receive requests from UserRegController, it will distribute the works into subclasses, and each subclass will only have one responsibility.
 UserRegHelper will register the User into UserDatabase, and UserRecommendPasswordHelper responsible for giving out recommend password.
+
+The queue helpers are responsible for doing the actual list modifiying/updating. It will access the singleton queue and do necessary changes.
 
 ### Observer Pattern
 - implemented in the interface adaptor layer
@@ -70,6 +79,19 @@ Used to make the ViewModels observable for the package, unique and potentially a
 UIs and Controllers would be able to access information that is pre-prepared, and don't need to go through different layers.
 
 ## Testing notes
+### User Testing toolKit
+- Change Avatar Testing tool: initialize Controller.
+
+- Change Password Testing tool: initialize Controller.
+
+- Generate Ten User: generate 10 Users by pattern(Detail see file documentation)
+
+- UserDatabaseEraser: Erase the User Database
+
+- UserLogTestingTool: Handy tool to log in multiple users
+
+- UserRegTestingTool: Handy tool to register multiple user.
+
 
 ### Radio Testing, Or Lack Thereof
 There is one test currently implemented that tests a radio feature - the general search engine test. Beyond that there are no present tests for radio for two very specific reasons. 

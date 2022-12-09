@@ -29,7 +29,7 @@ public class ButtonCreatePlaylist extends JPanel {
 
         //TODO: playlistDTO initializaion
         try {
-            Image cover = ImageIO.read(getClass().getResource( "/plusiconblue.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            Image cover = ImageIO.read(getClass().getResource( "/plusiconblue.png")).getScaledInstance(60,50,Image.SCALE_DEFAULT);
             this.add(renderImage(new ImageIcon(cover)), BorderLayout.CENTER);
         }catch(java.io.IOException e){}
 

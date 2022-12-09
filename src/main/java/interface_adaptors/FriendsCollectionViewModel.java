@@ -8,8 +8,6 @@ import abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr.Dele
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendList;
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
-import ds.user_interact_ds.FriendManagerInMemoryDsGateway;
-import entities.user_entities.User;
 import framework.buttons.ButtonExpandFriends;
 import framework.items.FriendsCollectionItem;
 import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
@@ -17,12 +15,11 @@ import interface_adaptors.user_interact_ia.SendFriendRequestController;
 import interface_adaptors.user_interact_ia.ShowFriendListController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
+import ds.user_interact_ds.FriendManagerFileDsGateway;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class FriendsCollectionViewModel extends AbstractViewModel<HashMap<String, String>> implements UserStatusObserver {
 
@@ -54,7 +51,7 @@ public class FriendsCollectionViewModel extends AbstractViewModel<HashMap<String
         // Populate list panel with items
         int i = 0;
         for (String userName : friendUserNames.keySet()) {
-            if (friendUserNames.get(userName) == "friend") {
+            if (friendUserNames.get(userName).equals("friend")) {
                 list.add(new FriendsCollectionItem(i, userName, this.width, 60));
             }
             i++;
@@ -70,7 +67,7 @@ public class FriendsCollectionViewModel extends AbstractViewModel<HashMap<String
     }
     private ButtonExpandFriends initExpandFriendListButton(){
         UserStatusViewModel userStatusViewModel = UserStatusViewModel.getInstance();
-        FriendManagerDsGateway dsGateway = new FriendManagerInMemoryDsGateway();
+        FriendManagerDsGateway dsGateway = new FriendManagerFileDsGateway();
         FriendManagerOutputBoundary presenter = new FriendManagerPresenter();
 
         OrderFriendListInputBoundary orderFriendList = new OrderFriendList();

@@ -25,9 +25,9 @@ public class SongDownloader {
     public static void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk
-        System.out.println("Enter youtube link: ");
-        Scanner sc = new Scanner(System.in);
-        String link = sc.nextLine();
+//        System.out.println("Enter youtube link: ");
+//        Scanner sc = new Scanner(System.in);
+//        String link = sc.nextLine();
 
 //        Downloadable p = new YTdlp();
 //        p.download(link);
@@ -51,8 +51,10 @@ public class SongDownloader {
             year = ((String) dc.read("$['upload_date']")).substring(0,4);
         }
 
+        Song s = new Song(name, id, duration, artist, year);
+        System.out.println("Important " + s.getFilePath());
 
-        return new Song(name, id, duration, artist, year);
+        return s;
     }
 
     public static void moveToDatabase() throws Exception {
