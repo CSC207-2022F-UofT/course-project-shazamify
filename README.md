@@ -42,7 +42,9 @@ The RadioStation entities have an attribute called "like" attached to them. This
 - Illegal User Password & UserName: Only check for the illegal symbal. i.e. Any simbal that is not Alphanumeric.
 - Change Avatar: Click the Avatar Button in setting to change the avatar. Note: It only support .jpg file;
 
-
+## Playlist Notes
+- Finished features: Playlist Create/Modify ABR, Entities, Back-end integration, User integration. Logic/Interface Adapters for all Playlist's feature: Create playlist, add/delete/reorder songs, change privacy, PlaylistCollection showcase, delete playlist, etc.
+- In development: full UI integration
 ## Design Patterns
 ### Factory Pattern
 - implemented in the entities layer, like UserFactory.
