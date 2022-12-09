@@ -11,7 +11,6 @@ public class RadioStation {
     private String id; // A globally unique identifier for the station
     private String name; // The name of the station
     private String streamURL; // The stream URL provided by the user
-    private String[] tags; // Tags of the stream
 
     public boolean like; // Whether the station is liked.
 
@@ -20,19 +19,12 @@ public class RadioStation {
      * @param name - The song name
      * @param id - The identifier key for the song
      * @param streamURL - The stream URL provided by the user.
-     * @param homepageURL - The song name
-     * @param thumbnailURL - URL to an icon or picture that represents the stream. (PNG, JPG)
-     * @param tags - Tags of the stream
-     * @param country - Full name of the country of origin.
-     * @param languages - Languages that are spoken in this stream.
      */
-    public void RadioStation(String id, String name, String streamURL, String homepageURL, String thumbnailURL, String[] tags,
-                                    String country, String[] languages){
+    public RadioStation(String id, String name, String streamURL){
         // This function will assign all the basic information (the information that most likely will not change).
         this.id = id;
         this.name = name;
         this.streamURL = streamURL;
-        this.tags = tags;
         this.like = false;
     }
 
@@ -57,8 +49,5 @@ public class RadioStation {
         return this.like;
     }
 
-    public String[] getTags(){
-        return this.tags;
-    }
 
 }

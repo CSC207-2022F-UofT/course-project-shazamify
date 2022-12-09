@@ -1,14 +1,26 @@
 package framework.items;
 
+import abr.queue_abr.queue.*;
 import entities.Song;
+import interface_adaptors.PlaylistDTOController;
 import interface_adaptors.SongDTOController;
+import interface_adaptors.display_ia.SongPlayerAudio;
+import interface_adaptors.queue_ia.QueueGetController;
+import interface_adaptors.queue_ia.QueueGetPresenter;
+import interface_adaptors.queue_ia.QueueUController;
+import interface_adaptors.queue_ia.QueueViewModel;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.List;
 
 public class SearchSongItem extends JPanel {
 
@@ -19,24 +31,31 @@ public class SearchSongItem extends JPanel {
 
         this.index = index;
         this.songId = songId;
-        this.setPreferredSize(new Dimension(width, height));
+        this.setMaximumSize(new Dimension(width, height));
         this.setLayout(new GridLayout(1, 0));
 
-//        TODO: resolve after MongoDB serialization
 //        try {
-//            Image cover = ImageIO.read(song.getCover()).getScaledInstance(30,30,Image.SCALE_DEFAULT);
+//            File coverfile = new File(SongDTOController.getCover(songId));
+//            Image cover = ImageIO.read(coverfile).getScaledInstance(50,50,Image.SCALE_DEFAULT);
 //            this.add(renderImage(new ImageIcon(cover)));
 //        }
-//        catch(java.io.IOException e)
-//        {
-//            System.out.println(e);
-//        }
+//        catch(java.io.IOException e) {}
 
-//        this.add(renderLabel(song.getAlbum()));
-//        this.add(renderLabel(song.getArtist()));
-        this.add(renderLabel(SongDTOController.getName(songId)));
-//        this.add(renderLabel(song.getYear()));
+        //this.add(renderImage(new ImageIcon(SongDTOController.getCover(song_id))));
+        String artist = SongDTOController.getArtist(songId);
+        if (artist.length() > 10){
+            artist = artist.substring(0, 10) + "...";
+        }
+        this.add(renderLabel(artist));
 
+        String name = SongDTOController.getName(songId);
+        if (name.length() > 20){
+            name = name.substring(0, 20) + "...";
+        }
+        this.add(renderLabel(name));
+
+        this.add(renderLabel(SongDTOController.getYear(songId)));
+        this.add(renderInputs());
         PanelListener listener = new PanelListener();
         this.addMouseListener(listener);
 
@@ -60,6 +79,120 @@ public class SearchSongItem extends JPanel {
         label.setForeground(Color.WHITE);
         label.setOpaque(false);
         return label;
+    }
+    private JPanel renderInputs(){
+        JPanel buttonPanel = new JPanel(new GridLayout());
+        buttonPanel.setOpaque(false);
+        buttonPanel.add(renderPlayButton());
+        //buttonPanel.add(renderMenu());
+        //buttonPanel.add(renderAddButton());
+        buttonPanel.add(renderMenuBar());
+
+        // Add option to remove song from playlist
+        //buttonPanel.add(renderDeleteButton());
+
+        // Otherwise add placeholder for xtra space
+        // JLabel placeholder = new JLabel(" ");
+        //placeholder.setOpaque(false);
+        //buttonPanel.add(placeholder);
+        return buttonPanel;
+    }
+    private JButton renderPlayButton() {
+        final JButton button = new JButton();
+        try {
+            button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/playiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
+            //button.setBackground(Color.WHITE);
+            button.setOpaque(false);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //SongVisualizerController.visualizeSong(song_id);
+                    SongPlayerAudio.getInstance().displaySongPlayer(songId);
+                }
+            });
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        button.setBorderPainted(false);
+        button.setBorder(null);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setContentAreaFilled(false);
+
+
+        return button;
+    }
+    public JMenuBar renderMenuBar(){
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(renderMenu());
+        menuBar.setMinimumSize(new Dimension(50,50));
+        menuBar.setBackground(Color.DARK_GRAY);
+        menuBar.setOpaque(false);
+        return menuBar;
+    }
+
+    public JMenu renderMenu() {
+        JMenu menu = new JMenu();
+        try {
+            ImageIcon plusicon = new ImageIcon(ImageIO.read(getClass().getResource("/plusiconwhite.png")).getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+            menu.setIcon(plusicon);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setOpaque(false);
+        //JMenuItem addToQueueMenuItem = r;
+        //JMenuItem addToPlaylistMenuItem = new JMenuItem("Add to Playlist");
+        JMenu addToPlaylistMenu = renderPlaylistOptions();
+        JMenuItem addToQueueMenuItem = addToQueueMenu();
+        menu.add(addToQueueMenuItem);
+        menu.add(addToPlaylistMenu);
+        return menu;
+    }
+
+    public JMenuItem addToQueueMenu() {
+        JMenuItem addToQueueMenu = new JMenuItem("Add to Queue");
+        addToQueueMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<String> currentQueueOrder = getCurrentQueueOrder();
+                currentQueueOrder.add(songId);
+                sendQueueOrder(currentQueueOrder);
+                QueueViewModel.getInstance().updateView(currentQueueOrder);
+            }
+        });
+        return addToQueueMenu;
+    }
+
+    public List<String> getCurrentQueueOrder(){
+        QueueGetOutputBoundary getOutputBoundary = new QueueGetPresenter();
+        QueueGetInputBoundary getInputBoundary = new QueueGetUseCase(getOutputBoundary);
+        QueueGetController getController = new QueueGetController(getInputBoundary);
+        getController.retrieveList();
+
+        return QueueViewModel.getInstance().getSong_ids();
+    }
+
+    public void sendQueueOrder(List<String> currentQueueOrder) {
+        QueueUInputBoundary inputBoundary = new QueueUUseCase();
+        QueueUController controller = new QueueUController(inputBoundary);
+        controller.send(currentQueueOrder);
+    }
+
+    public JMenu renderPlaylistOptions() {
+        JMenu menu = new JMenu("Add to Playlist");
+
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setOpaque(false);
+        List<String> userPlaylistsIds = UserStatusViewModel.getInstance().getPlayListIds();
+        for (String id: userPlaylistsIds){
+            String playlistName = PlaylistDTOController.getName(id);
+            JMenuItem addToPlaylistMenuItem = new AddToPlaylistMenuItem(playlistName, id, songId);
+            menu.add(addToPlaylistMenuItem);
+        }
+
+        return menu;
     }
 
     private class PanelListener implements MouseListener {

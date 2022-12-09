@@ -1,11 +1,13 @@
 package framework.user_screen;
 
 
+import framework.UserManagementInitializer;
 import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_interact_ia.TempFriendListObservable;
 import interface_adaptors.user_login_ia.UserLogController;
 import interface_adaptors.user_login_ia.UserLogViewModel;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
+import interface_adaptors.user_reg_ia.UserRegController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,7 +37,7 @@ public class UserLogUI extends JPanel {
         createScreenComponents();
         setBoundForComponents();
         addScreenComponents();
-        frame.setSize(600,300);
+        frame.setSize(600, 300);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         LoginButton.addActionListener(new ActionListener() {
@@ -51,21 +53,11 @@ public class UserLogUI extends JPanel {
                 notifyListenerOnRegisterPerformed();
             }
         });
-
-        forgetPassword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                notifyListenerOnForgetPasswordPerformed();
-            }
-        });
-
     }
-
-    private void notifyListenerOnForgetPasswordPerformed() {
-    }
-
     private void notifyListenerOnRegisterPerformed() {
-
+        UserRegController userRegController = UserManagementInitializer.getRegController();
+        new UserRegUI(userRegController);
+        frame.dispose();
     }
 
     private void notifyListenerOnLoginPerformed() {
@@ -91,9 +83,8 @@ public class UserLogUI extends JPanel {
         userNameField.setBounds(185,20,300,25);
         passWordLabel.setBounds(10,65,165,25);
         userPassWordField.setBounds(185,65,300,25);
-        RegisterButton.setBounds(30,150,100,50);
         LoginButton.setBounds(200,150,100,50);
-        forgetPassword.setBounds(370,150,100,50);
+        RegisterButton.setBounds(10,150,150,50);
     }
 
     private void addScreenComponents() {
@@ -103,7 +94,6 @@ public class UserLogUI extends JPanel {
         frame.add(userPassWordField);
         frame.add(RegisterButton);
         frame.add(LoginButton);
-        frame.add(forgetPassword);
     }
 
     private void createScreenComponents() {
@@ -111,9 +101,8 @@ public class UserLogUI extends JPanel {
         passWordLabel = new JLabel("Choose password");
         userNameField = new JTextField();
         userPassWordField = new JPasswordField();
-        RegisterButton = new JButton("Register");
+        RegisterButton = new JButton("Go to Register");
         LoginButton = new JButton("Login");
-        forgetPassword = new JButton("Forget Password");
     }
 
 }

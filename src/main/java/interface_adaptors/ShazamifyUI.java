@@ -87,7 +87,7 @@ public class ShazamifyUI extends JFrame {
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(createSongVisualizationPanel(FRAME_WIDTH, (SOUTH_HEIGHT/2)), BorderLayout.NORTH);
         panel.add(createSongPlayerPanel(FRAME_WIDTH, (SOUTH_HEIGHT/2)), BorderLayout.CENTER);
-        panel.setBackground(new Color(36, 36, 36));
+        //panel.setBackground(new Color(36, 36, 36));
         return panel;
     }
 
@@ -156,7 +156,7 @@ public class ShazamifyUI extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(SongVisualizerViewModel.getInstance().getView(width, height));
-        //panel.setOpaque(false);
+        panel.setOpaque(false);
         return panel;
     }
 
@@ -164,6 +164,7 @@ public class ShazamifyUI extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(width, height));
         panel.add(SongPlayerViewModel.getInstance().getView(width, height));
+        //panel.setBackground(new Color(36,36,36));
         panel.setOpaque(false);
         return panel;
     }
@@ -202,7 +203,7 @@ public class ShazamifyUI extends JFrame {
         JPanel listsPanel = new JPanel();
         listsPanel.setBackground(new Color(36, 36, 36));
         listsPanel.add(RecordViewModel.getInstance().getView(width, height));
-        //listsPanel.add(SearchResultsViewModel.getInstance().getView(width, height));
+        listsPanel.add(SearchResultsViewModel.getInstance().getView(width, height));
         listsPanel.add(QueueViewModel.getInstance().getView(width, height));
         panel.add(listsPanel, BorderLayout.CENTER);
 

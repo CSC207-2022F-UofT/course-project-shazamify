@@ -1,4 +1,4 @@
-package abr.radio_abr;
+package abr.search_engine_abr;
 import abr.radio_abr.StationLibrary;
 import abr.search_engine_abr.SearchEngineOutputBoundary;
 import abr.search_engine_abr.SearchEngineResponseModel;
@@ -55,7 +55,7 @@ public class RadioSearch implements SearchRadioInputBoundary {
         List<RadioStation> searchResult = new ArrayList<>();
         List<RadioStation> startsWithResult = new ArrayList<>();
         List<RadioStation> containsResult = new ArrayList<>();
-        List<RadioStation> stationList = stationLibrary.getStations(); // Fix this soon!
+        List<RadioStation> stationList = stationLibrary.getStations();
 
         for (RadioStation radioStation : stationList) {
             if (radioStation.getName().toUpperCase().equals(textForSearch)) {

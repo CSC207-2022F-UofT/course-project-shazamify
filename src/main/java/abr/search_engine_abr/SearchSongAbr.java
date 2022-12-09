@@ -1,5 +1,8 @@
 package abr.search_engine_abr;
 
+import abr.song_abr.SongDAOOutput;
+import com.mongodb.client.FindIterable;
+import ds.song_ds.SongDAOOutputImpl;
 import entities.Song;
 
 import java.util.ArrayList;
@@ -18,6 +21,10 @@ public class SearchSongAbr implements SearchSongInputBoundary{
         this.responseModel = new SearchEngineResponseModel();
         this.outputBoundary = outputBoundary;
     }
+    public void updateView(){
+        outputBoundary.present();
+    }
+
     @Override
     public void sendSearchSongsToViewModel(String searchName){
         List<Song> resultedSong = searchSongs(searchName);
@@ -27,7 +34,7 @@ public class SearchSongAbr implements SearchSongInputBoundary{
             resultedSongIds.add(song.getId());
         }
 
-        responseModel.setUserSearchResult(resultedSongIds);
+        responseModel.setSongSearchResult(resultedSongIds);
         outputBoundary.packageAndPresentSongs(responseModel);
     }
 
@@ -38,28 +45,38 @@ public class SearchSongAbr implements SearchSongInputBoundary{
      */
 
     public List<Song> searchSongs(String searchContent) {
-        String textForSearch = searchContent.toUpperCase();
-        List<Song> searchResult = new ArrayList<>();
-        List<Song> startWithResult = new ArrayList<>();
-        List<Song> containsResult = new ArrayList<>();
-        List<Song> songList = songLibrary.getSongs();
-        for (int i = 0; i < songList.size(); i++) {
-            if (songList.get(i).getName().toUpperCase().equals(textForSearch)) {
-                searchResult.add(songList.get(i));
-            } else if (songList.get(i).getName().toUpperCase().startsWith(textForSearch)) {
-                startWithResult.add(songList.get(i));
-            } else if (songList.get(i).getName().toUpperCase().contains(textForSearch)) {
-                containsResult.add(songList.get(i));
-            }
+//        String textForSearch = searchContent.toUpperCase();
+//        List<Song> searchResult = new ArrayList<>();
+//        List<Song> startWithResult = new ArrayList<>();
+//        List<Song> containsResult = new ArrayList<>();
+//        List<Song> songList = songLibrary.getSongs();
+//        for (int i = 0; i < songList.size(); i++) {
+//            if (songList.get(i).getName().toUpperCase().equals(textForSearch)) {
+//                searchResult.add(songList.get(i));
+//            } else if (songList.get(i).getName().toUpperCase().startsWith(textForSearch)) {
+//                startWithResult.add(songList.get(i));
+//            } else if (songList.get(i).getName().toUpperCase().contains(textForSearch)) {
+//                containsResult.add(songList.get(i));
+//            }
+//        }
+//        searchResult.addAll(startWithResult);
+//        searchResult.addAll(containsResult);
+//        //return limitCount songs
+//        if (searchResult.size() > limitCount) {
+//            return searchResult.subList(0, limitCount);
+//        } else {
+//            return searchResult;
+//        }
+
+        SongDAOOutput songDAOOutput = new SongDAOOutputImpl();
+        FindIterable<Song> results = songDAOOutput.findByNameList(searchContent);
+
+        ArrayList<Song> songResults = new ArrayList<>();
+        for(Song s : results) {
+            songResults.add(s);
         }
-        searchResult.addAll(startWithResult);
-        searchResult.addAll(containsResult);
-        //return limitCount songs
-        if (searchResult.size() > limitCount) {
-            return searchResult.subList(0, limitCount);
-        } else {
-            return searchResult;
-        }
+        return songResults;
+
     }
 
 

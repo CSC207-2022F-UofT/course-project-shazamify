@@ -39,7 +39,7 @@ public class ButtonExpandFriends extends JButton {
 
 
         try {
-            Image cover = ImageIO.read(getClass().getResource( "src/main/resources/expandfriendsicon.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
+            Image cover = ImageIO.read(getClass().getResource( "/expandfriendsicon.png")).getScaledInstance(60,50,Image.SCALE_DEFAULT);
             this.add(renderImage(new ImageIcon(cover)), BorderLayout.CENTER);
         }catch(java.io.IOException e){}
 
@@ -55,7 +55,7 @@ public class ButtonExpandFriends extends JButton {
         this.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                button.clicked(false);
+//                button.clicked(false);
                 FriendListView screen = new FriendListView(showFriendListController, acceptFriendRequestController, deleteFriendOrDenyFriendRequestController);
             }
         });

@@ -1,7 +1,10 @@
 package interface_adaptors.playlist_ia;
 
-import abr.playlist_abr.PlaylistModifyInputBoundary;
-import abr.playlist_abr.PlaylistModifyRequestModel;
+import abr.playlist_abr.*;
+import abr.song_abr.SongDAOOutput;
+import ds.playlist_ds.PlaylistDAOInputImpl;
+import ds.playlist_ds.PlaylistDAOOutputImpl;
+import ds.song_ds.SongDAOOutputImpl;
 import entities.playlist_entities.Privacy;
 
 /**
@@ -10,8 +13,10 @@ import entities.playlist_entities.Privacy;
 public class PlaylistModifyControl {
     private final PlaylistModifyInputBoundary playlistModifyInputBoundary;
 
-    public PlaylistModifyControl (PlaylistModifyInputBoundary playlistModifyInputBoundary){
-        this.playlistModifyInputBoundary = playlistModifyInputBoundary;
+    public PlaylistModifyControl (){
+        PlaylistDAOOutput dao1 = new PlaylistDAOOutputImpl();
+        SongDAOOutput dao2 = new SongDAOOutputImpl();
+        this.playlistModifyInputBoundary = new PlaylistModifyUseCase(dao1, dao2);
     }
     // UPDATE REQUEST MODEL BASED ON WHAT YOU NEED
     public void addToPlaylist (String plID, String songID){

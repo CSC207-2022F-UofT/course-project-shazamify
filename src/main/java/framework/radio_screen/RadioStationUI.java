@@ -19,19 +19,19 @@ public class RadioStationUI extends JPanel {
     final String stationName;
     final String stationID;
 
-    final String thumbnailURL;
-    final boolean likeStatus;
-    RadioControl control;
+    // final String thumbnailURL;
+    // final boolean likeStatus;
+    // RadioControl control;
 
-    public RadioStationUI(String stationName, String thumbnailURL, boolean getLiked, RadioControl control, String stationID){
-        this.control = control;
+    public RadioStationUI(String stationName, String stationID){
+        // this.control = control;
         this.stationName = stationName;
-        this.thumbnailURL = thumbnailURL;
-        this.likeStatus = getLiked;
+        // this.thumbnailURL = thumbnailURL;
+        // this.likeStatus = getLiked;
         this.stationID = stationID;
     }
 
-    private void frameSetUp(){
+    public void frameSetUp(){
         frame.setSize(600, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
@@ -39,11 +39,21 @@ public class RadioStationUI extends JPanel {
         frame.setVisible(true);
 
         playNowButtonSetUp();
-        likeStationButtonSetUp();
+        // likeStationButtonSetUp();
     }
 
     private void playNowButtonSetUp(){
+        JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
+        buttonPanel.setSize(40, 40);
+
         JButton playNow = new JButton("Play Now!");
+        JLabel name = new JLabel(stationName);
+
+        buttonPanel.add(playNow);
+        buttonPanel.add(name);
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
+
 
         playNow.addActionListener(e -> playNowButtonClicked());
     }
@@ -52,35 +62,35 @@ public class RadioStationUI extends JPanel {
         RadioControl.displayRadioPlayer(this.stationName, this.stationID);
     }
 
-    private void likeStationButtonSetUp() {
-        JButton likeStation = new JButton("Like");
-        likeStation.addActionListener(e -> likeStationButtonClicked());
-    }
+//    private void likeStationButtonSetUp() {
+//        JButton likeStation = new JButton("Like");
+//        likeStation.addActionListener(e -> likeStationButtonClicked());
+//    }
 
-    private void likeStationButtonClicked(){
-        try{
-
-            RadioControl.stationLike(this.stationName);
-
-            String message;
-            if (this.likeStatus){
-                message = stationName + " has been liked!";
-
-            }
-            else{
-                message = stationName + " has been unliked!";
-            }
-
-
-            JOptionPane.showMessageDialog(this, message);
-
-
-
-            frame.dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
+//    private void likeStationButtonClicked(){
+//        try{
+//
+//            RadioControl.stationLike(this.stationName);
+//
+//            String message;
+//            if (this.likeStatus){
+//                message = stationName + " has been liked!";
+//
+//            }
+//            else{
+//                message = stationName + " has been unliked!";
+//            }
+//
+//
+//            JOptionPane.showMessageDialog(this, message);
+//
+//
+//
+//            frame.dispose();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage());
+//        }
+//    }
 
 
 }

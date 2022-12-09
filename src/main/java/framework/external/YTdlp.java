@@ -19,8 +19,11 @@ public class YTdlp implements Downloadable{
      * Default constructor for Allen's laptop
      */
     public YTdlp() {
-        this.ffmpegLoc = "C:\\ffmpeg\\bin";
-        this.outputLoc = "C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\src\\main\\resources\\songs\\%(title)s.mp3";
+//        TODO: change in morning
+//        this.ffmpegLoc = "C:\\ffmpeg\\bin";
+        this.ffmpegLoc = "C:\\Users\\alvinuy\\Downloads\\ffmpeg-20190911-944d76a-win64-static\\ffmpeg-20190911-944d76a-win64-static\\bin";
+//        this.outputLoc = "C:\\Users\\allen\\Desktop\\csc207\\course-project-shazamify\\src\\main\\resources\\songs\\%(title)s.mp3";
+        this.outputLoc = "F:\\Shazamify\\src\\main\\resources\\songs\\%(title)s.mp3";
     }
 
 

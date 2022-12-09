@@ -30,4 +30,9 @@ public class SearchEngineController {
     public void updateSearchRadioResult(String searchText){
         searchRadioInputBoundary.sendSearchRadioToViewModel(searchText);
     }
+
+    public void updateSearch(){
+        searchSongInputBoundary.updateView();
+    }
+
 }
