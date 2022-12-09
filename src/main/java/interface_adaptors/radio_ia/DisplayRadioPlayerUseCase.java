@@ -2,6 +2,7 @@ package interface_adaptors.radio_ia;
 
 
 import abr.radio_abr.RadioPlayer;
+import framework.radio_screen.RadioPlayerUI;
 
 /**
  * @author cynth
