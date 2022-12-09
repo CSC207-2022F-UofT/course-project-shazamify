@@ -11,6 +11,7 @@ public class SearchEngineInitializer {
         SearchUserInputBoundary userInputBoundary = new SearchUserAbr(searchEnginePresenter);
         SearchSongInputBoundary songInputBoundary = new SearchSongAbr(searchEnginePresenter);
 
-        return new SearchEngineController(songInputBoundary, userInputBoundary);
+        //return new SearchEngineController(songInputBoundary, userInputBoundary);
+        return null;
     }
 }
