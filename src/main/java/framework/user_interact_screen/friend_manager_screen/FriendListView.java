@@ -3,6 +3,8 @@ package framework.user_interact_screen.friend_manager_screen;
 import interface_adaptors.user_interact_ia.DeleteFriendOrDenyFriendRequestController;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
 import interface_adaptors.user_interact_ia.ShowFriendListController;
+import interface_adaptors.user_login_ia.UserStatusObserver;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +14,7 @@ import java.awt.event.ActionListener;
 /**
  * A screen that shows the friendList of current user
  */
-public class FriendListView extends JPanel{
+public class FriendListView extends JPanel implements UserStatusObserver {
     ShowFriendListController showFriendListController;
     SendFriendRequestController acceptFriendRequestController;
     DeleteFriendOrDenyFriendRequestController deleteFriendOrDenyFriendRequestController;
@@ -35,6 +37,7 @@ public class FriendListView extends JPanel{
         updateButtons();
         frame.add(this);
         frame.setVisible(true);
+        UserStatusViewModel.getInstance().addUserStatusObserver(this);
     }
 
     void updateButtons(){ //add buttons for every friend in orderedFriendList, depending on friendship status
@@ -80,4 +83,8 @@ public class FriendListView extends JPanel{
     }
 
 
+    @Override
+    public void userUpdated() {
+        frame.dispose();
+    }
 }

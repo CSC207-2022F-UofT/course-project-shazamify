@@ -14,6 +14,7 @@ import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class SearchResultsViewModel {
+public class SearchResultsViewModel implements UserStatusObserver {
 
     private static SearchResultsViewModel instance;
 
@@ -53,7 +54,9 @@ public class SearchResultsViewModel {
      * @return instance
      */
     public static SearchResultsViewModel getInstance() {
-        if (instance == null) {instance = new SearchResultsViewModel();}
+        if (instance == null) {
+            instance = new SearchResultsViewModel();
+        UserStatusViewModel.getInstance().addUserStatusObserver(instance);}
         return instance;
     }
 
@@ -297,6 +300,12 @@ public class SearchResultsViewModel {
         // Add panel to view
         viewUsers.add(scrollPanel, BorderLayout.CENTER);
         return viewUsers;
+    }
+
+    @Override
+    public void userUpdated() {
+        updateView();
+
     }
 
     /**
