@@ -21,7 +21,6 @@ import java.util.Scanner;
 
 public class SongDownloader {
 
-    //    TODO: rename from main when finished project
     public static void main(String[] args) throws Exception {
 //        Single video or playlist link
 //        https://www.youtube.com/watch?v=gWo12TtN9Kk

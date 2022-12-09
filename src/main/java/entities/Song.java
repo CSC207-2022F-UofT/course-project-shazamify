@@ -30,22 +30,6 @@ public class Song {
     private String year;
 
 
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     /**
      * Empty constructor necessary for MongoDB encoding
      */
@@ -75,6 +59,22 @@ public class Song {
         this.filePath = "src/main/resources/songs/" + name + ".mp3";
         this.coverPath = "src/main/resources/songs/" + name + ".webp";
         this.artist = artist;
+        this.year = year;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -133,10 +133,6 @@ public class Song {
     public ArrayList<Song> getSongs() {
         return null;
     }
-//    @Override
-//    public Object setSongs(ArrayList<Song> songs) {
-//        return null;
-//    }
 
     /**
      * @return String representation of Song. Mainly for debugging purposes.
@@ -148,7 +144,6 @@ public class Song {
                 ", duration=" + duration +
                 '}';
     }
-
 
 
     public String getFilePath() {

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 repositories {
@@ -22,13 +23,19 @@ dependencies {
 
     implementation 'junit:junit:4.13.1'
     testImplementation 'junit:junit:4.13.1'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
-//    useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
     }
+
+    filter {
+        includeTestsMatching "*Test"
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacoco")
 }

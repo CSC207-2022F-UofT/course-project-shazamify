@@ -13,6 +13,6 @@ public class RadioPlayerTest {
 //        RadioStationUI radioStationUI = new RadioStationUI(stationName, stationID);
 //        radioStationUI.frameSetUp();
 
-        // SearchRadioItem searchRadioItem = new SearchRadioItem(1, stationID, stationName, 50,50);
+        // SearchRadioItem.java searchRadioItem = new SearchRadioItem.java(1, stationID, stationName, 50,50);
     }
 }
