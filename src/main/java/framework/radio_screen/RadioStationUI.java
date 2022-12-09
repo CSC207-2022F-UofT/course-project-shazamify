@@ -62,17 +62,19 @@ public class RadioStationUI extends JPanel {
         RadioControl.displayRadioPlayer(this.stationName, this.stationID);
     }
 
-//    private void likeStationButtonSetUp() {
-//        JButton likeStation = new JButton("Like");
-//        likeStation.addActionListener(e -> likeStationButtonClicked());
-//    }
+    private void likeStationButtonSetUp() {
+        JButton likeStation = new JButton("Like");
+        likeStation.addActionListener(e -> likeStationButtonClicked());
+    }
 
-//    private void likeStationButtonClicked(){
-//        try{
-//
-//            RadioControl.stationLike(this.stationName);
-//
-//            String message;
+    private void likeStationButtonClicked(){
+        try{
+
+           RadioControl.stationLike(this.stationName);
+
+            String message = stationName + "has been liked/unliked!";
+
+            // TODO: for implementation of the Like Station function. For now a default message is presented.
 //            if (this.likeStatus){
 //                message = stationName + " has been liked!";
 //
@@ -80,17 +82,14 @@ public class RadioStationUI extends JPanel {
 //            else{
 //                message = stationName + " has been unliked!";
 //            }
-//
-//
-//            JOptionPane.showMessageDialog(this, message);
-//
-//
-//
-//            frame.dispose();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//    }
+
+            JOptionPane.showMessageDialog(this, message);
+
+            frame.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
 
 
 }
