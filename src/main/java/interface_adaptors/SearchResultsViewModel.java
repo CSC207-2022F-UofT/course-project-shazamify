@@ -1,6 +1,10 @@
 package interface_adaptors;
 
 import abr.radio_abr.StationLibrary;
+import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
+import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
+import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
+import ds.user_interact_ds.FriendManagerFileDsGateway;
 import entities.Song;
 import entities.user_entities.User;
 import framework.buttons.ButtonSearchAlbums;
@@ -9,12 +13,16 @@ import framework.buttons.ButtonSearchSongs;
 import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
+import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_login_ia.UserStatusViewModel;
+
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SearchResultsViewModel {
 
@@ -231,6 +239,9 @@ public class SearchResultsViewModel {
         // Populate list panel with items
         for (int i = 0; i < users.size(); i++) {
             list.add(new SearchUserItem(i, users.get(i), width - 30, 50));
+            if (UserStatusViewModel.getInstance().getLogInStatus() & !Objects.equals(UserStatusViewModel.getInstance().getUserName(), users.get(i))){
+                list.add(addFriendRequestButton(users.get(i)));
+            }
         }
         list.setBackground(Color.DARK_GRAY);
         // Create scroll panel
@@ -242,6 +253,29 @@ public class SearchResultsViewModel {
         viewUsers.add(scrollPanel, BorderLayout.CENTER);
         return viewUsers;
     }
+
+    private JButton addFriendRequestButton(String userName){
+        JButton requestButton = new JButton("send friend request");
+
+        FriendManagerInputBoundary sendFriendRequest = new SendFriendRequest(new FriendManagerFileDsGateway(), new FriendManagerPresenter());
+        SendFriendRequestController controller = new SendFriendRequestController(sendFriendRequest, UserStatusViewModel.getInstance());
+        requestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestButtonClicked(userName, controller);
+            }
+        });
+        return requestButton;
+    }
+
+    private void requestButtonClicked(String userName, SendFriendRequestController controller){
+        try {
+            JOptionPane.showMessageDialog(viewUsers,controller.reactTo(userName).getMsgToDisplay());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(viewUsers, e.getMessage());
+        }
+    }
+
 
     private JPanel renderRadioView() {
         // Create content panel
