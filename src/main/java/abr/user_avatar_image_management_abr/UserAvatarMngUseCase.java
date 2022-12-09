@@ -1,8 +1,6 @@
 package abr.user_avatar_image_management_abr;
 
-import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
 import entities.user_entities.User;
-import entities.user_entities.UserAvatar;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

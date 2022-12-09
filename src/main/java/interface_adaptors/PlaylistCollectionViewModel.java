@@ -1,6 +1,5 @@
 package interface_adaptors;
 
-import entities.playlist_entities.Playlist;
 import framework.buttons.ButtonCreatePlaylist;
 import framework.items.PlaylistCollectionItem;
 import interface_adaptors.user_login_ia.UserStatusObserver;
@@ -8,7 +7,6 @@ import interface_adaptors.user_login_ia.UserStatusViewModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistCollectionViewModel extends AbstractViewModel<List<String>> implements UserStatusObserver {

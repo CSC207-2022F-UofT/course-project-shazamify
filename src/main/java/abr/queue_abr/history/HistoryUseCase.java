@@ -1,11 +1,11 @@
 package abr.queue_abr.history;
 
 import abr.song_abr.SongDAOOutput;
+import ds.song_ds.SongDAOOutputImpl;
 import entities.Song;
 import entities.queue_entities.HistoryQueue;
-import ds.song_ds.*;
 
-import java.util.*;
+import java.util.Optional;
 
 /***
  * The class responsible for updating the history queue with songs that have been listened to. This class will remain

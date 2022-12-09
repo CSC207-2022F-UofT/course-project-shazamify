@@ -1,15 +1,7 @@
 package interface_adaptors.visualizer_ia;
 
-import entities.Amplitude;
 import entities.Song;
 import interface_adaptors.AbstractDisplayUseCase;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.ArrayList;
 
 public class SongVisualizerUseCase extends AbstractDisplayUseCase {
 

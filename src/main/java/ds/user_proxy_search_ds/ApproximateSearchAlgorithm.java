@@ -1,6 +1,8 @@
 package ds.user_proxy_search_ds;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author David Li
@@ -92,15 +94,15 @@ public class ApproximateSearchAlgorithm {
 
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
-        String a = "AOVMASght";
-        String b = "ArpKight";
+        String a = "David";
+        String b = "DavidLi";
 
         list.add(a);
         list.add(b);
-        list.add("NOnesenseGiberish");
-        list.add("NOnesenseGiberish222");
+        list.add("LiDavid");
+        list.add("1111");
 
-        List<String> score = sortedByLevenshteinDistance(list, "ArpKight");
+        List<String> score = sortedByLevenshteinDistance(list, "David");
         System.out.println(score);
     }
 }

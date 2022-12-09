@@ -1,12 +1,9 @@
 package interface_adaptors;
 
-import abr.radio_abr.StationLibrary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
-import entities.Song;
-import entities.user_entities.User;
 import framework.buttons.ButtonSearchAlbums;
 import framework.buttons.ButtonSearchRadio;
 import framework.buttons.ButtonSearchSongs;
@@ -14,17 +11,17 @@ import framework.buttons.ButtonSearchUsers;
 import framework.items.SearchSongItem;
 import framework.items.SearchUserItem;
 import interface_adaptors.user_interact_ia.SendFriendRequestController;
+import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
-import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class SearchResultsViewModel {
+public class SearchResultsViewModel implements UserStatusObserver {
 
     private static SearchResultsViewModel instance;
 
@@ -53,7 +50,9 @@ public class SearchResultsViewModel {
      * @return instance
      */
     public static SearchResultsViewModel getInstance() {
-        if (instance == null) {instance = new SearchResultsViewModel();}
+        if (instance == null) {
+            instance = new SearchResultsViewModel();
+        UserStatusViewModel.getInstance().addUserStatusObserver(instance);}
         return instance;
     }
 
@@ -297,6 +296,12 @@ public class SearchResultsViewModel {
         // Add panel to view
         viewUsers.add(scrollPanel, BorderLayout.CENTER);
         return viewUsers;
+    }
+
+    @Override
+    public void userUpdated() {
+        updateView();
+
     }
 
     /**

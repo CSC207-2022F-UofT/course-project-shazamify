@@ -1,8 +1,5 @@
 package radio_test;
 
-import framework.items.SearchRadioItem;
-import framework.radio_screen.RadioStationUI;
-
 public class RadioPlayerTest {
 
     public static void main(String[] args){

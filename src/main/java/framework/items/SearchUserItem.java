@@ -1,7 +1,5 @@
 package framework.items;
 
-import entities.user_entities.User;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;

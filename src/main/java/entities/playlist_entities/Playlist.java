@@ -1,7 +1,5 @@
 package entities.playlist_entities;
 
-import abr.song_abr.SongDAOOutput;
-import ds.song_ds.SongDAOOutputImpl;
 import entities.Record;
 
 import java.io.File;
