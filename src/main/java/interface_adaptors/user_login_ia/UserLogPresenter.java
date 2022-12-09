@@ -2,7 +2,6 @@ package interface_adaptors.user_login_ia;
 
 import abr.user_login_abr.UserLogOutputBoundary;
 import abr.user_login_abr.UserLogResponseModel;
-import entities.user_entities.User;
 
 /**
  * @author David Li

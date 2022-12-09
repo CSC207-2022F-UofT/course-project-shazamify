@@ -1,8 +1,6 @@
 package interface_adaptors.user_avatar_image_management_ia;
 
 
-import interface_adaptors.user_login_ia.UserStatusViewModel;
-
 public class UserAvatarMngViewModel {
     private boolean isDirectoryValid;
     private static UserAvatarMngViewModel instance;

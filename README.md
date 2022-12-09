@@ -31,12 +31,23 @@ The DAO design pattern acts as an API for the database and implements CRUD opera
 The song queue entity is a singleton class- there will only ever be one instance of a queue at a time. This design was chosen rather than making the song queue a subclass of a playlist (since both objects contain lists of song objects), because of the vast differences between the two objects (the only common factor within between them is one of their attributes).
 The history queue has been somewhat completed, however it can be noticed that there is no implementation of it. The reason for that is, due to time constraints, the song recommender (which is the primary reason we decided on implementing the queue history in the first place) was placed on hold until functionality of our main program was accomplished.
 
+The song player will get the first song in queue when the skip button is clicked. However, due to the song player being unable to recognize when a song is finished, it is imperative to click the skip button to move to the next song.
+Pressing play on a song inside the queue will delete every song before it in the queue. There can be duplicate songs in the queue. Users can re-order, delete, or overwrite the queue with buttons.
+
 ## Radio Notes
 ### API Interaction - TBD
 The structure of various radio features was made with the intention of having an API serve as a database/source of our radio station objects. Unfortunately due to time constraints and various unforeseen issues, the API calls currently do not function as intended. Various RadioStation objects have been created to serve as a demonstrative of how the rest of the radio features are supposed to function. 
 
 ### Liking and Saving Radio Stations - TBD 
 The RadioStation entities have an attribute called "like" attached to them. This is because there is a planned feature of users being able to like certain radio stations and have it then be added into a sort of psuedo-playlist of their favourite radio stations. Unfortunately due to time constraints this feature was placed on hold in order to prioritize the main functionality of our program.
+
+## User Interaction Notes
+Friend limit :10 (increase or decrease by changing the FRIEND_LIMIT in SendFriendRequestHelper)
+
+Click on the button in circle to access friend list:
+
+![image](https://user-images.githubusercontent.com/43018428/206616536-9a4a6e50-2ec2-4fdf-bb83-96144c7a4d14.png)
+
 
 ## User Notes
 - Illegal User Password & UserName: Only check for the illegal symbal. i.e. Any simbal that is not Alphanumeric.

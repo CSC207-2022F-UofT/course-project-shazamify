@@ -1,7 +1,5 @@
 package abr.user_avatar_image_management_abr;
 
-import entities.user_entities.User;
-
 import java.awt.image.BufferedImage;
 
 public class UserAvatarMngResponseModel {

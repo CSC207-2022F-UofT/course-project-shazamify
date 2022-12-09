@@ -8,8 +8,6 @@ import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueGetController;
 import interface_adaptors.queue_ia.QueueGetPresenter;
 import interface_adaptors.queue_ia.QueueViewModel;
-import interface_adaptors.song_player_ia.SongPlayerController;
-import interface_adaptors.song_player_ia.SongPlayerViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

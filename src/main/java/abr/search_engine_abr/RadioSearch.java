@@ -1,8 +1,6 @@
 package abr.search_engine_abr;
+
 import abr.radio_abr.StationLibrary;
-import abr.search_engine_abr.SearchEngineOutputBoundary;
-import abr.search_engine_abr.SearchEngineResponseModel;
-import abr.search_engine_abr.SearchRadioInputBoundary;
 import entities.radio_entities.RadioStation;
 
 import java.util.ArrayList;

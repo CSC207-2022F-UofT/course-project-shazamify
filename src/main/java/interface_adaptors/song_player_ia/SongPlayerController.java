@@ -1,6 +1,5 @@
 package interface_adaptors.song_player_ia;
 
-import entities.Song;
 import interface_adaptors.display_ia.SongPlayerAudio;
 
 public class SongPlayerController {

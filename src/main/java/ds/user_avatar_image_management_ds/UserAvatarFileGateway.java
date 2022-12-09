@@ -4,7 +4,6 @@ import abr.user_avatar_image_management_abr.UserAvatarDatabaseGateway;
 import ds.user_database.UserFileReader;
 import ds.user_database.UserFileWriter;
 import entities.user_entities.User;
-import entities.user_entities.UserAvatar;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;

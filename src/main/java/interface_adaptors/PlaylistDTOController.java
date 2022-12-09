@@ -1,9 +1,7 @@
 package interface_adaptors;
 
 import abr.PlaylistDTOUseCase;
-import abr.SongDTOUseCase;
 
-import java.awt.*;
 import java.io.File;
 import java.util.List;
 

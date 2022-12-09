@@ -1,6 +1,6 @@
 package abr.queue_abr.queue;
 
-import java.util.*;
+import java.util.List;
 
 /***
  * The queue response model is data structure containing a list of song IDs inside the queue.

@@ -3,7 +3,6 @@ package interface_adaptors.display_ia;
 import abr.queue_abr.queue.QueueFIB;
 import abr.queue_abr.queue.QueueFOB;
 import abr.queue_abr.queue.QueueFUC;
-import entities.Song;
 import interface_adaptors.AbstractDisplayUseCase;
 import interface_adaptors.SongDTOController;
 import interface_adaptors.queue_ia.QueueFirstController;

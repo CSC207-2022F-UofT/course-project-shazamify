@@ -2,7 +2,6 @@ package entities.user_entities;
 
 import abr.user_reg_abr.UserRegisterDataBaseGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
-import entities.playlist_entities.Playlist;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

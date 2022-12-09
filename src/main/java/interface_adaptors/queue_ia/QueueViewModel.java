@@ -1,7 +1,5 @@
 package interface_adaptors.queue_ia;
 
-import entities.playlist_entities.Playlist;
-import framework.items.PlaylistCollectionItem;
 import framework.items.QueueCollectionItem;
 import interface_adaptors.AbstractViewModel;
 

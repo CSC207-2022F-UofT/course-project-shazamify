@@ -24,7 +24,6 @@ import ds.user_login_ds.UserLoginFileGateway;
 import ds.user_playlist_ds.UserPlaylistFileGateway;
 import ds.user_reg_ds.UserRegisterFileGateway;
 import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngController;
-import interface_adaptors.user_avatar_image_management_ia.UserAvatarMngViewModel;
 import interface_adaptors.user_avatar_image_management_ia.UserChangeMngPresenter;
 import interface_adaptors.user_change_password_ia.UserCPController;
 import interface_adaptors.user_change_password_ia.UserCPPresenter;

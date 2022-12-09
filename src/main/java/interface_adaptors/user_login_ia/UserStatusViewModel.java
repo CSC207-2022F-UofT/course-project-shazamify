@@ -1,8 +1,5 @@
 package interface_adaptors.user_login_ia;
 
-import entities.user_entities.UserAvatar;
-import interface_adaptors.user_reg_ia.UserRegViewModel;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
