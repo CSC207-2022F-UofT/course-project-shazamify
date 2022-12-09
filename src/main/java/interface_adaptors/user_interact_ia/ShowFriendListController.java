@@ -2,6 +2,7 @@ package interface_adaptors.user_interact_ia;
 
 import abr.user_interact_abr.show_friend_list_abr.OrderFriendListInputBoundary;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
+
 import java.util.ArrayList;
 
 public class ShowFriendListController{

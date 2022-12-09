@@ -1,6 +1,6 @@
 package interface_adaptors.radio_ia;
 
-import framework.buttons.*;
+import framework.buttons.ButtonStop;
 
 import javax.swing.*;
 import java.awt.*;

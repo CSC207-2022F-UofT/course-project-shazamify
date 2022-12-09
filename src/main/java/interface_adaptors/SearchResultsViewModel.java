@@ -1,12 +1,9 @@
 package interface_adaptors;
 
-import abr.radio_abr.StationLibrary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
 import abr.user_interact_abr.manage_friend_request_abr.FriendManagerPresenter;
 import abr.user_interact_abr.manage_friend_request_abr.sending_or_accepting_attempt_abr.SendFriendRequest;
 import ds.user_interact_ds.FriendManagerFileDsGateway;
-import entities.Song;
-import entities.user_entities.User;
 import framework.buttons.ButtonSearchAlbums;
 import framework.buttons.ButtonSearchRadio;
 import framework.buttons.ButtonSearchSongs;
@@ -17,12 +14,11 @@ import interface_adaptors.user_interact_ia.SendFriendRequestController;
 import interface_adaptors.user_login_ia.UserStatusObserver;
 import interface_adaptors.user_login_ia.UserStatusViewModel;
 
-import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class SearchResultsViewModel implements UserStatusObserver {

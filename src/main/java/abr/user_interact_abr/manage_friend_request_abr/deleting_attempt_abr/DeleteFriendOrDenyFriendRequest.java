@@ -1,10 +1,6 @@
 package abr.user_interact_abr.manage_friend_request_abr.deleting_attempt_abr;
 
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerDsGateway;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerRequestModel;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerResponseModel;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerInputBoundary;
-import abr.user_interact_abr.manage_friend_request_abr.FriendManagerOutputBoundary;
+import abr.user_interact_abr.manage_friend_request_abr.*;
 
 import java.util.HashMap;
 

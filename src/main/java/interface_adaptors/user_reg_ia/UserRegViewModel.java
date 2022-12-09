@@ -1,7 +1,5 @@
 package interface_adaptors.user_reg_ia;
 
-import interface_adaptors.user_login_ia.UserStatusViewModel;
-
 public class UserRegViewModel {
     private boolean usernameValidity;
     private boolean passwordValidity;

@@ -6,7 +6,6 @@ import interface_adaptors.playlist_ia.RecordViewModel;
 import interface_adaptors.queue_ia.QueueViewModel;
 import interface_adaptors.search_engine_ia.SearchEngineController;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

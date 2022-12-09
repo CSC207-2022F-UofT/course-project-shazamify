@@ -1,6 +1,6 @@
 package abr.queue_abr.queue;
 
-import java.util.*;
+import java.util.List;
 
 public class QueueURequestModel {
     private final List<String> songList;

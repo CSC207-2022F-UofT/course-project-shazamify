@@ -2,9 +2,8 @@ package interface_adaptors.queue_ia;
 
 import abr.queue_abr.queue.QueueUInputBoundary;
 import abr.queue_abr.queue.QueueURequestModel;
-import abr.queue_abr.queue.QueueUUseCase;
 
-import java.util.*;
+import java.util.List;
 
 /***
  * The Queue controller is responsible for passing down the song list of IDs from the UI level to the use case.

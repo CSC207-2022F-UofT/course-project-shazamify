@@ -2,8 +2,6 @@ package abr.song_abr;
 
 import ds.song_ds.SongDAOOutputImpl;
 
-import java.util.List;
-
 /***
  * The QueueFDTO is a data transfer object responsible for carrying an updated list of song IDs from the queue and
  * the ID of the song that will be played in the song player immediately.

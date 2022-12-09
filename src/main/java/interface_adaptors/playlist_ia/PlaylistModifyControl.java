@@ -1,8 +1,10 @@
 package interface_adaptors.playlist_ia;
 
-import abr.playlist_abr.*;
+import abr.playlist_abr.PlaylistDAOOutput;
+import abr.playlist_abr.PlaylistModifyInputBoundary;
+import abr.playlist_abr.PlaylistModifyRequestModel;
+import abr.playlist_abr.PlaylistModifyUseCase;
 import abr.song_abr.SongDAOOutput;
-import ds.playlist_ds.PlaylistDAOInputImpl;
 import ds.playlist_ds.PlaylistDAOOutputImpl;
 import ds.song_ds.SongDAOOutputImpl;
 import entities.playlist_entities.Privacy;
