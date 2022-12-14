@@ -6,16 +6,20 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Playlist implements Record {
-    private final String owner;
-    private final String id;
+    private String owner;
+    private String id;
     private String name;
     private int duration;
     private ArrayList<String> contents;
     private String description;
     private Privacy privacy;
 
-    public String getOwner() {
-        return owner;
+
+    /**
+     * Empty constructor necessary for MongoDB encoding
+     */
+    public Playlist() {
+
     }
 
     /***
@@ -31,8 +35,12 @@ public class Playlist implements Record {
         this.owner = "";
         this.description = "";
         this.privacy = Privacy.PRIVATE;
-
     }
+
+    public String getOwner() {
+        return owner;
+    }
+
 
     //TODO: initialize with default names
     @Override

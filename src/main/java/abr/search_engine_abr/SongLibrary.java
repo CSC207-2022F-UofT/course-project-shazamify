@@ -15,7 +15,6 @@ public class SongLibrary {
 
     public List<Song> getSongs() {
         List<Song> songList = new ArrayList<>();
-        //todo read from file;
         return songList;
 
     }

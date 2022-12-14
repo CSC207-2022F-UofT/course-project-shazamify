@@ -13,6 +13,9 @@ import java.util.Arrays;
 
 public class PlaylistPopulate {
 
+    /**
+     * Exploratory tool for populating app with playlists
+     */
     public static void main(String[] args) {
         PlaylistDAOInput playlistDAOinput = new PlaylistDAOInputImpl();
 
